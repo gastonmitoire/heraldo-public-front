@@ -16,7 +16,7 @@ const fakeLinks = [
 
 export const Navigation: React.FC = () => {
   return (
-    <nav className="bg-white">
+    <nav>
       <div className="flex py-3">
         <div className="flex-1"></div>
         <div className="flex-auto flex justify-center">
