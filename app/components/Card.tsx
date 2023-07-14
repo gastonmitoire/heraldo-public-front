@@ -20,7 +20,7 @@ export const Card: React.FC<CardProps> = ({
   return (
     <article className="flex flex-col max-w-[300px] border-b-2 border-transparent group hover:border-blue-500 hover:cursor-pointer">
       <div className="flex-1 relative group-hover:brightness-75">
-        <span className="absolute top-3 left-3 uppercase bg-black text-white font-light text-sm py-1 px-3">
+        <span className="absolute top-3 left-3 uppercase bg-black bg-opacity-80 text-white font-light text-sm py-1 px-3">
           {category}
         </span>
         <img src={image} alt="" />
