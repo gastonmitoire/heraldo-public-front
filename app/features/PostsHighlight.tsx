@@ -22,7 +22,6 @@ async function fetchData() {
 
 export const PostsHighlight: React.FC = async () => {
   const data = await fetchData();
-  console.log(data.docs[0]);
 
   return (
     <div className="grid grid-cols-7 gap-3">
