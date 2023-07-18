@@ -1,10 +1,10 @@
-import React from "react";
+import React, { useEffect } from "react";
 
 import { Banner } from "./components/Banner";
-import { Card } from "./components/Card";
 import { CardHighlight } from "./components/CardHighlight";
-import { List } from "./components/List";
 import { Marquee } from "./components/Marquee";
+
+import { PostsHighlight } from "./features/PostsHighlight";
 
 const postFakeData = {
   title:
@@ -16,7 +16,7 @@ const postFakeData = {
   href: "/",
 };
 
-export default function Home() {
+export default async function Home() {
   return (
     <div className="container mx-auto">
       {/* SUPERHIGHLIGHT SECTION */}
@@ -41,73 +41,27 @@ export default function Home() {
             image="https://source.unsplash.com/random"
           />
         </div>
-
-        {/* MARQUEE & BANNER SECTION */}
-        <section className="flex flex-col gap-5">
-          <Marquee
-            titles={[
-              "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, voluptates.",
-              "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, voluptates.",
-              "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, voluptates.",
-              "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, voluptates.",
-            ]}
-          />
-
-          <Banner
-            url="https://cms-el-heraldo-prod.s3.us-east-1.amazonaws.com/cartelera/2023/06/05__ELHERALDO_TPA_ABRIL.gif"
-            title="titulo"
-          />
-        </section>
-
-        {/* HIGHLIGHT SECTION */}
-        <section className="grid grid-cols-7 gap-3">
-          <div className="col-span-5 grid grid-cols-3 gap-3">
-            <div className="col-span-2 flex flex-col gap-3">
-              <CardHighlight
-                title={postFakeData.title}
-                excerpt={postFakeData.excerpt}
-                image={postFakeData.image}
-                className="col-span-2"
-              />
-              <div className="flex justify-evenly gap-3">
-                <Card
-                  title={postFakeData.title}
-                  excerpt={postFakeData.excerpt}
-                  image={postFakeData.image}
-                  href={postFakeData.href}
-                  category={postFakeData.category}
-                />
-                <Card
-                  title={postFakeData.title}
-                  excerpt={postFakeData.excerpt}
-                  image={postFakeData.image}
-                  href={postFakeData.href}
-                  category={postFakeData.category}
-                />
-              </div>
-            </div>
-            <Banner
-              url="https://cms-el-heraldo-prod.s3.us-east-1.amazonaws.com/cartelera/2023/06/05_Banner265x620BotUn.jpg"
-              title="titulo"
-              className="col-span-1"
-            />
-          </div>
-          <div className="col-span-2">
-            <List
-              heading="Ultimas Noticias"
-              items={[
-                postFakeData,
-                postFakeData,
-                postFakeData,
-                postFakeData,
-                postFakeData,
-                postFakeData,
-              ]}
-              className="border"
-            />
-          </div>
-        </section>
       </section>
+
+      {/* MARQUEE & BANNER SECTION */}
+      <section className="flex flex-col gap-5">
+        <Marquee
+          titles={[
+            "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, voluptates.",
+            "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, voluptates.",
+            "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, voluptates.",
+            "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, voluptates.",
+          ]}
+        />
+
+        <Banner
+          url="https://cms-el-heraldo-prod.s3.us-east-1.amazonaws.com/cartelera/2023/06/05__ELHERALDO_TPA_ABRIL.gif"
+          title="titulo"
+        />
+      </section>
+
+      {/* HIGHLIGHT SECTION */}
+      <PostsHighlight />
     </div>
   );
 }
