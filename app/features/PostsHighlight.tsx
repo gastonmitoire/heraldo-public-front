@@ -52,7 +52,8 @@ export const PostsHighlight: React.FC = async () => {
         <Banner
           url="https://cms-el-heraldo-prod.s3.us-east-1.amazonaws.com/cartelera/2023/06/05_Banner265x620BotUn.jpg"
           title="titulo"
-          className="col-span-1"
+          className="col-span-1 max-h-[600px]"
+          sticky
         />
       </div>
       <div className="col-span-2">

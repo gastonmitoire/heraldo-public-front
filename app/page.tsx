@@ -57,6 +57,7 @@ export default async function Home() {
         <Banner
           url="https://cms-el-heraldo-prod.s3.us-east-1.amazonaws.com/cartelera/2023/06/05__ELHERALDO_TPA_ABRIL.gif"
           title="titulo"
+          className="container mx-auto"
         />
       </section>
 
