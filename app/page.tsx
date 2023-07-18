@@ -3,6 +3,7 @@ import React from "react";
 import { Banner } from "./components/Banner";
 import { Card } from "./components/Card";
 import { CardHighlight } from "./components/CardHighlight";
+import { List } from "./components/List";
 import { Marquee } from "./components/Marquee";
 
 const postFakeData = {
@@ -92,8 +93,18 @@ export default function Home() {
             />
           </div>
           <div className="col-span-2">
-            CardHighlight(title="titulo", excerpt="excerpt",
-            image="https://source.unsplash.com/random")
+            <List
+              heading="Ultimas Noticias"
+              items={[
+                postFakeData,
+                postFakeData,
+                postFakeData,
+                postFakeData,
+                postFakeData,
+                postFakeData,
+              ]}
+              className="border"
+            />
           </div>
         </section>
       </section>
