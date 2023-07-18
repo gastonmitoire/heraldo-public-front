@@ -32,6 +32,14 @@ export default function Home() {
         image={cardFakeData.image}
         category={cardFakeData.category}
         href={cardFakeData.href}
+        horizontal
+      />
+      <Card
+        excerpt={cardFakeData.excerpt}
+        title={cardFakeData.title}
+        image={cardFakeData.image}
+        category={cardFakeData.category}
+        href={cardFakeData.href}
       />
     </div>
   );
