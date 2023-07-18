@@ -65,23 +65,23 @@ export default function Home() {
               <CardHighlight
                 title={postFakeData.title}
                 excerpt={postFakeData.excerpt}
-                image="https://source.unsplash.com/random"
+                image={postFakeData.image}
                 className="col-span-2"
               />
               <div className="flex justify-evenly gap-3">
                 <Card
-                  title="titulo"
-                  excerpt="excerpt"
-                  image="https://source.unsplash.com/random"
-                  href="/"
-                  category="categoria"
+                  title={postFakeData.title}
+                  excerpt={postFakeData.excerpt}
+                  image={postFakeData.image}
+                  href={postFakeData.href}
+                  category={postFakeData.category}
                 />
                 <Card
-                  title="titulo"
-                  excerpt="excerpt"
-                  image="https://source.unsplash.com/random"
-                  href="/"
-                  category="categoria"
+                  title={postFakeData.title}
+                  excerpt={postFakeData.excerpt}
+                  image={postFakeData.image}
+                  href={postFakeData.href}
+                  category={postFakeData.category}
                 />
               </div>
             </div>
