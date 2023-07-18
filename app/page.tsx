@@ -3,9 +3,6 @@ import React from "react";
 import { Card } from "./components/Card";
 import { CardHighlight } from "./components/CardHighlight";
 
-// lorem ipsum 90 characters
-//
-
 const cardFakeData = {
   excerpt:
     "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec auctor, nisl id ultricies ultrices, nunc sapien aliquam nunc, vitae aliquam nisl nisl nec nisl.",
@@ -19,6 +16,11 @@ const cardFakeData = {
 export default function Home() {
   return (
     <div>
+      <CardHighlight
+        excerpt={cardFakeData.excerpt}
+        title={cardFakeData.title}
+        image={cardFakeData.image}
+      />
       <div className="grid grid-cols-2">
         <CardHighlight
           excerpt={cardFakeData.excerpt}
