@@ -18,7 +18,7 @@ const postFakeData = {
 
 export default async function Home() {
   return (
-    <div className="container mx-auto flex flex-col gap-5">
+    <div className="flex flex-col gap-5">
       {/* SUPERHIGHLIGHT SECTION */}
       <section className="flex flex-col gap-5">
         <CardHighlight
@@ -29,7 +29,7 @@ export default async function Home() {
           fullWidth
         />
 
-        <div className="grid grid-cols-2 gap-3 px-16">
+        <div className="container mx-auto grid grid-cols-2 gap-3 px-16">
           <CardHighlight
             title={postFakeData.title}
             excerpt={postFakeData.excerpt}
@@ -61,7 +61,9 @@ export default async function Home() {
       </section>
 
       {/* HIGHLIGHT SECTION */}
-      <PostsHighlight />
+      <section className="container mx-auto">
+        <PostsHighlight />
+      </section>
     </div>
   );
 }

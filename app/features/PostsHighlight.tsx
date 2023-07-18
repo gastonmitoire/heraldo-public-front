@@ -25,7 +25,7 @@ export const PostsHighlight: React.FC = async () => {
   console.log(data.docs[0]);
 
   return (
-    <section className="grid grid-cols-7 gap-3">
+    <div className="grid grid-cols-7 gap-3">
       <div className="col-span-5 grid grid-cols-3 gap-3">
         <div className="col-span-2 flex flex-col gap-3">
           <CardHighlight
@@ -64,6 +64,6 @@ export const PostsHighlight: React.FC = async () => {
           className="border"
         />
       </div>
-    </section>
+    </div>
   );
 };
