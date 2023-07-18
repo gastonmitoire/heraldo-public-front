@@ -36,7 +36,7 @@ export const CardHighlight: React.FC<CardHighlightProps> = ({
               {excerpt}
             </h5>
             <p className="text-lg font-bold pt-1.5 w-[90%]">
-              <span className="bg-white">{title}</span>
+              <span className="bg-white p-1">{title}</span>
             </p>
           </div>
         </div>
@@ -48,7 +48,7 @@ export const CardHighlight: React.FC<CardHighlightProps> = ({
             {excerpt}
           </h5>
           <p className="text-lg font-bold pt-1.5 w-[90%]">
-            <span className="bg-white">{title}</span>
+            <span className="bg-white p-1">{title}</span>
           </p>
         </div>
       )}
