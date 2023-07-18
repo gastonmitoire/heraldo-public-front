@@ -7,6 +7,7 @@ interface CardHighlightProps {
   title: string;
   image: string;
   fullWidth?: boolean;
+  className?: string;
 }
 
 export const CardHighlight: React.FC<CardHighlightProps> = ({
@@ -14,18 +15,20 @@ export const CardHighlight: React.FC<CardHighlightProps> = ({
   title,
   image,
   fullWidth,
+  className,
 }) => {
   return (
     <article
       className={`group hover:cursor-pointer bg-cover bg-center bg-no-repeat ${
-        fullWidth ? "h-[450px]" : "h-[400px] max-w-[450px]"
-      }`}
+        fullWidth ? "h-[450px]" : "h-[400px]"
+      }  ${className}`}
       style={{
         backgroundImage: `url(${image})`,
       }}
     >
       {fullWidth ? (
         <div className="h-full group-hover:bg-black group-hover:bg-opacity-30 transition-colors relative">
+          <span className="absolute w-full min-h-[100px] bg-gradient-to-b from-white via-transparent opacity-95"></span>
           <div className="absolute bottom-5 w-1/2 translate-x-1/2 text-center">
             <h5
               className={`truncate text-lg font-bold pb-1.5 pr-16 text-white`}
