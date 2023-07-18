@@ -2,45 +2,53 @@ import React from "react";
 
 import { Card } from "./components/Card";
 import { CardHighlight } from "./components/CardHighlight";
+import { Marquee } from "./components/Marquee";
 
-const cardFakeData = {
-  excerpt: "Lorem ipsum dolor sit amet",
+const postFakeData = {
   title:
-    "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec auctor, nisl id ultricies ultrices, nunc sapien aliquam nunc, vitae aliquam nisl nisl nec nisl.",
-  image: "https://source.unsplash.com/random/800x600",
-  category: "Categoria",
-  href: "/",
+    "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, voluptates. Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, voluptates.",
+  excerpt:
+    "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, voluptates.",
 };
 
 export default function Home() {
   return (
-    <div>
-      <CardHighlight
-        excerpt={cardFakeData.excerpt}
-        title={cardFakeData.title}
-        image={cardFakeData.image}
-        fullWidth={true}
-      />
-      <CardHighlight
-        excerpt={cardFakeData.excerpt}
-        title={cardFakeData.title}
-        image={cardFakeData.image}
-      />
-      <Card
-        excerpt={cardFakeData.excerpt}
-        title={cardFakeData.title}
-        image={cardFakeData.image}
-        category={cardFakeData.category}
-        href={cardFakeData.href}
-        horizontal
-      />
-      <Card
-        excerpt={cardFakeData.excerpt}
-        title={cardFakeData.title}
-        image={cardFakeData.image}
-        category={cardFakeData.category}
-        href={cardFakeData.href}
-      />
+    <div className="container mx-auto">
+      {/* HIGHLIGHT SECTION */}
+      <section className="flex flex-col gap-5">
+        <CardHighlight
+          title={postFakeData.title}
+          excerpt={postFakeData.excerpt}
+          image="https://source.unsplash.com/random"
+          className="col-span-2"
+          fullWidth
+        />
+
+        <div className="grid grid-cols-2 gap-3 px-16">
+          <CardHighlight
+            title={postFakeData.title}
+            excerpt={postFakeData.excerpt}
+            image="https://source.unsplash.com/random"
+          />
+          <CardHighlight
+            title={postFakeData.title}
+            excerpt={postFakeData.excerpt}
+            image="https://source.unsplash.com/random"
+          />
+        </div>
+
+        {/* MARQUEE & BANNER SECTION */}
+        <section>
+          <Marquee
+            titles={[
+              "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, voluptates.",
+              "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, voluptates.",
+              "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, voluptates.",
+              "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, voluptates.",
+            ]}
+          />
+        </section>
+      </section>
     </div>
   );
 }
