@@ -20,7 +20,7 @@ export const CardHighlight: React.FC<CardHighlightProps> = ({
   return (
     <article
       className={`group hover:cursor-pointer bg-cover bg-center bg-no-repeat ${
-        fullWidth ? "h-[450px]" : "h-[400px]"
+        fullWidth ? "h-[500px]" : "h-[450px]"
       }  ${className}`}
       style={{
         backgroundImage: `url(${image})`,
