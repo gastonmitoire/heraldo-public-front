@@ -58,7 +58,7 @@ export const PostsHighlight: React.FC = async () => {
       <div className="col-span-2">
         <List
           heading="Ultimas Noticias"
-          items={data.docs.map((post) => ({
+          items={data.docs.map((post: any) => ({
             title: post.title,
           }))}
           className="border"
