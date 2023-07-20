@@ -39,7 +39,7 @@ export const SocialMediaShareLinks: React.FC<SocialMediaShareLinksProps> = ({
 
   return (
     <div
-      className={`flex flex-col items-center justify-center gap-1 bg-pink-500 ${className}`}
+      className={`flex flex-col items-center justify-center gap-1 ${className}`}
     >
       <p className="text-sm uppercase font-bold text-gray-700 text-opacity-70">
         Compartir:
