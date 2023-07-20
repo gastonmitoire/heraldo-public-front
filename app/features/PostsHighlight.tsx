@@ -9,12 +9,7 @@ import { CardHighlight } from "@/app/components/CardHighlight";
 import { List } from "@/app/components/List";
 import { PrintedEditionModal } from "./PrintedEditionModal";
 
-interface Post {
-  title: string;
-  excerpt: string;
-  images: { url: string }[];
-  category: { name: string };
-}
+import { Post } from "@/types";
 
 interface PostsHighlightProps {
   posts: {

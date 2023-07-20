@@ -5,6 +5,7 @@ import { CardHighlight } from "./components/CardHighlight";
 import { Marquee } from "./components/Marquee";
 
 import { PostsHighlight } from "./features/PostsHighlight";
+import { PostsSuperHighlight } from "./features/PostsSuperHighlight";
 
 const postFakeData = {
   title:
@@ -36,26 +37,7 @@ export default async function Home() {
     <div className="flex flex-col gap-5">
       {/* SUPERHIGHLIGHT SECTION */}
       <section className="flex flex-col gap-5">
-        <CardHighlight
-          title={postFakeData.title}
-          excerpt={postFakeData.excerpt}
-          image="https://source.unsplash.com/random"
-          className="col-span-2"
-          fullWidth
-        />
-
-        <div className="container mx-auto grid grid-cols-2 gap-3 px-16">
-          <CardHighlight
-            title={postFakeData.title}
-            excerpt={postFakeData.excerpt}
-            image="https://source.unsplash.com/random"
-          />
-          <CardHighlight
-            title={postFakeData.title}
-            excerpt={postFakeData.excerpt}
-            image="https://source.unsplash.com/random"
-          />
-        </div>
+        <PostsSuperHighlight posts={posts} />
       </section>
 
       {/* MARQUEE & BANNER SECTION */}
