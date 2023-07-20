@@ -43,7 +43,7 @@ export const PostsHighlight: React.FC<PostsHighlightProps> = ({ posts }) => {
             image={posts.docs[0].images[0].url}
             className="col-span-2"
           />
-          <div className="flex justify-evenly gap-3">
+          <div className="grid grid-cols-2 gap-3">
             <Card
               title={posts.docs[0].title}
               excerpt={posts.docs[0].excerpt}
