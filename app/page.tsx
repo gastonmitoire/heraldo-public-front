@@ -16,7 +16,22 @@ const postFakeData = {
   href: "/",
 };
 
+const apiUrl = `https://k3gj5umrp4.execute-api.us-east-1.amazonaws.com/api`;
+
+async function fetchPosts() {
+  const res = await fetch(`${apiUrl}/posts`);
+
+  if (!res.ok) {
+    console.log("error");
+    return;
+  }
+
+  return res.json();
+}
+
 export default async function Home() {
+  const posts = await fetchPosts();
+
   return (
     <div className="flex flex-col gap-5">
       {/* SUPERHIGHLIGHT SECTION */}
@@ -63,7 +78,7 @@ export default async function Home() {
 
       {/* HIGHLIGHT SECTION */}
       <section className="container mx-auto">
-        <PostsHighlight />
+        <PostsHighlight posts={posts} />
       </section>
     </div>
   );
