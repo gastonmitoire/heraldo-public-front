@@ -7,6 +7,9 @@ interface BannerProps {
   title: string;
   className?: string;
   sticky?: boolean;
+  border?: boolean;
+  imageWidth?: number | string;
+  imageHeight?: number | string;
 }
 
 export const Banner: React.FC<BannerProps> = ({
@@ -14,14 +17,17 @@ export const Banner: React.FC<BannerProps> = ({
   title,
   className,
   sticky,
+  border,
+  imageWidth,
+  imageHeight,
 }) => {
   return (
     <div
-      className={`${className} flex justify-center min-h-[100px] w-full border py-1.5 ${
+      className={`${className} flex justify-center min-h-[100px] w-full py-1.5 ${
         sticky ? "sticky top-0" : ""
-      }`}
+      } ${border ? "border" : ""}`}
     >
-      <img src={url} alt={title} />
+      <img src={url} alt={title} width={imageWidth} height={imageHeight} />
     </div>
   );
 };

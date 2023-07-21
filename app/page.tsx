@@ -62,6 +62,21 @@ export default async function Home() {
       <section className="container mx-auto">
         <PostsHighlight posts={posts} />
       </section>
+
+      {/* BANNERS & CURRENCY SECTION */}
+      <section className="flex flex-col gap-5 container mx-auto">
+        <Banner
+          url="https://cms-el-heraldo-prod.s3.us-east-1.amazonaws.com/cartelera/2023/06/05__bannerweb970x90px_GIF.gif"
+          title="titulo"
+          imageWidth="100%"
+        />
+
+        <Banner
+          url="https://cms-el-heraldo-prod.s3.us-east-1.amazonaws.com/avisos/2023/07/19_El-Heraldo_endulzate.gif"
+          title="titulo"
+          imageWidth="100%"
+        />
+      </section>
     </div>
   );
 }

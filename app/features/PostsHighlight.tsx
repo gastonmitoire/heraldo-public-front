@@ -58,6 +58,7 @@ export const PostsHighlight: React.FC<PostsHighlightProps> = ({ posts }) => {
           title="titulo"
           className="col-span-1 max-h-[600px]"
           sticky
+          border
         />
       </div>
       <div className="col-span-2 flex flex-col gap-3">
