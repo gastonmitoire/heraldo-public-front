@@ -25,7 +25,7 @@ export const PostsSuperHighlight: React.FC<PostsSuperHighlightProps> = ({
         fullWidth
       />
 
-      <div className="container mx-auto grid grid-cols-2 gap-3 px-16">
+      <div className="container mx-auto grid grid-cols-2 gap-3">
         <CardHighlight
           title={posts.docs[1].title}
           excerpt={posts.docs[1].excerpt}
