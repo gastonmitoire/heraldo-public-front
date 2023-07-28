@@ -8,14 +8,14 @@ interface ListProps {
     title: string;
   }[];
   className?: string;
-  maxHeigth?: string;
+  listClassName?: string;
 }
 
 export const List: React.FC<ListProps> = ({
   items,
   heading,
   className,
-  maxHeigth,
+  listClassName,
 }) => {
   return (
     <div className={`${className} flex flex-col`}>
@@ -23,7 +23,7 @@ export const List: React.FC<ListProps> = ({
 
       <ul
         className={`overflow-y-scroll p-3 divide-y ${
-          maxHeigth ? maxHeigth : "max-h-[350px]"
+          listClassName ? listClassName : "max-h-[350px]"
         }`}
       >
         {items.map((item, index) => (
