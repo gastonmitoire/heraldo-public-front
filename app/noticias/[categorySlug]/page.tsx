@@ -1,3 +1,4 @@
+import { Banner } from "@/app/components/Banner";
 import { Card } from "@/app/components/Card";
 import { CardHighlight } from "@/app/components/CardHighlight";
 import { Skeleton } from "@/app/components/Skeleton";
@@ -68,6 +69,18 @@ export default async function Page({
                 />
               ))}
         </div>
+
+        {/* CATEGORY POSTS SIDEBAR */}
+        <aside className="col-span-1 grid grid-cols-1 gap-3">
+          {/* BANNER */}
+          <Banner
+            title="Publicidad"
+            url="https://cms-el-heraldo-prod.s3.us-east-1.amazonaws.com/cartelera/2023/06/05_Banner265x620BotUn.jpg"
+            className="max-h-[600px] object-contain px-5"
+            sticky
+            border
+          />
+        </aside>
       </div>
 
       {/* POSTS HIGHLIGHT */}
