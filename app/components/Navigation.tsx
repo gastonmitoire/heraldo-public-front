@@ -30,7 +30,7 @@ export const Navigation: React.FC<LinkProps> = ({
             ? links.map((link) => (
                 <Link
                   key={link.slug}
-                  href={link.slug}
+                  href={`/noticias/${link.slug}`}
                   className={`font-bold text-gray-400 hover:text-gray-800 px-4 ${
                     activeClass && pathname === `/noticias/${link.slug}`
                       ? "text-gray-800"

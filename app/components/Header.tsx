@@ -1,5 +1,6 @@
 import React from "react";
 
+import Link from "next/link";
 import { Navigation } from "./Navigation";
 
 interface HeaderProps {
@@ -22,11 +23,13 @@ export const Header: React.FC<HeaderProps> = ({ categories }: HeaderProps) => {
       <div className="flex py-5">
         <div className="flex-1"></div>
         <div className="flex-auto flex justify-center">
-          <img
-            src="https://www.elheraldo.com.ar/_next/static/media/logoMobile.da7a8911.svg"
-            alt=""
-            className="h-10"
-          />
+          <Link href="/">
+            <img
+              src="https://www.elheraldo.com.ar/_next/static/media/logoMobile.da7a8911.svg"
+              alt=""
+              className="h-10"
+            />
+          </Link>
         </div>
         <div className="flex-1"></div>
       </div>
