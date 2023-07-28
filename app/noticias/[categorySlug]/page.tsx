@@ -19,34 +19,46 @@ export default async function Page({
       </h1>
 
       <div className="grid grid-cols-2 gap-3">
-        {posts ? (
-          posts.docs
-            .slice(0, 2)
-            .map((post: any) => (
-              <CardHighlight
-                key={post._id}
-                title={post.title}
-                excerpt={post.excerpt}
-                image={post.images[0].url}
+        {posts
+          ? posts.docs
+              .slice(0, 2)
+              .map((post: any) => (
+                <CardHighlight
+                  key={post._id}
+                  title={post.title}
+                  excerpt={post.excerpt}
+                  image={post.images[0].url}
+                />
+              ))
+          : [1, 2].map((n) => (
+              <Skeleton
+                key={n}
+                className="h-[400px] 2xl:h-[450px] object-cover"
               />
-            ))
-        ) : (
-          <Skeleton className="h-[400px] 2xl:h-[450px] object-cover" />
-        )}
+            ))}
       </div>
 
       <div className="grid grid-cols-4 gap-3">
         <div className="col-span-3 grid grid-cols-3 gap-3">
-          {posts.docs.slice(2).map((post: any) => (
-            <Card
-              key={post._id}
-              title={post.title}
-              excerpt={post.excerpt}
-              image={post.images[0].url}
-              category={post.category.name}
-              imageClassName="h-[200px] 2xl:h-[300px] object-cover"
-            />
-          ))}
+          {posts
+            ? posts.docs
+                .slice(2)
+                .map((post: any) => (
+                  <Card
+                    key={post._id}
+                    title={post.title}
+                    excerpt={post.excerpt}
+                    image={post.images[0].url}
+                    category={post.category.name}
+                    imageClassName="h-[200px] 2xl:h-[300px] object-cover"
+                  />
+                ))
+            : [1, 2, 3, 4, 5, 6, 7, 8, 9].map((n) => (
+                <Skeleton
+                  key={n}
+                  className="h-[250px] 2xl:h-[300px] object-cover"
+                />
+              ))}
         </div>
       </div>
     </div>
