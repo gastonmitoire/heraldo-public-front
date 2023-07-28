@@ -9,6 +9,7 @@ interface CardProps {
   image: string;
   horizontal?: boolean;
   className?: string;
+  imageClassName?: string;
 }
 
 export const Card: React.FC<CardProps> = ({
@@ -18,6 +19,7 @@ export const Card: React.FC<CardProps> = ({
   image,
   horizontal,
   className,
+  imageClassName,
 }) => {
   return horizontal ? (
     <article
@@ -26,7 +28,7 @@ export const Card: React.FC<CardProps> = ({
       <img
         src={image}
         alt=""
-        className="w-[190px] h-full object-contain flex-auto group-hover:brightness-75 transition-all"
+        className={`w-[190px] h-full object-contain flex-auto group-hover:brightness-75 transition-all ${imageClassName}`}
       />
 
       <div className="divide-y px-3 flex flex-col justify-center">
@@ -44,7 +46,11 @@ export const Card: React.FC<CardProps> = ({
         <span className="absolute top-3 left-3 uppercase bg-black bg-opacity-80 text-white font-light text-sm py-1 px-3">
           {category}
         </span>
-        <img src={image} alt="" className="max-h-[300px] w-full" />
+        <img
+          src={image}
+          alt=""
+          className={`max-h-[300px] w-full ${imageClassName}`}
+        />
       </div>
       <div className="flex-1 pt-3 divide-y">
         <h5 className="text-blue-500 truncate text-lg font-bold pb-1.5 pr-16">

@@ -39,6 +39,7 @@ export default async function Page({
               excerpt={post.excerpt}
               image={post.images[0].url}
               category={post.category.name}
+              imageClassName="h-[200px] 2xl:h-[300px] object-cover"
             />
           ))}
         </div>
