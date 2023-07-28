@@ -71,7 +71,12 @@ export default async function Page({
       </div>
 
       {/* POSTS HIGHLIGHT */}
-      <PostsHighlight posts={posts} />
+      <div className="flex flex-col gap-0.5">
+        <h5 className="text-xl font-semibold capitalize text-gray-800">
+          Noticias de portada
+        </h5>
+        <PostsHighlight posts={posts} />
+      </div>
     </div>
   );
 }

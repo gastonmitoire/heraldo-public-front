@@ -66,7 +66,7 @@ export const PostsHighlight: React.FC<PostsHighlightProps> = ({ posts }) => {
         <div className="col-span-2 flex flex-col gap-3">
           {/* ULTIMAS NOTICIAS */}
           <List
-            heading="Ultimas Noticias"
+            heading="Últimas Noticias"
             items={posts.docs.map((post: any) => ({
               title: post.title,
             }))}
