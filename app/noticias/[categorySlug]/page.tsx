@@ -1,9 +1,17 @@
+import type { Metadata } from "next";
+import Link from "next/link";
+
 import { Banner } from "@/app/components/Banner";
 import { Card } from "@/app/components/Card";
 import { CardHighlight } from "@/app/components/CardHighlight";
 import { Skeleton } from "@/app/components/Skeleton";
 
 import { PostsHighlight } from "@/app/features/PostsHighlight";
+
+export const metadata: Metadata = {
+  title: "Noticias",
+  description: "Noticias de El Heraldo",
+};
 
 export default async function Page({
   params,
@@ -28,16 +36,16 @@ export default async function Page({
       {/* CATEGORY POSTS HIGHLIGHT */}
       <div className="grid grid-cols-2 gap-3">
         {categoryPosts
-          ? categoryPosts.docs
-              .slice(0, 2)
-              .map((post: any) => (
+          ? categoryPosts.docs.slice(0, 2).map((post: any) => (
+              <Link href={`/noticias/${post.category.slug}/${post.slug}`}>
                 <CardHighlight
                   key={post._id}
                   title={post.title}
                   excerpt={post.excerpt}
                   image={post.images[0].url}
                 />
-              ))
+              </Link>
+            ))
           : [1, 2].map((n) => (
               <Skeleton
                 key={n}
