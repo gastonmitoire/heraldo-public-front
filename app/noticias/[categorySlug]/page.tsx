@@ -1,5 +1,6 @@
 import { Card } from "@/app/components/Card";
 import { CardHighlight } from "@/app/components/CardHighlight";
+import { Skeleton } from "@/app/components/Skeleton";
 
 export default async function Page({
   params,
@@ -18,16 +19,20 @@ export default async function Page({
       </h1>
 
       <div className="grid grid-cols-2 gap-3">
-        <CardHighlight
-          title={posts.docs[0].title}
-          excerpt={posts.docs[0].excerpt}
-          image={posts.docs[0].images[0].url}
-        />
-        <CardHighlight
-          title={posts.docs[1].title}
-          excerpt={posts.docs[1].excerpt}
-          image={posts.docs[1].images[0].url}
-        />
+        {posts ? (
+          posts.docs
+            .slice(0, 2)
+            .map((post: any) => (
+              <CardHighlight
+                key={post._id}
+                title={post.title}
+                excerpt={post.excerpt}
+                image={post.images[0].url}
+              />
+            ))
+        ) : (
+          <Skeleton className="h-[400px] 2xl:h-[450px] object-cover" />
+        )}
       </div>
 
       <div className="grid grid-cols-4 gap-3">
