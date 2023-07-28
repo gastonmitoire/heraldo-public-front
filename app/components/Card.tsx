@@ -1,6 +1,7 @@
 // card component
 
 import React from "react";
+import Image from "next/image";
 
 interface CardProps {
   excerpt: string;
@@ -25,10 +26,12 @@ export const Card: React.FC<CardProps> = ({
     <article
       className={`${className} flex max-w-[300px] group hover:cursor-pointer transition-all`}
     >
-      <img
+      <Image
         src={image}
         alt=""
         className={`w-[190px] h-full object-contain flex-auto group-hover:brightness-75 transition-all ${imageClassName}`}
+        width={190}
+        height={190}
       />
 
       <div className="divide-y px-3 flex flex-col justify-center">
@@ -46,10 +49,12 @@ export const Card: React.FC<CardProps> = ({
         <span className="absolute top-3 left-3 uppercase bg-black bg-opacity-80 text-white font-light text-sm py-1 px-3">
           {category}
         </span>
-        <img
+        <Image
           src={image}
           alt=""
           className={`max-h-[300px] w-full ${imageClassName}`}
+          width={300}
+          height={200}
         />
       </div>
       <div className="flex-1 pt-3 divide-y">
