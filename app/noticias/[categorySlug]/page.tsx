@@ -2,25 +2,32 @@ import { Card } from "@/app/components/Card";
 import { CardHighlight } from "@/app/components/CardHighlight";
 import { Skeleton } from "@/app/components/Skeleton";
 
+import { PostsHighlight } from "@/app/features/PostsHighlight";
+
 export default async function Page({
   params,
 }: {
   params: { categorySlug: string };
 }) {
   const URL = process.env.API_URL;
-  const posts = await fetch(
+  const posts = await fetch(`${URL}/posts?limit=7`).then((res) => res.json());
+  const categoryPosts = await fetch(
     `${URL}/posts/category/${params.categorySlug}`
   ).then((res) => res.json());
 
   return (
     <div className="container mx-auto flex flex-col gap-5">
+      {/* PAGE TITLE */}
       <h1 className="text-4xl font-bold capitalize text-gray-800">
-        {params.categorySlug}
+        {categoryPosts
+          ? categoryPosts.docs[0].category.name
+          : params.categorySlug.replaceAll("_", " ")}
       </h1>
 
+      {/* CATEGORY POSTS HIGHLIGHT */}
       <div className="grid grid-cols-2 gap-3">
-        {posts
-          ? posts.docs
+        {categoryPosts
+          ? categoryPosts.docs
               .slice(0, 2)
               .map((post: any) => (
                 <CardHighlight
@@ -38,10 +45,11 @@ export default async function Page({
             ))}
       </div>
 
+      {/* CATEGORY POSTS */}
       <div className="grid grid-cols-4 gap-3">
         <div className="col-span-3 grid grid-cols-3 gap-3">
-          {posts
-            ? posts.docs
+          {categoryPosts
+            ? categoryPosts.docs
                 .slice(2)
                 .map((post: any) => (
                   <Card
@@ -61,6 +69,9 @@ export default async function Page({
               ))}
         </div>
       </div>
+
+      {/* POSTS HIGHLIGHT */}
+      <PostsHighlight posts={posts} />
     </div>
   );
 }
