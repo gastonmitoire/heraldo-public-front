@@ -30,7 +30,7 @@ export const PostsGrid: React.FC<PostsGridProps> = ({
   hasPagination,
 }) => {
   return (
-    <div className={`grid grid-cols-4`}>
+    <div className={`grid grid-cols-4 ${aside && "gap-4"}`}>
       {hasHeader && <h2>{hasHeader.title}</h2>}
 
       <div
