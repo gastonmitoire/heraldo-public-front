@@ -42,7 +42,6 @@ export const PostsHighlight: React.FC<PostsHighlightProps> = ({ posts }) => {
         <Card post={posts.docs[0]} />
         <Card post={posts.docs[0]} />
 
-        {/* BANNER STICKY */}
         <Banner
           url="https://cms-el-heraldo-prod.s3.us-east-1.amazonaws.com/avisos/2023/07/01_SeguridadVial300x250.gif"
           title="titulo"

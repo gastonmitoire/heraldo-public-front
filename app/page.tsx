@@ -103,14 +103,15 @@ export default async function Home() {
       <section className="container mx-auto">
         <PostsGrid
           {...postsWithPagination}
-          hasAsideBanner={{
-            banner: {
-              url: "https://cms-el-heraldo-prod.s3.us-east-1.amazonaws.com/cartelera/2023/06/05_Banner265x620BotUn.jpg",
-              title: "Publicidad",
-            },
-            sticky: true,
-            className: "hidden lg:block max-h-[300px] md:max-h-[200px]",
-          }}
+          aside={
+            <Banner
+              title="Publicidad"
+              url="https://cms-el-heraldo-prod.s3.us-east-1.amazonaws.com/cartelera/2023/06/05_Banner265x620BotUn.jpg"
+              className="max-h-[700px] object-contain px-5"
+              sticky
+              border
+            />
+          }
         />
       </section>
     </div>

@@ -2,18 +2,12 @@
 
 import React from "react";
 
-import { AdServer, Post, PostsWithPagination } from "@/types";
-
-import { Banner } from "@/app/components/Banner";
+import { Post, PostsWithPagination } from "@/types";
 
 import { Card } from "../components/Card";
 
 interface PostsGridProps extends PostsWithPagination {
-  hasAsideBanner?: {
-    banner: Pick<AdServer, "url" | "title">;
-    sticky?: boolean;
-    className?: string;
-  };
+  aside?: React.ReactNode;
   hasHeader?: {
     title: string;
   };
@@ -31,12 +25,7 @@ export const PostsGrid: React.FC<PostsGridProps> = ({
   hasNextPage,
   prevPage,
   nextPage,
-  hasAsideBanner = {
-    banner: {
-      url: "",
-      title: "",
-    },
-  },
+  aside,
   hasHeader,
   hasPagination,
 }) => {
@@ -46,8 +35,10 @@ export const PostsGrid: React.FC<PostsGridProps> = ({
 
       <div
         className={`${
-          hasAsideBanner.banner ? "col-span-4" : "col-span-3"
-        } grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4`}
+          aside ? "col-span-3" : "col-span-4"
+        } grid grid-cols-1 md:grid-cols-2 gap-4 ${
+          aside ? " lg:grid-cols-3" : "lg:grid-cols-4"
+        }`}
       >
         {docs.map((post: Post) => (
           <Card
@@ -57,16 +48,8 @@ export const PostsGrid: React.FC<PostsGridProps> = ({
           />
         ))}
       </div>
-      {hasAsideBanner && (
-        <aside className="col-span-1">
-          <Banner
-            url={hasAsideBanner.banner.url}
-            title={hasAsideBanner.banner.title}
-            className={hasAsideBanner.className}
-            sticky={hasAsideBanner.sticky}
-          />
-        </aside>
-      )}
+
+      {aside && <aside className="col-span-1">{aside}</aside>}
     </div>
   );
 };
