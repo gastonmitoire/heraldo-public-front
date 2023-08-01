@@ -1,12 +1,15 @@
 import React, { useEffect } from "react";
 
+import { PostsWithPagination } from "@/types";
+
 import { Banner } from "./components/Banner";
 import { CardHighlight } from "./components/CardHighlight";
 import { Marquee } from "./components/Marquee";
 
+import { CurrencyAndRiverSwiper } from "./features/CurrencyAndRiverSwiper";
+import { PostsGrid } from "./features/PostsGrid";
 import { PostsHighlight } from "./features/PostsHighlight";
 import { PostsSuperHighlight } from "./features/PostsSuperHighlight";
-import { CurrencyAndRiverSwiper } from "./features/CurrencyAndRiverSwiper";
 
 const apiUrl = `https://k3gj5umrp4.execute-api.us-east-1.amazonaws.com/api`;
 
@@ -51,19 +54,21 @@ async function fetchDataCurrency() {
 }
 
 export default async function Home() {
-  const posts = await fetchPosts();
+  const postsWithPagination = (await fetchPosts()) as PostsWithPagination;
   const dataCurrency = await fetchDataCurrency();
 
   return (
     <div className="flex flex-col gap-5">
       {/* SUPERHIGHLIGHT SECTION */}
       <section className="flex flex-col gap-5">
-        <PostsSuperHighlight posts={posts} />
+        <PostsSuperHighlight posts={postsWithPagination} />
       </section>
 
       {/* MARQUEE & BANNER SECTION */}
       <section className="flex flex-col gap-5">
-        <Marquee titles={posts.docs.map((post: any) => post.title)} />
+        <Marquee
+          titles={postsWithPagination.docs.map((post: any) => post.title)}
+        />
 
         <Banner
           url="https://cms-el-heraldo-prod.s3.us-east-1.amazonaws.com/cartelera/2023/06/05__ELHERALDO_TPA_ABRIL.gif"
@@ -74,7 +79,7 @@ export default async function Home() {
 
       {/* HIGHLIGHT SECTION */}
       <section className="container mx-auto">
-        <PostsHighlight posts={posts} />
+        <PostsHighlight posts={postsWithPagination} />
       </section>
 
       {/* BANNERS & CURRENCY SECTION */}
@@ -91,6 +96,21 @@ export default async function Home() {
           url="https://cms-el-heraldo-prod.s3.us-east-1.amazonaws.com/avisos/2023/07/19_El-Heraldo_endulzate.gif"
           title="titulo"
           imageWidth="100%"
+        />
+      </section>
+
+      {/* POSTS GRID SECTION */}
+      <section className="container mx-auto">
+        <PostsGrid
+          {...postsWithPagination}
+          hasAsideBanner={{
+            banner: {
+              url: "https://cms-el-heraldo-prod.s3.us-east-1.amazonaws.com/cartelera/2023/06/05_Banner265x620BotUn.jpg",
+              title: "Publicidad",
+            },
+            sticky: true,
+            className: "hidden lg:block max-h-[300px] md:max-h-[200px]",
+          }}
         />
       </section>
     </div>

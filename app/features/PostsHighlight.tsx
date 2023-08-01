@@ -37,31 +37,10 @@ export const PostsHighlight: React.FC<PostsHighlightProps> = ({ posts }) => {
           image={posts.docs[0].images[0].url}
           className="col-span-2 lg:col-span-2 lg:row-span-2 lg:h-full"
         />
-        <Card
-          title={posts.docs[0].title}
-          excerpt={posts.docs[0].excerpt}
-          image={posts.docs[0].images[0].url}
-          category={posts.docs[0].category.name}
-          className="lg:col-span-1 lg:row-span-1"
-        />
-        <Card
-          title={posts.docs[0].title}
-          excerpt={posts.docs[0].excerpt}
-          image={posts.docs[0].images[0].url}
-          category={posts.docs[0].category.name}
-        />
-        <Card
-          title={posts.docs[0].title}
-          excerpt={posts.docs[0].excerpt}
-          image={posts.docs[0].images[0].url}
-          category={posts.docs[0].category.name}
-        />
-        <Card
-          title={posts.docs[0].title}
-          excerpt={posts.docs[0].excerpt}
-          image={posts.docs[0].images[0].url}
-          category={posts.docs[0].category.name}
-        />
+        <Card post={posts.docs[0]} />
+        <Card post={posts.docs[0]} />
+        <Card post={posts.docs[0]} />
+        <Card post={posts.docs[0]} />
 
         {/* BANNER STICKY */}
         <Banner
