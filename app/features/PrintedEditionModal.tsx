@@ -18,7 +18,7 @@ export const PrintedEditionModal: React.FC<PrintedEditionModalProps> = ({
 }) => {
   return (
     <Modal isOpen={isOpen} onClose={onClose}>
-      <div className="max-h-screen flex flex-col hover:pt-5">
+      <div className="flex flex-col max-h-screen hover:pt-5">
         <figure
           style={{
             backgroundImage: `url(https://cms-el-heraldo-prod.s3.us-east-1.amazonaws.com/ediciones_impresas/2023/07/20_200723.jpg)`,
@@ -33,7 +33,7 @@ export const PrintedEditionModal: React.FC<PrintedEditionModalProps> = ({
           />
         </figure>
         {/* social links (copy link, facebook, twitter, whatsApp) */}
-        <SocialMediaShareLinks title="titulo" url="https://www.elheraldo.co" />
+        <SocialMediaShareLinks title="titulo" url="https://www.elheraldo.com" />
       </div>
     </Modal>
   );

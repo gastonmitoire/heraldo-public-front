@@ -19,10 +19,10 @@ export const List: React.FC<ListProps> = ({
 }) => {
   return (
     <div className={`${className} flex flex-col`}>
-      <h3 className="text-2xl font-bold p-3">{heading}</h3>
+      <h3 className="p-3 text-2xl font-bold">{heading}</h3>
 
       <ul
-        className={`overflow-y-scroll p-3 divide-y ${
+        className={`overflow-y-auto p-3 divide-y ${
           listClassName ? listClassName : "max-h-[350px]"
         }`}
       >
