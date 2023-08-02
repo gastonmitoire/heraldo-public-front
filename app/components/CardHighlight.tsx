@@ -17,7 +17,6 @@ export const CardHighlight: React.FC<CardHighlightProps> = ({
   fullWidth,
   className,
 }) => {
-  console.log("IMG", typeof image);
   return (
     <article
       className={`group hover:cursor-pointer ${
