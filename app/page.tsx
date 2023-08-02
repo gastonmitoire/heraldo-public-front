@@ -7,7 +7,6 @@ import { CardHighlight } from "./components/CardHighlight";
 import { Marquee } from "./components/Marquee";
 
 import { CurrencyAndRiverSwiper } from "./features/CurrencyAndRiverSwiper";
-import { PostsGrid } from "./features/PostsGrid";
 import { PostsHighlight } from "./features/PostsHighlight";
 import { PostsSuperHighlight } from "./features/PostsSuperHighlight";
 
@@ -96,22 +95,6 @@ export default async function Home() {
           url="https://cms-el-heraldo-prod.s3.us-east-1.amazonaws.com/avisos/2023/07/19_El-Heraldo_endulzate.gif"
           title="titulo"
           imageWidth="100%"
-        />
-      </section>
-
-      {/* POSTS GRID SECTION */}
-      <section className="container mx-auto">
-        <PostsGrid
-          {...postsWithPagination}
-          aside={
-            <Banner
-              title="Publicidad"
-              url="https://cms-el-heraldo-prod.s3.us-east-1.amazonaws.com/cartelera/2023/06/05_Banner265x620BotUn.jpg"
-              className="max-h-[700px] object-contain px-5"
-              sticky
-              border
-            />
-          }
         />
       </section>
     </div>
