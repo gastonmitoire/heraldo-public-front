@@ -44,7 +44,7 @@ async function fetchDataCurrency() {
 export default async function Home() {
   const postsHighlight = await fetchPosts({
     position: PostsPositions.highlight,
-    postsLimit: 3,
+    postsLimit: 6,
   });
   const dataCurrency = await fetchDataCurrency();
 

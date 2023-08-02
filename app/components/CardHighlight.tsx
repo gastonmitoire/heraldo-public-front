@@ -23,7 +23,7 @@ export const CardHighlight: React.FC<CardHighlightProps> = ({
         fullWidth ? "h-[500px]" : "h-[450px]"
       }  ${className}`}
       style={{
-        backgroundImage: `url(${image})`,
+        background: `url(${image})`,
       }}
     >
       {fullWidth ? (
