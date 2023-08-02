@@ -20,9 +20,6 @@ export const CurrencyAndRiverSwiper: React.FC<CurrencyAndRiverSwiperProps> = ({
   dataCurrency,
   dataRiver,
 }) => {
-  console.log("data-CURRENCY", dataCurrency);
-  console.log("data-RIVER", dataRiver);
-
   return (
     <div>
       <h5 className="text-xl font-bold p-4 bg-gray-200">

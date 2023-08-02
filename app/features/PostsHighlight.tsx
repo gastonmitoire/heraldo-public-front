@@ -12,9 +12,7 @@ import { PrintedEditionModal } from "./PrintedEditionModal";
 import { Post } from "@/types";
 
 interface PostsHighlightProps {
-  posts: {
-    docs: Post[];
-  };
+  posts: Post[];
 }
 
 export const PostsHighlight: React.FC<PostsHighlightProps> = ({ posts }) => {
@@ -32,15 +30,15 @@ export const PostsHighlight: React.FC<PostsHighlightProps> = ({ posts }) => {
     <div className="flex flex-col gap-5 lg:grid lg:grid-cols-4 lg:gap-3">
       <section className="lg:col-span-3 grid gap-3 grid-cols-2 lg:grid-rows-3 lg:grid-cols-3">
         <CardHighlight
-          title={posts.docs[0].title}
-          excerpt={posts.docs[0].excerpt}
-          image={posts.docs[0].images[0].url}
+          title={posts[0].title}
+          excerpt={posts[0].excerpt}
+          image={posts[0].images[0].url}
           className="col-span-2 lg:col-span-2 lg:row-span-2 lg:h-full"
         />
-        <Card post={posts.docs[0]} />
-        <Card post={posts.docs[0]} />
-        <Card post={posts.docs[0]} />
-        <Card post={posts.docs[0]} />
+        <Card post={posts[0]} />
+        <Card post={posts[0]} />
+        <Card post={posts[0]} />
+        <Card post={posts[0]} />
 
         <Banner
           url="https://cms-el-heraldo-prod.s3.us-east-1.amazonaws.com/avisos/2023/07/01_SeguridadVial300x250.gif"
@@ -58,7 +56,7 @@ export const PostsHighlight: React.FC<PostsHighlightProps> = ({ posts }) => {
         {/* ULTIMAS NOTICIAS */}
         <List
           heading="Últimas Noticias"
-          items={posts.docs.map((post: any) => ({
+          items={posts.map((post: any) => ({
             title: post.title,
           }))}
           listClassName="max-h-[450px]"
