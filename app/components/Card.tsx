@@ -6,7 +6,16 @@ import Image from "next/image";
 import { Post } from "@/types";
 
 interface CardProps {
-  post: Post;
+  post: {
+    title: string;
+    excerpt: string;
+    images: {
+      url: string;
+    }[];
+    category?: {
+      name: string;
+    };
+  };
   horizontal?: boolean;
   className?: string;
   imageClassName?: string;
