@@ -17,13 +17,16 @@ export const CardHighlight: React.FC<CardHighlightProps> = ({
   fullWidth,
   className,
 }) => {
+  console.log("IMG", typeof image);
   return (
     <article
-      className={`group hover:cursor-pointer bg-cover bg-center bg-no-repeat ${
+      className={`group hover:cursor-pointer ${
         fullWidth ? "h-[500px]" : "h-[450px]"
       }  ${className}`}
       style={{
-        background: `url(${image})`,
+        background: `url("${image}")`,
+        backgroundSize: "cover",
+        backgroundRepeat: "no-repeat",
       }}
     >
       {fullWidth ? (
