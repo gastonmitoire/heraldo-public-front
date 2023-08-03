@@ -101,7 +101,7 @@ export default async function Home() {
 
       {/* CARD GRID WITH SWIPER SECTION (TOP NEWS) */}
       <section className="container mx-auto">
-        <CardGridWithSwiper data={postsTopPosition} />
+        <CardGridWithSwiper data={postsTopPosition} cardClassName="h-[390px]" />
       </section>
     </div>
   );
