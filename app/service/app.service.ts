@@ -35,6 +35,7 @@ export const fetchPosts = async ({
 
   const finalUrl = `/posts${url}${limit}`;
 
+  console.log("url", finalUrl);
   const response: Post[] = await fetchClient(finalUrl, {
     method: "GET",
   });
