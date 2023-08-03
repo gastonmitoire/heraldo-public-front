@@ -8,6 +8,12 @@ import { Skeleton } from "@/app/components/Skeleton";
 
 import { PostsHighlight } from "@/app/features/PostsHighlight";
 
+import {
+  PostsCategories,
+  PostsPositions,
+  fetchPosts,
+} from "@/app/service/app.service";
+
 export const metadata: Metadata = {
   title: "Noticias",
   description: "Noticias de El Heraldo",
@@ -19,24 +25,28 @@ export default async function Page({
   params: { categorySlug: string };
 }) {
   const URL = process.env.API_URL;
-  const posts = await fetch(`${URL}/posts?limit=7`).then((res) => res.json());
-  const categoryPosts = await fetch(
-    `${URL}/posts/category/${params.categorySlug}`
-  ).then((res) => res.json());
+  const postsHighlight = await fetchPosts({
+    position: PostsPositions.highlight,
+    postsLimit: 7,
+  });
+  const categoryPosts = await fetchPosts({
+    category: params.categorySlug as PostsCategories,
+    postsLimit: 14,
+  });
 
   return (
     <div className="container mx-auto flex flex-col gap-5">
       {/* PAGE TITLE */}
       <h1 className="text-4xl font-bold capitalize text-gray-800">
         {categoryPosts
-          ? categoryPosts.docs[0].category.name
+          ? categoryPosts[0].category.name
           : params.categorySlug.replaceAll("_", " ")}
       </h1>
 
       {/* CATEGORY POSTS HIGHLIGHT */}
       <div className="grid grid-cols-2 gap-3">
         {categoryPosts
-          ? categoryPosts.docs.slice(0, 2).map((post: any) => (
+          ? categoryPosts.slice(0, 2).map((post: any) => (
               <Link href={`/noticias/${post.category.slug}/${post.slug}`}>
                 <CardHighlight
                   key={post._id}
@@ -58,7 +68,7 @@ export default async function Page({
       <div className="grid grid-cols-4 gap-3">
         <div className="col-span-3 grid grid-cols-3 gap-3">
           {categoryPosts
-            ? categoryPosts.docs
+            ? categoryPosts
                 .slice(2)
                 .map((post: any) => (
                   <Card
@@ -93,7 +103,7 @@ export default async function Page({
         <h5 className="text-xl font-semibold capitalize text-gray-800">
           Noticias de portada
         </h5>
-        <PostsHighlight posts={posts} />
+        <PostsHighlight posts={postsHighlight} />
       </div>
     </div>
   );
