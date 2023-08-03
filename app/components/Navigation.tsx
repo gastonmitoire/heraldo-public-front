@@ -20,7 +20,6 @@ export const Navigation: React.FC<LinkProps> = ({
 }: LinkProps) => {
   const pathname = usePathname();
 
-  console.log(pathname);
   return (
     <nav>
       <div className="flex py-3">
