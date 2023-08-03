@@ -52,20 +52,6 @@ export interface Post {
   excerpt: string;
 }
 
-// posts with pagination
-export interface PostsWithPagination {
-  docs: Post[];
-  totalDocs: number;
-  limit: number;
-  totalPages: number;
-  page: number;
-  pagingCounter: number;
-  hasPrevPage: boolean;
-  hasNextPage: boolean;
-  prevPage: number | null;
-  nextPage: number | null;
-}
-
 // banner type definition
 export interface AdServer {
   _id: number | string;
@@ -84,4 +70,18 @@ export interface AdServer {
   client: string;
   desktopImage: Image;
   mobileImage: Image;
+}
+
+// docs with pagination
+export interface DocsWithPagination {
+  docs: Post[] | AdServer[];
+  totalDocs: number;
+  limit: number;
+  totalPages: number;
+  page: number;
+  pagingCounter: number;
+  hasPrevPage: boolean;
+  hasNextPage: boolean;
+  prevPage: number | null;
+  nextPage: number | null;
 }

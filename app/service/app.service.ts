@@ -1,6 +1,6 @@
 import { fetchClient } from "@/app/utils";
 
-import { AdServer, Post } from "@/types";
+import { AdServer, DocsWithPagination, Post } from "@/types";
 
 // POSTS ENDPOINTS
 
@@ -42,7 +42,6 @@ export const fetchPosts = async ({
 
   const finalUrl = `/posts${url}${limit}`;
 
-  console.log("url", finalUrl);
   const response: Post[] = await fetchClient(finalUrl, {
     method: "GET",
   });
@@ -91,3 +90,19 @@ export enum AdServerPositions {
 interface FetchAdServerProps {
   position: AdServerPositions;
 }
+
+export const fetchAdServer = async ({ position }: FetchAdServerProps) => {
+  let url = "";
+
+  if (position) {
+    url = `/position/${position}`;
+  }
+
+  const finalUrl = `/ad-servers${url}`;
+
+  const response: DocsWithPagination = await fetchClient(finalUrl, {
+    method: "GET",
+  });
+
+  return response;
+};

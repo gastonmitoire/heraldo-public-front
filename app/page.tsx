@@ -1,7 +1,5 @@
 import React, { useEffect } from "react";
 
-import { PostsWithPagination } from "@/types";
-
 import { Banner } from "./components/Banner";
 import { CardGridWithSwiper } from "./components/CardGridWithSwiper";
 import { CardHighlight } from "./components/CardHighlight";
@@ -15,6 +13,7 @@ import {
   PostsPositions,
   fetchPosts,
   AdServerPositions,
+  fetchAdServer,
 } from "@/app/service/app.service";
 
 async function fetchDataCurrency() {
@@ -57,7 +56,12 @@ export default async function Home() {
     postsLimit: 4,
   });
 
-  // AdServer Calls (horizontal1, horizontal2)
+  // AdServer Calls (horizontal2)
+  const { docs: horizontal2 } = await fetchAdServer({
+    position: AdServerPositions.horizontal2,
+  });
+
+  console.log("HOR1", horizontal2);
 
   const dataCurrency = await fetchDataCurrency();
 
