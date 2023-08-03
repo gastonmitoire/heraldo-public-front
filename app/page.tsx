@@ -56,7 +56,7 @@ export default async function Home() {
     postsLimit: 4,
   });
 
-  // AdServer Calls (horizontal2)
+  // AdServer Calls (horizontal2, horizontal3, horizontal4, horizontal5)
   const { docs: horizontal2 } = await fetchAdServer({
     position: AdServerPositions.horizontal2,
   });
@@ -65,6 +65,9 @@ export default async function Home() {
   });
   const { docs: horizontal4 } = await fetchAdServer({
     position: AdServerPositions.horizontal4,
+  });
+  const { docs: horizontal5 } = await fetchAdServer({
+    position: AdServerPositions.horizontal5,
   });
 
   console.log("HOR1", horizontal2);
@@ -133,6 +136,17 @@ export default async function Home() {
       <section className="container mx-auto">
         <CardGridWithSwiper data={postsTopPosition} cardClassName="h-[390px]" />
       </section>
+
+      {/* BANNER SECTION (horizontal5) */}
+      <Banner
+        banner={{
+          title: horizontal5[0]?.title,
+          site: horizontal5[0]?.site,
+          url: horizontal5[0]?.url,
+          desktopImage: horizontal5[0]?.desktopImage,
+          mobileImage: horizontal5[0]?.mobileImage,
+        }}
+      />
     </div>
   );
 }
