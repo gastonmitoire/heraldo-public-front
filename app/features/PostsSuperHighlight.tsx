@@ -17,7 +17,7 @@ export const PostsSuperHighlight: React.FC = async () => {
 
   return (
     <div className="flex flex-col gap-5">
-      {posts.length > 0 ? (
+      {posts && posts.length > 0 ? (
         <>
           <CardHighlight
             title={posts[0].title}

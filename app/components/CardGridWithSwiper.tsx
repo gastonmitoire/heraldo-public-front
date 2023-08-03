@@ -12,6 +12,7 @@ import "swiper/css/pagination";
 import "swiper/css/scrollbar";
 
 import { Card } from "./Card";
+import { Skeleton } from "./Skeleton";
 
 interface CardGridWithSwiperProps {
   data: any[];
@@ -61,20 +62,26 @@ export const CardGridWithSwiper: React.FC<CardGridWithSwiperProps> = ({
         },
       }}
     >
-      {data.map((item: any) => (
+      {!!data && data.length > 0 ? (
+        data.map((item: any) => (
+          <SwiperSlide>
+            <Card
+              item={{
+                title: item.title,
+                excerpt: item.excerpt,
+                image: item.images[0],
+                category: item.category,
+              }}
+              className="h-full"
+              imageClassName="h-[250px] object-cover select-none"
+            />
+          </SwiperSlide>
+        ))
+      ) : (
         <SwiperSlide>
-          <Card
-            item={{
-              title: item.title,
-              excerpt: item.excerpt,
-              image: item.images[0],
-              category: item.category,
-            }}
-            className="h-full"
-            imageClassName="h-[250px] object-cover select-none"
-          />
+          <Skeleton />
         </SwiperSlide>
-      ))}
+      )}
     </Swiper>
   );
 };

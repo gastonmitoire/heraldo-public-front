@@ -11,7 +11,11 @@ import { CurrencyAndRiverSwiper } from "./features/CurrencyAndRiverSwiper";
 import { PostsHighlight } from "./features/PostsHighlight";
 import { PostsSuperHighlight } from "./features/PostsSuperHighlight";
 
-import { PostsPositions, fetchPosts } from "@/app/service/app.service";
+import {
+  PostsPositions,
+  fetchPosts,
+  AdServerPositions,
+} from "@/app/service/app.service";
 
 async function fetchDataCurrency() {
   const res = await fetch(`https://www.dolarsi.com/api/api.php?type=dolar`);
@@ -43,6 +47,7 @@ async function fetchDataCurrency() {
 }
 
 export default async function Home() {
+  // Posts Calls (Highlight, SuperHighlight, TopPosition)
   const postsHighlight = await fetchPosts({
     position: PostsPositions.highlight,
     postsLimit: 6,
@@ -51,6 +56,9 @@ export default async function Home() {
     position: PostsPositions.top,
     postsLimit: 4,
   });
+
+  // AdServer Calls (horizontal1, horizontal2)
+
   const dataCurrency = await fetchDataCurrency();
 
   return (
