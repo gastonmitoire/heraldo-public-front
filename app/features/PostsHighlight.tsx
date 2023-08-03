@@ -8,6 +8,7 @@ import { Card } from "@/app/components/Card";
 import { CardHighlight } from "@/app/components/CardHighlight";
 import { List } from "@/app/components/List";
 import { PrintedEditionModal } from "./PrintedEditionModal";
+import { Skeleton } from "../components/Skeleton";
 
 import { Post } from "@/types";
 
@@ -17,6 +18,10 @@ interface PostsHighlightProps {
 
 export const PostsHighlight: React.FC<PostsHighlightProps> = ({ posts }) => {
   const [printedEditionModal, setPrintedEditionModal] = useState(false);
+  // const listPosts =
+  //   posts.map((post: any) => ({
+  //     title: post.title,
+  //   })) ?? [];
 
   const handlePrintedEditionModal = () => {
     setPrintedEditionModal(true);
@@ -27,27 +32,40 @@ export const PostsHighlight: React.FC<PostsHighlightProps> = ({ posts }) => {
   };
 
   return (
-    <div className="flex flex-col gap-3 lg:grid lg:grid-cols-4 lg:gap-3">
+    <div className="flex flex-col gap-3 lg:grid lg:grid-cols-4">
       <section className="lg:col-span-3 grid gap-3 grid-cols-2 lg:grid-rows-3 lg:grid-cols-3">
-        {posts.slice(0, 1).map((post: any) => (
-          <CardHighlight
-            title={posts[0].title}
-            excerpt={posts[0].excerpt}
-            image={posts[0].images[0].url}
-            className="col-span-2 lg:col-span-2 lg:row-span-2 lg:h-full"
-          />
-        ))}
+        {posts.length > 0 ? (
+          posts
+            .slice(0, 1)
+            .map((post: any) => (
+              <CardHighlight
+                title={posts[0].title}
+                excerpt={posts[0].excerpt}
+                image={posts[0].images[0].url}
+                className="col-span-2 lg:col-span-2 lg:row-span-2 lg:h-full"
+              />
+            ))
+        ) : (
+          <Skeleton className="col-span-2 lg:col-span-2 lg:row-span-2 lg:h-full" />
+        )}
 
-        {posts.slice(1, 6).map((post: any) => (
-          <Card
-            post={post}
-            className="h-full"
-            imageClassName="h-[250px] object-cover"
-          />
-        ))}
+        {posts.length > 0
+          ? posts.slice(1, 6).map((post: any) => (
+              <Card
+                item={{
+                  title: post.title,
+                  excerpt: post.excerpt,
+                  image: post.images[0],
+                  category: post.category,
+                }}
+                className="h-full"
+                imageClassName="h-[250px] object-cover"
+              />
+            ))
+          : [1, 2, 3, 4, 5].map((_, index) => <Skeleton key={index} />)}
       </section>
 
-      <section className="lg:col-span-1 md:col-span-2 grid flex-col gap-5 h-full">
+      <section className="lg:col-span-1 md:col-span-2 grid flex-col gap-3 h-full">
         {/* EDICION IMPRESA */}
         <article className="border p-3">
           <img
@@ -92,9 +110,7 @@ export const PostsHighlight: React.FC<PostsHighlightProps> = ({ posts }) => {
         {/* ULTIMAS NOTICIAS */}
         <List
           heading="Últimas Noticias"
-          items={posts.map((post: any) => ({
-            title: post.title,
-          }))}
+          items={[]}
           listClassName="max-h-[450px]"
         />
 

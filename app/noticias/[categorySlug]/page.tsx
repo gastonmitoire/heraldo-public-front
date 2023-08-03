@@ -68,15 +68,18 @@ export default async function Page({
       <div className="grid grid-cols-4 gap-3">
         <div className="col-span-3 grid grid-cols-3 gap-3">
           {categoryPosts
-            ? categoryPosts
-                .slice(2)
-                .map((post: any) => (
-                  <Card
-                    key={post._id}
-                    post={post}
-                    imageClassName="h-[200px] 2xl:h-[300px] object-cover"
-                  />
-                ))
+            ? categoryPosts.slice(2).map((post: any) => (
+                <Card
+                  key={post._id}
+                  item={{
+                    title: post.title,
+                    excerpt: post.excerpt,
+                    image: post.images[0],
+                    category: post.category,
+                  }}
+                  imageClassName="h-[200px] 2xl:h-[300px] object-cover"
+                />
+              ))
             : [1, 2, 3, 4, 5, 6, 7, 8, 9].map((n) => (
                 <Skeleton
                   key={n}

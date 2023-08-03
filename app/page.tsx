@@ -3,6 +3,7 @@ import React, { useEffect } from "react";
 import { PostsWithPagination } from "@/types";
 
 import { Banner } from "./components/Banner";
+import { CardGridWithSwiper } from "./components/CardGridWithSwiper";
 import { CardHighlight } from "./components/CardHighlight";
 import { Marquee } from "./components/Marquee";
 
@@ -10,7 +11,11 @@ import { CurrencyAndRiverSwiper } from "./features/CurrencyAndRiverSwiper";
 import { PostsHighlight } from "./features/PostsHighlight";
 import { PostsSuperHighlight } from "./features/PostsSuperHighlight";
 
-import { PostsPositions, fetchPosts } from "@/app/service/app.service";
+import {
+  PostsPositions,
+  fetchPosts,
+  AdServerPositions,
+} from "@/app/service/app.service";
 
 async function fetchDataCurrency() {
   const res = await fetch(`https://www.dolarsi.com/api/api.php?type=dolar`);
@@ -42,10 +47,18 @@ async function fetchDataCurrency() {
 }
 
 export default async function Home() {
+  // Posts Calls (Highlight, SuperHighlight, TopPosition)
   const postsHighlight = await fetchPosts({
     position: PostsPositions.highlight,
     postsLimit: 6,
   });
+  const postsTopPosition = await fetchPosts({
+    position: PostsPositions.top,
+    postsLimit: 4,
+  });
+
+  // AdServer Calls (horizontal1, horizontal2)
+
   const dataCurrency = await fetchDataCurrency();
 
   return (
@@ -76,16 +89,19 @@ export default async function Home() {
         <Banner
           url="https://cms-el-heraldo-prod.s3.us-east-1.amazonaws.com/cartelera/2023/06/05__bannerweb970x90px_GIF.gif"
           title="titulo"
-          imageWidth="100%"
         />
 
         <CurrencyAndRiverSwiper dataCurrency={dataCurrency} dataRiver={[]} />
 
         <Banner
-          url="https://cms-el-heraldo-prod.s3.us-east-1.amazonaws.com/avisos/2023/07/19_El-Heraldo_endulzate.gif"
+          url="https://cms-el-heraldo-prod.s3.us-east-1.amazonaws.com/avisos/2023/08/01_Mes_de_la_infancia.gif"
           title="titulo"
-          imageWidth="100%"
         />
+      </section>
+
+      {/* CARD GRID WITH SWIPER SECTION (TOP NEWS) */}
+      <section className="container mx-auto">
+        <CardGridWithSwiper data={postsTopPosition} />
       </section>
     </div>
   );
