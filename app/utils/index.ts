@@ -1,3 +1,4 @@
+import { fetchClient } from "./fetchClient";
 import { zoom } from "./zoom";
 
-export { zoom };
+export { fetchClient, zoom };

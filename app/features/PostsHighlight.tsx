@@ -12,9 +12,7 @@ import { PrintedEditionModal } from "./PrintedEditionModal";
 import { Post } from "@/types";
 
 interface PostsHighlightProps {
-  posts: {
-    docs: Post[];
-  };
+  posts: Post[];
 }
 
 export const PostsHighlight: React.FC<PostsHighlightProps> = ({ posts }) => {
@@ -29,63 +27,27 @@ export const PostsHighlight: React.FC<PostsHighlightProps> = ({ posts }) => {
   };
 
   return (
-    <div className="flex flex-col gap-5 lg:grid lg:grid-cols-4 lg:gap-3">
+    <div className="flex flex-col gap-3 lg:grid lg:grid-cols-4 lg:gap-3">
       <section className="lg:col-span-3 grid gap-3 grid-cols-2 lg:grid-rows-3 lg:grid-cols-3">
-        <CardHighlight
-          title={posts.docs[0].title}
-          excerpt={posts.docs[0].excerpt}
-          image={posts.docs[0].images[0].url}
-          className="col-span-2 lg:col-span-2 lg:row-span-2 lg:h-full"
-        />
-        <Card
-          title={posts.docs[0].title}
-          excerpt={posts.docs[0].excerpt}
-          image={posts.docs[0].images[0].url}
-          category={posts.docs[0].category.name}
-          className="lg:col-span-1 lg:row-span-1"
-        />
-        <Card
-          title={posts.docs[0].title}
-          excerpt={posts.docs[0].excerpt}
-          image={posts.docs[0].images[0].url}
-          category={posts.docs[0].category.name}
-        />
-        <Card
-          title={posts.docs[0].title}
-          excerpt={posts.docs[0].excerpt}
-          image={posts.docs[0].images[0].url}
-          category={posts.docs[0].category.name}
-        />
-        <Card
-          title={posts.docs[0].title}
-          excerpt={posts.docs[0].excerpt}
-          image={posts.docs[0].images[0].url}
-          category={posts.docs[0].category.name}
-        />
+        {posts.slice(0, 1).map((post: any) => (
+          <CardHighlight
+            title={posts[0].title}
+            excerpt={posts[0].excerpt}
+            image={posts[0].images[0].url}
+            className="col-span-2 lg:col-span-2 lg:row-span-2 lg:h-full"
+          />
+        ))}
 
-        {/* BANNER STICKY */}
-        <Banner
-          url="https://cms-el-heraldo-prod.s3.us-east-1.amazonaws.com/avisos/2023/07/01_SeguridadVial300x250.gif"
-          title="titulo"
-          className="hidden lg:block max-h-[300px] md:max-h-[200px]"
-        />
+        {posts.slice(1, 6).map((post: any) => (
+          <Card
+            post={post}
+            className="h-full"
+            imageClassName="h-[250px] object-cover"
+          />
+        ))}
       </section>
 
       <section className="lg:col-span-1 md:col-span-2 grid flex-col gap-5 h-full">
-        <Banner
-          url="https://cms-el-heraldo-prod.s3.us-east-1.amazonaws.com/avisos/2023/07/01_SeguridadVial300x250.gif"
-          title="titulo"
-          className="max-h-[300px]"
-        />
-        {/* ULTIMAS NOTICIAS */}
-        <List
-          heading="Últimas Noticias"
-          items={posts.docs.map((post: any) => ({
-            title: post.title,
-          }))}
-          listClassName="max-h-[450px]"
-        />
-
         {/* EDICION IMPRESA */}
         <article className="border p-3">
           <img
@@ -126,6 +88,21 @@ export const PostsHighlight: React.FC<PostsHighlightProps> = ({ posts }) => {
             />
           </span>
         </article>
+
+        {/* ULTIMAS NOTICIAS */}
+        <List
+          heading="Últimas Noticias"
+          items={posts.map((post: any) => ({
+            title: post.title,
+          }))}
+          listClassName="max-h-[450px]"
+        />
+
+        <Banner
+          url="https://cms-el-heraldo-prod.s3.us-east-1.amazonaws.com/avisos/2023/07/01_SeguridadVial300x250.gif"
+          title="titulo"
+          className="max-h-[300px]"
+        />
       </section>
     </div>
   );

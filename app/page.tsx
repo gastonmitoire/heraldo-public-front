@@ -1,25 +1,16 @@
 import React, { useEffect } from "react";
 
+import { PostsWithPagination } from "@/types";
+
 import { Banner } from "./components/Banner";
 import { CardHighlight } from "./components/CardHighlight";
 import { Marquee } from "./components/Marquee";
 
+import { CurrencyAndRiverSwiper } from "./features/CurrencyAndRiverSwiper";
 import { PostsHighlight } from "./features/PostsHighlight";
 import { PostsSuperHighlight } from "./features/PostsSuperHighlight";
-import { CurrencyAndRiverSwiper } from "./features/CurrencyAndRiverSwiper";
 
-const apiUrl = `https://k3gj5umrp4.execute-api.us-east-1.amazonaws.com/api`;
-
-async function fetchPosts() {
-  const res = await fetch(`${apiUrl}/posts`);
-
-  if (!res.ok) {
-    console.log("error");
-    return;
-  }
-
-  return res.json();
-}
+import { PostsPositions, fetchPosts } from "@/app/service/app.service";
 
 async function fetchDataCurrency() {
   const res = await fetch(`https://www.dolarsi.com/api/api.php?type=dolar`);
@@ -51,19 +42,22 @@ async function fetchDataCurrency() {
 }
 
 export default async function Home() {
-  const posts = await fetchPosts();
+  const postsHighlight = await fetchPosts({
+    position: PostsPositions.highlight,
+    postsLimit: 6,
+  });
   const dataCurrency = await fetchDataCurrency();
 
   return (
     <div className="flex flex-col gap-5">
       {/* SUPERHIGHLIGHT SECTION */}
       <section className="flex flex-col gap-5">
-        <PostsSuperHighlight posts={posts} />
+        <PostsSuperHighlight />
       </section>
 
       {/* MARQUEE & BANNER SECTION */}
       <section className="flex flex-col gap-5">
-        <Marquee titles={posts.docs.map((post: any) => post.title)} />
+        <Marquee titles={[].map((post: any) => post.title)} />
 
         <Banner
           url="https://cms-el-heraldo-prod.s3.us-east-1.amazonaws.com/cartelera/2023/06/05__ELHERALDO_TPA_ABRIL.gif"
@@ -74,7 +68,7 @@ export default async function Home() {
 
       {/* HIGHLIGHT SECTION */}
       <section className="container mx-auto">
-        <PostsHighlight posts={posts} />
+        <PostsHighlight posts={postsHighlight} />
       </section>
 
       {/* BANNERS & CURRENCY SECTION */}

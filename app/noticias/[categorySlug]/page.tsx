@@ -63,10 +63,7 @@ export default async function Page({
                 .map((post: any) => (
                   <Card
                     key={post._id}
-                    title={post.title}
-                    excerpt={post.excerpt}
-                    image={post.images[0].url}
-                    category={post.category.name}
+                    post={post}
                     imageClassName="h-[200px] 2xl:h-[300px] object-cover"
                   />
                 ))

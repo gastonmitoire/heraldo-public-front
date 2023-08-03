@@ -3,31 +3,36 @@
 import React from "react";
 import Image from "next/image";
 
+import { Post } from "@/types";
+
 interface CardProps {
-  excerpt: string;
-  title: string;
-  category: string;
-  image: string;
+  post: {
+    title: string;
+    excerpt: string;
+    images: {
+      url: string;
+    }[];
+    category?: {
+      name: string;
+    };
+  };
   horizontal?: boolean;
   className?: string;
   imageClassName?: string;
 }
 
 export const Card: React.FC<CardProps> = ({
-  excerpt,
-  title,
-  category,
-  image,
+  post: { title, excerpt, images, category },
   horizontal,
   className,
   imageClassName,
 }) => {
   return horizontal ? (
     <article
-      className={`${className} flex max-w-[300px] group hover:cursor-pointer transition-all`}
+      className={`flex max-w-[300px] group transition-all hover:cursor-pointer ${className}`}
     >
       <Image
-        src={image}
+        src={images[0].url}
         alt=""
         className={`w-[190px] h-full object-contain flex-auto group-hover:brightness-75 transition-all ${imageClassName}`}
         width={190}
@@ -43,25 +48,25 @@ export const Card: React.FC<CardProps> = ({
     </article>
   ) : (
     <article
-      className={`${className} flex flex-col border-b-2 border-transparent group hover:border-blue-500 hover:cursor-pointer transition-all`}
+      className={`${className} flex flex-col group hover:cursor-pointer transition-all`}
     >
       <div className="flex-1 relative group-hover:brightness-75 transition-all">
         <span className="absolute top-3 left-3 uppercase bg-black bg-opacity-80 text-white font-light text-sm py-1 px-3">
-          {category}
+          {category?.name}
         </span>
         <Image
-          src={image}
+          src={images[0].url}
           alt=""
           className={`max-h-[300px] w-full ${imageClassName}`}
           width={300}
           height={200}
         />
       </div>
-      <div className="flex-1 pt-3 divide-y">
-        <h5 className="text-blue-500 truncate text-lg font-bold pb-1.5 pr-16">
+      <div className="flex-1 pt-3 border p-5">
+        <h5 className="text-blue-500 truncate text-lg font-bold pr-16">
           {excerpt}
         </h5>
-        <p className="text-lg font-bold pt-1.5">{title}</p>
+        <p className="text-lg font-bold">{title}</p>
       </div>
     </article>
   );
