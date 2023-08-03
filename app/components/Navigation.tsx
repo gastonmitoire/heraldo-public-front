@@ -1,34 +1,47 @@
-// navigation component
+"use client";
 
 import React from "react";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 
-const fakeLinks = [
-  {
-    name: "Home",
-    href: "/",
-  },
-  {
-    name: "About",
-    href: "/about",
-  },
-];
+import { Skeleton } from "./Skeleton";
 
-export const Navigation: React.FC = () => {
+interface LinkProps {
+  links: {
+    name: string;
+    slug: string;
+  }[];
+  activeClass?: boolean;
+}
+
+export const Navigation: React.FC<LinkProps> = ({
+  links,
+  activeClass,
+}: LinkProps) => {
+  const pathname = usePathname();
+
   return (
     <nav>
       <div className="flex py-3">
         <div className="flex-1"></div>
         <div className="flex-auto flex justify-center">
-          {fakeLinks.map((link) => (
-            <Link
-              key={link.href}
-              href={link.href}
-              className="text-gray-400 hover:text-gray-800 px-4"
-            >
-              {link.name}
-            </Link>
-          ))}
+          {!!links
+            ? links.map((link) => (
+                <Link
+                  key={link.slug}
+                  href={`/noticias/${link.slug}`}
+                  className={`font-bold text-gray-400 hover:text-gray-800 px-4 ${
+                    activeClass && pathname === `/noticias/${link.slug}`
+                      ? "text-gray-800"
+                      : ""
+                  }`}
+                >
+                  {link.name}
+                </Link>
+              ))
+            : [1, 2, 3, 4, 5].map((n) => (
+                <Skeleton key={n} className="h-5 w-20" />
+              ))}
         </div>
         <div className="flex-1"></div>
       </div>
