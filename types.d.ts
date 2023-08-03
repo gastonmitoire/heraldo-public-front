@@ -12,8 +12,8 @@ export interface User {
 
 // image type definition
 export interface Image {
-  id: string;
-  filename: string;
+  _id?: string;
+  filename?: string;
   url: string;
 }
 
@@ -59,7 +59,7 @@ export interface AdServer {
   site: string;
   unlimited: boolean;
   title: string;
-  status: boolean;
+  status: "published" | "expired" | "programmed";
   views: number;
   clicks: number;
   createdBy: User;
@@ -74,7 +74,7 @@ export interface AdServer {
 
 // docs with pagination
 export interface DocsWithPagination {
-  docs: Post[] | AdServer[];
+  docs: any[];
   totalDocs: number;
   limit: number;
   totalPages: number;

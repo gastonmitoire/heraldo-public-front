@@ -43,8 +43,13 @@ export default async function Page({
           {/* BANNER */}
           <div className="min-h-[900px] max-h-[1100px]">
             <Banner
-              title="Publicidad"
-              url="https://cms-el-heraldo-prod.s3.us-east-1.amazonaws.com/cartelera/2023/06/05_Banner265x620BotUn.jpg"
+              banner={{
+                title: bannersRight.docs[0]?.title,
+                site: bannersRight.docs[0]?.site,
+                url: bannersRight.docs[0]?.url,
+                desktopImage: bannersRight.docs[0]?.desktopImage,
+                mobileImage: bannersRight.docs[0]?.mobileImage,
+              }}
               className="max-h-[600px] max-w-[300px] flex justify-center object-contain px-5"
               sticky
               border
@@ -61,8 +66,13 @@ export default async function Page({
               return banner.desktopImage ? (
                 <Banner
                   key={banner.id}
-                  url={banner.desktopImage?.url || banner.mobileImage?.url}
-                  title={banner.title}
+                  banner={{
+                    title: banner.title,
+                    site: banner.site,
+                    url: banner.url,
+                    desktopImage: banner.desktopImage,
+                    mobileImage: banner.mobileImage,
+                  }}
                   className={`flex justify-center object-contain px-5 ${
                     banner.status === "published" ? "" : "hidden"
                   }`}

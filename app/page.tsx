@@ -60,6 +60,12 @@ export default async function Home() {
   const { docs: horizontal2 } = await fetchAdServer({
     position: AdServerPositions.horizontal2,
   });
+  const { docs: horizontal3 } = await fetchAdServer({
+    position: AdServerPositions.horizontal3,
+  });
+  const { docs: horizontal4 } = await fetchAdServer({
+    position: AdServerPositions.horizontal4,
+  });
 
   console.log("HOR1", horizontal2);
 
@@ -76,11 +82,21 @@ export default async function Home() {
       <section className="flex flex-col gap-5">
         <Marquee titles={[].map((post: any) => post.title)} />
 
-        <Banner
-          url="https://cms-el-heraldo-prod.s3.us-east-1.amazonaws.com/cartelera/2023/06/05__ELHERALDO_TPA_ABRIL.gif"
-          title="titulo"
-          className="container mx-auto"
-        />
+        {horizontal2.map(
+          (banner: any) =>
+            banner.status === "published" && (
+              <Banner
+                banner={{
+                  title: horizontal2[0]?.title,
+                  site: horizontal2[0]?.site,
+                  url: horizontal2[0]?.url,
+                  desktopImage: horizontal2[0]?.desktopImage,
+                  mobileImage: horizontal2[0]?.mobileImage,
+                }}
+                className="container mx-auto"
+              />
+            )
+        )}
       </section>
 
       {/* HIGHLIGHT SECTION */}
@@ -91,15 +107,25 @@ export default async function Home() {
       {/* BANNERS & CURRENCY SECTION */}
       <section className="flex flex-col gap-5 container mx-auto">
         <Banner
-          url="https://cms-el-heraldo-prod.s3.us-east-1.amazonaws.com/cartelera/2023/06/05__bannerweb970x90px_GIF.gif"
-          title="titulo"
+          banner={{
+            title: horizontal3[0]?.title,
+            site: horizontal3[0]?.site,
+            url: horizontal3[0]?.url,
+            desktopImage: horizontal3[0]?.desktopImage,
+            mobileImage: horizontal3[0]?.mobileImage,
+          }}
         />
 
         <CurrencyAndRiverSwiper dataCurrency={dataCurrency} dataRiver={[]} />
 
         <Banner
-          url="https://cms-el-heraldo-prod.s3.us-east-1.amazonaws.com/avisos/2023/08/01_Mes_de_la_infancia.gif"
-          title="titulo"
+          banner={{
+            title: horizontal4[0]?.title,
+            site: horizontal4[0]?.site,
+            url: horizontal4[0]?.url,
+            desktopImage: horizontal4[0]?.desktopImage,
+            mobileImage: horizontal4[0]?.mobileImage,
+          }}
         />
       </section>
 
