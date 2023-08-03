@@ -89,15 +89,13 @@ export default async function Home() {
         <Banner
           url="https://cms-el-heraldo-prod.s3.us-east-1.amazonaws.com/cartelera/2023/06/05__bannerweb970x90px_GIF.gif"
           title="titulo"
-          imageWidth="100%"
         />
 
         <CurrencyAndRiverSwiper dataCurrency={dataCurrency} dataRiver={[]} />
 
         <Banner
-          url="https://cms-el-heraldo-prod.s3.us-east-1.amazonaws.com/avisos/2023/07/19_El-Heraldo_endulzate.gif"
+          url="https://cms-el-heraldo-prod.s3.us-east-1.amazonaws.com/avisos/2023/08/01_Mes_de_la_infancia.gif"
           title="titulo"
-          imageWidth="100%"
         />
       </section>
 
