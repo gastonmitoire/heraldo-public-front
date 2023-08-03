@@ -5,13 +5,15 @@ import Image from "next/image";
 
 import { Post } from "@/types";
 
+import { Skeleton } from "./Skeleton";
+
 interface CardProps {
-  post: {
+  item: {
     title: string;
     excerpt: string;
-    images: {
+    image: {
       url: string;
-    }[];
+    };
     category?: {
       name: string;
     };
@@ -22,7 +24,7 @@ interface CardProps {
 }
 
 export const Card: React.FC<CardProps> = ({
-  post: { title, excerpt, images, category },
+  item: { title, excerpt, image, category },
   horizontal,
   className,
   imageClassName,
@@ -32,7 +34,7 @@ export const Card: React.FC<CardProps> = ({
       className={`flex max-w-[300px] group transition-all hover:cursor-pointer ${className}`}
     >
       <Image
-        src={images[0].url}
+        src={image.url}
         alt=""
         className={`w-[190px] h-full object-contain flex-auto group-hover:brightness-75 transition-all ${imageClassName}`}
         width={190}
@@ -55,7 +57,7 @@ export const Card: React.FC<CardProps> = ({
           {category?.name}
         </span>
         <Image
-          src={images[0].url}
+          src={image.url}
           alt=""
           className={`max-h-[300px] w-full ${imageClassName}`}
           width={300}

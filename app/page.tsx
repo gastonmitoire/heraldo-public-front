@@ -3,6 +3,7 @@ import React, { useEffect } from "react";
 import { PostsWithPagination } from "@/types";
 
 import { Banner } from "./components/Banner";
+import { CardGridWithSwiper } from "./components/CardGridWithSwiper";
 import { CardHighlight } from "./components/CardHighlight";
 import { Marquee } from "./components/Marquee";
 
@@ -46,6 +47,10 @@ export default async function Home() {
     position: PostsPositions.highlight,
     postsLimit: 6,
   });
+  const postsTopPosition = await fetchPosts({
+    position: PostsPositions.top,
+    postsLimit: 4,
+  });
   const dataCurrency = await fetchDataCurrency();
 
   return (
@@ -86,6 +91,11 @@ export default async function Home() {
           title="titulo"
           imageWidth="100%"
         />
+      </section>
+
+      {/* CARD GRID WITH SWIPER SECTION (TOP NEWS) */}
+      <section className="container mx-auto">
+        <CardGridWithSwiper data={postsTopPosition} />
       </section>
     </div>
   );

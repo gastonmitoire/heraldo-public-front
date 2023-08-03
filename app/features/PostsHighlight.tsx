@@ -40,7 +40,12 @@ export const PostsHighlight: React.FC<PostsHighlightProps> = ({ posts }) => {
 
         {posts.slice(1, 6).map((post: any) => (
           <Card
-            post={post}
+            item={{
+              title: post.title,
+              excerpt: post.excerpt,
+              image: post.images[0],
+              category: post.category,
+            }}
             className="h-full"
             imageClassName="h-[250px] object-cover"
           />
