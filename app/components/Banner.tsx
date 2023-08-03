@@ -1,10 +1,16 @@
 // banner component
 
+import { Image } from "@/types";
 import React from "react";
 
 interface BannerProps {
-  url: string;
-  title: string;
+  banner: {
+    title: string;
+    site: string;
+    url?: string;
+    desktopImage?: Pick<Image, "url">;
+    mobileImage?: Pick<Image, "url">;
+  };
   className?: string;
   sticky?: boolean;
   border?: boolean;
@@ -13,8 +19,7 @@ interface BannerProps {
 }
 
 export const Banner: React.FC<BannerProps> = ({
-  url,
-  title,
+  banner: { title, site, url, desktopImage, mobileImage },
   className,
   sticky,
   border,
@@ -27,7 +32,31 @@ export const Banner: React.FC<BannerProps> = ({
         sticky ? "sticky top-0" : ""
       } ${border ? "border" : ""}`}
     >
-      <img src={url} alt={title} width={imageWidth} height={imageHeight} />
+      {desktopImage && mobileImage ? (
+        <>
+          <img
+            src={desktopImage.url}
+            alt={`${title} - ${site} - desktop`}
+            width={imageWidth}
+            height={imageHeight}
+            className="hidden md:block"
+          />
+          <img
+            src={mobileImage.url}
+            alt={`${title} - ${site} - mobile`}
+            width={imageWidth}
+            height={imageHeight}
+            className="md:hidden"
+          />
+        </>
+      ) : (
+        <img
+          src={url}
+          alt={`${title} - ${site}`}
+          width={imageWidth}
+          height={imageHeight}
+        />
+      )}
     </div>
   );
 };

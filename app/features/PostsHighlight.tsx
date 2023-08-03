@@ -115,8 +115,14 @@ export const PostsHighlight: React.FC<PostsHighlightProps> = ({ posts }) => {
         />
 
         <Banner
-          url="https://cms-el-heraldo-prod.s3.us-east-1.amazonaws.com/avisos/2023/07/01_SeguridadVial300x250.gif"
-          title="titulo"
+          banner={{
+            title: "titulo",
+            site: "site",
+            url: "url",
+            desktopImage:
+              "https://cms-el-heraldo-prod.s3.us-east-1.amazonaws.com/cartelera/2023/06/05__bannerweb970x90px_GIF.gif",
+            mobileImage: "",
+          }}
           className="max-h-[300px]"
         />
       </section>

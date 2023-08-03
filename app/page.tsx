@@ -1,7 +1,5 @@
 import React, { useEffect } from "react";
 
-import { PostsWithPagination } from "@/types";
-
 import { Banner } from "./components/Banner";
 import { CardGridWithSwiper } from "./components/CardGridWithSwiper";
 import { CardHighlight } from "./components/CardHighlight";
@@ -15,6 +13,7 @@ import {
   PostsPositions,
   fetchPosts,
   AdServerPositions,
+  fetchAdServer,
 } from "@/app/service/app.service";
 
 async function fetchDataCurrency() {
@@ -57,7 +56,21 @@ export default async function Home() {
     postsLimit: 4,
   });
 
-  // AdServer Calls (horizontal1, horizontal2)
+  // AdServer Calls (horizontal2, horizontal3, horizontal4, horizontal5)
+  const { docs: horizontal2 } = await fetchAdServer({
+    position: AdServerPositions.horizontal2,
+  });
+  const { docs: horizontal3 } = await fetchAdServer({
+    position: AdServerPositions.horizontal3,
+  });
+  const { docs: horizontal4 } = await fetchAdServer({
+    position: AdServerPositions.horizontal4,
+  });
+  const { docs: horizontal5 } = await fetchAdServer({
+    position: AdServerPositions.horizontal5,
+  });
+
+  console.log("HOR1", horizontal2);
 
   const dataCurrency = await fetchDataCurrency();
 
@@ -72,11 +85,21 @@ export default async function Home() {
       <section className="flex flex-col gap-5">
         <Marquee titles={[].map((post: any) => post.title)} />
 
-        <Banner
-          url="https://cms-el-heraldo-prod.s3.us-east-1.amazonaws.com/cartelera/2023/06/05__ELHERALDO_TPA_ABRIL.gif"
-          title="titulo"
-          className="container mx-auto"
-        />
+        {horizontal2.map(
+          (banner: any) =>
+            banner.status === "published" && (
+              <Banner
+                banner={{
+                  title: horizontal2[0]?.title,
+                  site: horizontal2[0]?.site,
+                  url: horizontal2[0]?.url,
+                  desktopImage: horizontal2[0]?.desktopImage,
+                  mobileImage: horizontal2[0]?.mobileImage,
+                }}
+                className="container mx-auto"
+              />
+            )
+        )}
       </section>
 
       {/* HIGHLIGHT SECTION */}
@@ -87,22 +110,43 @@ export default async function Home() {
       {/* BANNERS & CURRENCY SECTION */}
       <section className="flex flex-col gap-5 container mx-auto">
         <Banner
-          url="https://cms-el-heraldo-prod.s3.us-east-1.amazonaws.com/cartelera/2023/06/05__bannerweb970x90px_GIF.gif"
-          title="titulo"
+          banner={{
+            title: horizontal3[0]?.title,
+            site: horizontal3[0]?.site,
+            url: horizontal3[0]?.url,
+            desktopImage: horizontal3[0]?.desktopImage,
+            mobileImage: horizontal3[0]?.mobileImage,
+          }}
         />
 
         <CurrencyAndRiverSwiper dataCurrency={dataCurrency} dataRiver={[]} />
 
         <Banner
-          url="https://cms-el-heraldo-prod.s3.us-east-1.amazonaws.com/avisos/2023/08/01_Mes_de_la_infancia.gif"
-          title="titulo"
+          banner={{
+            title: horizontal4[0]?.title,
+            site: horizontal4[0]?.site,
+            url: horizontal4[0]?.url,
+            desktopImage: horizontal4[0]?.desktopImage,
+            mobileImage: horizontal4[0]?.mobileImage,
+          }}
         />
       </section>
 
       {/* CARD GRID WITH SWIPER SECTION (TOP NEWS) */}
       <section className="container mx-auto">
-        <CardGridWithSwiper data={postsTopPosition} />
+        <CardGridWithSwiper data={postsTopPosition} cardClassName="h-[390px]" />
       </section>
+
+      {/* BANNER SECTION (horizontal5) */}
+      <Banner
+        banner={{
+          title: horizontal5[0]?.title,
+          site: horizontal5[0]?.site,
+          url: horizontal5[0]?.url,
+          desktopImage: horizontal5[0]?.desktopImage,
+          mobileImage: horizontal5[0]?.mobileImage,
+        }}
+      />
     </div>
   );
 }
