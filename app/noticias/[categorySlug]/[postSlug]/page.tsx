@@ -1,11 +1,11 @@
-import Image from "next/image";
-
 //Custom Components
 import { Banner } from "@/app/components/Banner";
-import { SocialMediaShareLinks } from "@/app/components/SocialMediaShareLinks";
 import SinglePost from "@/app/components/SinglePost";
 import { List } from "@/app/components/List";
 import BannerAdSense from "@/app/components/BannerAdSense";
+
+  
+import {AdServerPositions, fetchAdServer } from "@/app/service/app.service";
 
 export default async function Page({
   params,
@@ -24,31 +24,41 @@ export default async function Page({
     `${URL}/posts/category/${categorySlug}?postsLimit=4`
   ).then((res) => res.json());
 
-  const bannersRightQuery = fetch(`${URL}/ad-servers/position/right`).then(
-    (res) => res.json()
-  );
+  const fetchRightBanner = await fetchAdServer({
+    position: AdServerPositions.right,
+  });
 
-  const [post, postsCategory, bannersRight] = await Promise.all([
+  const fetchSticky2Banner = await fetchAdServer({
+    position: AdServerPositions.sticky2,
+  });
+
+  const [post, postsCategory, {docs: right}, {docs: sticky2}] = await Promise.all([
     postQuery,
     postsCategoryQuery,
-    bannersRightQuery,
+    fetchRightBanner,
+    fetchSticky2Banner
   ]);
-  bannersRight.docs.map((banner: any) => console.log(banner.desktopImage));
+  console.log(post);
+  //console.log('sticky', sticky2);
+  console.log('right', right);
+  
+  
+  //right.docs.map((banner: any) => console.log(banner.desktopImage));
 
   return (
-    <div className="container flex flex-col gap-5 pt-5 pb-5 mx-auto">
+    <div className="flex flex-col gap-5 pt-5 pb-5 mx-auto md:container">
       <div className="flex flex-col gap-5 lg:grid lg:grid-cols-4 lg:gap-3">
         <SinglePost post={post} />
-        <aside className="flex flex-col">
+        <aside className="flex-col hidden lg:flex">
           {/* BANNER */}
           <div className="min-h-[900px] max-h-[1100px]">
             <Banner
               banner={{
-                title: bannersRight.docs[0]?.title,
-                site: bannersRight.docs[0]?.site,
-                url: bannersRight.docs[0]?.url,
-                desktopImage: bannersRight.docs[0]?.desktopImage,
-                mobileImage: bannersRight.docs[0]?.mobileImage,
+                title: sticky2[0]?.title,
+                site: sticky2[0]?.site,
+                url: sticky2[0]?.url,
+                desktopImage: sticky2[0]?.desktopImage,
+                mobileImage: sticky2[0]?.mobileImage,
               }}
               className="max-h-[600px] max-w-[300px] flex justify-center object-contain px-5"
               sticky
@@ -62,10 +72,10 @@ export default async function Page({
           />
           {/* BANNERS POSITION RIGHT */}
           <div className="flex flex-col gap-5">
-            {bannersRight.docs.map((banner: any) => {
+            {right.map((banner: any) => {
               return banner.desktopImage ? (
                 <Banner
-                  key={banner.id}
+                  key={banner._id}
                   banner={{
                     title: banner.title,
                     site: banner.site,
@@ -80,7 +90,7 @@ export default async function Page({
                 />
               ) : (
                 <BannerAdSense
-                  key={banner.id}
+                  key={banner._id}
                   htmlContent={banner.htmlContent}
                 />
               );

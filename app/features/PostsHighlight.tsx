@@ -33,15 +33,16 @@ export const PostsHighlight: React.FC<PostsHighlightProps> = ({ posts }) => {
 
   return (
     <div className="flex flex-col gap-3 lg:grid lg:grid-cols-4">
-      <section className="lg:col-span-3 grid gap-3 grid-cols-2 lg:grid-rows-3 lg:grid-cols-3">
+      <section className="grid grid-cols-2 gap-3 lg:col-span-3 lg:grid-rows-3 lg:grid-cols-3">
         {posts.length > 0 ? (
           posts
             .slice(0, 1)
             .map((post: any) => (
               <CardHighlight
-                title={posts[0].title}
-                excerpt={posts[0].excerpt}
-                image={posts[0].images[0].url}
+                key={post._id}
+                title={post.title}
+                excerpt={post.excerpt}
+                image={post.images[0].url}
                 className="col-span-2 lg:col-span-2 lg:row-span-2 lg:h-full"
               />
             ))
@@ -52,6 +53,7 @@ export const PostsHighlight: React.FC<PostsHighlightProps> = ({ posts }) => {
         {posts.length > 0
           ? posts.slice(1, 6).map((post: any) => (
               <Card
+                key={post._id}
                 item={{
                   title: post.title,
                   excerpt: post.excerpt,
@@ -65,9 +67,9 @@ export const PostsHighlight: React.FC<PostsHighlightProps> = ({ posts }) => {
           : [1, 2, 3, 4, 5].map((_, index) => <Skeleton key={index} />)}
       </section>
 
-      <section className="lg:col-span-1 md:col-span-2 grid flex-col gap-3 h-full">
+      <section className="grid flex-col h-full gap-3 lg:col-span-1 md:col-span-2">
         {/* EDICION IMPRESA */}
-        <article className="border p-3">
+        <article className="p-3 border">
           <img
             src="https://cms-el-heraldo-prod.s3.us-east-1.amazonaws.com/ediciones_impresas/2023/07/20_200723.jpg"
             alt=""

@@ -7,9 +7,9 @@ import { SocialMediaLinks } from "./SocialMediaLinks";
 
 export const Footer: React.FC = () => {
   return (
-    <footer className="bg-gray-200 py-3">
+    <footer className="py-3 bg-gray-200">
       <div className="container mx-auto divide-y divide-gray-400">
-        <div className="flex justify-between items-center py-5">
+        <div className="flex items-center justify-between py-5">
           <SocialMediaLinks />
           <img
             src="https://www.elheraldo.com.ar/_next/static/media/logoBottom.86227929.svg"
@@ -21,12 +21,17 @@ export const Footer: React.FC = () => {
         </div>
 
         <div className="py-5">
-          <Navigation />
+          <Navigation links={[
+            {
+              name: "Home",
+              slug: "/",
+            }
+          ]} />
         </div>
 
-        <div className="flex flex-col justify-between items-center py-5">
+        <div className="flex flex-col items-center justify-between py-5">
           <div>
-            <span className="uppercase font-bold text-lg">
+            <span className="text-lg font-bold uppercase">
               El Heraldo S.R.L
             </span>{" "}
             <span>- Quintana 42 - 3200 Concordia - ER</span>

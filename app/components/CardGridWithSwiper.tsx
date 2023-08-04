@@ -60,7 +60,9 @@ export const CardGridWithSwiper: React.FC<CardGridWithSwiperProps> = ({
     >
       {!!data && data.length > 0 ? (
         data.map((item: any) => (
-          <SwiperSlide>
+          <SwiperSlide
+            key={item._id}
+          >
             <Card
               item={{
                 title: item.title,
