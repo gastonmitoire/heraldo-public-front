@@ -12,6 +12,8 @@ import {
   PostsCategories,
   PostsPositions,
   fetchPosts,
+  AdServerPositions,
+  fetchAdServer,
 } from "@/app/service/app.service";
 
 export const metadata: Metadata = {
@@ -25,6 +27,8 @@ export default async function Page({
   params: { categorySlug: string };
 }) {
   const URL = process.env.API_URL;
+
+  // Posts Calls (Highlight, Category)
   const postsHighlight = await fetchPosts({
     position: PostsPositions.highlight,
     postsLimit: 7,
@@ -32,6 +36,11 @@ export default async function Page({
   const categoryPosts = await fetchPosts({
     category: params.categorySlug as PostsCategories,
     postsLimit: 14,
+  });
+
+  // AdServer Calls (sticky2)
+  const { docs: sticky2 } = await fetchAdServer({
+    position: AdServerPositions.sticky2,
   });
 
   return (
@@ -92,8 +101,13 @@ export default async function Page({
         <aside className="col-span-1 grid grid-cols-1 gap-3">
           {/* BANNER */}
           <Banner
-            title="Publicidad"
-            url="https://cms-el-heraldo-prod.s3.us-east-1.amazonaws.com/cartelera/2023/06/05_Banner265x620BotUn.jpg"
+            banner={{
+              title: sticky2[0]?.title,
+              site: sticky2[0]?.site,
+              url: sticky2[0]?.url,
+              desktopImage: sticky2[0]?.desktopImage,
+              mobileImage: sticky2[0]?.mobileImage,
+            }}
             className="max-h-[600px] object-contain px-5"
             sticky
             border

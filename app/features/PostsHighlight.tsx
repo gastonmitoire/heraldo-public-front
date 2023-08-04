@@ -119,9 +119,12 @@ export const PostsHighlight: React.FC<PostsHighlightProps> = ({ posts }) => {
             title: "titulo",
             site: "site",
             url: "url",
-            desktopImage:
-              "https://cms-el-heraldo-prod.s3.us-east-1.amazonaws.com/cartelera/2023/06/05__bannerweb970x90px_GIF.gif",
-            mobileImage: "",
+            desktopImage: {
+              url: "https://cms-el-heraldo-prod.s3.us-east-1.amazonaws.com/cartelera/2023/06/05__bannerweb970x90px_GIF.gif",
+            },
+            mobileImage: {
+              url: "https://cms-el-heraldo-prod.s3.us-east-1.amazonaws.com/cartelera/2023/06/05__bannerweb970x90px_GIF.gif",
+            },
           }}
           className="max-h-[300px]"
         />
