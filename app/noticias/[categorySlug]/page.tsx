@@ -44,9 +44,9 @@ export default async function Page({
   });
 
   return (
-    <div className="container mx-auto flex flex-col gap-5">
+    <div className="container flex flex-col gap-5 mx-auto">
       {/* PAGE TITLE */}
-      <h1 className="text-4xl font-bold capitalize text-gray-800">
+      <h1 className="text-4xl font-bold text-gray-800 capitalize">
         {categoryPosts
           ? categoryPosts[0].category.name
           : params.categorySlug.replaceAll("_", " ")}
@@ -56,9 +56,8 @@ export default async function Page({
       <div className="grid grid-cols-2 gap-3">
         {categoryPosts
           ? categoryPosts.slice(0, 2).map((post: any) => (
-              <Link href={`/noticias/${post.category.slug}/${post.slug}`}>
+              <Link key={post._id} href={`/noticias/${post.category.slug}/${post.slug}`}>
                 <CardHighlight
-                  key={post._id}
                   title={post.title}
                   excerpt={post.excerpt}
                   image={post.images[0].url}
@@ -75,7 +74,7 @@ export default async function Page({
 
       {/* CATEGORY POSTS */}
       <div className="grid grid-cols-4 gap-3">
-        <div className="col-span-3 grid grid-cols-3 gap-3">
+        <div className="grid grid-cols-3 col-span-3 gap-3">
           {categoryPosts
             ? categoryPosts.slice(2).map((post: any) => (
                 <Card
@@ -98,7 +97,7 @@ export default async function Page({
         </div>
 
         {/* CATEGORY POSTS SIDEBAR */}
-        <aside className="col-span-1 grid grid-cols-1 gap-3">
+        <aside className="grid grid-cols-1 col-span-1 gap-3">
           {/* BANNER */}
           <Banner
             banner={{
@@ -117,7 +116,7 @@ export default async function Page({
 
       {/* POSTS HIGHLIGHT */}
       <div className="flex flex-col gap-0.5">
-        <h5 className="text-xl font-semibold capitalize text-gray-800">
+        <h5 className="text-xl font-semibold text-gray-800 capitalize">
           Noticias de portada
         </h5>
         <PostsHighlight posts={postsHighlight} />

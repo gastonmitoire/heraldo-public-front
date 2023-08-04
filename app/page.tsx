@@ -97,6 +97,7 @@ export default async function Home() {
                   mobileImage: horizontal2[0]?.mobileImage,
                 }}
                 className="container mx-auto"
+                key={banner._id}
               />
             )
         )}
@@ -108,7 +109,7 @@ export default async function Home() {
       </section>
 
       {/* BANNERS & CURRENCY SECTION */}
-      <section className="flex flex-col gap-5 container mx-auto">
+      <section className="container flex flex-col gap-5 mx-auto">
         <Banner
           banner={{
             title: horizontal3[0]?.title,

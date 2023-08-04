@@ -52,7 +52,7 @@ export const SocialMediaShareLinks: React.FC<SocialMediaShareLinksProps> = ({
         </p>
       )}
 
-      <nav className={`flex ${isVertical && "flex-col"} gap-3 pb-5`}>
+      <nav className={`flex ${isVertical && "lg:flex-col"} gap-3 pb-5`}>
         <button
           className={`flex items-center justify-center text-2xl text-#1C2033 bg-transparent  rounded-full w-6 h-6 ${isVertical ? 'pt-4 pb-4' : 'pl-4 pr-4'}`}
           onClick={shareOnWhatsApp}
@@ -124,8 +124,3 @@ export const SocialMediaShareLinks: React.FC<SocialMediaShareLinksProps> = ({
   );
 };
 
-//set default props
-SocialMediaShareLinks.defaultProps = {
-  hasShareText: true,
-  isVertical: false,
-};

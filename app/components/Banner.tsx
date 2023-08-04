@@ -16,6 +16,7 @@ interface BannerProps {
   border?: boolean;
   imageWidth?: number | string;
   imageHeight?: number | string;
+  key?: string;
 }
 
 export const Banner: React.FC<BannerProps> = ({
@@ -25,24 +26,26 @@ export const Banner: React.FC<BannerProps> = ({
   border,
   imageWidth,
   imageHeight,
+  key
 }) => {
   return (
     <div
+      key={key}
       className={`${className} flex justify-center min-h-[100px] w-full py-1.5 ${
         sticky ? "sticky top-0" : ""
       } ${border ? "border" : ""}`}
     >
-      {desktopImage && mobileImage ? (
+      {desktopImage?.url || mobileImage?.url ? (
         <>
           <img
-            src={desktopImage.url}
+            src={desktopImage?.url}
             alt={`${title} - ${site} - desktop`}
             width={imageWidth}
             height={imageHeight}
             className="hidden md:block"
           />
           <img
-            src={mobileImage.url}
+            src={mobileImage?.url}
             alt={`${title} - ${site} - mobile`}
             width={imageWidth}
             height={imageHeight}
