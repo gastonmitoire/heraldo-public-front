@@ -16,12 +16,32 @@ export enum PostsPositions {
 }
 
 export enum PostsCategories {
-  deportes = "deportes",
+  locales = "locales",
   policiales = "policiales",
+  nacionales = "nacionales",
+  internacionales = "internacionales",
+  opinion = "opinion",
+  tecnologia = "tecnologia",
+  turismo = "turismo",
+  ecologia = "ecologia",
+  cronograma = "cronograma",
+  provinciales = "provinciales",
+  agro = "agro",
+  carnaval = "carnaval",
+  efemeride = "efemeride",
   economia = "economia",
+  gastronomia = "gastronomia",
+  deportes = "deportes",
+  cultura = "cultura",
+  salud = "salud",
+  educacion = "educacion",
+  espectaculos = "espectaculos",
   politica = "politica",
   interes_general = "interes_general",
   sociales = "sociales",
+  ciencia = "ciencia",
+  informativoDocente = "informativo_docente",
+  correoDeLectores = "correo_de_lectores",
 }
 
 interface FetchPostsProps {

@@ -18,20 +18,15 @@ interface CardGridWithSwiperProps {
   data: any[];
   className?: string;
   cardClassName?: string;
-  heading?: string;
 }
 
 export const CardGridWithSwiper: React.FC<CardGridWithSwiperProps> = ({
   data,
   className,
   cardClassName,
-  heading,
 }) => {
   return (
     <>
-      <p className="text-sm font-bold">
-        {heading}
-      </p>
       <Swiper
         modules={[Navigation, Pagination, Scrollbar, A11y]}
         spaceBetween={12}

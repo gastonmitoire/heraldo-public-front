@@ -3,8 +3,6 @@
 import React from "react";
 import Image from "next/image";
 
-import { Post } from "@/types";
-
 import { Skeleton } from "./Skeleton";
 
 interface CardProps {
@@ -18,37 +16,16 @@ interface CardProps {
       name: string;
     };
   };
-  horizontal?: boolean;
   className?: string;
   imageClassName?: string;
 }
 
 export const Card: React.FC<CardProps> = ({
   item: { title, excerpt, image, category },
-  horizontal,
   className,
   imageClassName,
 }) => {
-  return horizontal ? (
-    <article
-      className={`flex max-w-[300px] group transition-all hover:cursor-pointer ${className}`}
-    >
-      <Image
-        src={image.url}
-        alt=""
-        className={`w-[190px] h-full object-contain flex-auto group-hover:brightness-75 transition-all ${imageClassName}`}
-        width={190}
-        height={190}
-      />
-
-      <div className="divide-y px-3 flex flex-col justify-center">
-        <h5 className="text-blue-500 truncate text-sm font-bold pb-1.5 pr-16">
-          {excerpt}
-        </h5>
-        <p className="text-sm font-bold pt-1.5">{title}</p>
-      </div>
-    </article>
-  ) : (
+  return (
     <article
       className={`${className} flex flex-col group hover:cursor-pointer transition-all`}
     >
@@ -58,10 +35,9 @@ export const Card: React.FC<CardProps> = ({
         </span>
         <Image
           src={image.url}
-          alt=""
+          alt={title}
           className={`max-h-[300px] w-full ${imageClassName}`}
-          width={300}
-          height={200}
+          fill
         />
       </div>
       <div className="flex-1 pt-3 border p-5">
