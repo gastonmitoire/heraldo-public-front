@@ -1,7 +1,7 @@
 
 
 import Image from "next/image";
-import { SocialMediaShareLinks } from "./SocialMediaShareLinks";
+import { SocialMediaShareLinks } from "../components/SocialMediaShareLinks";
 
 
 const SinglePost = async ({post} : {
