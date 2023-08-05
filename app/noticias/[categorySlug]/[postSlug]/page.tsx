@@ -1,6 +1,6 @@
 //Custom Components
 import { Banner } from "@/app/components/Banner";
-import SinglePost from "@/app/components/SinglePost";
+import SinglePost from "@/app/features/SinglePost";
 import { List } from "@/app/components/List";
 import BannerAdSense from "@/app/components/BannerAdSense";
 
@@ -24,19 +24,39 @@ export default async function Page({
     `${URL}/posts/category/${categorySlug}?postsLimit=4`
   ).then((res) => res.json());
 
-  const fetchRightBanner = await fetchAdServer({
+  const fetchBannerRight = fetchAdServer({
     position: AdServerPositions.right,
   });
 
-  const fetchSticky2Banner = await fetchAdServer({
+  const fetchBannerSticky2 = fetchAdServer({
     position: AdServerPositions.sticky2,
+  });
+
+  const fetchBannerNetblock1 = fetchAdServer({
+    position: AdServerPositions.netblock1,
+  });
+
+  const fetchBannerNetblock2 = fetchAdServer({
+    position: AdServerPositions.netblock2,
+  });
+ 
+  const fetchBannerNetblock3 = fetchAdServer({
+    position: AdServerPositions.netblock3,
+  });
+
+  const fetchBannerNetblock4 = fetchAdServer({
+    position: AdServerPositions.netblock4,
   });
 
   const [post, postsCategory, {docs: right}, {docs: sticky2}] = await Promise.all([
     postQuery,
     postsCategoryQuery,
-    fetchRightBanner,
-    fetchSticky2Banner
+    fetchBannerRight,
+    fetchBannerSticky2,
+    fetchBannerNetblock1,
+    fetchBannerNetblock2,
+    fetchBannerNetblock3,
+    fetchBannerNetblock4,
   ]);
   console.log(post);
   //console.log('sticky', sticky2);

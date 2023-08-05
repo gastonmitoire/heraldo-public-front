@@ -8,7 +8,7 @@ interface HeaderProps {
 }
 
 export const Header: React.FC<HeaderProps> = ({ categories }: HeaderProps) => {
-  const filteredCategories = categories.filter(
+  const filteredCategories = categories?.filter(
     (category: any) =>
       category.slug === "deportes" ||
       category.slug === "economia" ||
@@ -22,7 +22,7 @@ export const Header: React.FC<HeaderProps> = ({ categories }: HeaderProps) => {
     <header className="bg-white">
       <div className="flex py-5">
         <div className="flex-1"></div>
-        <div className="flex-auto flex justify-center">
+        <div className="flex justify-center flex-auto">
           <Link href="/">
             <img
               src="https://www.elheraldo.com.ar/_next/static/media/logoMobile.da7a8911.svg"
