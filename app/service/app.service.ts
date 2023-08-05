@@ -37,7 +37,7 @@ export enum PostsCategories {
   educacion = "educacion",
   espectaculos = "espectaculos",
   politica = "politica",
-  interes_general = "interes_general",
+  interesGeneral = "interes_general",
   sociales = "sociales",
   ciencia = "ciencia",
   informativoDocente = "informativo_docente",
