@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 
 import { Banner } from "./components/Banner";
 import { CardGridWithSwiper } from "./components/CardGridWithSwiper";
@@ -47,32 +47,42 @@ async function fetchDataCurrency() {
 
 export default async function Home() {
   // Posts Calls (Highlight, SuperHighlight, TopPosition)
-  const postsHighlight = await fetchPosts({
+  const postsHighlightQuery = fetchPosts({
     position: PostsPositions.highlight,
     postsLimit: 6,
   });
-  const postsTopPosition = await fetchPosts({
+  const postsTopPositionQuery = fetchPosts({
     position: PostsPositions.top,
     postsLimit: 4,
   });
 
   // AdServer Calls (horizontal2, horizontal3, horizontal4, horizontal5)
-  const { docs: horizontal2 } = await fetchAdServer({
+  const bannerHorizontal2Query = fetchAdServer({
     position: AdServerPositions.horizontal2,
   });
-  const { docs: horizontal3 } = await fetchAdServer({
+  const bannerHorizontal3Query = fetchAdServer({
     position: AdServerPositions.horizontal3,
   });
-  const { docs: horizontal4 } = await fetchAdServer({
+  const bannerHorizontal4Query = fetchAdServer({
     position: AdServerPositions.horizontal4,
   });
-  const { docs: horizontal5 } = await fetchAdServer({
+  const bannerHorizontal5Query = fetchAdServer({
     position: AdServerPositions.horizontal5,
   });
 
-  console.log("HOR1", horizontal2);
+  const dataCurrencyQuery = fetchDataCurrency();
 
-  const dataCurrency = await fetchDataCurrency();
+  const [postsHighlight, postsTopPosition, { docs: horizontal2 }, { docs: horizontal3 }, { docs: horizontal4 }, { docs: horizontal5 }, dataCurrency] = await Promise.all([
+    postsHighlightQuery,
+    postsTopPositionQuery,
+    bannerHorizontal2Query,
+    bannerHorizontal3Query,
+    bannerHorizontal4Query,
+    bannerHorizontal5Query,
+    dataCurrencyQuery,
+  ]);
+
+
 
   return (
     <div className="flex flex-col gap-5">

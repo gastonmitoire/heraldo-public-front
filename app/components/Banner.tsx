@@ -31,7 +31,7 @@ export const Banner: React.FC<BannerProps> = ({
   return (
     <div
       key={key}
-      className={`${className} flex justify-center min-h-[100px] w-full py-1.5 ${
+      className={`${className} ${!mobileImage && !desktopImage ? 'hidden' : ''} flex justify-center min-h-[100px] w-full py-1.5 ${
         sticky ? "sticky top-0" : ""
       } ${border ? "border" : ""}`}
     >

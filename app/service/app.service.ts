@@ -17,6 +17,11 @@ export enum PostsPositions {
 
 export enum PostsCategories {
   deportes = "deportes",
+  policiales = "policiales",
+  economia = "economia",
+  politica = "politica",
+  interes_general = "interes_general",
+  sociales = "sociales",
 }
 
 interface FetchPostsProps {
