@@ -156,10 +156,12 @@ export default async function Home() {
           }}
         />
 
-        <PostsGrid
-          posts={postsDeportesCategory.slice(0, 4)}
-          title="Liga Profesional"
-        />
+        {postsDeportesCategory.length > 0 && (
+          <PostsGrid
+            posts={postsDeportesCategory.slice(0, 4)}
+            title="Liga Profesional"
+          />
+        )}
 
         <Banner
           banner={{
