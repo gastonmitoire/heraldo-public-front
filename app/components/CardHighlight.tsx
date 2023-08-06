@@ -36,7 +36,9 @@ export const CardHighlight: React.FC<CardHighlightProps> = ({
             : `/noticias/${category.slug}/${slug}`
         }
         className={`group hover:cursor-pointer ${
-          fullWidth ? "h-[500px]" : "h-[450px]"
+          fullWidth
+            ? "h-[500px] md:h-[600px] lg:[700px] xl:h-[750px]"
+            : "h-[450px]"
         }  ${className}`}
       >
         <article
@@ -45,6 +47,7 @@ export const CardHighlight: React.FC<CardHighlightProps> = ({
             background: `url("${image.url}")`,
             backgroundSize: "cover",
             backgroundRepeat: "no-repeat",
+            backgroundPosition: "center",
           }}
         >
           {fullWidth ? (
