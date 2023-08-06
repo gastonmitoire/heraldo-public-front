@@ -36,19 +36,17 @@ export const SwiperFullscreen: React.FC<SwiperFullscreenProps> = ({
     >
       {posts.map((post) => (
         <SwiperSlide key={post._id}>
-          <Link href={`/noticias/${post.category?.slug}/${post.slug}`}>
-            <CardHighlight
-              item={{
-                title: post.title,
-                excerpt: post.excerpt,
-                image: post.images[0],
-                category: post.category,
-                slug: post.slug,
-              }}
-              className="col-span-2 h-full"
-              fullWidth
-            />
-          </Link>
+          <CardHighlight
+            item={{
+              title: post.title,
+              excerpt: post.excerpt,
+              image: post.images[0],
+              category: post.category,
+              slug: post.slug,
+            }}
+            className="col-span-2 h-full"
+            fullWidth
+          />
         </SwiperSlide>
       ))}
     </Swiper>

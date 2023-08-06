@@ -47,14 +47,14 @@ export default async function Page({
     <div className="container flex flex-col gap-5 mx-auto">
       {/* PAGE TITLE */}
       <h1 className="text-4xl font-bold text-gray-800 capitalize">
-        {categoryPosts
+        {categoryPosts[0]
           ? categoryPosts[0].category.name
           : params.categorySlug.replaceAll("_", " ")}
       </h1>
 
       {/* CATEGORY POSTS HIGHLIGHT */}
       <div className="grid grid-cols-2 gap-3">
-        {categoryPosts
+        {categoryPosts[0]
           ? categoryPosts.slice(0, 2).map((post: any) => (
               <Link
                 key={post._id}
@@ -68,40 +68,52 @@ export default async function Page({
                     category: post.category,
                     slug: post.slug,
                   }}
+                  className="min-h-[500px]"
                 />
               </Link>
             ))
-          : [1, 2].map((n) => (
-              <Skeleton
-                key={n}
-                className="h-[400px] 2xl:h-[450px] object-cover"
-              />
-            ))}
+          : null}
       </div>
 
       {/* CATEGORY POSTS */}
       <div className="grid grid-cols-4 gap-3">
         <div className="grid grid-cols-3 col-span-3 gap-3">
-          {categoryPosts
-            ? categoryPosts.slice(2).map((post: any) => (
-                <Card
-                  key={post._id}
-                  item={{
-                    title: post.title,
-                    excerpt: post.excerpt,
-                    image: post.images[0],
-                    category: post.category,
-                    slug: post.slug,
-                  }}
-                  imageClassName="h-[200px] 2xl:h-[300px] object-cover"
+          {categoryPosts[0] ? (
+            categoryPosts.slice(2).map((post: any) => (
+              <Card
+                key={post._id}
+                item={{
+                  title: post.title,
+                  excerpt: post.excerpt,
+                  image: post.images[0],
+                  category: post.category,
+                  slug: post.slug,
+                }}
+                imageClassName="h-[200px] 2xl:h-[300px] object-cover"
+              />
+            ))
+          ) : (
+            <div className="col-span-3 flex flex-col justify-center items-center">
+              <svg
+                aria-hidden="true"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth={1.5}
+                viewBox="0 0 24 24"
+                xmlns="http://www.w3.org/2000/svg"
+                className="w-10 h-10 text-gray-500 mx-auto mb-3"
+              >
+                <path
+                  d="M3 3l1.664 1.664M21 21l-1.5-1.5m-5.485-1.242L12 17.25 4.5 21V8.742m.164-4.078a2.15 2.15 0 011.743-1.342 48.507 48.507 0 0111.186 0c1.1.128 1.907 1.077 1.907 2.185V19.5M4.664 4.664L19.5 19.5"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
                 />
-              ))
-            : [1, 2, 3, 4, 5, 6, 7, 8, 9].map((n) => (
-                <Skeleton
-                  key={n}
-                  className="h-[250px] 2xl:h-[300px] object-cover"
-                />
-              ))}
+              </svg>
+              <p className="text-gray-500 text-lg font-semibold">
+                No se encontraron noticias para esta categoría.
+              </p>
+            </div>
+          )}
         </div>
 
         {/* CATEGORY POSTS SIDEBAR */}

@@ -23,7 +23,7 @@ export const Header: React.FC<HeaderProps> = ({ categories }: HeaderProps) => {
     <header className="bg-white">
       <div className="container mx-auto flex py-5">
         <div className="flex-1">
-          <HamburgerMenu categories={categories} />
+          {/* <HamburgerMenu categories={categories} /> */}
         </div>
         <div className="flex justify-center flex-auto">
           <Link href="/">

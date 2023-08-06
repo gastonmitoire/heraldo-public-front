@@ -70,7 +70,7 @@ export const HamburgerMenu: React.FC<HamburgerMenuProps> = ({ categories }) => {
       </button>
 
       {!open && (
-        <div className="absolute top-0 left-0 w-full z-10">
+        <div className="absolute top-0 left-0 w-full z-50">
           <div className="flex flex-col min-w-[400px] bg-white border rounded shadow-sm">
             <div className="flex items-center justify-end mb-4">
               <button
