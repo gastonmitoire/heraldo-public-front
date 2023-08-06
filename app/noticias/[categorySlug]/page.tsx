@@ -61,9 +61,13 @@ export default async function Page({
                 href={`/noticias/${post.category.slug}/${post.slug}`}
               >
                 <CardHighlight
-                  title={post.title}
-                  excerpt={post.excerpt}
-                  image={post.images[0].url}
+                  item={{
+                    title: post.title,
+                    excerpt: post.excerpt,
+                    image: post.images[0],
+                    category: post.category,
+                    slug: post.slug,
+                  }}
                 />
               </Link>
             ))

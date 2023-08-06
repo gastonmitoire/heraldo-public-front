@@ -35,17 +35,19 @@ export const PostsHighlight: React.FC<PostsHighlightProps> = ({ posts }) => {
     <div className="flex flex-col gap-3 lg:grid lg:grid-cols-4">
       <section className="grid grid-cols-2 gap-3 lg:col-span-3 lg:grid-rows-3 lg:grid-cols-3">
         {posts.length > 0 ? (
-          posts
-            .slice(0, 1)
-            .map((post: any) => (
-              <CardHighlight
-                key={post._id}
-                title={post.title}
-                excerpt={post.excerpt}
-                image={post.images[0].url}
-                className="col-span-2 lg:col-span-2 lg:row-span-2 lg:h-full"
-              />
-            ))
+          posts.slice(0, 1).map((post: any) => (
+            <CardHighlight
+              key={post._id}
+              item={{
+                title: post.title,
+                excerpt: post.excerpt,
+                image: post.images[0],
+                category: post.category,
+                slug: post.slug,
+              }}
+              className="col-span-2 lg:col-span-2 lg:row-span-2 lg:h-full"
+            />
+          ))
         ) : (
           <Skeleton className="col-span-2 lg:col-span-2 lg:row-span-2 lg:h-full" />
         )}
