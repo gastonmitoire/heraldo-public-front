@@ -37,7 +37,8 @@ export const Card: React.FC<CardProps> = ({
           src={image.url}
           alt={title}
           className={`max-h-[300px] w-full ${imageClassName}`}
-          fill
+          height={300}
+          width={300}
         />
       </div>
       <div className="flex-1 pt-3 border p-5">
