@@ -61,7 +61,7 @@ export const PostsHighlight: React.FC<PostsHighlightProps> = ({ posts }) => {
                   category: post.category,
                 }}
                 className="h-full"
-                imageClassName="h-[250px] object-cover"
+                imageClassName="h-[150px] object-cover"
               />
             ))
           : [1, 2, 3, 4, 5].map((_, index) => <Skeleton key={index} />)}

@@ -72,6 +72,19 @@ export interface AdServer {
   mobileImage: Image;
 }
 
+export interface FuneralNotice {
+  _id: number | string;
+  title: string;
+  deseased: string;
+  client: string;
+  religion: string;
+  status: string;
+  content: string;
+  createdBy: User;
+  date: string;
+  createdAt: string;
+}
+
 // docs with pagination
 export interface DocsWithPagination {
   docs: any[];

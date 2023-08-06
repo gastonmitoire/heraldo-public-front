@@ -16,7 +16,7 @@ interface PostsGridProps {
 export const PostsGrid: React.FC<PostsGridProps> = ({ posts, title }) => {
   return (
     <div>
-      <nav className="flex justify-between gap-5 py-3">
+      <nav className="flex justify-between gap-5 pb-3">
         <h2 className="flex-0 text-2xl font-bold">{title}</h2>
         <div className="flex-auto flex items-center">
           <div className="w-full border-b border-gray-200"></div>
