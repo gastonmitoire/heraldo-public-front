@@ -37,7 +37,7 @@ export const CardHighlight: React.FC<CardHighlightProps> = ({
         }
         className={`group hover:cursor-pointer ${
           fullWidth
-            ? "h-[500px] md:h-[600px] lg:[700px] xl:h-[750px]"
+            ? "h-[500px] md:h-[600px] lg:[700px] xl:h-[710px]"
             : "h-[450px]"
         }  ${className}`}
       >
