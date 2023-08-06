@@ -2,10 +2,9 @@ import React from "react";
 
 import { Banner } from "./components/Banner";
 import { CardGridWithSwiper } from "./components/CardGridWithSwiper";
-import { CardHighlight } from "./components/CardHighlight";
 import { Marquee } from "./components/Marquee";
 
-import { CurrencyAndRiverSwiper } from "./features/CurrencyAndRiverSwiper";
+import { CurrencyAndRiver } from "./features/CurrencyAndRiver";
 import { FuneralsPreview } from "./features/FuneralsPreview";
 import { PostsHighlight } from "./features/PostsHighlight";
 import { PostsGrid } from "./features/PostsGrid";
@@ -18,35 +17,6 @@ import {
   AdServerPositions,
   fetchAdServer,
 } from "@/app/service/app.service";
-
-async function fetchDataCurrency() {
-  const res = await fetch(`https://www.dolarsi.com/api/api.php?type=dolar`);
-  const res2 = await fetch(
-    `https://www.dolarsi.com/api/api.php?type=cotizador`
-  );
-
-  if (!res.ok || !res2.ok) {
-    console.log("error");
-    return;
-  }
-
-  const data = await res.json();
-
-  const data2 = await res2.json();
-
-  return [
-    ...data.filter(
-      (curr: any) =>
-        curr.casa?.nombre.includes("Oficial") ||
-        curr.casa?.nombre?.includes("Blue")
-    ),
-    ...data2.filter(
-      (curr: any) =>
-        curr.casa?.nombre.includes("Peso Uruguayo") ||
-        curr.casa?.nombre?.includes("Real")
-    ),
-  ];
-}
 
 export default async function Home() {
   // Posts Calls (Highlight, SuperHighlight, TopPosition, FutbolCategory)
@@ -82,9 +52,6 @@ export default async function Home() {
   const { docs: bannerHorizontal8 } = await fetchAdServer({
     position: AdServerPositions.horizontal8,
   });
-
-  // Currency & River Calls
-  const dataCurrency = await fetchDataCurrency();
 
   // Funerals Calls
   const { docs: funerals } = await fetch(
@@ -137,7 +104,7 @@ export default async function Home() {
           }}
         />
 
-        <CurrencyAndRiverSwiper dataCurrency={dataCurrency} dataRiver={[]} />
+        <CurrencyAndRiver />
 
         <Banner
           banner={{

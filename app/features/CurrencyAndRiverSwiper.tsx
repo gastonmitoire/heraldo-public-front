@@ -21,40 +21,56 @@ export const CurrencyAndRiverSwiper: React.FC<CurrencyAndRiverSwiperProps> = ({
   dataRiver,
 }) => {
   return (
-    <div>
-      <h5 className="text-xl font-bold p-4 bg-gray-200">
-        Cotización Moneda Extranjera
-      </h5>
-      <Swiper
-        modules={[Navigation, Pagination, A11y]}
-        spaceBetween={1}
-        slidesPerView={2}
-        navigation
-        className="border"
-      >
-        {dataCurrency
-          ? dataCurrency.map((item, index) => (
-              <SwiperSlide key={index}>
-                <div className="flex flex-col items-center py-5">
-                  <p>{item.casa.nombre}</p>
-                  <div className="flex gap-3">
-                    <span className="flex flex-col items-center">
-                      <strong className="text-2xl">{item.casa.compra}</strong>{" "}
-                      <small>Compra</small>
-                    </span>
-                    <span>
-                      <strong className="text-2xl">/</strong>
-                    </span>
-                    <span className="flex flex-col items-center">
-                      <strong className="text-2xl">{item.casa.venta}</strong>{" "}
-                      <small>Venta</small>
-                    </span>
+    <div className="grid grid-cols-1 lg:grid-cols-2">
+      <div className="col-span-1">
+        <h5 className="text-xl font-bold p-4 bg-gray-200">
+          Cotización Moneda Extranjera
+        </h5>
+        <Swiper
+          modules={[Navigation, Pagination, A11y]}
+          spaceBetween={1}
+          slidesPerView={2}
+          navigation
+          className="border"
+          breakpoints={{
+            // when window width is >= 640px
+            320: {
+              slidesPerView: 1,
+            },
+            // small screens
+            640: {
+              slidesPerView: 2,
+            },
+            // medium screens
+            768: {
+              slidesPerView: 2,
+            },
+          }}
+        >
+          {dataCurrency
+            ? dataCurrency.map((item, index) => (
+                <SwiperSlide key={index}>
+                  <div className="flex flex-col items-center py-5">
+                    <p>{item.casa.nombre}</p>
+                    <div className="flex gap-3">
+                      <span className="flex flex-col items-center">
+                        <strong className="text-2xl">{item.casa.compra}</strong>{" "}
+                        <small>Compra</small>
+                      </span>
+                      <span>
+                        <strong className="text-2xl">/</strong>
+                      </span>
+                      <span className="flex flex-col items-center">
+                        <strong className="text-2xl">{item.casa.venta}</strong>{" "}
+                        <small>Venta</small>
+                      </span>
+                    </div>
                   </div>
-                </div>
-              </SwiperSlide>
-            ))
-          : null}
-      </Swiper>
+                </SwiperSlide>
+              ))
+            : null}
+        </Swiper>
+      </div>
     </div>
   );
 };
