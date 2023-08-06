@@ -49,11 +49,11 @@ async function fetchDataCurrency() {
 
 export default async function Home() {
   // Posts Calls (Highlight, SuperHighlight, TopPosition, FutbolCategory)
-  const postsHighlightQuery = fetchPosts({
+  const postsHighlight = await fetchPosts({
     position: PostsPositions.highlight,
     postsLimit: 6,
   });
-  const postsTopPositionQuery = fetchPosts({
+  const postsTopPosition = await fetchPosts({
     position: PostsPositions.top,
     postsLimit: 4,
   });
@@ -63,38 +63,20 @@ export default async function Home() {
   });
 
   // AdServer Calls (horizontal2, horizontal3, horizontal4, horizontal5)
-  const bannerHorizontal2Query = fetchAdServer({
+  const { docs: bannerHorizontal2 } = await fetchAdServer({
     position: AdServerPositions.horizontal2,
   });
-  const bannerHorizontal3Query = fetchAdServer({
+  const { docs: bannerHorizontal3 } = await fetchAdServer({
     position: AdServerPositions.horizontal3,
   });
-  const bannerHorizontal4Query = fetchAdServer({
+  const { docs: bannerHorizontal4 } = await fetchAdServer({
     position: AdServerPositions.horizontal4,
   });
-  const bannerHorizontal5Query = fetchAdServer({
+  const { docs: bannerHorizontal5 } = await fetchAdServer({
     position: AdServerPositions.horizontal5,
   });
 
-  const dataCurrencyQuery = fetchDataCurrency();
-
-  const [
-    postsHighlight,
-    postsTopPosition,
-    { docs: horizontal2 },
-    { docs: horizontal3 },
-    { docs: horizontal4 },
-    { docs: horizontal5 },
-    dataCurrency,
-  ] = await Promise.all([
-    postsHighlightQuery,
-    postsTopPositionQuery,
-    bannerHorizontal2Query,
-    bannerHorizontal3Query,
-    bannerHorizontal4Query,
-    bannerHorizontal5Query,
-    dataCurrencyQuery,
-  ]);
+  const dataCurrency = await fetchDataCurrency();
 
   return (
     <div className="flex flex-col gap-5">
@@ -107,16 +89,16 @@ export default async function Home() {
       <section className="flex flex-col gap-5">
         <Marquee titles={[].map((post: any) => post.title)} />
 
-        {horizontal2.map(
+        {bannerHorizontal2.map(
           (banner: any) =>
             banner.status === "published" && (
               <Banner
                 banner={{
-                  title: horizontal2[0]?.title,
-                  site: horizontal2[0]?.site,
-                  url: horizontal2[0]?.url,
-                  desktopImage: horizontal2[0]?.desktopImage,
-                  mobileImage: horizontal2[0]?.mobileImage,
+                  title: bannerHorizontal2[0]?.title,
+                  site: bannerHorizontal2[0]?.site,
+                  url: bannerHorizontal2[0]?.url,
+                  desktopImage: bannerHorizontal2[0]?.desktopImage,
+                  mobileImage: bannerHorizontal2[0]?.mobileImage,
                 }}
                 className="container mx-auto"
                 key={banner._id}
@@ -134,11 +116,11 @@ export default async function Home() {
       <section className="container flex flex-col gap-5 mx-auto">
         <Banner
           banner={{
-            title: horizontal3[0]?.title,
-            site: horizontal3[0]?.site,
-            url: horizontal3[0]?.url,
-            desktopImage: horizontal3[0]?.desktopImage,
-            mobileImage: horizontal3[0]?.mobileImage,
+            title: bannerHorizontal3[0]?.title,
+            site: bannerHorizontal3[0]?.site,
+            url: bannerHorizontal3[0]?.url,
+            desktopImage: bannerHorizontal3[0]?.desktopImage,
+            mobileImage: bannerHorizontal3[0]?.mobileImage,
           }}
         />
 
@@ -146,11 +128,11 @@ export default async function Home() {
 
         <Banner
           banner={{
-            title: horizontal4[0]?.title,
-            site: horizontal4[0]?.site,
-            url: horizontal4[0]?.url,
-            desktopImage: horizontal4[0]?.desktopImage,
-            mobileImage: horizontal4[0]?.mobileImage,
+            title: bannerHorizontal4[0]?.title,
+            site: bannerHorizontal4[0]?.site,
+            url: bannerHorizontal4[0]?.url,
+            desktopImage: bannerHorizontal4[0]?.desktopImage,
+            mobileImage: bannerHorizontal4[0]?.mobileImage,
           }}
         />
       </section>
@@ -163,11 +145,11 @@ export default async function Home() {
       {/* BANNER SECTION (horizontal5) */}
       <Banner
         banner={{
-          title: horizontal5[0]?.title,
-          site: horizontal5[0]?.site,
-          url: horizontal5[0]?.url,
-          desktopImage: horizontal5[0]?.desktopImage,
-          mobileImage: horizontal5[0]?.mobileImage,
+          title: bannerHorizontal5[0]?.title,
+          site: bannerHorizontal5[0]?.site,
+          url: bannerHorizontal5[0]?.url,
+          desktopImage: bannerHorizontal5[0]?.desktopImage,
+          mobileImage: bannerHorizontal5[0]?.mobileImage,
         }}
       />
 
