@@ -28,6 +28,7 @@ export const Footer: React.FC<FooterProps> = ({ categories }) => {
           <Navigation
             links={categories}
             className="grid gap-1 grid-cols-2 md:grid-cols-3 lg:grid-cols-7"
+            prefixLink="noticias"
           />
         </div>
 

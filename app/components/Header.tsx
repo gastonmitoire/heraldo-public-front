@@ -36,7 +36,11 @@ export const Header: React.FC<HeaderProps> = ({ categories }: HeaderProps) => {
         </div>
         <div className="flex-1"></div>
       </div>
-      <Navigation links={filteredCategories} activeClass />
+      <Navigation
+        links={filteredCategories}
+        activeClass
+        prefixLink="noticias"
+      />
     </header>
   );
 };

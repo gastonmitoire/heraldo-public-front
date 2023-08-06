@@ -11,12 +11,14 @@ interface LinkProps {
     name: string;
     slug: string;
   }[];
+  prefixLink?: string;
   activeClass?: boolean;
   className?: string;
 }
 
 export const Navigation: React.FC<LinkProps> = ({
   links,
+  prefixLink,
   activeClass,
   className,
 }: LinkProps) => {
@@ -28,7 +30,7 @@ export const Navigation: React.FC<LinkProps> = ({
         links.map((link) => (
           <Link
             key={link.slug}
-            href={`/noticias/${link.slug}`}
+            href={`/${prefixLink ? prefixLink + "/" : ""}${link.slug}`}
             className={`font-bold text-gray-400 hover:text-gray-800 px-4 ${
               activeClass && pathname === `/noticias/${link.slug}`
                 ? "text-gray-800"
