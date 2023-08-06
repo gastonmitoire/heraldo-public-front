@@ -3,9 +3,16 @@ import { Banner } from "@/app/components/Banner";
 import SinglePost from "@/app/features/SinglePost";
 import { List } from "@/app/components/List";
 import BannerAdSense from "@/app/components/BannerAdSense";
+import { CardGridWithSwiper } from "@/app/components/CardGridWithSwiper";
 
-  
-import {AdServerPositions, fetchAdServer } from "@/app/service/app.service";
+import {
+  AdServerPositions,
+  fetchAdServer,
+  fetchPosts,
+  PostsPositions,
+  PostsCategories,
+} from "@/app/service/app.service";
+import { PostsHighlight } from "@/app/features/PostsHighlight";
 
 export default async function Page({
   params,
@@ -15,19 +22,41 @@ export default async function Page({
     postSlug: string;
   };
 }) {
+  //fetch posts by category
   const { categorySlug, postSlug } = params;
   const URL = process.env.API_URL;
   const postQuery = fetch(`${URL}/posts/slug/${postSlug}`).then((res) =>
     res.json()
   );
-  const postsCategoryQuery = fetch(
-    `${URL}/posts/category/${categorySlug}?postsLimit=4`
-  ).then((res) => res.json());
 
+  // position
+
+  function getEnumValueCategories(str: string): PostsCategories | undefined {
+    return Object.values(PostsCategories).find(
+      (value) => value === str
+    ) as PostsCategories;
+  }
+  const category = getEnumValueCategories(categorySlug);
+  const postsCategoryQuery = fetchPosts({
+    category: category,
+    postsLimit: 4,
+  });
+
+  const postsHighlightQuery = fetchPosts({
+    position: PostsPositions.highlight,
+    postsLimit: 6,
+  });
+
+  // AdServer Calls (right,horizontal2, horizontal3, sticky2, netblock1, netblock2, netblock3, netblock4)
   const fetchBannerRight = fetchAdServer({
     position: AdServerPositions.right,
   });
-
+  const fetchBannerHorizontal2 = fetchAdServer({
+    position: AdServerPositions.horizontal2,
+  });
+  const fetchBannerHorizontal3 = fetchAdServer({
+    position: AdServerPositions.horizontal3,
+  });
   const fetchBannerSticky2 = fetchAdServer({
     position: AdServerPositions.sticky2,
   });
@@ -39,7 +68,7 @@ export default async function Page({
   const fetchBannerNetblock2 = fetchAdServer({
     position: AdServerPositions.netblock2,
   });
- 
+
   const fetchBannerNetblock3 = fetchAdServer({
     position: AdServerPositions.netblock3,
   });
@@ -48,10 +77,21 @@ export default async function Page({
     position: AdServerPositions.netblock4,
   });
 
-  const [post, postsCategory, {docs: right}, {docs: sticky2}] = await Promise.all([
+  const [
+    post,
+    postsCategory,
+    postsHighlight,
+    { docs: right },
+    { docs: horizontal2 },
+    { docs: horizontal3 },
+    { docs: sticky2 },
+  ] = await Promise.all([
     postQuery,
     postsCategoryQuery,
+    postsHighlightQuery,
     fetchBannerRight,
+    fetchBannerHorizontal2,
+    fetchBannerHorizontal3,
     fetchBannerSticky2,
     fetchBannerNetblock1,
     fetchBannerNetblock2,
@@ -60,9 +100,8 @@ export default async function Page({
   ]);
   console.log(post);
   //console.log('sticky', sticky2);
-  console.log('right', right);
-  
-  
+  console.log("right", right);
+
   //right.docs.map((banner: any) => console.log(banner.desktopImage));
 
   return (
@@ -93,7 +132,7 @@ export default async function Page({
           {/* BANNERS POSITION RIGHT */}
           <div className="flex flex-col gap-5">
             {right.map((banner: any) => {
-              return banner.desktopImage ? (
+              return banner.desktopImage || banner.mobileImage ? (
                 <Banner
                   key={banner._id}
                   banner={{
@@ -118,6 +157,57 @@ export default async function Page({
           </div>
         </aside>
       </div>
+      {/* BANNER HORIZONTAL 1 */}
+      <section>
+        {horizontal2.map(
+          (banner: any) =>
+            banner.status === "published" && (
+              <Banner
+                banner={{
+                  title: horizontal2[0]?.title,
+                  site: horizontal2[0]?.site,
+                  url: horizontal2[0]?.url,
+                  desktopImage: horizontal2[0]?.desktopImage,
+                  mobileImage: horizontal2[0]?.mobileImage,
+                }}
+                className="container mx-auto"
+                key={banner._id}
+              />
+            )
+        )}
+      </section>
+
+      {/* POST OF INTEREST */}
+      <section className="container px-5 mx-auto">
+        <CardGridWithSwiper
+          data={postsHighlight}
+          heading={`Te puede interesar:`}
+          className={"px-3"}
+        />
+      </section>
+
+      {/* BANNER HORIZONTAL 3 */}
+      <section>
+        {horizontal3.map(
+          (banner: any) =>
+            banner.status === "published" && (
+              <Banner
+                banner={{
+                  title: horizontal3[0]?.title,
+                  site: horizontal3[0]?.site,
+                  url: horizontal3[0]?.url,
+                  desktopImage: horizontal3[0]?.desktopImage,
+                  mobileImage: horizontal3[0]?.mobileImage,
+                }}
+                className="container mx-auto"
+                key={banner._id}
+              />
+            )
+        )}
+      </section>
+
+      {/* POSTS HIGHLIGTH */}
+      <PostsHighlight posts={postsHighlight} />
     </div>
   );
 }
