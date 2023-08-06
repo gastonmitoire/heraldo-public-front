@@ -75,6 +75,9 @@ export default async function Home() {
   const { docs: bannerHorizontal5 } = await fetchAdServer({
     position: AdServerPositions.horizontal5,
   });
+  const { docs: bannerHorizontal6 } = await fetchAdServer({
+    position: AdServerPositions.horizontal6,
+  });
 
   const dataCurrency = await fetchDataCurrency();
 
@@ -142,23 +145,32 @@ export default async function Home() {
         <CardGridWithSwiper data={postsTopPosition} cardClassName="h-[390px]" />
       </section>
 
-      {/* BANNER SECTION (horizontal5) */}
-      <Banner
-        banner={{
-          title: bannerHorizontal5[0]?.title,
-          site: bannerHorizontal5[0]?.site,
-          url: bannerHorizontal5[0]?.url,
-          desktopImage: bannerHorizontal5[0]?.desktopImage,
-          mobileImage: bannerHorizontal5[0]?.mobileImage,
-        }}
-      />
+      {/* POSTGRID SECTION & BANNERS (FUTBOL TAG, bannerHorizontal5, bannerHorizontal6 ) */}
+      <section className="container mx-auto flex flex-col gap-5">
+        <Banner
+          banner={{
+            title: bannerHorizontal5[0]?.title,
+            site: bannerHorizontal5[0]?.site,
+            url: bannerHorizontal5[0]?.url,
+            desktopImage: bannerHorizontal5[0]?.desktopImage,
+            mobileImage: bannerHorizontal5[0]?.mobileImage,
+          }}
+        />
 
-      {/* CARD GRID WITH SWIPER SECTION (CATEGORY NEWS) */}
-      <section className="container mx-auto">
         <PostsGrid
           posts={postsDeportesCategory}
           title="Liga Profesional"
           extended={true}
+        />
+
+        <Banner
+          banner={{
+            title: bannerHorizontal6[0]?.title,
+            site: bannerHorizontal6[0]?.site,
+            url: bannerHorizontal6[0]?.url,
+            desktopImage: bannerHorizontal6[0]?.desktopImage,
+            mobileImage: bannerHorizontal6[0]?.mobileImage,
+          }}
         />
       </section>
     </div>
