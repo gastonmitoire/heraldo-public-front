@@ -17,7 +17,9 @@ interface PostsGridProps {
 export const PostsGrid: React.FC<PostsGridProps> = ({ posts, title }) => {
   return (
     <div>
-      <Heading title={title} link={`/noticias/${posts[0].category?.slug}`} />
+      {posts.length > 0 ? (
+        <Heading title={title} link={`/noticias/${posts[0].category?.slug}`} />
+      ) : null}
       <CardGridWithSwiper data={posts} />
     </div>
   );

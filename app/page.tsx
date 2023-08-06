@@ -17,6 +17,7 @@ import {
   AdServerPositions,
   fetchAdServer,
 } from "@/app/service/app.service";
+import { PostsFeatured } from "./features/PostsFeatured";
 
 export default async function Home() {
   // Posts Calls (Highlight, SuperHighlight, TopPosition, FutbolCategory)
@@ -30,7 +31,7 @@ export default async function Home() {
   });
   const postsDeportesCategory = await fetchPosts({
     category: PostsCategories.deportes,
-    postsLimit: 4,
+    postsLimit: 5,
   });
 
   // AdServer Calls (horizontal2, horizontal3, horizontal4, horizontal5)
@@ -135,7 +136,7 @@ export default async function Home() {
         />
 
         <PostsGrid
-          posts={postsDeportesCategory}
+          posts={postsDeportesCategory.slice(0, 4)}
           title="Liga Profesional"
           extended={true}
         />
@@ -151,7 +152,7 @@ export default async function Home() {
         />
       </section>
 
-      {/* FUNERALS PREVIEW SECTION & BANNER (horizontal8) */}
+      {/* FUNERALS PREVIEW SECTION & BANNER (horizontal8) & POSTS-FEATURED (category: deportes) */}
       <section className="container mx-auto flex flex-col gap-5">
         <FuneralsPreview funerals={funerals.slice(0, 5)} />
 
@@ -164,6 +165,8 @@ export default async function Home() {
             mobileImage: bannerHorizontal8[0]?.mobileImage,
           }}
         />
+
+        <PostsFeatured posts={postsDeportesCategory} />
       </section>
     </div>
   );
