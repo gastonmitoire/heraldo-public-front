@@ -56,7 +56,10 @@ export default async function Page({
       <div className="grid grid-cols-2 gap-3">
         {categoryPosts
           ? categoryPosts.slice(0, 2).map((post: any) => (
-              <Link key={post._id} href={`/noticias/${post.category.slug}/${post.slug}`}>
+              <Link
+                key={post._id}
+                href={`/noticias/${post.category.slug}/${post.slug}`}
+              >
                 <CardHighlight
                   title={post.title}
                   excerpt={post.excerpt}
@@ -84,6 +87,7 @@ export default async function Page({
                     excerpt: post.excerpt,
                     image: post.images[0],
                     category: post.category,
+                    slug: post.slug,
                   }}
                   imageClassName="h-[200px] 2xl:h-[300px] object-cover"
                 />

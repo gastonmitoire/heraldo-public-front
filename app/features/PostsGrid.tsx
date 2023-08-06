@@ -4,7 +4,6 @@ import React from "react";
 
 import { Post } from "@/types";
 
-import { Card } from "../components/Card";
 import { CardGridWithSwiper } from "../components/CardGridWithSwiper";
 import { Heading } from "../components/Heading";
 

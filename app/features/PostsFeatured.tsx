@@ -57,6 +57,7 @@ export const PostsFeatured: React.FC<PostsFeaturedProps> = async ({
                   excerpt: post.excerpt,
                   image: post.images[0],
                   category: post.category,
+                  slug: post.slug,
                 }}
                 className="lg:col-span-1"
               />
@@ -83,6 +84,7 @@ export const PostsFeatured: React.FC<PostsFeaturedProps> = async ({
                   excerpt: post.excerpt,
                   image: post.images[0],
                   category: post.category,
+                  slug: post.slug,
                 }}
                 className="lg:col-span-1"
               />

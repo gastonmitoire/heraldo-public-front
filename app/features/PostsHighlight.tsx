@@ -59,6 +59,7 @@ export const PostsHighlight: React.FC<PostsHighlightProps> = ({ posts }) => {
                   excerpt: post.excerpt,
                   image: post.images[0],
                   category: post.category,
+                  slug: post.slug,
                 }}
                 className="h-full"
                 imageClassName="h-[150px] object-cover"
