@@ -30,14 +30,15 @@ export const Card: React.FC<CardProps> = ({
       className={`${className} flex flex-col group hover:cursor-pointer transition-all`}
     >
       <div className="flex-1 relative group-hover:brightness-75 transition-all">
-        <span className="absolute top-3 left-3 uppercase bg-black bg-opacity-80 text-white font-light text-sm py-1 px-3">
+        <span className="absolute z-30 top-3 left-3 uppercase bg-black bg-opacity-80 text-white font-light text-sm py-1 px-3">
           {category?.name}
         </span>
         <Image
           src={image.url}
           alt={title}
           className={`max-h-[300px] w-full ${imageClassName}`}
-          fill
+          height={300}
+          width={300}
         />
       </div>
       <div className="flex-1 pt-3 border p-5">
