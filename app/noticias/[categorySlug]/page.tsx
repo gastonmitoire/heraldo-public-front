@@ -56,21 +56,16 @@ export default async function Page({
       <div className="grid grid-cols-2 gap-3">
         {categoryPosts[0]
           ? categoryPosts.slice(0, 2).map((post: any) => (
-              <Link
-                key={post._id}
-                href={`/noticias/${post.category.slug}/${post.slug}`}
-              >
-                <CardHighlight
-                  item={{
-                    title: post.title,
-                    excerpt: post.excerpt,
-                    image: post.images[0],
-                    category: post.category,
-                    slug: post.slug,
-                  }}
-                  className="min-h-[500px]"
-                />
-              </Link>
+              <CardHighlight
+                item={{
+                  title: post.title,
+                  excerpt: post.excerpt,
+                  image: post.images[0],
+                  category: post.category,
+                  slug: post.slug,
+                }}
+                className="min-h-[500px]"
+              />
             ))
           : null}
       </div>
