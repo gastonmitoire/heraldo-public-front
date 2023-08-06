@@ -57,6 +57,7 @@ export default async function Page({
         {categoryPosts[0]
           ? categoryPosts.slice(0, 2).map((post: any) => (
               <CardHighlight
+                key={`highlight-post-${post._id}`}
                 item={{
                   title: post.title,
                   excerpt: post.excerpt,
