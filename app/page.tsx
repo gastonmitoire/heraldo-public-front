@@ -7,9 +7,11 @@ import { Marquee } from "./components/Marquee";
 
 import { CurrencyAndRiverSwiper } from "./features/CurrencyAndRiverSwiper";
 import { PostsHighlight } from "./features/PostsHighlight";
+import { PostsGrid } from "./features/PostsGrid";
 import { PostsSuperHighlight } from "./features/PostsSuperHighlight";
 
 import {
+  PostsCategories,
   PostsPositions,
   fetchPosts,
   AdServerPositions,
@@ -46,13 +48,17 @@ async function fetchDataCurrency() {
 }
 
 export default async function Home() {
-  // Posts Calls (Highlight, SuperHighlight, TopPosition)
+  // Posts Calls (Highlight, SuperHighlight, TopPosition, FutbolCategory)
   const postsHighlightQuery = fetchPosts({
     position: PostsPositions.highlight,
     postsLimit: 6,
   });
   const postsTopPositionQuery = fetchPosts({
     position: PostsPositions.top,
+    postsLimit: 4,
+  });
+  const postsDeportesCategory = await fetchPosts({
+    category: PostsCategories.deportes,
     postsLimit: 4,
   });
 
@@ -72,7 +78,15 @@ export default async function Home() {
 
   const dataCurrencyQuery = fetchDataCurrency();
 
-  const [postsHighlight, postsTopPosition, { docs: horizontal2 }, { docs: horizontal3 }, { docs: horizontal4 }, { docs: horizontal5 }, dataCurrency] = await Promise.all([
+  const [
+    postsHighlight,
+    postsTopPosition,
+    { docs: horizontal2 },
+    { docs: horizontal3 },
+    { docs: horizontal4 },
+    { docs: horizontal5 },
+    dataCurrency,
+  ] = await Promise.all([
     postsHighlightQuery,
     postsTopPositionQuery,
     bannerHorizontal2Query,
@@ -81,8 +95,6 @@ export default async function Home() {
     bannerHorizontal5Query,
     dataCurrencyQuery,
   ]);
-
-
 
   return (
     <div className="flex flex-col gap-5">
@@ -158,6 +170,15 @@ export default async function Home() {
           mobileImage: horizontal5[0]?.mobileImage,
         }}
       />
+
+      {/* CARD GRID WITH SWIPER SECTION (CATEGORY NEWS) */}
+      <section className="container mx-auto">
+        <PostsGrid
+          posts={postsDeportesCategory}
+          title="Liga Profesional"
+          extended={true}
+        />
+      </section>
     </div>
   );
 }
