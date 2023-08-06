@@ -11,7 +11,6 @@ import { Heading } from "../components/Heading";
 interface PostsGridProps {
   posts: Post[];
   title: string;
-  extended?: boolean;
 }
 
 export const PostsGrid: React.FC<PostsGridProps> = ({ posts, title }) => {

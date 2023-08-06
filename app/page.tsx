@@ -21,7 +21,7 @@ import { PostsFeatured } from "./features/PostsFeatured";
 import { SwiperFullscreen } from "./components/SwiperFullscreen";
 
 export default async function Home() {
-  // Posts Calls (Highlight, SuperHighlight, TopPosition, FutbolCategory)
+  // Posts Calls (Highlight, SuperHighlight, TopPosition, FutbolCategory, EspectaculosCategory, CulturaCategory)
   const postsHighlight = await fetchPosts({
     position: PostsPositions.highlight,
     postsLimit: 6,
@@ -38,8 +38,15 @@ export default async function Home() {
     category: PostsCategories.espectaculos,
     postsLimit: 5,
   });
+  const postsCulturaCategory = await fetchPosts({
+    category: PostsCategories.cultura,
+    postsLimit: 4,
+  });
 
-  // AdServer Calls (horizontal2, horizontal3, horizontal4, horizontal5, horizontal6, horizontal8, horizontal9)
+  // AdServer Calls
+  // (horizontal2, horizontal3, horizontal4, horizontal5,
+  //  horizontal6, horizontal8, horizontal9, horizontal10,
+  //  horizontal11)
   const { docs: bannerHorizontal2 } = await fetchAdServer({
     position: AdServerPositions.horizontal2,
   });
@@ -60,6 +67,12 @@ export default async function Home() {
   });
   const { docs: bannerHorizontal9 } = await fetchAdServer({
     position: AdServerPositions.horizontal9,
+  });
+  const { docs: bannerHorizontal10 } = await fetchAdServer({
+    position: AdServerPositions.horizontal10,
+  });
+  const { docs: bannerHorizontal11 } = await fetchAdServer({
+    position: AdServerPositions.horizontal11,
   });
 
   // Funerals Calls
@@ -146,7 +159,6 @@ export default async function Home() {
         <PostsGrid
           posts={postsDeportesCategory.slice(0, 4)}
           title="Liga Profesional"
-          extended={true}
         />
 
         <Banner
@@ -192,6 +204,36 @@ export default async function Home() {
         <SwiperFullscreen
           posts={postsEspectaculosCategory}
           className="h-[700px]"
+        />
+      </section>
+
+      {/* BANNERS (horizontal10, horizontal11) & POSTGRID (cultura, magazine) */}
+      <section className="container mx-auto flex flex-col gap-5">
+        <Banner
+          banner={{
+            title: bannerHorizontal10[0]?.title,
+            site: bannerHorizontal10[0]?.site,
+            url: bannerHorizontal10[0]?.url,
+            desktopImage: bannerHorizontal10[0]?.desktopImage,
+            mobileImage: bannerHorizontal10[0]?.mobileImage,
+          }}
+        />
+
+        <PostsGrid posts={postsCulturaCategory} title="Cultura" />
+
+        <Banner
+          banner={{
+            title: bannerHorizontal11[0]?.title,
+            site: bannerHorizontal11[0]?.site,
+            url: bannerHorizontal11[0]?.url,
+            desktopImage: bannerHorizontal11[0]?.desktopImage,
+            mobileImage: bannerHorizontal11[0]?.mobileImage,
+          }}
+        />
+
+        <PostsGrid
+          posts={postsEspectaculosCategory.slice(0, 4)}
+          title="Magazine"
         />
       </section>
     </div>
