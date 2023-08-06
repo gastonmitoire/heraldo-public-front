@@ -18,6 +18,7 @@ import {
   fetchAdServer,
 } from "@/app/service/app.service";
 import { PostsFeatured } from "./features/PostsFeatured";
+import { SwiperFullscreen } from "./components/SwiperFullscreen";
 
 export default async function Home() {
   // Posts Calls (Highlight, SuperHighlight, TopPosition, FutbolCategory)
@@ -33,8 +34,12 @@ export default async function Home() {
     category: PostsCategories.deportes,
     postsLimit: 5,
   });
+  const postsEspectaculosCategory = await fetchPosts({
+    category: PostsCategories.espectaculos,
+    postsLimit: 5,
+  });
 
-  // AdServer Calls (horizontal2, horizontal3, horizontal4, horizontal5)
+  // AdServer Calls (horizontal2, horizontal3, horizontal4, horizontal5, horizontal6, horizontal8, horizontal9)
   const { docs: bannerHorizontal2 } = await fetchAdServer({
     position: AdServerPositions.horizontal2,
   });
@@ -52,6 +57,9 @@ export default async function Home() {
   });
   const { docs: bannerHorizontal8 } = await fetchAdServer({
     position: AdServerPositions.horizontal8,
+  });
+  const { docs: bannerHorizontal9 } = await fetchAdServer({
+    position: AdServerPositions.horizontal9,
   });
 
   // Funerals Calls
@@ -152,7 +160,7 @@ export default async function Home() {
         />
       </section>
 
-      {/* FUNERALS PREVIEW SECTION & BANNER (horizontal8) & POSTS-FEATURED (category: deportes) */}
+      {/* FUNERALS PREVIEW SECTION & BANNER (horizontal8, horizontal9) & POSTS-FEATURED (category: deportes) */}
       <section className="container mx-auto flex flex-col gap-5">
         <FuneralsPreview funerals={funerals.slice(0, 5)} />
 
@@ -167,6 +175,24 @@ export default async function Home() {
         />
 
         <PostsFeatured posts={postsDeportesCategory} />
+
+        <Banner
+          banner={{
+            title: bannerHorizontal9[0]?.title,
+            site: bannerHorizontal9[0]?.site,
+            url: bannerHorizontal9[0]?.url,
+            desktopImage: bannerHorizontal9[0]?.desktopImage,
+            mobileImage: bannerHorizontal9[0]?.mobileImage,
+          }}
+        />
+      </section>
+
+      {/* GALLERY IMAGE FULLSCREEN (swiper) SECTION */}
+      <section>
+        <SwiperFullscreen
+          posts={postsEspectaculosCategory}
+          className="h-[700px]"
+        />
       </section>
     </div>
   );
