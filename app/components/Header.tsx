@@ -2,6 +2,7 @@ import React from "react";
 
 import Link from "next/link";
 import { Navigation } from "./Navigation";
+import { HamburgerMenu } from "./HamburgerMenu";
 
 interface HeaderProps {
   categories: any;
@@ -20,8 +21,10 @@ export const Header: React.FC<HeaderProps> = ({ categories }: HeaderProps) => {
 
   return (
     <header className="bg-white">
-      <div className="flex py-5">
-        <div className="flex-1"></div>
+      <div className="container mx-auto flex py-5">
+        <div className="flex-1">
+          <HamburgerMenu categories={categories} />
+        </div>
         <div className="flex justify-center flex-auto">
           <Link href="/">
             <img
