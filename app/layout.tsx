@@ -25,7 +25,7 @@ export default async function RootLayout({
       <body className={montserrat.className}>
         <Header categories={categories} />
         <main>{children}</main>
-        <Footer />
+        <Footer categories={categories} />
       </body>
     </html>
   );

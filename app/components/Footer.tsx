@@ -5,9 +5,13 @@ import React from "react";
 import { Navigation } from "./Navigation";
 import { SocialMediaLinks } from "./SocialMediaLinks";
 
-export const Footer: React.FC = () => {
+interface FooterProps {
+  categories: any;
+}
+
+export const Footer: React.FC<FooterProps> = ({ categories }) => {
   return (
-    <footer className="py-3 bg-gray-200">
+    <footer className="py-3 mt-10 bg-gray-200">
       <div className="container mx-auto divide-y divide-gray-400">
         <div className="flex items-center justify-between py-5">
           <SocialMediaLinks />
@@ -21,12 +25,10 @@ export const Footer: React.FC = () => {
         </div>
 
         <div className="py-5">
-          <Navigation links={[
-            {
-              name: "Home",
-              slug: "/",
-            }
-          ]} />
+          <Navigation
+            links={categories}
+            className="grid gap-1 grid-cols-2 md:grid-cols-3 lg:grid-cols-7"
+          />
         </div>
 
         <div className="flex flex-col items-center justify-between py-5">
