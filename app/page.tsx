@@ -6,6 +6,7 @@ import { CardHighlight } from "./components/CardHighlight";
 import { Marquee } from "./components/Marquee";
 
 import { CurrencyAndRiverSwiper } from "./features/CurrencyAndRiverSwiper";
+import { FuneralsPreview } from "./features/FuneralsPreview";
 import { PostsHighlight } from "./features/PostsHighlight";
 import { PostsGrid } from "./features/PostsGrid";
 import { PostsSuperHighlight } from "./features/PostsSuperHighlight";
@@ -78,8 +79,17 @@ export default async function Home() {
   const { docs: bannerHorizontal6 } = await fetchAdServer({
     position: AdServerPositions.horizontal6,
   });
+  const { docs: bannerHorizontal8 } = await fetchAdServer({
+    position: AdServerPositions.horizontal8,
+  });
 
+  // Currency & River Calls
   const dataCurrency = await fetchDataCurrency();
+
+  // Funerals Calls
+  const { docs: funerals } = await fetch(
+    `${process.env.API_URL}/funeral-notices`
+  ).then((res) => res.json());
 
   return (
     <div className="flex flex-col gap-5">
@@ -170,6 +180,21 @@ export default async function Home() {
             url: bannerHorizontal6[0]?.url,
             desktopImage: bannerHorizontal6[0]?.desktopImage,
             mobileImage: bannerHorizontal6[0]?.mobileImage,
+          }}
+        />
+      </section>
+
+      {/* FUNERALS PREVIEW SECTION & BANNER (horizontal8) */}
+      <section className="container mx-auto flex flex-col gap-5">
+        <FuneralsPreview funerals={funerals.slice(0, 5)} />
+
+        <Banner
+          banner={{
+            title: bannerHorizontal8[0]?.title,
+            site: bannerHorizontal8[0]?.site,
+            url: bannerHorizontal8[0]?.url,
+            desktopImage: bannerHorizontal8[0]?.desktopImage,
+            mobileImage: bannerHorizontal8[0]?.mobileImage,
           }}
         />
       </section>
