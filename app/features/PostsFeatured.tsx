@@ -45,7 +45,7 @@ export const PostsFeatured: React.FC<PostsFeaturedProps> = async ({
                   category: post.category,
                   slug: post.slug,
                 }}
-                className="col-span-2 lg:col-span-2 lg:row-span-2 lg:h-full"
+                className="col-span-2 lg:col-span-2 lg:row-span-2 h-full"
               />
             ))
           : null}
