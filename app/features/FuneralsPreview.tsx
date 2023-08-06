@@ -1,6 +1,7 @@
 // funerals preview component
 
 import React from "react";
+import Link from "next/link";
 
 import { FuneralNotice } from "@/types";
 
@@ -57,9 +58,12 @@ export const FuneralsPreview: React.FC<Props> = ({ funerals }) => {
         <div className="flex-auto flex items-center">
           <div className="w-full border-b border-gray-200"></div>
         </div>
-        <button className="flex-0 font-bold opacity-70 transition-opacity hover:opacity-100">
+        <Link
+          href="funebres"
+          className="flex-0 font-bold opacity-70 transition-opacity hover:opacity-100"
+        >
           <span>Ver más</span>
-        </button>
+        </Link>
       </nav>
       <div>
         <FuneralsSwiper funerals={funerals.slice(0, 5)} />
