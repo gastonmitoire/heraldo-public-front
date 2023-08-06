@@ -6,6 +6,7 @@ import Link from "next/link";
 import { FuneralNotice } from "@/types";
 
 import { FuneralsSwiper } from "./FuneralsSwiper";
+import { Heading } from "../components/Heading";
 
 interface Props {
   funerals: FuneralNotice[];
@@ -53,18 +54,7 @@ export const FuneralsPreview: React.FC<Props> = ({ funerals }) => {
   };
   return (
     <div className="flex flex-col">
-      <nav className="flex justify-between gap-5 pb-3">
-        <h2 className="flex-0 text-2xl font-bold">Avisos fúnebres</h2>
-        <div className="flex-auto flex items-center">
-          <div className="w-full border-b border-gray-200"></div>
-        </div>
-        <Link
-          href="funebres"
-          className="flex-0 font-bold opacity-70 transition-opacity hover:opacity-100"
-        >
-          <span>Ver más</span>
-        </Link>
-      </nav>
+      <Heading title="Avisos fúnebres" link="funebres" />
       <div>
         <FuneralsSwiper funerals={funerals.slice(0, 5)} />
       </div>
