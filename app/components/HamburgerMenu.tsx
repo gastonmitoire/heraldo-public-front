@@ -47,7 +47,7 @@ export const HamburgerMenu: React.FC<HamburgerMenuProps> = ({ categories }) => {
     <div className="lg:relative">
       <button
         type="button"
-        className="inline-flex items-center justify-center p-2 rounded-md text-gray-400"
+        className="inline-flex items-center justify-center"
         aria-label="Main menu"
         aria-expanded="false"
         onClick={handleClick}

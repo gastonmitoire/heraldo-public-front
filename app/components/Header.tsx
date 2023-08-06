@@ -1,8 +1,10 @@
 import React from "react";
 
 import Link from "next/link";
-import { Navigation } from "./Navigation";
+
 import { HamburgerMenu } from "./HamburgerMenu";
+import { Navigation } from "./Navigation";
+import { SocialMediaLinks } from "./SocialMediaLinks";
 
 interface HeaderProps {
   categories: any;
@@ -30,11 +32,21 @@ export const Header: React.FC<HeaderProps> = ({ categories }: HeaderProps) => {
             <img
               src="https://www.elheraldo.com.ar/_next/static/media/logoMobile.da7a8911.svg"
               alt=""
-              className="h-10"
+              className="h-12"
             />
           </Link>
         </div>
-        <div className="flex-1"></div>
+        <div className="flex-1 flex flex-col justify-center items-end gap-1.5">
+          <SocialMediaLinks />
+          <time className="py-1 px-1.5 uppercase bg-black font-semibold text-xs text-white">
+            {new Date().toLocaleDateString("es-AR", {
+              weekday: "long",
+              year: "numeric",
+              month: "long",
+              day: "numeric",
+            })}
+          </time>
+        </div>
       </div>
       <Navigation
         links={filteredCategories}
