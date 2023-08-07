@@ -3,13 +3,13 @@
 import React from "react";
 import Link from "next/link";
 
-import { FuneralNotice } from "@/types";
+import { FuneralNoticeProps } from "@/types";
 
 import { FuneralsSwiper } from "./FuneralsSwiper";
 import { Heading } from "../components/Heading";
 
 interface Props {
-  funerals: FuneralNotice[];
+  funerals: FuneralNoticeProps[];
 }
 
 export const FuneralsPreview: React.FC<Props> = ({ funerals }) => {

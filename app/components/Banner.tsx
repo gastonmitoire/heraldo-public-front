@@ -1,6 +1,6 @@
 // banner component
 
-import { Image } from "@/types";
+import { ImageProps } from "@/types";
 import React from "react";
 
 interface BannerProps {
@@ -8,8 +8,8 @@ interface BannerProps {
     title: string;
     site: string;
     url?: string;
-    desktopImage?: Pick<Image, "url">;
-    mobileImage?: Pick<Image, "url">;
+    desktopImage?: Pick<ImageProps, "url">;
+    mobileImage?: Pick<ImageProps, "url">;
   };
   className?: string;
   sticky?: boolean;
@@ -26,12 +26,14 @@ export const Banner: React.FC<BannerProps> = ({
   border,
   imageWidth,
   imageHeight,
-  key
+  key,
 }) => {
   return (
     <div
       key={key}
-      className={`${className} ${!mobileImage && !desktopImage ? 'hidden' : ''} flex justify-center min-h-[100px] w-full py-1.5 ${
+      className={`${className} ${
+        !mobileImage && !desktopImage ? "hidden" : ""
+      } flex justify-center min-h-[100px] w-full py-1.5 ${
         sticky ? "sticky top-0" : ""
       } ${border ? "border" : ""}`}
     >

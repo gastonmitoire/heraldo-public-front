@@ -11,13 +11,13 @@ import { List } from "@/app/components/List";
 import { PrintedEditionModal } from "./PrintedEditionModal";
 import { Skeleton } from "../../components/Skeleton";
 
-import { PrintedEditionType } from "@/types";
+import { PrintedEditionProps } from "@/types";
 
-interface PrintedEditionProps {
-  printedEdition: PrintedEditionType;
+interface PrintedEditionComponentProps {
+  printedEdition: PrintedEditionProps;
 }
 
-export const PrintedEdition: React.FC<PrintedEditionProps> = ({
+export const PrintedEdition: React.FC<PrintedEditionComponentProps> = ({
   printedEdition,
 }) => {
   const [modal, setModal] = useState(false);

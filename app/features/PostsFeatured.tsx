@@ -1,7 +1,7 @@
 // posts-featured component
 import React from "react";
 
-import { Post } from "@/types";
+import { PostProps } from "@/types";
 
 import { Banner } from "../components/Banner";
 import { Card } from "@/app/components/Card";
@@ -11,7 +11,7 @@ import { fetchAdServer, AdServerPositions } from "../service/app.service";
 import { Heading } from "../components/Heading";
 
 interface PostsFeaturedProps {
-  posts: Post[];
+  posts: PostProps[];
 }
 
 export const PostsFeatured: React.FC<PostsFeaturedProps> = async ({

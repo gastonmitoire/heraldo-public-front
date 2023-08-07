@@ -8,12 +8,12 @@ import { List } from "@/app/components/List";
 import { PrintedEdition } from "./printed-edition/PrintedEdition";
 import { Skeleton } from "../components/Skeleton";
 
-import { Post } from "@/types";
+import { PostProps } from "@/types";
 
 import { fetchPrintedEdition } from "./printed-edition/service/printed-edition.service";
 
 interface PostsHighlightProps {
-  posts: Post[];
+  posts: PostProps[];
 }
 
 export const PostsHighlight: React.FC<PostsHighlightProps> = async ({

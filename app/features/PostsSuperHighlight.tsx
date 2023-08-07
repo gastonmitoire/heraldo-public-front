@@ -2,8 +2,6 @@
 
 import React from "react";
 
-import { Post } from "@/types";
-
 import { CardHighlight } from "@/app/components/CardHighlight";
 import { Skeleton } from "../components/Skeleton";
 
