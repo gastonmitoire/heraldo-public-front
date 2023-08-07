@@ -73,7 +73,7 @@ export const CardGridWithSwiper: React.FC<CardGridWithSwiperProps> = ({
                   category: item.category,
                   slug: item.slug,
                 }}
-                className={`h-[400px] ${cardClassName}`}
+                className={`h-[430px] ${cardClassName}`}
                 imageClassName="h-[250px] object-cover select-none"
               />
             </SwiperSlide>
