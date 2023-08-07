@@ -52,7 +52,7 @@ export const fetchPostsWithOptions = async ({
   option,
   postsLimit,
   value,
-}: FetchPostsProps) => {
+}: FetchPostsProps): Promise<PostProps[]> => {
   let url = "";
 
   if (option === "position") {
@@ -63,18 +63,19 @@ export const fetchPostsWithOptions = async ({
     url = `/tags/${value}`;
   }
 
-  const limit = postsLimit ? `?postsLimit=${postsLimit}` : "";
+  const limit =
+    option !== "tag" && postsLimit ? `?postsLimit=${postsLimit}` : "";
 
   const finalUrl = `/posts${url}${limit}`;
 
-  console.log("response", finalUrl);
-
   // conditional response based on option
-  const response: PostProps[] = await fetchClient(finalUrl, {
+  const response = await fetchClient(finalUrl, {
     method: "GET",
   });
 
-  console.log("response", finalUrl);
+  const sanitizedResponse = Object.keys(response).includes("docs")
+    ? response.docs
+    : response;
 
-  return response;
+  return sanitizedResponse;
 };

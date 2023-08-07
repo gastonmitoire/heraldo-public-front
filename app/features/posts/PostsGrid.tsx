@@ -32,24 +32,27 @@ export const PostsGrid: React.FC<PostsGridProps> = async ({
     postsLimit,
   });
 
+  // if (fetchPostsProps.option === "tag") {
+  //   console.log("posts", posts);
+  // }
+
   const banner = bannerConfig ? await fetchAdServer(bannerConfig) : null;
 
-  console.log("banner", banner);
-
-  const dataWithBanner = banner
-    ? [
-        ...posts.slice(0, 3),
-        {
-          type: "banner",
-          ...banner.docs[0],
-        },
-      ]
-    : posts;
+  const dataWithBanner =
+    posts.length > 0 && banner
+      ? [
+          ...posts.slice(0, 3),
+          {
+            type: "banner",
+            ...banner.docs[0],
+          },
+        ]
+      : posts;
   const dataWithoutBanner = posts;
 
   return (
     <div>
-      {title ? (
+      {posts.length > 0 && title ? (
         <Heading title={title} link={`/noticias/${posts[0].category?.slug}`} />
       ) : posts.length > 0 ? (
         <Heading

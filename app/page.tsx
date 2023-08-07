@@ -41,10 +41,6 @@ export default async function Home() {
     category: PostsCategories.espectaculos,
     postsLimit: 5,
   });
-  const postsCulturaCategory = await fetchPosts({
-    category: PostsCategories.cultura,
-    postsLimit: 4,
-  });
 
   // AdServer Calls
   // (horizontal2, horizontal3, horizontal4, horizontal5,
@@ -159,19 +155,16 @@ export default async function Home() {
           }}
         />
 
-        {postsDeportesCategory.length > 0 && (
-          <PostsGrid
-            title="Agenda Deportiva"
-            fetchPostsProps={{
-              option: "category",
-              value: PostsCategories.deportes,
-              postsLimit: 4,
-            }}
-            bannerConfig={{
-              position: AdServerPositions.netblock1,
-            }}
-          />
-        )}
+        <PostsGrid
+          title="Agenda Deportiva"
+          fetchPostsProps={{
+            option: "tag",
+            value: "vivo deportes",
+          }}
+          bannerConfig={{
+            position: AdServerPositions.netblock1,
+          }}
+        />
 
         <Banner
           banner={{
