@@ -50,6 +50,7 @@ export interface Post {
   createdAt: string;
   slug: string;
   excerpt: string;
+  flywheel: string;
 }
 
 // banner type definition

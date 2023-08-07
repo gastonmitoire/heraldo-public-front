@@ -1,6 +1,8 @@
 import { fetchClient } from "@/app/utils";
 
 import { AdServer, DocsWithPagination, Post } from "@/types";
+import { parseISO, format } from "date-fns";
+import { es } from "date-fns/locale";
 
 // POSTS ENDPOINTS
 
@@ -48,12 +50,14 @@ interface FetchPostsProps {
   position?: PostsPositions;
   category?: PostsCategories;
   postsLimit?: number;
+  postSlug?: string;
 }
 
 export const fetchPosts = async ({
   position,
   category,
   postsLimit,
+  postSlug
 }: FetchPostsProps) => {
   let url = "";
 
@@ -61,6 +65,8 @@ export const fetchPosts = async ({
     url = `/position/${position}`;
   } else if (category) {
     url = `/category/${category}`;
+  } else if(postSlug) {
+    url = `/slug/${postSlug}`;
   }
 
   const limit = postsLimit ? `?postsLimit=${postsLimit}` : "";
@@ -68,6 +74,27 @@ export const fetchPosts = async ({
   const finalUrl = `/posts${url}${limit}`;
 
   const response: Post[] = await fetchClient(finalUrl, {
+    method: "GET",
+  });
+
+  return response;
+};
+
+interface fetchPostBySlugProps {
+  position?: PostsPositions;
+  category?: PostsCategories;
+  postsLimit?: number;
+  postSlug?: string;
+}
+
+export const fetchPostBySlug = async ({
+  postSlug
+}: fetchPostBySlugProps) => {
+  let url = `/slug/${postSlug}`;
+
+  const finalUrl = `/posts${url}`;
+
+  const response: Post = await fetchClient(finalUrl, {
     method: "GET",
   });
 
@@ -130,4 +157,14 @@ export const fetchAdServer = async ({ position }: FetchAdServerProps) => {
   });
 
   return response;
+};
+
+interface FormatDateProps {
+  dateString: string;
+  dateFormat: string;
+}
+
+export const formatDate = async ({ dateString, dateFormat }: FormatDateProps) => {
+  const parsedDate = parseISO(dateString);
+  return format(parsedDate, dateFormat, { locale: es });
 };

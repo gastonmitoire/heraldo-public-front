@@ -14,6 +14,53 @@ import {
 } from "@/app/service/app.service";
 import { PostsHighlight } from "@/app/features/PostsHighlight";
 
+//generateMetadata
+export const generateMetadata = async ({
+  params,
+}:{
+  params: {
+    categorySlug: string;
+    postSlug: string;
+}
+}) => {
+  const { categorySlug, postSlug } = params;
+  
+  const URL = process.env.API_URL;
+  const postQuery = fetch(`${URL}/posts/slug/${postSlug}`).then((res) =>
+    res.json()
+  );
+
+  const post = await postQuery;
+
+  return {
+    title: post.title,
+    description: post.excerpt,
+    alternates:{
+      canonical: `/noticias/${categorySlug}/${postSlug}`
+    },
+    openGraph: {
+      title: post.title,
+      description: post.excerpt,
+      images: [post.images[0].url],
+      type: 'article',
+      article: {
+        publishedTime: post.createdAt,
+        modifiedTime: post.updatedAt,
+        authors: ['https://zaro.com.ar/'],
+        section: post.category.name,
+        tags: post.tags,
+      },
+    },
+    twitter: {
+      title: post.title,
+      description: post.excerpt,
+      image: post.images[0].url,
+      creator: '@zaroweb',
+      cardType: 'summary_large_image'
+    },
+  }
+}
+
 export default async function Page({
   params,
 }: {
