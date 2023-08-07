@@ -14,20 +14,23 @@ import "swiper/css/scrollbar";
 
 import { Card } from "./Card";
 import { Skeleton } from "./Skeleton";
+import { AdServerProps } from "@/types";
+import { Banner } from "./Banner";
 
 interface CardGridWithSwiperProps {
   data: any[];
   className?: string;
   cardClassName?: string;
-  prefixLink?: string;
+  banner?: AdServerProps;
 }
 
 export const CardGridWithSwiper: React.FC<CardGridWithSwiperProps> = ({
   data,
   className,
   cardClassName,
-  prefixLink,
 }) => {
+  if (!data) return null;
+
   return (
     <>
       <Swiper
@@ -35,7 +38,6 @@ export const CardGridWithSwiper: React.FC<CardGridWithSwiperProps> = ({
         spaceBetween={12}
         slidesPerView={4}
         navigation
-        className={`flex flex-col gap-3 ${className}`}
         breakpoints={{
           // when window width is >= 640px
           320: {
@@ -62,27 +64,29 @@ export const CardGridWithSwiper: React.FC<CardGridWithSwiperProps> = ({
           },
         }}
       >
-        {!!data && data.length > 0 ? (
+        {!!data &&
+          data.length > 0 &&
           data.map((item: any) => (
             <SwiperSlide key={item._id}>
-              <Card
-                item={{
-                  title: item.title,
-                  flywheel: item.flywheel,
-                  image: item.images[0],
-                  category: item.category,
-                  slug: item.slug,
-                }}
-                className={`h-[430px] ${cardClassName}`}
-                imageClassName="h-[250px] object-cover select-none"
-              />
+              <>
+                {item.type === "banner" ? (
+                  <Banner banner={item} />
+                ) : (
+                  <Card
+                    item={{
+                      title: item.title,
+                      flywheel: item.flywheel,
+                      image: item.images[0],
+                      category: item.category,
+                      slug: item.slug,
+                    }}
+                    className={`h-[430px] ${cardClassName}`}
+                    imageClassName="h-[250px] object-cover select-none"
+                  />
+                )}
+              </>
             </SwiperSlide>
-          ))
-        ) : (
-          <SwiperSlide>
-            <Skeleton />
-          </SwiperSlide>
-        )}
+          ))}
       </Swiper>
     </>
   );

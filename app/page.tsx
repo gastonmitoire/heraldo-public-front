@@ -7,8 +7,12 @@ import { Marquee } from "./components/Marquee";
 import { CurrencyAndRiver } from "./features/CurrencyAndRiver";
 import { FuneralsPreview } from "./features/FuneralsPreview";
 import { PostsHighlight } from "./features/PostsHighlight";
-import { PostsGrid } from "./features/PostsGrid";
+import { PostsGrid } from "./features/posts/PostsGrid";
 import { PostsSuperHighlight } from "./features/PostsSuperHighlight";
+
+// FEATURES
+// Posts
+import { PostsFeatured } from "./features/PostsFeatured";
 
 import {
   PostsCategories,
@@ -17,7 +21,6 @@ import {
   AdServerPositions,
   fetchAdServer,
 } from "@/app/service/app.service";
-import { PostsFeatured } from "./features/PostsFeatured";
 import { SwiperFullscreen } from "./components/SwiperFullscreen";
 
 export default async function Home() {
@@ -158,8 +161,15 @@ export default async function Home() {
 
         {postsDeportesCategory.length > 0 && (
           <PostsGrid
-            posts={postsDeportesCategory.slice(0, 4)}
-            title="Liga Profesional"
+            title="Agenda Deportiva"
+            fetchPostsProps={{
+              option: "category",
+              value: PostsCategories.deportes,
+              postsLimit: 4,
+            }}
+            bannerConfig={{
+              position: AdServerPositions.netblock1,
+            }}
           />
         )}
 
@@ -221,7 +231,13 @@ export default async function Home() {
           }}
         />
 
-        <PostsGrid posts={postsCulturaCategory} title="Cultura" />
+        <PostsGrid
+          fetchPostsProps={{
+            option: "category",
+            value: PostsCategories.cultura,
+            postsLimit: 4,
+          }}
+        />
 
         <Banner
           banner={{
@@ -234,8 +250,12 @@ export default async function Home() {
         />
 
         <PostsGrid
-          posts={postsEspectaculosCategory.slice(0, 4)}
           title="Magazine"
+          fetchPostsProps={{
+            option: "category",
+            value: PostsCategories.espectaculos,
+            postsLimit: 4,
+          }}
         />
       </section>
     </div>
