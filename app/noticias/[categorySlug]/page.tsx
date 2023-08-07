@@ -60,7 +60,7 @@ export default async function Page({
                 key={`highlight-post-${post._id}`}
                 item={{
                   title: post.title,
-                  excerpt: post.excerpt,
+                  flywheel: post.flywheel,
                   image: post.images[0],
                   category: post.category,
                   slug: post.slug,
@@ -80,7 +80,7 @@ export default async function Page({
                 key={post._id}
                 item={{
                   title: post.title,
-                  excerpt: post.excerpt,
+                  flywheel: post.flywheel,
                   image: post.images[0],
                   category: post.category,
                   slug: post.slug,

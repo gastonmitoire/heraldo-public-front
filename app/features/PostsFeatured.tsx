@@ -40,7 +40,7 @@ export const PostsFeatured: React.FC<PostsFeaturedProps> = async ({
                 key={post._id}
                 item={{
                   title: post.title,
-                  excerpt: post.excerpt,
+                  flywheel: post.flywheel,
                   image: post.images[0],
                   category: post.category,
                   slug: post.slug,
@@ -56,7 +56,7 @@ export const PostsFeatured: React.FC<PostsFeaturedProps> = async ({
                 key={post._id}
                 item={{
                   title: post.title,
-                  excerpt: post.excerpt,
+                  flywheel: post.flywheel,
                   image: post.images[0],
                   category: post.category,
                   slug: post.slug,
@@ -83,7 +83,7 @@ export const PostsFeatured: React.FC<PostsFeaturedProps> = async ({
                 key={post._id}
                 item={{
                   title: post.title,
-                  excerpt: post.excerpt,
+                  flywheel: post.flywheel,
                   image: post.images[0],
                   category: post.category,
                   slug: post.slug,

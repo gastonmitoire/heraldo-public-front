@@ -6,7 +6,7 @@ import Link from "next/link";
 interface CardHighlightProps {
   item: {
     title: string;
-    excerpt: string;
+    flywheel: string;
     slug: string;
     image: {
       url: string;
@@ -22,7 +22,7 @@ interface CardHighlightProps {
 }
 
 export const CardHighlight: React.FC<CardHighlightProps> = ({
-  item: { title, excerpt, image, category, slug },
+  item: { title, flywheel, image, category, slug },
   prefixLink,
   fullWidth,
   className,
@@ -36,9 +36,7 @@ export const CardHighlight: React.FC<CardHighlightProps> = ({
             : `/noticias/${category.slug}/${slug}`
         }
         className={`group hover:cursor-pointer ${
-          fullWidth
-            ? "h-[500px] md:h-[600px] lg:[700px] xl:h-[710px]"
-            : "h-[450px]"
+          fullWidth ? "h-[500px] md:h-[600px] lg:[700px]" : "h-[450px]"
         }  ${className}`}
       >
         <article
@@ -57,7 +55,7 @@ export const CardHighlight: React.FC<CardHighlightProps> = ({
                 <h5
                   className={`truncate text-lg font-bold pb-1.5 pr-16 text-white`}
                 >
-                  {excerpt}
+                  {flywheel}
                 </h5>
                 <p className="text-lg font-bold pt-1.5 w-[90%]">
                   <span className="bg-white p-1">{title}</span>
@@ -69,7 +67,7 @@ export const CardHighlight: React.FC<CardHighlightProps> = ({
               <h5
                 className={`truncate text-lg font-bold pb-1.5 pr-16 text-blue-500`}
               >
-                {excerpt}
+                {flywheel}
               </h5>
               <p className="text-lg font-bold pt-1.5 w-[90%]">
                 <span className="bg-white p-1">{title}</span>

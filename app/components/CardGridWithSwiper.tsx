@@ -68,7 +68,7 @@ export const CardGridWithSwiper: React.FC<CardGridWithSwiperProps> = ({
               <Card
                 item={{
                   title: item.title,
-                  excerpt: item.excerpt,
+                  flywheel: item.flywheel,
                   image: item.images[0],
                   category: item.category,
                   slug: item.slug,

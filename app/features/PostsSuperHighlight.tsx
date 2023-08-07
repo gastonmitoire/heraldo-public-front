@@ -22,7 +22,7 @@ export const PostsSuperHighlight: React.FC = async () => {
           <CardHighlight
             item={{
               title: posts[0].title,
-              excerpt: posts[0].excerpt,
+              flywheel: posts[0].flywheel,
               image: posts[0].images[0],
               category: posts[0].category,
               slug: posts[0].slug,
@@ -34,7 +34,7 @@ export const PostsSuperHighlight: React.FC = async () => {
             <CardHighlight
               item={{
                 title: posts[1].title,
-                excerpt: posts[1].excerpt,
+                flywheel: posts[1].flywheel,
                 image: posts[1].images[0],
                 category: posts[1].category,
                 slug: posts[1].slug,
@@ -43,7 +43,7 @@ export const PostsSuperHighlight: React.FC = async () => {
             <CardHighlight
               item={{
                 title: posts[2].title,
-                excerpt: posts[2].excerpt,
+                flywheel: posts[2].flywheel,
                 image: posts[2].images[0],
                 category: posts[2].category,
                 slug: posts[2].slug,

@@ -9,7 +9,7 @@ import { Skeleton } from "./Skeleton";
 interface CardProps {
   item: {
     title: string;
-    excerpt: string;
+    flywheel: string;
     slug: string;
     image: {
       url: string;
@@ -25,7 +25,7 @@ interface CardProps {
 }
 
 export const Card: React.FC<CardProps> = ({
-  item: { title, excerpt, image, category, slug },
+  item: { title, flywheel, image, category, slug },
   prefixLink,
   className,
   imageClassName,
@@ -56,7 +56,7 @@ export const Card: React.FC<CardProps> = ({
           </div>
           <div className="flex-1 pt-3 border p-5">
             <h5 className="text-blue-500 truncate text-lg font-bold pr-16">
-              {excerpt}
+              {flywheel}
             </h5>
             <p className="text-lg font-bold">{title}</p>
           </div>

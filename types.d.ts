@@ -49,6 +49,7 @@ export interface Post {
   publicationDate: string;
   createdAt: string;
   slug: string;
+  flywheel: string;
   excerpt: string;
 }
 

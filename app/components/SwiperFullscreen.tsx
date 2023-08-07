@@ -39,7 +39,7 @@ export const SwiperFullscreen: React.FC<SwiperFullscreenProps> = ({
           <CardHighlight
             item={{
               title: post.title,
-              excerpt: post.excerpt,
+              flywheel: post.flywheel,
               image: post.images[0],
               category: post.category,
               slug: post.slug,
