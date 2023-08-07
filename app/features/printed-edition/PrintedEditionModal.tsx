@@ -3,7 +3,7 @@ import React from "react";
 import { Modal } from "@/app/components/Modal";
 import { SocialMediaShareLinks } from "@/app/components/SocialMediaShareLinks";
 
-import { zoom } from "../utils/index";
+import { zoom } from "../../utils/index";
 
 interface PrintedEditionModalProps {
   isOpen: boolean;
@@ -21,13 +21,13 @@ export const PrintedEditionModal: React.FC<PrintedEditionModalProps> = ({
       <div className="flex flex-col max-h-screen hover:pt-5">
         <figure
           style={{
-            backgroundImage: `url(https://cms-el-heraldo-prod.s3.us-east-1.amazonaws.com/ediciones_impresas/2023/07/20_200723.jpg)`,
+            backgroundImage: `url(${url})`,
           }}
           className="w-full bg-cover bg-center overflow-hidden hover:pb-20 hover:h-full hover:w-[1000px] relative cursor-zoom-in group"
           onMouseMove={(e) => zoom(e)}
         >
           <img
-            src="https://cms-el-heraldo-prod.s3.us-east-1.amazonaws.com/ediciones_impresas/2023/07/20_200723.jpg"
+            src={url}
             alt=""
             className="h-[90vh] w-full mx-auto group-hover:opacity-0 transition-opacity duration-300"
           />

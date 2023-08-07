@@ -179,11 +179,7 @@ export default async function Page({
 
       {/* POST OF INTEREST */}
       <section className="container px-5 mx-auto">
-        <CardGridWithSwiper
-          data={postsHighlight}
-          heading={`Te puede interesar:`}
-          className={"px-3"}
-        />
+        <CardGridWithSwiper data={postsHighlight} className={"px-3"} />
       </section>
 
       {/* BANNER HORIZONTAL 3 */}

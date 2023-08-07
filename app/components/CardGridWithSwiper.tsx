@@ -2,6 +2,7 @@
 "use client";
 
 import React from "react";
+import Link from "next/link";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation, Pagination, Scrollbar, A11y } from "swiper/modules";
 
@@ -18,12 +19,14 @@ interface CardGridWithSwiperProps {
   data: any[];
   className?: string;
   cardClassName?: string;
+  prefixLink?: string;
 }
 
 export const CardGridWithSwiper: React.FC<CardGridWithSwiperProps> = ({
   data,
   className,
   cardClassName,
+  prefixLink,
 }) => {
   return (
     <>
@@ -68,8 +71,9 @@ export const CardGridWithSwiper: React.FC<CardGridWithSwiperProps> = ({
                   excerpt: item.excerpt,
                   image: item.images[0],
                   category: item.category,
+                  slug: item.slug,
                 }}
-                className={`h-[400px] ${cardClassName}`}
+                className={`h-[430px] ${cardClassName}`}
                 imageClassName="h-[250px] object-cover select-none"
               />
             </SwiperSlide>
