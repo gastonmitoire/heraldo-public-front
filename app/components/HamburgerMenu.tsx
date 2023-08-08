@@ -4,6 +4,7 @@
 import React, { useState } from "react";
 import Link from "next/link";
 import { Navigation } from "./Navigation";
+import { SocialMediaLinks } from "./SocialMediaLinks";
 
 interface HamburgerMenuProps {
   categories: any;
@@ -12,8 +13,12 @@ interface HamburgerMenuProps {
 export const HamburgerMenu: React.FC<HamburgerMenuProps> = ({ categories }) => {
   const [open, setOpen] = useState(false);
 
-  const handleClick = () => {
-    setOpen(!open);
+  const openMenu = () => {
+    setOpen(true);
+  };
+
+  const closeMenu = () => {
+    setOpen(false);
   };
 
   const fixedLinks = [
@@ -23,34 +28,35 @@ export const HamburgerMenu: React.FC<HamburgerMenuProps> = ({ categories }) => {
     },
     {
       name: "Tapa del día",
-      slug: "/tapa-del-dia",
+      slug: "tapa-del-dia",
     },
     {
       name: "Avisos fúnebres",
-      slug: "/funebres",
+      slug: "funebres",
     },
     {
+      external: true,
       name: "Clasificados",
-      slug: "/clasificados",
+      slug: "https://clasificadoselheraldo.com.ar/",
     },
     {
       name: "Estadisticas",
-      slug: "/estadisticas",
+      slug: "estadisticas",
     },
     {
       name: "Correo de lectores",
-      slug: "/noticias/correo-de-lectores",
+      slug: "noticias/correo-de-lectores",
     },
   ];
 
   return (
-    <div className="lg:relative">
+    <>
       <button
         type="button"
         className="inline-flex items-center justify-center"
         aria-label="Main menu"
         aria-expanded="false"
-        onClick={handleClick}
+        onClick={openMenu}
       >
         <svg
           aria-hidden="true"
@@ -70,15 +76,15 @@ export const HamburgerMenu: React.FC<HamburgerMenuProps> = ({ categories }) => {
       </button>
 
       {open && (
-        <div className="fixed lg:absolute top-0 left-0 z-50">
-          <div className="flex flex-col w-[100vw] h-full lg:w-[400px] bg-white border rounded shadow-sm">
+        <div className="fixed h-[100vh] top-0 left-0 z-50">
+          <div className="flex flex-col w-[100vw] h-full lg:w-[450px] bg-white border rounded shadow-sm">
             <div className="flex items-center justify-end mb-4">
               <button
                 type="button"
                 className="inline-flex items-center justify-center p-2 rounded-md text-gray-400"
                 aria-label="Close menu"
                 aria-expanded="true"
-                onClick={handleClick}
+                onClick={closeMenu}
               >
                 <svg
                   aria-hidden="true"
@@ -98,14 +104,24 @@ export const HamburgerMenu: React.FC<HamburgerMenuProps> = ({ categories }) => {
               </button>
             </div>
             <div className="col-span-2 grid grid-cols-2 items-start [&>*]:px-1">
-              <Navigation links={fixedLinks} className="grid gap-3" />
-              <span className="h-[100vh] lg:max-h-[550px] overflow-auto">
-                <Navigation links={categories} className="grid gap-3" />
-              </span>
+              <div className="h-[90%]">
+                <Navigation links={fixedLinks} className="grid gap-3" />
+                <div className="bg-gray-300 w-full h-full">
+                  <SocialMediaLinks className="w-full justify-center gap-7 py-10" />
+                </div>
+              </div>
+              <div className="h-[90%] overflow-auto">
+                <Navigation
+                  links={categories}
+                  className="grid gap-3"
+                  prefixLink="noticias"
+                  onClick={closeMenu}
+                />
+              </div>
             </div>
           </div>
         </div>
       )}
-    </div>
+    </>
   );
 };
