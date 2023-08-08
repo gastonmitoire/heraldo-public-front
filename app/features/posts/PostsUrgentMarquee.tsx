@@ -9,7 +9,7 @@ import { fetchPostsWithOptions, PostsPositions } from "./service/posts.service";
 export const PostsUrgentMarquee: React.FC = async () => {
   const postsUrgent = await fetchPostsWithOptions({
     option: "position",
-    value: PostsPositions.highlight,
+    value: PostsPositions.urgent,
     postsLimit: 10,
   });
 
