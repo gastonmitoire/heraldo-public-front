@@ -13,15 +13,18 @@ export const Footer: React.FC<FooterProps> = ({ categories }) => {
   return (
     <footer className="py-3 mt-10 bg-gray-200">
       <div className="container mx-auto divide-y divide-gray-400">
-        <div className="flex items-center justify-between py-5">
-          <SocialMediaLinks />
+        <div className="flex items-center justify-center lg:justify-between py-5">
+          <SocialMediaLinks className="hidden lg:flex" />
+
           <img
             src="https://www.elheraldo.com.ar/_next/static/media/logoBottom.86227929.svg"
             alt=""
             className="h-10"
           />
 
-          <button type="button">Ver tapa del día</button>
+          <button type="button" className="hidden lg:flex">
+            Ver tapa del día
+          </button>
         </div>
 
         <div className="py-5">
@@ -32,7 +35,7 @@ export const Footer: React.FC<FooterProps> = ({ categories }) => {
           />
         </div>
 
-        <div className="flex flex-col items-center justify-between py-5">
+        <div className="flex flex-col items-start lg:items-center justify-between py-5 px-3 lg:px-0">
           <div>
             <span className="text-lg font-bold uppercase">
               El Heraldo S.R.L
@@ -43,6 +46,12 @@ export const Footer: React.FC<FooterProps> = ({ categories }) => {
           <p>
             Director Periodístico: <span>Roberto W. Caminos</span>
           </p>
+
+          <img
+            src="https://www.elheraldo.com.ar/_next/static/media/imgQRFooter.42875908.svg"
+            alt=""
+            className="mx-auto mt-5 h-20"
+          />
         </div>
       </div>
     </footer>

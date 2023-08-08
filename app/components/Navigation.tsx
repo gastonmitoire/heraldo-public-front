@@ -28,7 +28,7 @@ export const Navigation: React.FC<LinkProps> = ({
   const pathname = usePathname();
 
   return (
-    <nav className={`flex justify-center py-3 ${className}`}>
+    <nav className={`flex justify-center ${className}`}>
       {!!links ? (
         links.map((link) =>
           link.external ? (
