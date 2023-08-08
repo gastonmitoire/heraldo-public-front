@@ -2,13 +2,13 @@ import React from "react";
 
 import { Banner } from "./components/Banner";
 import { CardGridWithSwiper } from "./components/CardGridWithSwiper";
-import { Marquee } from "./components/Marquee";
 
 import { CurrencyAndRiver } from "./features/CurrencyAndRiver";
 import { FuneralsPreview } from "./features/FuneralsPreview";
 import { PostsHighlight } from "./features/PostsHighlight";
 import { PostsGrid } from "./features/posts/PostsGrid";
 import { PostsSuperHighlight } from "./features/PostsSuperHighlight";
+import { PostsUrgentMarquee } from "./features/posts/PostsUrgentMarquee";
 
 // FEATURES
 // Posts
@@ -88,7 +88,7 @@ export default async function Home() {
 
       {/* MARQUEE & BANNER SECTION */}
       <section className="flex flex-col gap-5">
-        <Marquee titles={[].map((post: any) => post.title)} />
+        <PostsUrgentMarquee />
 
         {bannerHorizontal2.map(
           (banner: any) =>
