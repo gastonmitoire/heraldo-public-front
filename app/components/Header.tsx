@@ -38,21 +38,23 @@ export const Header: React.FC<HeaderProps> = ({
           <Banner banner={banner} />
         </div>
       )}
-      <header className="bg-white">
-        <div className="container mx-auto flex py-5">
-          <div className="flex-1">
+      <header>
+        <div className="container mx-auto flex items-center gap-3 px-1 lg:gap-0 lg:py-5">
+          <div className="w-[5%] lg:w-[15%]">
             <HamburgerMenu categories={categories} />
           </div>
-          <div className="flex justify-center flex-auto">
+
+          <div className="flex-auto flex justify-center">
             <Link href="/">
               <img
                 src="https://www.elheraldo.com.ar/_next/static/media/logoMobile.da7a8911.svg"
                 alt=""
-                className="h-12"
+                className="h-6 sm:h-8 md:h-10 lg:h-12"
               />
             </Link>
           </div>
-          <div className="flex-1 flex flex-col justify-center items-end gap-1.5">
+
+          <div className="w-[5%] lg:w-[15%] invisible lg:visible flex flex-col justify-center items-end gap-1.5">
             <SocialMediaLinks />
             <time className="py-1 px-1.5 uppercase bg-black font-semibold text-xs text-white">
               {new Date().toLocaleDateString("es-AR", {
