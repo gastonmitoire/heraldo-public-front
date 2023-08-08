@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 
 import { Banner } from "@/app/components/Banner";
-import { Button } from "../components/Button";
 import { Card } from "@/app/components/Card";
 import { CardHighlight } from "@/app/components/CardHighlight";
 import { List } from "@/app/components/List";

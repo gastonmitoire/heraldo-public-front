@@ -1,15 +1,10 @@
 // printed-edition component
 "use client";
 
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 
-import { Banner } from "@/app/components/Banner";
 import { Button } from "../../components/Button";
-import { Card } from "@/app/components/Card";
-import { CardHighlight } from "@/app/components/CardHighlight";
-import { List } from "@/app/components/List";
 import { PrintedEditionModal } from "./PrintedEditionModal";
-import { Skeleton } from "../../components/Skeleton";
 
 import { PrintedEditionProps } from "@/types";
 

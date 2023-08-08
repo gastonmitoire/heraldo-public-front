@@ -16,18 +16,35 @@ export const Modal: React.FC<ModalProps> = ({
   return isOpen ? (
     <div
       onClick={onClose}
-      className="fixed inset-0 z-50 flex items-center justify-center w-full h-[100vh] overflow-y-hidden bg-black bg-opacity-50"
+      className="fixed inset-0 z-50 flex items-center justify-center w-full h-[100vh] bg-black bg-opacity-50"
     >
       <div
-        className={`relative w-full p-3 bg-white rounded-lg shadow-lg ${
+        className={`relative w-full p-1 bg-white rounded-lg shadow-lg ${
           maxWidth ? maxWidth : "max-w-2xl"
         }`}
       >
         <button
-          className="absolute top-0 right-0 z-50 flex items-center justify-center w-5 h-5 text-2xl font-bold text-white bg-red-500 rounded-full"
+          type="button"
+          className="absolute top-0 right-0 inline-flex items-center justify-center p-2 rounded-md text-gray-400"
+          aria-label="Close menu"
+          aria-expanded="true"
           onClick={onClose}
         >
-          &times;
+          <svg
+            aria-hidden="true"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth={1.5}
+            viewBox="0 0 24 24"
+            xmlns="http://www.w3.org/2000/svg"
+            className="w-6 h-6 text-gray-500"
+          >
+            <path
+              d="M18 6L6 18M6 6l12 12"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            />
+          </svg>
         </button>
         {children}
       </div>
