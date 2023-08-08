@@ -2,6 +2,7 @@
 
 import React from "react";
 import Image from "next/image";
+import Link from "next/link";
 
 import { ImageProps } from "@/types";
 interface BannerProps {
@@ -29,20 +30,22 @@ export const Banner: React.FC<BannerProps> = ({
         sticky ? "sticky top-0" : ""
       } ${border ? "border" : ""} ${className || ""}`}
     >
-      <Image
-        src={desktopImage?.url}
-        alt={`${title} - ${site} - desktop`}
-        className="hidden lg:block"
-        layout="fill"
-        objectFit="contain"
-      />
-      <Image
-        src={mobileImage?.url}
-        alt={`${title} - ${site} - mobile`}
-        className="block lg:hidden"
-        width={320}
-        height={100}
-      />
+      <Link href={url} target="_blank">
+        <Image
+          src={desktopImage?.url}
+          alt={`${title} - ${site} - desktop`}
+          className="hidden lg:block"
+          layout="fill"
+          objectFit="contain"
+        />
+        <Image
+          src={mobileImage?.url}
+          alt={`${title} - ${site} - mobile`}
+          className="block lg:hidden"
+          width={320}
+          height={100}
+        />
+      </Link>
     </div>
   );
 };
