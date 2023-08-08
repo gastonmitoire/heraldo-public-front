@@ -1,22 +1,20 @@
 // banner component
 
-import { ImageProps } from "@/types";
 import React from "react";
+import Image from "next/image";
 
+import { ImageProps } from "@/types";
 interface BannerProps {
   banner: {
     title: string;
     site: string;
-    url?: string;
-    desktopImage?: Pick<ImageProps, "url">;
-    mobileImage?: Pick<ImageProps, "url">;
+    url: string;
+    desktopImage: Pick<ImageProps, "url">;
+    mobileImage: Pick<ImageProps, "url">;
   };
   className?: string;
   sticky?: boolean;
   border?: boolean;
-  imageWidth?: number | string;
-  imageHeight?: number | string;
-  key?: string;
 }
 
 export const Banner: React.FC<BannerProps> = ({
@@ -24,44 +22,27 @@ export const Banner: React.FC<BannerProps> = ({
   className,
   sticky,
   border,
-  imageWidth,
-  imageHeight,
-  key,
 }) => {
   return (
     <div
-      key={key}
-      className={`${className} ${
-        !mobileImage && !desktopImage ? "hidden" : ""
-      } flex justify-center min-h-[100px] w-full py-1.5 ${
+      className={`relative flex justify-center min-h-[100px] w-full py-1.5 ${
         sticky ? "sticky top-0" : ""
-      } ${border ? "border" : ""}`}
+      } ${border ? "border" : ""} ${className || ""}`}
     >
-      {desktopImage?.url || mobileImage?.url ? (
-        <>
-          <img
-            src={desktopImage?.url}
-            alt={`${title} - ${site} - desktop`}
-            width={imageWidth}
-            height={imageHeight}
-            className="hidden md:block"
-          />
-          <img
-            src={mobileImage?.url}
-            alt={`${title} - ${site} - mobile`}
-            width={imageWidth}
-            height={imageHeight}
-            className="md:hidden"
-          />
-        </>
-      ) : (
-        <img
-          src={url}
-          alt={`${title} - ${site}`}
-          width={imageWidth}
-          height={imageHeight}
-        />
-      )}
+      <Image
+        src={desktopImage?.url}
+        alt={`${title} - ${site} - desktop`}
+        className="hidden lg:block"
+        layout="fill"
+        objectFit="contain"
+      />
+      <Image
+        src={mobileImage?.url}
+        alt={`${title} - ${site} - mobile`}
+        className="block lg:hidden"
+        width={320}
+        height={100}
+      />
     </div>
   );
 };

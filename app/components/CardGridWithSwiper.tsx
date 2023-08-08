@@ -70,7 +70,9 @@ export const CardGridWithSwiper: React.FC<CardGridWithSwiperProps> = ({
             <SwiperSlide key={item._id}>
               <>
                 {item.type === "banner" ? (
-                  <Banner banner={item} />
+                  <div className="bg-pink-500 w-full h-full">
+                    <Banner banner={item} className="h-[250px]" />
+                  </div>
                 ) : (
                   <Card
                     item={{
