@@ -110,7 +110,15 @@ export default async function Home() {
 
       {/* HIGHLIGHT SECTION */}
       <section className="container mx-auto">
-        <PostsHighlight posts={postsHighlight} />
+        <PostsHighlight
+          fetchPostsProps={{
+            option: "position",
+            value: "highlight",
+          }}
+          bannerConfig={{
+            position: AdServerPositions.netblock1,
+          }}
+        />
       </section>
 
       {/* BANNERS & CURRENCY SECTION */}

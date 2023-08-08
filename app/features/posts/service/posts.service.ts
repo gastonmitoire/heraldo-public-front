@@ -48,6 +48,14 @@ export interface FetchPostsProps {
   postsLimit?: number;
 }
 
+export const fetchPosts = async () => {
+  const response: DocsWithPaginationProps = await fetchClient("/posts", {
+    method: "GET",
+  });
+
+  return response;
+};
+
 export const fetchPostsWithOptions = async ({
   option,
   postsLimit,

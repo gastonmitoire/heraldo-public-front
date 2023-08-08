@@ -1,8 +1,9 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 
 import { Banner } from "@/app/components/Banner";
 import { Card } from "@/app/components/Card";
 import { CardHighlight } from "@/app/components/CardHighlight";
+import { Heading } from "../components/Heading";
 import { List } from "@/app/components/List";
 import { PrintedEdition } from "./printed-edition/PrintedEdition";
 import { Skeleton } from "../components/Skeleton";
@@ -10,15 +11,35 @@ import { Skeleton } from "../components/Skeleton";
 import { PostProps } from "@/types";
 
 import { fetchPrintedEdition } from "./printed-edition/service/printed-edition.service";
+import {
+  fetchPosts,
+  fetchPostsWithOptions,
+  FetchPostsProps,
+} from "./posts/service/posts.service";
+import { fetchAdServer, AdServerPositions } from "../service/app.service";
 
 interface PostsHighlightProps {
-  posts: PostProps[];
+  fetchPostsProps: FetchPostsProps;
+  title?: string;
+  bannerConfig: {
+    position: AdServerPositions;
+  };
 }
 
 export const PostsHighlight: React.FC<PostsHighlightProps> = async ({
-  posts,
+  fetchPostsProps,
+  title,
+  bannerConfig,
 }) => {
+  const { docs: lastPosts } = await fetchPosts();
+  const highlightPosts = await fetchPostsWithOptions({
+    ...fetchPostsProps,
+    postsLimit: 6,
+  });
+
   const { docs: printedEdition } = await fetchPrintedEdition();
+
+  const banners = await fetchAdServer(bannerConfig);
 
   // const listPosts =
   //   posts.map((post: any) => ({
@@ -27,9 +48,15 @@ export const PostsHighlight: React.FC<PostsHighlightProps> = async ({
 
   return (
     <div className="flex flex-col gap-3 lg:grid lg:grid-cols-4">
+      {title ? (
+        <div className="w-full lg:col-span-4">
+          <Heading title={title} />
+        </div>
+      ) : null}
+
       <section className="grid grid-cols-2 gap-3 lg:col-span-3 lg:grid-rows-3 lg:grid-cols-3">
-        {posts && posts.length > 0 ? (
-          posts.slice(0, 1).map((post: any) => (
+        {highlightPosts && highlightPosts.length > 0 ? (
+          highlightPosts.slice(0, 1).map((post: any) => (
             <CardHighlight
               key={post._id}
               item={{
@@ -46,8 +73,8 @@ export const PostsHighlight: React.FC<PostsHighlightProps> = async ({
           <Skeleton className="col-span-2 lg:col-span-2 lg:row-span-2 lg:h-full" />
         )}
 
-        {posts && posts.length > 0
-          ? posts.slice(1, 6).map((post: any) => (
+        {highlightPosts && highlightPosts.length > 0
+          ? highlightPosts.slice(1, 6).map((post: any) => (
               <Card
                 key={post._id}
                 item={{
@@ -58,7 +85,7 @@ export const PostsHighlight: React.FC<PostsHighlightProps> = async ({
                   slug: post.slug,
                 }}
                 className="h-full"
-                imageClassName="h-[150px] object-cover"
+                imageClassName="h-[250px] object-cover"
               />
             ))
           : [1, 2, 3, 4, 5].map((_, index) => <Skeleton key={index} />)}
@@ -71,24 +98,11 @@ export const PostsHighlight: React.FC<PostsHighlightProps> = async ({
         {/* ULTIMAS NOTICIAS */}
         <List
           heading="Últimas Noticias"
-          items={[]}
-          listClassName="max-h-[450px]"
+          items={lastPosts}
+          listClassName="max-h-[500px]"
         />
 
-        <Banner
-          banner={{
-            title: "titulo",
-            site: "site",
-            url: "url",
-            desktopImage: {
-              url: "https://cms-el-heraldo-prod.s3.us-east-1.amazonaws.com/cartelera/2023/06/05__bannerweb970x90px_GIF.gif",
-            },
-            mobileImage: {
-              url: "https://cms-el-heraldo-prod.s3.us-east-1.amazonaws.com/cartelera/2023/06/05__bannerweb970x90px_GIF.gif",
-            },
-          }}
-          className="max-h-[300px]"
-        />
+        <Banner banner={banners.docs[0]} className="max-h-[300px]" />
       </section>
     </div>
   );
