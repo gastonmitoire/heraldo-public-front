@@ -3,37 +3,55 @@ import React from "react";
 
 import { PostProps } from "@/types";
 
-import { Banner } from "../components/Banner";
+import { Banner } from "../../components/Banner";
 import { Card } from "@/app/components/Card";
+import { CardGridWithSwiper } from "@/app/components/CardGridWithSwiper";
 import { CardHighlight } from "@/app/components/CardHighlight";
 
-import { fetchAdServer, AdServerPositions } from "../service/app.service";
-import { Heading } from "../components/Heading";
+import {
+  fetchPostsWithOptions,
+  FetchPostsProps,
+} from "./service/posts.service";
+import { fetchAdServer, AdServerPositions } from "../../service/app.service";
+import { Heading } from "../../components/Heading";
 
 interface PostsFeaturedProps {
-  posts: PostProps[];
+  fetchPostsProps: FetchPostsProps;
+  postsLimit?: number;
+  title?: string;
+  bannerNetblockConfig: {
+    position: AdServerPositions;
+  };
+  bannerStickyConfig: {
+    position: AdServerPositions;
+  };
 }
 
 export const PostsFeatured: React.FC<PostsFeaturedProps> = async ({
-  posts,
+  fetchPostsProps,
+  postsLimit = 5,
+  title,
+  bannerNetblockConfig,
+  bannerStickyConfig,
 }) => {
-  // AdServer Calls (netblock11, sticky2)
-  const { docs: bannerNetblock11 } = await fetchAdServer({
-    position: AdServerPositions.netblock11,
-  });
-  const { docs: bannerSticky2 } = await fetchAdServer({
-    position: AdServerPositions.sticky2,
+  const posts = await fetchPostsWithOptions({
+    ...fetchPostsProps,
+    postsLimit,
   });
 
+  const bannerNetblock = await fetchAdServer(bannerNetblockConfig);
+
+  const bannerSticky = await fetchAdServer(bannerStickyConfig);
+
   return (
-    <div className="flex flex-col gap-3 lg:grid lg:grid-cols-4">
+    <div className="flex flex-col gap-3 xl:grid xl:grid-cols-4">
       <div className="col-span-4">
         <Heading
           title={posts[0].category?.name}
           link={`/noticias/${posts[0].category?.slug}`}
         />
       </div>
-      <div className="grid grid-cols-2 gap-3 lg:col-span-3 lg:grid-rows-3 lg:grid-cols-3">
+      <div className="flex flex-col xl:grid grid-cols-2 gap-3 xl:col-span-3 xl:grid-rows-3 xl:grid-cols-3">
         {posts.length > 0
           ? posts.slice(0, 1).map((post: any) => (
               <CardHighlight
@@ -45,7 +63,7 @@ export const PostsFeatured: React.FC<PostsFeaturedProps> = async ({
                   category: post.category,
                   slug: post.slug,
                 }}
-                className="col-span-2 lg:col-span-2 lg:row-span-2 h-full"
+                className="col-span-2 xl:col-span-2 row-span-2 xl:h-full"
               />
             ))
           : null}
@@ -61,20 +79,15 @@ export const PostsFeatured: React.FC<PostsFeaturedProps> = async ({
                   category: post.category,
                   slug: post.slug,
                 }}
-                className="lg:col-span-1"
+                className="hidden xl:block xl:h-[460px] xl:col-span-1"
+                imageClassName="h-[350px] object-cover"
               />
             ))
           : null}
 
         <Banner
-          banner={{
-            title: bannerNetblock11[0]?.title,
-            site: bannerNetblock11[0]?.site,
-            url: bannerNetblock11[0]?.url,
-            desktopImage: bannerNetblock11[0]?.desktopImage,
-            mobileImage: bannerNetblock11[0]?.mobileImage,
-          }}
-          className="py-5"
+          banner={bannerNetblock.docs[0]}
+          className="h-[90%] py-5 mx-auto"
         />
 
         {posts.length > 0
@@ -88,23 +101,27 @@ export const PostsFeatured: React.FC<PostsFeaturedProps> = async ({
                   category: post.category,
                   slug: post.slug,
                 }}
-                className="lg:col-span-1"
+                className="hidden xl:block xl:h-[460px] xl:col-span-1"
+                imageClassName="h-[350px] object-cover"
               />
             ))
           : null}
       </div>
-      <aside className="lg:col-span-1 flex flex-col items-center">
+
+      <span className="block xl:hidden">
+        <CardGridWithSwiper
+          data={posts.slice(1, 6)}
+          className="col-span-2"
+          cardClassName="xl:h-[460px]"
+        />
+      </span>
+
+      <aside className="xl:col-span-1 flex flex-col items-center">
         <Banner
-          banner={{
-            title: bannerSticky2[0]?.title,
-            site: bannerSticky2[0]?.site,
-            url: bannerSticky2[0]?.url,
-            desktopImage: bannerSticky2[0]?.desktopImage,
-            mobileImage: bannerSticky2[0]?.mobileImage,
-          }}
+          banner={bannerSticky.docs[0]}
           sticky
           border
-          className="w-[90%] px-3"
+          className="h-[50%] px-3"
         />
       </aside>
     </div>

@@ -12,7 +12,7 @@ import { PostsUrgentMarquee } from "./features/posts/PostsUrgentMarquee";
 
 // FEATURES
 // Posts
-import { PostsFeatured } from "./features/PostsFeatured";
+import { PostsFeatured } from "./features/posts/PostsFeatured";
 
 import {
   PostsCategories,
@@ -32,10 +32,6 @@ export default async function Home() {
   const postsTopPosition = await fetchPosts({
     position: PostsPositions.top,
     postsLimit: 4,
-  });
-  const postsDeportesCategory = await fetchPosts({
-    category: PostsCategories.deportes,
-    postsLimit: 5,
   });
   const postsEspectaculosCategory = await fetchPosts({
     category: PostsCategories.espectaculos,
@@ -199,7 +195,18 @@ export default async function Home() {
           }}
         />
 
-        <PostsFeatured posts={postsDeportesCategory} />
+        <PostsFeatured
+          fetchPostsProps={{
+            option: "category",
+            value: "deportes",
+          }}
+          bannerNetblockConfig={{
+            position: AdServerPositions.netblock10,
+          }}
+          bannerStickyConfig={{
+            position: AdServerPositions.sticky3,
+          }}
+        />
 
         <Banner
           banner={{
