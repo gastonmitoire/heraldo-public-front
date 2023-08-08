@@ -135,7 +135,15 @@ export default async function Page({
         <h5 className="text-xl font-semibold text-gray-800 capitalize">
           Noticias de portada
         </h5>
-        <PostsHighlight posts={postsHighlight} />
+        <PostsHighlight
+          fetchPostsProps={{
+            option: "position",
+            value: PostsPositions.highlight,
+          }}
+          bannerConfig={{
+            position: AdServerPositions.netblock1,
+          }}
+        />
       </div>
     </div>
   );
