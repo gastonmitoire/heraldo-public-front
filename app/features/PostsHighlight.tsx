@@ -2,11 +2,13 @@ import React from "react";
 
 import { Banner } from "@/app/components/Banner";
 import { Card } from "@/app/components/Card";
+import { CardGridWithSwiper } from "@/app/components/CardGridWithSwiper";
 import { CardHighlight } from "@/app/components/CardHighlight";
 import { Heading } from "../components/Heading";
 import { List } from "@/app/components/List";
-import { PrintedEdition } from "./printed-edition/PrintedEdition";
 import { Skeleton } from "../components/Skeleton";
+
+import { PrintedEdition } from "./printed-edition/PrintedEdition";
 
 import { PostProps } from "@/types";
 
@@ -16,7 +18,11 @@ import {
   fetchPostsWithOptions,
   FetchPostsProps,
 } from "./posts/service/posts.service";
-import { fetchAdServer, AdServerPositions } from "../service/app.service";
+import {
+  fetchAdServer,
+  AdServerPositions,
+  PostsPositions,
+} from "../service/app.service";
 
 interface PostsHighlightProps {
   fetchPostsProps: FetchPostsProps;
@@ -47,14 +53,14 @@ export const PostsHighlight: React.FC<PostsHighlightProps> = async ({
   //   })) ?? [];
 
   return (
-    <div className="flex flex-col gap-3 lg:grid lg:grid-cols-4">
+    <div className="flex flex-col gap-3 xl:grid xl:grid-cols-4">
       {title ? (
-        <div className="w-full lg:col-span-4">
+        <div className="w-full xl:col-span-4">
           <Heading title={title} />
         </div>
       ) : null}
 
-      <section className="grid grid-cols-2 gap-3 lg:col-span-3 lg:grid-rows-3 lg:grid-cols-3">
+      <section className="grid grid-cols-2 gap-3 xl:col-span-3 xl:grid-rows-3 xl:grid-cols-3">
         {highlightPosts && highlightPosts.length > 0 ? (
           highlightPosts.slice(0, 1).map((post: any) => (
             <CardHighlight
@@ -66,11 +72,11 @@ export const PostsHighlight: React.FC<PostsHighlightProps> = async ({
                 category: post.category,
                 slug: post.slug,
               }}
-              className="col-span-2 lg:col-span-2 lg:row-span-2 lg:h-full"
+              className="col-span-2 xl:col-span-2 xl:row-span-2 xl:h-full"
             />
           ))
         ) : (
-          <Skeleton className="col-span-2 lg:col-span-2 lg:row-span-2 lg:h-full" />
+          <Skeleton className="col-span-2 xl:col-span-2 xl:row-span-2 xl:h-full" />
         )}
 
         {highlightPosts && highlightPosts.length > 0
@@ -84,14 +90,22 @@ export const PostsHighlight: React.FC<PostsHighlightProps> = async ({
                   category: post.category,
                   slug: post.slug,
                 }}
-                className="h-full"
-                imageClassName="h-[250px] object-cover"
+                className="hidden xl:block h-full"
+                imageClassName="h-[350px] object-cover"
               />
             ))
           : [1, 2, 3, 4, 5].map((_, index) => <Skeleton key={index} />)}
       </section>
 
-      <section className="grid flex-col h-full gap-3 lg:col-span-1 md:col-span-2">
+      <span className="block xl:hidden">
+        <CardGridWithSwiper
+          data={highlightPosts.slice(1, 6)}
+          className="col-span-2"
+          cardClassName="lg:h-[460px]"
+        />
+      </span>
+
+      <section className="hidden xl:grid flex-col h-full gap-3 xl:col-span-1 md:col-span-2">
         {/* EDICION IMPRESA */}
         <PrintedEdition printedEdition={printedEdition[0]} />
 
