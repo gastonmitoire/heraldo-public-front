@@ -5,7 +5,7 @@ import { CardGridWithSwiper } from "./components/CardGridWithSwiper";
 
 import { CurrencyAndRiver } from "./features/CurrencyAndRiver";
 import { FuneralsPreview } from "./features/FuneralsPreview";
-import { PostsHighlight } from "./features/PostsHighlight";
+import { PostsHighlight } from "./features/posts/PostsHighlight";
 import { PostsGrid } from "./features/posts/PostsGrid";
 import { PostsSuperHighlight } from "./features/posts/PostsSuperHighlight";
 import { PostsUrgentMarquee } from "./features/posts/PostsUrgentMarquee";

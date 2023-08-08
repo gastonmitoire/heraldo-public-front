@@ -6,7 +6,7 @@ import { Card } from "@/app/components/Card";
 import { CardHighlight } from "@/app/components/CardHighlight";
 import { Skeleton } from "@/app/components/Skeleton";
 
-import { PostsHighlight } from "@/app/features/PostsHighlight";
+import { PostsHighlight } from "@/app/features/posts/PostsHighlight";
 
 import {
   PostsCategories,

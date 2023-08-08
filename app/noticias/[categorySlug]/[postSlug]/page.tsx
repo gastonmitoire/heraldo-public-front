@@ -12,7 +12,7 @@ import {
   PostsPositions,
   PostsCategories,
 } from "@/app/service/app.service";
-import { PostsHighlight } from "@/app/features/PostsHighlight";
+import { PostsHighlight } from "@/app/features/posts/PostsHighlight";
 
 export default async function Page({
   params,

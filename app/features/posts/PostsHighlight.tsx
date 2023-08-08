@@ -4,25 +4,21 @@ import { Banner } from "@/app/components/Banner";
 import { Card } from "@/app/components/Card";
 import { CardGridWithSwiper } from "@/app/components/CardGridWithSwiper";
 import { CardHighlight } from "@/app/components/CardHighlight";
-import { Heading } from "../components/Heading";
+import { Heading } from "../../components/Heading";
 import { List } from "@/app/components/List";
-import { Skeleton } from "../components/Skeleton";
+import { Skeleton } from "../../components/Skeleton";
 
-import { PrintedEdition } from "./printed-edition/PrintedEdition";
+import { PrintedEdition } from "../printed-edition/PrintedEdition";
 
 import { PostProps } from "@/types";
 
-import { fetchPrintedEdition } from "./printed-edition/service/printed-edition.service";
+import { fetchPrintedEdition } from "../printed-edition/service/printed-edition.service";
 import {
   fetchPosts,
   fetchPostsWithOptions,
   FetchPostsProps,
-} from "./posts/service/posts.service";
-import {
-  fetchAdServer,
-  AdServerPositions,
-  PostsPositions,
-} from "../service/app.service";
+} from "./service/posts.service";
+import { fetchAdServer, AdServerPositions } from "../../service/app.service";
 
 interface PostsHighlightProps {
   fetchPostsProps: FetchPostsProps;
