@@ -1,7 +1,6 @@
 import React from "react";
 
 import { Banner } from "./components/Banner";
-import { CardGridWithSwiper } from "./components/CardGridWithSwiper";
 
 import { CurrencyAndRiver } from "./features/CurrencyAndRiver";
 import { FuneralsPreview } from "./features/FuneralsPreview";
@@ -16,7 +15,6 @@ import { PostsFeatured } from "./features/posts/PostsFeatured";
 
 import {
   PostsCategories,
-  PostsPositions,
   fetchPosts,
   AdServerPositions,
   fetchAdServer,
@@ -25,14 +23,6 @@ import { SwiperFullscreen } from "./components/SwiperFullscreen";
 
 export default async function Home() {
   // Posts Calls (Highlight, SuperHighlight, TopPosition, FutbolCategory, EspectaculosCategory, CulturaCategory)
-  const postsHighlight = await fetchPosts({
-    position: PostsPositions.highlight,
-    postsLimit: 6,
-  });
-  const postsTopPosition = await fetchPosts({
-    position: PostsPositions.top,
-    postsLimit: 4,
-  });
   const postsEspectaculosCategory = await fetchPosts({
     category: PostsCategories.espectaculos,
     postsLimit: 5,
@@ -144,7 +134,12 @@ export default async function Home() {
 
       {/* CARD GRID WITH SWIPER SECTION (TOP NEWS) */}
       <section className="container mx-auto">
-        <CardGridWithSwiper data={postsTopPosition} cardClassName="h-[390px]" />
+        <PostsGrid
+          fetchPostsProps={{
+            option: "position",
+            value: "top",
+          }}
+        />
       </section>
 
       {/* POSTGRID SECTION & BANNERS (FUTBOL TAG, bannerHorizontal5, bannerHorizontal6 ) */}
@@ -156,6 +151,24 @@ export default async function Home() {
             url: bannerHorizontal5[0]?.url,
             desktopImage: bannerHorizontal5[0]?.desktopImage,
             mobileImage: bannerHorizontal5[0]?.mobileImage,
+          }}
+        />
+
+        <PostsGrid
+          title="Elecciones 2023"
+          fetchPostsProps={{
+            option: "tag",
+            value: "elecciones2023",
+          }}
+        />
+
+        <Banner
+          banner={{
+            title: bannerHorizontal6[0]?.title,
+            site: bannerHorizontal6[0]?.site,
+            url: bannerHorizontal6[0]?.url,
+            desktopImage: bannerHorizontal6[0]?.desktopImage,
+            mobileImage: bannerHorizontal6[0]?.mobileImage,
           }}
         />
 
@@ -240,6 +253,7 @@ export default async function Home() {
         />
 
         <PostsGrid
+          title="Cultura"
           fetchPostsProps={{
             option: "category",
             value: PostsCategories.cultura,

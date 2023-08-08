@@ -54,11 +54,6 @@ export const PostsGrid: React.FC<PostsGridProps> = async ({
     <div>
       {posts.length > 0 && title ? (
         <Heading title={title} link={`/noticias/${posts[0].category?.slug}`} />
-      ) : posts.length > 0 ? (
-        <Heading
-          title={posts[0].category?.name}
-          link={`/noticias/${posts[0].category?.slug}`}
-        />
       ) : null}
 
       {banner ? (
