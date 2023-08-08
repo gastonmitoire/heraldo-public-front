@@ -1,12 +1,8 @@
 import Image from "next/image";
-import { SocialMediaShareLinks } from "../components/SocialMediaShareLinks";
 import { formatDate } from "../service/app.service";
-import dynamic from "next/dynamic";
+import { SocialMediaShareLinks } from "../components/SocialMediaShareLinks";
+import PostContent from "./PostContent";
 
-const Output = dynamic(
-  async () => (await import("editorjs-react-renderer")).default,
-  { ssr: false }
-);
 
 const SinglePost = async ({
   post,
@@ -25,6 +21,7 @@ const SinglePost = async ({
   };
 }) => {
   const postContent = await JSON.parse(post?.content);
+  
   const date = formatDate({
     dateString: post?.publicationDate,
     dateFormat: "cccc',' dd 'de' MMMM 'de' yyyy",
@@ -68,7 +65,9 @@ const SinglePost = async ({
           {post?.category.slug === "deportes" && (
             <iframe src={post?.liveSports} width="100%" height="500px"></iframe>
           )}
-          <section></section>
+          <section>
+            <PostContent postContent={postContent} />
+          </section>
         </div>
         <div className="col-span-1"></div>
       </div>
