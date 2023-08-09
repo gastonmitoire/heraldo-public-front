@@ -39,7 +39,7 @@ export const PostsGrid: React.FC<PostsGridProps> = async ({
   const banner = bannerConfig ? await fetchAdServer(bannerConfig) : null;
 
   const dataWithBanner =
-    posts.length > 0 && banner
+    posts?.length > 0 && banner
       ? [
           ...posts.slice(0, 3),
           {
@@ -66,7 +66,7 @@ export const PostsGrid: React.FC<PostsGridProps> = async ({
 
   return (
     <div>
-      {posts.length > 0 && title ? (
+      {posts?.length > 0 && title ? (
         <Heading
           title={title}
           link={`/noticias/${redirectUrl(fetchPostsProps.option)}`}
