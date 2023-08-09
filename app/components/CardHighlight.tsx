@@ -46,7 +46,7 @@ export const CardHighlight: React.FC<CardHighlightProps> = ({
             background: `url("${image.url}")`,
             backgroundSize: "cover",
             backgroundRepeat: "no-repeat",
-            backgroundPosition: "center",
+            backgroundPosition: "top",
           }}
         >
           {fullWidth ? (

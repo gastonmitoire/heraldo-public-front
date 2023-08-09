@@ -8,15 +8,12 @@ import { Skeleton } from "@/app/components/Skeleton";
 
 import { PostsHighlight } from "@/app/features/posts/PostsHighlight";
 
-import {
-  PostsPositions,
-  AdServerPositions,
-  fetchAdServer,
-} from "@/app/service/app.service";
+import { AdServerPositions, fetchAdServer } from "@/app/service/app.service";
 
 import {
   fetchPostsWithOptions,
   PostsCategories,
+  PostsPositions,
 } from "@/app/features/posts/service/posts.service";
 
 export const metadata: Metadata = {
@@ -138,7 +135,7 @@ export default async function Page({
         <PostsHighlight
           fetchPostsProps={{
             option: "position",
-            value: PostsPositions.highlight,
+            value: PostsPositions.highlight + "/",
           }}
           bannerConfig={{
             position: AdServerPositions.netblock1,

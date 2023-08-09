@@ -13,19 +13,19 @@ import { PostsUrgentMarquee } from "./features/posts/PostsUrgentMarquee";
 // Posts
 import { PostsFeatured } from "./features/posts/PostsFeatured";
 
+import { AdServerPositions, fetchAdServer } from "@/app/service/app.service";
 import {
+  fetchPostsWithOptions,
+  PostsPositions,
   PostsCategories,
-  fetchPosts,
-  AdServerPositions,
-  fetchAdServer,
-} from "@/app/service/app.service";
+} from "./features/posts/service/posts.service";
 import { SwiperFullscreen } from "./components/SwiperFullscreen";
 
 export default async function Home() {
   // Posts Calls (Highlight, SuperHighlight, TopPosition, FutbolCategory, EspectaculosCategory, CulturaCategory)
-  const postsEspectaculosCategory = await fetchPosts({
-    category: PostsCategories.espectaculos,
-    postsLimit: 5,
+  const postsEspectaculosCategory = await fetchPostsWithOptions({
+    option: "category",
+    value: PostsCategories.espectaculos,
   });
 
   // AdServer Calls
@@ -99,7 +99,7 @@ export default async function Home() {
         <PostsHighlight
           fetchPostsProps={{
             option: "position",
-            value: "highlight",
+            value: PostsPositions.highlight + "/",
           }}
           bannerConfig={{
             position: AdServerPositions.netblock1,
@@ -137,7 +137,7 @@ export default async function Home() {
         <PostsGrid
           fetchPostsProps={{
             option: "position",
-            value: "top",
+            value: PostsPositions.top,
           }}
         />
       </section>
@@ -211,7 +211,7 @@ export default async function Home() {
         <PostsFeatured
           fetchPostsProps={{
             option: "category",
-            value: "deportes",
+            value: PostsCategories.deportes,
           }}
           bannerNetblockConfig={{
             position: AdServerPositions.netblock10,
