@@ -15,7 +15,7 @@ import { PostProps } from "@/types";
 
 import { fetchPrintedEdition } from "../printed-edition/service/printed-edition.service";
 import {
-  fetchPosts,
+  fetchPostsWithPagination,
   fetchPostsWithOptions,
   FetchPostsWithOptionsProps,
 } from "./service/posts.service";
@@ -38,7 +38,7 @@ export const PostsHighlight: React.FC<PostsHighlightProps> = async ({
     ...fetchPostsProps,
     postsLimit: 6,
   });
-  const { docs: lastPosts } = await fetchPosts({
+  const { docs: lastPosts } = await fetchPostsWithPagination({
     page: 1,
   });
 

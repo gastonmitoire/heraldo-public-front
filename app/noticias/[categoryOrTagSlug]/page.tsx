@@ -1,17 +1,15 @@
 import type { Metadata } from "next";
-import Link from "next/link";
 
 import { Banner } from "@/app/components/Banner";
 import { Card } from "@/app/components/Card";
 import { CardHighlight } from "@/app/components/CardHighlight";
-import { Skeleton } from "@/app/components/Skeleton";
 
 import { PostsHighlight } from "@/app/features/posts/PostsHighlight";
 
 import { AdServerPositions, fetchAdServer } from "@/app/service/app.service";
 
 import {
-  fetchPostsWithOptions,
+  fetchPostsWithPagination,
   PostsCategories,
   PostsPositions,
 } from "@/app/features/posts/service/posts.service";
@@ -26,7 +24,8 @@ export default async function Page({
 }: {
   params: { categoryOrTagSlug: string };
 }) {
-  const posts = await fetchPostsWithOptions({
+  const { docs: posts } = await fetchPostsWithPagination({
+    page: 1,
     option: Object.keys(PostsCategories).includes(params.categoryOrTagSlug)
       ? "category"
       : "tag",

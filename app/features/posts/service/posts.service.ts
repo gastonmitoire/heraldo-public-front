@@ -42,8 +42,10 @@ export enum PostsCategories {
   correoDeLectores = "correo_de_lectores",
 }
 
-export interface FetchPostsProps {
+export interface FetchPostsWithPaginationProps {
   page: number;
+  option?: "position" | "category" | "tag";
+  value?: PostsPositions | PostsCategories | string;
 }
 
 export interface FetchPostsWithOptionsProps {
@@ -52,9 +54,9 @@ export interface FetchPostsWithOptionsProps {
   postsLimit?: number;
 }
 
-export const fetchPosts = async ({
+export const fetchPostsWithPagination = async ({
   page,
-}: FetchPostsProps): Promise<DocsWithPaginationProps> => {
+}: FetchPostsWithPaginationProps): Promise<DocsWithPaginationProps> => {
   const response = await fetchClient(`/posts?page=${page}`, {
     method: "GET",
   });
