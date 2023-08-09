@@ -17,7 +17,6 @@ import { Heading } from "../../components/Heading";
 
 interface PostsFeaturedProps {
   fetchPostsProps: FetchPostsProps;
-  postsLimit?: number;
   title?: string;
   bannerNetblockConfig: {
     position: AdServerPositions;
@@ -29,7 +28,6 @@ interface PostsFeaturedProps {
 
 export const PostsFeatured: React.FC<PostsFeaturedProps> = async ({
   fetchPostsProps,
-  postsLimit = 5,
   title,
   bannerNetblockConfig,
   bannerStickyConfig,
