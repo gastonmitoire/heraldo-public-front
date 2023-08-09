@@ -9,8 +9,8 @@ import { fetchPostsWithOptions, PostsPositions } from "./service/posts.service";
 
 export const PostsSuperHighlight: React.FC = async () => {
   const posts = await fetchPostsWithOptions({
-    option: "position",
-    value: PostsPositions.superHighlight,
+    option: "tag",
+    value: "vivo deportes",
     postsLimit: 0,
   });
 
@@ -25,6 +25,7 @@ export const PostsSuperHighlight: React.FC = async () => {
               image: posts[0].images[0],
               category: posts[0].category,
               slug: posts[0].slug,
+              liveSports: posts[0].liveSports,
             }}
             className="col-span-2"
             fullWidth
@@ -40,6 +41,7 @@ export const PostsSuperHighlight: React.FC = async () => {
                 image: posts[0].images[0],
                 category: posts[0].category,
                 slug: posts[0].slug,
+                liveSports: posts[0].liveSports,
               }}
             />
             <CardHighlight
@@ -49,6 +51,7 @@ export const PostsSuperHighlight: React.FC = async () => {
                 image: posts[1].images[0],
                 category: posts[1].category,
                 slug: posts[1].slug,
+                liveSports: posts[0].liveSports,
               }}
             />
           </div>
@@ -63,6 +66,7 @@ export const PostsSuperHighlight: React.FC = async () => {
                 image: posts[0].images[0],
                 category: posts[0].category,
                 slug: posts[0].slug,
+                liveSports: posts[0].liveSports,
               }}
               className="col-span-2"
               fullWidth
@@ -76,6 +80,7 @@ export const PostsSuperHighlight: React.FC = async () => {
                   image: posts[1].images[0],
                   category: posts[1].category,
                   slug: posts[1].slug,
+                  liveSports: posts[0].liveSports,
                 }}
               />
               <CardHighlight
@@ -85,6 +90,7 @@ export const PostsSuperHighlight: React.FC = async () => {
                   image: posts[2].images[0],
                   category: posts[2].category,
                   slug: posts[2].slug,
+                  liveSports: posts[0].liveSports,
                 }}
               />
             </div>

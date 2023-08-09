@@ -8,6 +8,7 @@ interface CardHighlightProps {
     title: string;
     flywheel: string;
     slug: string;
+    liveSports?: string;
     image: {
       url: string;
     };
@@ -22,7 +23,7 @@ interface CardHighlightProps {
 }
 
 export const CardHighlight: React.FC<CardHighlightProps> = ({
-  item: { title, flywheel, image, category, slug },
+  item: { title, flywheel, slug, liveSports, image, category },
   prefixLink,
   fullWidth,
   className,
@@ -51,7 +52,17 @@ export const CardHighlight: React.FC<CardHighlightProps> = ({
           {fullWidth ? (
             <div className="h-full group-hover:bg-black group-hover:bg-opacity-30 transition-colors relative">
               <span className="absolute w-full min-h-[100px] bg-gradient-to-b from-white via-transparent opacity-95"></span>
+
               <div className="absolute bottom-5 w-1/2 translate-x-1/2 text-center">
+                {liveSports && (
+                  <div className="w-[50%] mx-auto pr-3">
+                    <iframe
+                      src={liveSports}
+                      className="w-full opacity-80 group-hover:opacity-100"
+                    ></iframe>
+                    <div className="absolute top-0 right-0 bottom-0 left-0 opacity-0 cursor-pointer"></div>
+                  </div>
+                )}
                 <h5
                   className={`truncate text-lg font-bold pb-1.5 pr-16 text-white`}
                 >
@@ -63,7 +74,16 @@ export const CardHighlight: React.FC<CardHighlightProps> = ({
               </div>
             </div>
           ) : (
-            <div className="flex flex-col justify-end h-full pl-3 pb-3 group-hover:bg-black group-hover:bg-opacity-30 transition-colors">
+            <div className="relative flex flex-col justify-end h-full pl-3 pb-3 group-hover:bg-black group-hover:bg-opacity-30 transition-colors">
+              {liveSports && (
+                <div className="w-[50%] mx-auto pr-3">
+                  <iframe
+                    src={liveSports}
+                    className="w-full opacity-80 group-hover:opacity-100"
+                  ></iframe>
+                  <div className="absolute top-0 right-0 bottom-0 left-0 opacity-0 cursor-pointer"></div>
+                </div>
+              )}
               <h5
                 className={`truncate text-lg font-bold pb-1.5 pr-16 text-blue-500`}
               >

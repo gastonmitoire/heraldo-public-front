@@ -1,3 +1,4 @@
+export const dynamic = "force-dynamic";
 import React from "react";
 
 import { Banner } from "@/app/components/Banner";
@@ -35,6 +36,7 @@ export const PostsHighlight: React.FC<PostsHighlightProps> = async ({
 }) => {
   const highlightPosts = await fetchPostsWithOptions({
     ...fetchPostsProps,
+    postsLimit: 6,
   });
   const { docs: lastPosts } = await fetchPosts();
 
@@ -66,6 +68,7 @@ export const PostsHighlight: React.FC<PostsHighlightProps> = async ({
                 image: post.images[0],
                 category: post.category,
                 slug: post.slug,
+                liveSports: post.liveSports,
               }}
               className="col-span-2 xl:col-span-2 xl:row-span-2 xl:h-full"
             />

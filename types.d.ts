@@ -51,6 +51,7 @@ export interface PostProps {
   slug: string;
   flywheel: string;
   excerpt: string;
+  liveSports: string;
 }
 
 // banner type definition

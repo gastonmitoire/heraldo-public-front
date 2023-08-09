@@ -43,6 +43,7 @@ export const SwiperFullscreen: React.FC<SwiperFullscreenProps> = ({
               image: post.images[0],
               category: post.category,
               slug: post.slug,
+              liveSports: post.liveSports,
             }}
             className="col-span-2 h-full"
             fullWidth

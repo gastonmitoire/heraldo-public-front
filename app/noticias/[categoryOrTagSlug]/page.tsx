@@ -62,6 +62,7 @@ export default async function Page({
                   image: post.images[0],
                   category: post.category,
                   slug: post.slug,
+                  liveSports: post.liveSports,
                 }}
                 className="min-h-[500px]"
               />

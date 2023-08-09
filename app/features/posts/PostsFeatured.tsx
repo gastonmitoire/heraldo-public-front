@@ -72,6 +72,7 @@ export const PostsFeatured: React.FC<PostsFeaturedProps> = async ({
                   image: post.images[0],
                   category: post.category,
                   slug: post.slug,
+                  liveSports: post.liveSports,
                 }}
                 className="col-span-2 xl:col-span-2 row-span-2 xl:h-full"
               />
