@@ -43,12 +43,25 @@ export const PostsFeatured: React.FC<PostsFeaturedProps> = async ({
 
   const bannerSticky = await fetchAdServer(bannerStickyConfig);
 
+  const redirectUrl = (value: string) => {
+    switch (value) {
+      case "category":
+        return posts[0].category?.slug;
+      case "position":
+        return posts[0].category?.slug;
+      case "tag":
+        return fetchPostsProps.value.replaceAll(" ", "_");
+      default:
+        return "";
+    }
+  };
+
   return (
     <div className="flex flex-col gap-3 xl:grid xl:grid-cols-4">
       <div className="col-span-4">
         <Heading
           title={posts[0].category?.name}
-          link={`/noticias/${posts[0].category?.slug}`}
+          link={`/noticias/${redirectUrl(fetchPostsProps.option)}`}
         />
       </div>
       <div className="flex flex-col xl:grid grid-cols-2 gap-3 xl:col-span-3 xl:grid-rows-3 xl:grid-cols-3">

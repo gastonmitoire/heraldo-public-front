@@ -48,12 +48,29 @@ export const PostsGrid: React.FC<PostsGridProps> = async ({
           },
         ]
       : posts;
+
   const dataWithoutBanner = posts;
+
+  const redirectUrl = (value: string) => {
+    switch (value) {
+      case "category":
+        return posts[0].category?.slug;
+      case "position":
+        return posts[0].category?.slug;
+      case "tag":
+        return fetchPostsProps.value.replaceAll(" ", "_");
+      default:
+        return "";
+    }
+  };
 
   return (
     <div>
       {posts.length > 0 && title ? (
-        <Heading title={title} link={`/noticias/${posts[0].category?.slug}`} />
+        <Heading
+          title={title}
+          link={`/noticias/${redirectUrl(fetchPostsProps.option)}`}
+        />
       ) : null}
 
       {banner ? (

@@ -9,12 +9,15 @@ import { Skeleton } from "@/app/components/Skeleton";
 import { PostsHighlight } from "@/app/features/posts/PostsHighlight";
 
 import {
-  PostsCategories,
   PostsPositions,
-  fetchPosts,
   AdServerPositions,
   fetchAdServer,
 } from "@/app/service/app.service";
+
+import {
+  fetchPostsWithOptions,
+  PostsCategories,
+} from "@/app/features/posts/service/posts.service";
 
 export const metadata: Metadata = {
   title: "Noticias",
@@ -24,18 +27,13 @@ export const metadata: Metadata = {
 export default async function Page({
   params,
 }: {
-  params: { categorySlug: string };
+  params: { categoryOrTagSlug: string };
 }) {
-  const URL = process.env.API_URL;
-
-  // Posts Calls (Highlight, Category)
-  const postsHighlight = await fetchPosts({
-    position: PostsPositions.highlight,
-    postsLimit: 7,
-  });
-  const categoryPosts = await fetchPosts({
-    category: params.categorySlug as PostsCategories,
-    postsLimit: 14,
+  const posts = await fetchPostsWithOptions({
+    option: Object.keys(PostsCategories).includes(params.categoryOrTagSlug)
+      ? "category"
+      : "tag",
+    value: params.categoryOrTagSlug.replaceAll("_", " "),
   });
 
   // AdServer Calls (sticky2)
@@ -44,18 +42,18 @@ export default async function Page({
   });
 
   return (
-    <div className="container flex flex-col gap-5 mx-auto">
+    <div className="container flex flex-col pt-5 gap-5 mx-auto">
       {/* PAGE TITLE */}
       <h1 className="text-4xl font-bold text-gray-800 capitalize">
-        {categoryPosts[0]
-          ? categoryPosts[0].category.name
-          : params.categorySlug.replaceAll("_", " ")}
+        {Object.keys(PostsCategories).includes(params.categoryOrTagSlug)
+          ? posts[0].category.name
+          : params.categoryOrTagSlug.replaceAll("_", " ")}
       </h1>
 
       {/* CATEGORY POSTS HIGHLIGHT */}
       <div className="grid grid-cols-2 gap-3">
-        {categoryPosts[0]
-          ? categoryPosts.slice(0, 2).map((post: any) => (
+        {posts[0]
+          ? posts.slice(0, 2).map((post: any) => (
               <CardHighlight
                 key={`highlight-post-${post._id}`}
                 item={{
@@ -74,8 +72,8 @@ export default async function Page({
       {/* CATEGORY POSTS */}
       <div className="grid grid-cols-4 gap-3">
         <div className="grid grid-cols-3 col-span-3 gap-3">
-          {categoryPosts[0] ? (
-            categoryPosts.slice(2).map((post: any) => (
+          {posts[0] ? (
+            posts.slice(2).map((post: any) => (
               <Card
                 key={post._id}
                 item={{
