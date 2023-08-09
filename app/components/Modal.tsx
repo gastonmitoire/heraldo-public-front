@@ -5,6 +5,7 @@ interface ModalProps {
   isOpen: boolean;
   onClose: () => void;
   maxWidth?: string;
+  className?: string;
 }
 
 export const Modal: React.FC<ModalProps> = ({
@@ -12,6 +13,7 @@ export const Modal: React.FC<ModalProps> = ({
   isOpen,
   onClose,
   maxWidth,
+  className
 }) => {
   return isOpen ? (
     <div
@@ -19,7 +21,7 @@ export const Modal: React.FC<ModalProps> = ({
       className="fixed inset-0 z-50 flex items-center justify-center w-full h-[100vh] overflow-y-hidden bg-black bg-opacity-50"
     >
       <div
-        className={`relative w-full p-3 bg-white rounded-lg shadow-lg ${
+        className={`${className ? className: ''} relative w-full p-3 bg-white rounded-lg shadow-lg ${
           maxWidth ? maxWidth : "max-w-2xl"
         }`}
       >
@@ -29,7 +31,7 @@ export const Modal: React.FC<ModalProps> = ({
         >
           &times;
         </button>
-        {children}
+      {children}
       </div>
     </div>
   ) : null;

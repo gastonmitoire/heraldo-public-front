@@ -1,6 +1,6 @@
 import { fetchClient } from "@/app/utils";
 
-import { AdServer, DocsWithPagination, Post } from "@/types";
+import { AdServer, DocsWithPagination, FuneralNotice, Post } from "@/types";
 import { parseISO, format } from "date-fns";
 import { es } from "date-fns/locale";
 
@@ -168,3 +168,26 @@ export const formatDate = async ({ dateString, dateFormat }: FormatDateProps) =>
   const parsedDate = parseISO(dateString);
   return format(parsedDate, dateFormat, { locale: es });
 };
+
+// FUNEBRES ENDPOINTS
+
+interface FetchFunebresProps {
+  deceased?: string;
+}
+
+export const fetchFuneralNotices = async ({deceased}: FetchFunebresProps) => {
+  let url = "";
+
+  if (deceased) {
+    url = `/search?title=${deceased}`;
+  }
+
+  const finalUrl = `/funeral-notices${url}`;
+  
+  const funeralNoticesQuery = await fetchClient(finalUrl, {
+    method: "GET",
+  });
+  const response: FuneralNotice[] = funeralNoticesQuery.docs;
+
+  return response;
+}  

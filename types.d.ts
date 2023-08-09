@@ -77,7 +77,7 @@ export interface AdServer {
 export interface FuneralNotice {
   _id: number | string;
   title: string;
-  deseased: string;
+  deceased: string;
   client: string;
   religion: string;
   status: string;
