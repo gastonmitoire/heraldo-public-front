@@ -42,9 +42,7 @@ export default async function Page({
     <div className="container flex flex-col pt-5 gap-5 mx-auto">
       {/* PAGE TITLE */}
       <h1 className="text-4xl font-bold text-gray-800 capitalize">
-        {Object.keys(PostsCategories).includes(params.categoryOrTagSlug)
-          ? posts[0].category.name
-          : params.categoryOrTagSlug.replaceAll("_", " ")}
+        {params.categoryOrTagSlug.replaceAll("_", " ")}
       </h1>
 
       {/* CATEGORY POSTS HIGHLIGHT */}

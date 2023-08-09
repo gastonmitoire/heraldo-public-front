@@ -10,13 +10,13 @@ import { CardHighlight } from "@/app/components/CardHighlight";
 
 import {
   fetchPostsWithOptions,
-  FetchPostsProps,
+  FetchPostsWithOptionsProps,
 } from "./service/posts.service";
 import { fetchAdServer, AdServerPositions } from "../../service/app.service";
 import { Heading } from "../../components/Heading";
 
 interface PostsFeaturedProps {
-  fetchPostsProps: FetchPostsProps;
+  fetchPostsProps: FetchPostsWithOptionsProps;
   title?: string;
   bannerNetblockConfig: {
     position: AdServerPositions;

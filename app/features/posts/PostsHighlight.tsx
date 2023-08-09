@@ -17,12 +17,12 @@ import { fetchPrintedEdition } from "../printed-edition/service/printed-edition.
 import {
   fetchPosts,
   fetchPostsWithOptions,
-  FetchPostsProps,
+  FetchPostsWithOptionsProps,
 } from "./service/posts.service";
 import { fetchAdServer, AdServerPositions } from "../../service/app.service";
 
 interface PostsHighlightProps {
-  fetchPostsProps: FetchPostsProps;
+  fetchPostsProps: FetchPostsWithOptionsProps;
   title?: string;
   bannerConfig: {
     position: AdServerPositions;
@@ -38,7 +38,9 @@ export const PostsHighlight: React.FC<PostsHighlightProps> = async ({
     ...fetchPostsProps,
     postsLimit: 6,
   });
-  const { docs: lastPosts } = await fetchPosts();
+  const { docs: lastPosts } = await fetchPosts({
+    page: 1,
+  });
 
   const { docs: printedEdition } = await fetchPrintedEdition();
 

@@ -8,12 +8,12 @@ import { Heading } from "@/app/components/Heading";
 
 import {
   fetchPostsWithOptions,
-  FetchPostsProps,
+  FetchPostsWithOptionsProps,
 } from "./service/posts.service";
 import { AdServerPositions, fetchAdServer } from "@/app/service/app.service";
 
 interface PostsGridProps {
-  fetchPostsProps: FetchPostsProps;
+  fetchPostsProps: FetchPostsWithOptionsProps;
   postsLimit?: number;
   title?: string;
   bannerConfig?: {

@@ -43,13 +43,19 @@ export enum PostsCategories {
 }
 
 export interface FetchPostsProps {
+  page: number;
+}
+
+export interface FetchPostsWithOptionsProps {
   option: "position" | "category" | "tag";
   value: PostsPositions | PostsCategories | string;
   postsLimit?: number;
 }
 
-export const fetchPosts = async () => {
-  const response: DocsWithPaginationProps = await fetchClient("/posts", {
+export const fetchPosts = async ({
+  page,
+}: FetchPostsProps): Promise<DocsWithPaginationProps> => {
+  const response = await fetchClient(`/posts?page=${page}`, {
     method: "GET",
   });
 
@@ -60,7 +66,7 @@ export const fetchPostsWithOptions = async ({
   option,
   postsLimit,
   value,
-}: FetchPostsProps): Promise<PostProps[]> => {
+}: FetchPostsWithOptionsProps): Promise<PostProps[]> => {
   let url = "";
 
   if (option === "position") {

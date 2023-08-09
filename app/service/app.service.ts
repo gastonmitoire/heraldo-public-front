@@ -44,7 +44,7 @@ export enum PostsCategories {
   correoDeLectores = "correo_de_lectores",
 }
 
-interface FetchPostsProps {
+interface FetchPostsWithOptionsProps {
   position?: PostsPositions;
   category?: PostsCategories;
   postsLimit?: number;
@@ -54,7 +54,7 @@ export const fetchPosts = async ({
   position,
   category,
   postsLimit,
-}: FetchPostsProps) => {
+}: FetchPostsWithOptionsProps) => {
   let url = "";
 
   if (position) {
