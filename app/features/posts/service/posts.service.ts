@@ -81,10 +81,9 @@ export const fetchPostsWithOptions = async ({
     method: "GET",
   });
 
-  const sanitizedResponse =
-    response && Object.keys(response).includes("docs")
-      ? response.docs
-      : response;
+  const sanitizedResponse = Object.keys(response).includes("docs")
+    ? response.docs
+    : response;
 
   return sanitizedResponse;
 };

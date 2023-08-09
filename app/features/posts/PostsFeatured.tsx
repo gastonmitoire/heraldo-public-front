@@ -36,7 +36,6 @@ export const PostsFeatured: React.FC<PostsFeaturedProps> = async ({
 }) => {
   const posts = await fetchPostsWithOptions({
     ...fetchPostsProps,
-    postsLimit,
   });
 
   const bannerNetblock = await fetchAdServer(bannerNetblockConfig);
@@ -105,7 +104,7 @@ export const PostsFeatured: React.FC<PostsFeaturedProps> = async ({
         />
 
         {posts.length > 0
-          ? posts.slice(3, 6).map((post: any) => (
+          ? posts.slice(3, 5).map((post: any) => (
               <Card
                 key={post._id}
                 item={{

@@ -33,11 +33,10 @@ export const PostsHighlight: React.FC<PostsHighlightProps> = async ({
   title,
   bannerConfig,
 }) => {
-  const { docs: lastPosts } = await fetchPosts();
   const highlightPosts = await fetchPostsWithOptions({
     ...fetchPostsProps,
-    postsLimit: 6,
   });
+  const { docs: lastPosts } = await fetchPosts();
 
   const { docs: printedEdition } = await fetchPrintedEdition();
 
@@ -57,7 +56,7 @@ export const PostsHighlight: React.FC<PostsHighlightProps> = async ({
       ) : null}
 
       <section className="grid grid-cols-2 gap-3 xl:col-span-3 xl:grid-rows-3 xl:grid-cols-3">
-        {highlightPosts && highlightPosts.length > 0 ? (
+        {highlightPosts?.length > 0 ? (
           highlightPosts.slice(0, 1).map((post: any) => (
             <CardHighlight
               key={post._id}
@@ -75,7 +74,7 @@ export const PostsHighlight: React.FC<PostsHighlightProps> = async ({
           <Skeleton className="col-span-2 xl:col-span-2 xl:row-span-2 xl:h-full" />
         )}
 
-        {highlightPosts && highlightPosts.length > 0
+        {highlightPosts?.length > 0
           ? highlightPosts.slice(1, 6).map((post: any) => (
               <Card
                 key={post._id}
@@ -96,7 +95,7 @@ export const PostsHighlight: React.FC<PostsHighlightProps> = async ({
 
       <span className="block xl:hidden">
         <CardGridWithSwiper
-          data={highlightPosts.slice(1, 6)}
+          data={highlightPosts?.slice(1, 6)}
           className="col-span-2"
           cardClassName="lg:h-[460px]"
         />
