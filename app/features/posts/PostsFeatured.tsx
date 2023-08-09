@@ -91,6 +91,7 @@ export const PostsFeatured: React.FC<PostsFeaturedProps> = async ({
                   image: post.images[0],
                   category: post.category,
                   slug: post.slug,
+                  liveSports: post.liveSports,
                 }}
                 className="hidden xl:block xl:h-[460px] xl:col-span-1"
                 imageClassName="h-[350px] object-cover"
@@ -113,6 +114,7 @@ export const PostsFeatured: React.FC<PostsFeaturedProps> = async ({
                   image: post.images[0],
                   category: post.category,
                   slug: post.slug,
+                  liveSports: post.liveSports,
                 }}
                 className="hidden xl:block xl:h-[460px] xl:col-span-1"
                 imageClassName="h-[350px] object-cover"

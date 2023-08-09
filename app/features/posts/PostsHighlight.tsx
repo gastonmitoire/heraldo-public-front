@@ -85,6 +85,7 @@ export const PostsHighlight: React.FC<PostsHighlightProps> = async ({
                   image: post.images[0],
                   category: post.category,
                   slug: post.slug,
+                  liveSports: post.liveSports,
                 }}
                 className="hidden xl:block h-full"
                 imageClassName="h-[350px] object-cover"

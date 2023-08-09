@@ -11,6 +11,7 @@ interface CardProps {
     title: string;
     flywheel: string;
     slug: string;
+    liveSports?: string;
     image: {
       url: string;
     };
@@ -25,7 +26,7 @@ interface CardProps {
 }
 
 export const Card: React.FC<CardProps> = ({
-  item: { title, flywheel, image, category, slug },
+  item: { title, flywheel, slug, liveSports, image, category },
   prefixLink,
   className,
   imageClassName,
@@ -42,10 +43,11 @@ export const Card: React.FC<CardProps> = ({
         <article
           className={`${className} flex flex-col group hover:cursor-pointer transition-all`}
         >
-          <div className="flex-1 relative group-hover:brightness-75 transition-all">
+          <figure className="flex-1 relative group-hover:brightness-75 transition-all">
             <span className="absolute top-3 left-3 uppercase bg-black bg-opacity-80 text-white font-light text-sm py-1 px-3">
               {category?.name}
             </span>
+
             <Image
               src={image.url}
               alt={title}
@@ -53,7 +55,17 @@ export const Card: React.FC<CardProps> = ({
               height={300}
               width={300}
             />
-          </div>
+
+            {liveSports && (
+              <div className="absolute bottom-0 w-full">
+                <iframe
+                  src={liveSports}
+                  className="w-full opacity-80 group-hover:opacity-100"
+                ></iframe>
+              </div>
+            )}
+            <div className="absolute top-0 right-0 bottom-0 left-0 opacity-0 cursor-pointer"></div>
+          </figure>
           <div className="flex-1 pt-3 border p-5">
             <h5 className="text-blue-500 truncate text-lg font-bold pr-16">
               {flywheel}

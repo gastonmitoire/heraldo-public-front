@@ -82,6 +82,7 @@ export default async function Page({
                   image: post.images[0],
                   category: post.category,
                   slug: post.slug,
+                  liveSports: post.liveSports,
                 }}
                 imageClassName="h-[200px] 2xl:h-[300px] object-cover"
               />
