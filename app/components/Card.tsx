@@ -39,9 +39,8 @@ export const Card: React.FC<CardProps> = ({
             ? `${prefixLink}/${category.slug}/${slug}`
             : `/noticias/${category.slug}/${slug}`
         }
-        className="w-full min-h-[370px] h-full"
       >
-        <article className="h-full w-full grid grid-rows-2 group">
+        <article className="h-full w-full grid grid-cols-1 grid-rows-2 group">
           <figure className="relative group-hover:brightness-75 transition-all">
             <Image
               src={image.url}
