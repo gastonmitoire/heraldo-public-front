@@ -33,7 +33,7 @@ export const PostsSuperHighlight: React.FC = async () => {
         );
       case 2:
         return (
-          <div className="container mx-auto grid grid-cols-1 lg:grid-cols-2 gap-3">
+          <div className="container mx-auto grid grid-cols-1 lg:grid-cols-2 gap-3 px-3 lg:px-0">
             <CardHighlight
               item={{
                 title: posts[0].title,
@@ -72,7 +72,7 @@ export const PostsSuperHighlight: React.FC = async () => {
               fullWidth
             />
 
-            <div className="container mx-auto grid grid-cols-1 lg:grid-cols-2 gap-3">
+            <div className="container mx-auto grid grid-cols-1 lg:grid-cols-2 gap-3 px-3 lg:px-0">
               <CardHighlight
                 item={{
                   title: posts[1].title,
