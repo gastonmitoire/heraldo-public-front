@@ -25,7 +25,7 @@ const funeralNoticesQuery = await fetchFuneralNotices({});
             {/* <InputsSearch setDataInputs={setDataInputs} /> */}
           </header>
           <article className="w-full flex flex-wrap gap-4 justify-around">
-            {funeralNotices.map((notice) => (
+            {funeralNotices?.map((notice) => (
               <CardFuneralNotice key={notice._id} deceased={notice} />
             ))}
           </article>
