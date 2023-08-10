@@ -1,7 +1,8 @@
 import { fetchClient } from "@/app/utils";
 
-import { AdServerProps, DocsWithPaginationProps, PostProps } from "@/types";
-
+import { AdServerProps, DocsWithPaginationProps, PostProps, FuneralNoticeProps } from "@/types";
+import { parseISO, format } from "date-fns";
+import { es } from "date-fns/locale";
 // POSTS ENDPOINTS
 
 export enum PostsPositions {
@@ -48,6 +49,7 @@ interface FetchPostsWithOptionsProps {
   position?: PostsPositions;
   category?: PostsCategories;
   postsLimit?: number;
+  postSlug?: string;
 }
 
 export const fetchPosts = async ({
@@ -68,6 +70,27 @@ export const fetchPosts = async ({
   const finalUrl = `/posts${url}${limit}`;
 
   const response: PostProps[] = await fetchClient(finalUrl, {
+    method: "GET",
+  });
+
+  return response;
+};
+
+interface fetchPostBySlugProps {
+  position?: PostsPositions;
+  category?: PostsCategories;
+  postsLimit?: number;
+  postSlug?: string;
+}
+
+export const fetchPostBySlug = async ({
+  postSlug
+}: fetchPostBySlugProps) => {
+  let url = `/slug/${postSlug}`;
+
+  const finalUrl = `/posts${url}`;
+
+  const response: PostProps = await fetchClient(finalUrl, {
     method: "GET",
   });
 
@@ -131,3 +154,36 @@ export const fetchAdServer = async ({ position }: FetchAdServerProps) => {
 
   return response;
 };
+
+interface FormatDateProps {
+  dateString: string;
+  dateFormat: string;
+}
+
+export const formatDate = async ({ dateString, dateFormat }: FormatDateProps) => {
+  const parsedDate = parseISO(dateString);
+  return format(parsedDate, dateFormat, { locale: es });
+};
+
+// FUNEBRES ENDPOINTS
+
+interface FetchFunebresProps {
+  deceased?: string;
+}
+
+export const fetchFuneralNotices = async ({deceased}: FetchFunebresProps) => {
+  let url = "";
+
+  if (deceased) {
+    url = `/search?title=${deceased}`;
+  }
+
+  const finalUrl = `/funeral-notices${url}`;
+  
+  const funeralNoticesQuery = await fetchClient(finalUrl, {
+    method: "GET",
+  });
+  const response: FuneralNoticeProps[] = funeralNoticesQuery.docs;
+
+  return response;
+}  

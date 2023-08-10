@@ -51,6 +51,7 @@ export interface PostProps {
   slug: string;
   flywheel: string;
   excerpt: string;
+  flywheel: string;
   liveSports: string;
 }
 
@@ -78,7 +79,7 @@ export interface AdServerProps {
 export interface FuneralNoticeProps {
   _id: number | string;
   title: string;
-  deseased: string;
+  deceased: string;
   client: string;
   religion: string;
   status: string;

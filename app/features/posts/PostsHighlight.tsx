@@ -132,7 +132,7 @@ export const PostsHighlight: React.FC<PostsHighlightProps> = async ({
           listClassName="max-h-[300px]"
         />
 
-        <Banner banner={banners.docs[0]} className="h-full" />
+        <Banner banner={banners.docs[0]} className="relative" />
       </section>
     </div>
   );
