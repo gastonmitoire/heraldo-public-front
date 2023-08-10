@@ -30,7 +30,7 @@ export const Banner: React.FC<BannerProps> = ({
         sticky ? "sticky top-0" : ""
       } ${border ? "lg:border" : ""} ${className || ""}`}
     >
-      <Link href={url} target="_blank" className="flex relative">
+      <Link href={url || "/"} target="_blank" className="flex relative">
         <Image
           src={desktopImage?.url}
           alt={`${title} - ${site} - desktop`}
