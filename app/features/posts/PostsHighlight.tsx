@@ -11,8 +11,6 @@ import { Skeleton } from "../../components/Skeleton";
 
 import { PrintedEdition } from "../printed-edition/PrintedEdition";
 
-import { PostProps } from "@/types";
-
 import { fetchPrintedEdition } from "../printed-edition/service/printed-edition.service";
 import {
   fetchPostsWithPagination,
@@ -45,11 +43,6 @@ export const PostsHighlight: React.FC<PostsHighlightProps> = async ({
   const { docs: printedEdition } = await fetchPrintedEdition();
 
   const banners = await fetchAdServer(bannerConfig);
-
-  // const listPosts =
-  //   posts.map((post: any) => ({
-  //     title: post.title,
-  //   })) ?? [];
 
   return (
     <div className="flex flex-col gap-3 xl:grid xl:grid-cols-4">
@@ -119,45 +112,6 @@ export const PostsHighlight: React.FC<PostsHighlightProps> = async ({
             : [1, 2, 3].map((_, index) => <Skeleton key={index} />)}
         </div>
       </div>
-
-      {/* <section className="grid grid-cols-2 gap-3 xl:col-span-3 xl:grid-rows-3 xl:grid-cols-3">
-        {highlightPosts?.length > 0 ? (
-          highlightPosts.slice(0, 1).map((post: any) => (
-            <CardHighlight
-              key={post._id}
-              item={{
-                title: post.title,
-                flywheel: post.flywheel,
-                image: post.images[0],
-                category: post.category,
-                slug: post.slug,
-                liveSports: post.liveSports,
-              }}
-              className="col-span-2 xl:col-span-2 xl:row-span-2 xl:h-full"
-            />
-          ))
-        ) : (
-          <Skeleton className="col-span-2 xl:col-span-2 xl:row-span-2 xl:h-full" />
-        )}
-
-        {highlightPosts?.length > 0
-          ? highlightPosts.slice(1, 6).map((post: any) => (
-              <Card
-                key={post._id}
-                item={{
-                  title: post.title,
-                  flywheel: post.flywheel,
-                  image: post.images[0],
-                  category: post.category,
-                  slug: post.slug,
-                  liveSports: post.liveSports,
-                }}
-                className="hidden xl:block h-full"
-                imageClassName="h-[350px] object-cover"
-              />
-            ))
-          : [1, 2, 3, 4, 5].map((_, index) => <Skeleton key={index} />)}
-      </section> */}
 
       <span className="block xl:hidden">
         <CardGridWithSwiper
