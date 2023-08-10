@@ -54,7 +54,7 @@ export const PostsFeatured: React.FC<PostsFeaturedProps> = async ({
   };
 
   return (
-    <div className="flex flex-col gap-3 xl:grid xl:grid-cols-4">
+    <div className="grid grid-cols-4 gap-3">
       <div className="col-span-4">
         <Heading
           title={posts[0].category?.name}
@@ -62,8 +62,8 @@ export const PostsFeatured: React.FC<PostsFeaturedProps> = async ({
         />
       </div>
 
-      <div className="col-span-3 grid grid-cols-3 grid-rows-3 gap-3">
-        <div className="bg-gray-300 col-span-2 row-span-2">
+      <div className="col-span-4 xl:col-span-3 grid grid-cols-3 xl:grid-rows-3 gap-3">
+        <div className="col-span-3 lg:col-span-2 h-[300px] xl:row-span-2 xl:h-auto">
           {posts.length > 0
             ? posts.slice(0, 1).map((post: any) => (
                 <CardHighlight
@@ -82,7 +82,7 @@ export const PostsFeatured: React.FC<PostsFeaturedProps> = async ({
             : null}
         </div>
 
-        <div className="col-span-1 row-span-2 grid grid-rows-2 gap-3">
+        <div className="col-span-1 row-span-2 hidden xl:grid grid-rows-2 gap-3">
           {posts.length > 0
             ? posts.slice(1, 3).map((post: any) => (
                 <Card
@@ -101,14 +101,11 @@ export const PostsFeatured: React.FC<PostsFeaturedProps> = async ({
         </div>
 
         <div className="grid grid-cols-3 gap-3 col-span-3 row-span-1">
-          <div className="flex items-center justify-center">
-            <Banner
-              banner={bannerNetblock.docs[0]}
-              className="h-[350px] w-auto"
-            />
+          <div className="col-span-3 xl:col-span-1 w-full flex items-center justify-center">
+            <Banner banner={bannerNetblock.docs[0]} className="px-10 lg:px-0" />
           </div>
 
-          <div className="col-span-2 grid grid-cols-2 gap-3">
+          <div className="col-span-2 hidden xl:grid grid-cols-2 gap-3">
             {posts.length > 0
               ? posts.slice(3, 5).map((post: any) => (
                   <Card
@@ -128,67 +125,7 @@ export const PostsFeatured: React.FC<PostsFeaturedProps> = async ({
         </div>
       </div>
 
-      {/* <div className="flex flex-col xl:grid grid-cols-2 gap-3 xl:col-span-3 xl:grid-rows-3 xl:grid-cols-3">
-        {posts.length > 0
-          ? posts.slice(0, 1).map((post: any) => (
-              <CardHighlight
-                key={post._id}
-                item={{
-                  title: post.title,
-                  flywheel: post.flywheel,
-                  image: post.images[0],
-                  category: post.category,
-                  slug: post.slug,
-                  liveSports: post.liveSports,
-                }}
-                className="col-span-2 xl:col-span-2 row-span-2 xl:h-full"
-              />
-            ))
-          : null}
-
-        {posts.length > 0
-          ? posts.slice(1, 3).map((post: any) => (
-              <Card
-                key={post._id}
-                item={{
-                  title: post.title,
-                  flywheel: post.flywheel,
-                  image: post.images[0],
-                  category: post.category,
-                  slug: post.slug,
-                  liveSports: post.liveSports,
-                }}
-                className="hidden xl:block xl:h-[460px] xl:col-span-1"
-                imageClassName="h-[350px] object-cover"
-              />
-            ))
-          : null}
-
-        <Banner
-          banner={bannerNetblock.docs[0]}
-          className="h-[90%] py-5 mx-auto"
-        />
-
-        {posts.length > 0
-          ? posts.slice(3, 5).map((post: any) => (
-              <Card
-                key={post._id}
-                item={{
-                  title: post.title,
-                  flywheel: post.flywheel,
-                  image: post.images[0],
-                  category: post.category,
-                  slug: post.slug,
-                  liveSports: post.liveSports,
-                }}
-                className="hidden xl:block xl:h-[460px] xl:col-span-1"
-                imageClassName="h-[350px] object-cover"
-              />
-            ))
-          : null}
-      </div> */}
-
-      <span className="block xl:hidden">
+      <span className="block xl:hidden col-span-4">
         <CardGridWithSwiper
           data={posts.slice(1, 6)}
           className="col-span-2"

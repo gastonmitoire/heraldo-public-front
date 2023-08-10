@@ -66,7 +66,7 @@ export const PostsHighlight: React.FC<PostsHighlightProps> = async ({
                   slug: post.slug,
                   liveSports: post.liveSports,
                 }}
-                className="col-span-2 xl:col-span-2 xl:row-span-2 xl:h-full"
+                className="xl:h-full"
               />
             ))
           ) : (
