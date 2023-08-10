@@ -87,7 +87,7 @@ export default async function Home() {
                   desktopImage: bannerHorizontal2[0]?.desktopImage,
                   mobileImage: bannerHorizontal2[0]?.mobileImage,
                 }}
-                className="container mx-auto px-3 lg:px-0"
+                className="container mx-auto px-3 xl:px-0"
                 key={banner._id}
               />
             )
@@ -117,7 +117,7 @@ export default async function Home() {
             desktopImage: bannerHorizontal3[0]?.desktopImage,
             mobileImage: bannerHorizontal3[0]?.mobileImage,
           }}
-          className="px-3 lg:px-0"
+          className="px-3 xl:px-0"
         />
 
         <CurrencyAndRiver />
@@ -130,7 +130,7 @@ export default async function Home() {
             desktopImage: bannerHorizontal4[0]?.desktopImage,
             mobileImage: bannerHorizontal4[0]?.mobileImage,
           }}
-          className="px-3 lg:px-0"
+          className="px-3 xl:px-0"
         />
       </section>
 
@@ -154,7 +154,7 @@ export default async function Home() {
             desktopImage: bannerHorizontal5[0]?.desktopImage,
             mobileImage: bannerHorizontal5[0]?.mobileImage,
           }}
-          className="px-3 lg:px-0"
+          className="px-3 xl:px-0"
         />
 
         <PostsGrid
@@ -173,7 +173,7 @@ export default async function Home() {
             desktopImage: bannerHorizontal6[0]?.desktopImage,
             mobileImage: bannerHorizontal6[0]?.mobileImage,
           }}
-          className="px-3 lg:px-0"
+          className="px-3 xl:px-0"
         />
 
         <PostsGrid
@@ -195,7 +195,7 @@ export default async function Home() {
             desktopImage: bannerHorizontal6[0]?.desktopImage,
             mobileImage: bannerHorizontal6[0]?.mobileImage,
           }}
-          className="px-3 lg:px-0"
+          className="px-3 xl:px-0"
         />
       </section>
 
@@ -211,7 +211,7 @@ export default async function Home() {
             desktopImage: bannerHorizontal8[0]?.desktopImage,
             mobileImage: bannerHorizontal8[0]?.mobileImage,
           }}
-          className="px-3 lg:px-0"
+          className="px-3 xl:px-0"
         />
 
         <PostsFeatured
@@ -235,7 +235,7 @@ export default async function Home() {
             desktopImage: bannerHorizontal9[0]?.desktopImage,
             mobileImage: bannerHorizontal9[0]?.mobileImage,
           }}
-          className="px-3 lg:px-0"
+          className="px-3 xl:px-0"
         />
       </section>
 
@@ -257,7 +257,7 @@ export default async function Home() {
             desktopImage: bannerHorizontal10[0]?.desktopImage,
             mobileImage: bannerHorizontal10[0]?.mobileImage,
           }}
-          className="px-3 lg:px-0"
+          className="px-3 xl:px-0"
         />
 
         <PostsGrid
@@ -277,7 +277,7 @@ export default async function Home() {
             desktopImage: bannerHorizontal11[0]?.desktopImage,
             mobileImage: bannerHorizontal11[0]?.mobileImage,
           }}
-          className="px-3 lg:px-0"
+          className="px-3 xl:px-0"
         />
 
         <PostsGrid

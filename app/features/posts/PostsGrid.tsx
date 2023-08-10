@@ -76,7 +76,7 @@ export const PostsGrid: React.FC<PostsGridProps> = async ({
           </span>
           <span className="xl:hidden block">
             <CardGridWithSwiper data={dataWithoutBanner} />
-            <Banner banner={banner.docs[0]} className="h-full px-3 lg:px-0" />
+            <Banner banner={banner.docs[0]} className="h-full px-3 xl:px-0" />
           </span>
         </>
       ) : posts?.length > 0 ? (

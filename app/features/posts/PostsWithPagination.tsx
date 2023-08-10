@@ -41,8 +41,8 @@ export const PostsWithPagination: React.FC<PostsWithPaginationProps> = ({
   const posts = data?.docs;
 
   return (
-    <div className="grid grid-cols-1 lg:grid-cols-4 gap-5 w-full">
-      <div className="col-span-1 lg:col-span-4 grid grid-cols-1 sm:grid-cols-2 gap-3 px-3 lg:px-0">
+    <div className="grid grid-cols-1 xl:grid-cols-4 gap-5 w-full">
+      <div className="col-span-1 xl:col-span-4 grid grid-cols-1 sm:grid-cols-2 gap-3 px-3 xl:px-0">
         {isSuccess
           ? posts!.slice(0, 2).map((post: any) => (
               <CardHighlight
@@ -55,13 +55,13 @@ export const PostsWithPagination: React.FC<PostsWithPaginationProps> = ({
                   slug: post.slug,
                   liveSports: post.liveSports,
                 }}
-                className="h-[300px] lg:h-[500px]"
+                className="h-[300px] xl:h-[500px]"
               />
             ))
           : [1, 2].map((n) => <Skeleton key={n} className="min-h-[500px]" />)}
       </div>
 
-      <div className="col-span-1 lg:col-span-3 grid grid-cols-1 lg:grid-cols-3 gap-3 px-3 lg:px-0">
+      <div className="col-span-1 xl:col-span-3 grid grid-cols-1 xl:grid-cols-3 gap-3 px-3 xl:px-0">
         <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 col-span-3 gap-3">
           {isSuccess
             ? posts!.slice(2).map((post: any) => (

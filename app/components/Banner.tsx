@@ -28,7 +28,7 @@ export const Banner: React.FC<BannerProps> = ({
     <div
       className={`flex justify-center min-h-[100px] w-full py-1.5 ${
         sticky ? "sticky top-0" : ""
-      } ${border ? "lg:border" : ""} ${className || ""}`}
+      } ${border ? "xl:border" : ""} ${className || ""}`}
     >
       <Link href={url || "/"} target="_blank" className="flex relative">
         <Image
@@ -36,14 +36,14 @@ export const Banner: React.FC<BannerProps> = ({
           alt={`${title} - ${site} - desktop`}
           width={960}
           height={100}
-          className="hidden lg:block"
+          className="hidden xl:block"
         />
         <Image
           src={mobileImage?.url}
           alt={`${title} - ${site} - mobile`}
           width={450}
           height={250}
-          className="block lg:hidden"
+          className="block xl:hidden"
         />
       </Link>
     </div>

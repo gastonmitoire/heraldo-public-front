@@ -45,7 +45,7 @@ export const Card: React.FC<CardProps> = ({
             className ? className : ""
           }`}
         >
-          <figure className="row-span-3 relative group-hover:brightness-75 transition-all overflow-y-hidden xl:min-h-[290px]">
+          <figure className="row-span-3 relative group-hover:brightness-75 transition-all overflow-y-hidden lg:min-h-[290px]">
             <Image
               src={image.url}
               alt={title}

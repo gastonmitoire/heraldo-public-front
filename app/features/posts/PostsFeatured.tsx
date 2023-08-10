@@ -63,7 +63,7 @@ export const PostsFeatured: React.FC<PostsFeaturedProps> = async ({
       </div>
 
       <div className="col-span-4 xl:col-span-3 grid grid-cols-3 xl:grid-rows-3 gap-3">
-        <div className="col-span-3 lg:col-span-2 h-[300px] xl:row-span-2 xl:h-auto">
+        <div className="col-span-3 xl:col-span-2 h-[300px] xl:row-span-2 xl:h-auto">
           {posts.length > 0
             ? posts.slice(0, 1).map((post: any) => (
                 <CardHighlight
@@ -102,7 +102,7 @@ export const PostsFeatured: React.FC<PostsFeaturedProps> = async ({
 
         <div className="grid grid-cols-3 gap-3 col-span-3 row-span-1">
           <div className="col-span-3 xl:col-span-1 w-full flex items-center justify-center">
-            <Banner banner={bannerNetblock.docs[0]} className="px-10 lg:px-0" />
+            <Banner banner={bannerNetblock.docs[0]} className="px-10 xl:px-0" />
           </div>
 
           <div className="col-span-2 hidden xl:grid grid-cols-2 gap-3">
@@ -138,7 +138,7 @@ export const PostsFeatured: React.FC<PostsFeaturedProps> = async ({
           banner={bannerSticky.docs[0]}
           sticky
           border
-          className="lg:w-[70%] px-3"
+          className="xl:w-[70%] px-3"
         />
       </aside>
     </div>

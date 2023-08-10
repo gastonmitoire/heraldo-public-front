@@ -34,13 +34,13 @@ export const Header: React.FC<HeaderProps> = ({
   return (
     <>
       {banner && pathname === "/" && (
-        <div className="container mx-auto mt-3 px-3 lg:px-0">
+        <div className="container mx-auto mt-3 px-3 xl:px-0">
           <Banner banner={banner} />
         </div>
       )}
       <header>
-        <div className="container mx-auto flex items-center gap-3 px-1 lg:gap-0 lg:py-5">
-          <div className="w-[5%] lg:w-[15%]">
+        <div className="container mx-auto flex items-center gap-3 px-1 xl:gap-0 xl:py-5">
+          <div className="w-[5%] xl:w-[15%]">
             <HamburgerMenu categories={categories} />
           </div>
 
@@ -49,12 +49,12 @@ export const Header: React.FC<HeaderProps> = ({
               <img
                 src="https://www.elheraldo.com.ar/_next/static/media/logoMobile.da7a8911.svg"
                 alt=""
-                className="h-6 sm:h-8 md:h-10 lg:h-12"
+                className="h-6 sm:h-8 md:h-10 xl:h-12"
               />
             </Link>
           </div>
 
-          <div className="w-[5%] lg:w-[15%] invisible lg:visible flex flex-col justify-center items-end gap-1.5">
+          <div className="w-[5%] xl:w-[15%] invisible xl:visible flex flex-col justify-center items-end gap-1.5">
             <SocialMediaLinks />
             <time className="py-1 px-1.5 uppercase bg-black font-semibold text-xs text-white">
               {new Date().toLocaleDateString("es-AR", {
@@ -85,7 +85,7 @@ export const Header: React.FC<HeaderProps> = ({
         </div>
       </header>
       {banner && pathname !== "/" && (
-        <div className="container mx-auto mt-5 px-3 lg:px-0">
+        <div className="container mx-auto mt-5 px-3 xl:px-0">
           <Banner banner={banner} />
         </div>
       )}

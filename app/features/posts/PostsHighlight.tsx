@@ -53,7 +53,7 @@ export const PostsHighlight: React.FC<PostsHighlightProps> = async ({
       ) : null}
 
       <div className="col-span-3 grid grid-cols-3 xl:grid-rows-3 gap-3">
-        <div className="col-span-3 lg:col-span-2 h-[300px] xl:row-span-2 xl:h-auto">
+        <div className="col-span-3 xl:col-span-2 h-[300px] xl:row-span-2 xl:h-auto">
           {highlightPosts?.length > 0 ? (
             highlightPosts.slice(0, 1).map((post: any) => (
               <CardHighlight
@@ -117,7 +117,7 @@ export const PostsHighlight: React.FC<PostsHighlightProps> = async ({
         <CardGridWithSwiper
           data={highlightPosts?.slice(1, 6)}
           className="col-span-2"
-          cardClassName="lg:h-[460px]"
+          cardClassName="xl:h-[460px]"
         />
       </span>
 

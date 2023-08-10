@@ -21,7 +21,7 @@ export const CurrencyAndRiverSwiper: React.FC<CurrencyAndRiverSwiperProps> = ({
   dataRiver,
 }) => {
   return (
-    <div className="grid grid-cols-1 lg:grid-cols-2">
+    <div className="grid grid-cols-1">
       <div className="col-span-1">
         <h5 className="text-xl font-bold p-4 bg-gray-200">
           Cotización Moneda Extranjera

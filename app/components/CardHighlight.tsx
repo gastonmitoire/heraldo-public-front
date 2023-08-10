@@ -38,7 +38,7 @@ export const CardHighlight: React.FC<CardHighlightProps> = ({
             : `/noticias/${category.slug}/${slug}`
         }
         className={`group hover:cursor-pointer ${
-          fullWidth ? "h-[500px] md:h-[600px] lg:[700px]" : "h-[450px]"
+          fullWidth ? "h-[500px] md:h-[600px] xl:[700px]" : "h-[450px]"
         }  ${className}`}
       >
         <article className="h-full">
@@ -54,9 +54,9 @@ export const CardHighlight: React.FC<CardHighlightProps> = ({
                 className="group-hover:brightness-75 transition-all"
               />
 
-              <div className="text-center absolute bottom-5 w-full m-auto lg:w-1/2 lg:translate-x-1/2">
+              <div className="text-center absolute bottom-5 w-full m-auto xl:w-1/2 xl:translate-x-1/2">
                 {liveSports && (
-                  <div className="hidden lg:block w-[50%] mx-auto pr-3">
+                  <div className="hidden xl:block w-[50%] mx-auto pr-3">
                     <iframe
                       src={liveSports}
                       className="w-full opacity-80 group-hover:opacity-100"
@@ -66,11 +66,11 @@ export const CardHighlight: React.FC<CardHighlightProps> = ({
                 )}
 
                 <h5
-                  className={`truncate text-lg font-bold pb-1.5 lg:pr-16 text-white`}
+                  className={`truncate text-lg font-bold pb-1.5 xl:pr-16 text-white`}
                 >
                   {flywheel}
                 </h5>
-                <p className="text-lg font-bold pt-1.5 lg:w-[90%]">
+                <p className="text-lg font-bold pt-1.5 xl:w-[90%]">
                   <span className="bg-white p-1">{title}</span>
                 </p>
               </div>
@@ -84,9 +84,9 @@ export const CardHighlight: React.FC<CardHighlightProps> = ({
                 alt={title}
                 className="group-hover:brightness-75 transition-all"
               />
-              <span className="absolute right-0 left-0 px-3 lg:right-auto lg:left-auto lg:px-0 w-full">
+              <span className="absolute right-0 left-0 px-3 xl:right-auto xl:left-auto xl:px-0 w-full">
                 {liveSports && (
-                  <div className="hidden lg:block w-[60%] mx-auto pr-3 z-10">
+                  <div className="hidden xl:block w-[60%] mx-auto pr-3 z-10">
                     <iframe
                       src={liveSports}
                       className="w-full opacity-80 group-hover:opacity-100"
