@@ -87,7 +87,7 @@ export default async function Home() {
                   desktopImage: bannerHorizontal2[0]?.desktopImage,
                   mobileImage: bannerHorizontal2[0]?.mobileImage,
                 }}
-                className="container mx-auto"
+                className="container mx-auto px-3 lg:px-0"
                 key={banner._id}
               />
             )
