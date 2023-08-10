@@ -61,7 +61,74 @@ export const PostsFeatured: React.FC<PostsFeaturedProps> = async ({
           link={`/noticias/${redirectUrl(fetchPostsProps.option)}`}
         />
       </div>
-      <div className="flex flex-col xl:grid grid-cols-2 gap-3 xl:col-span-3 xl:grid-rows-3 xl:grid-cols-3">
+
+      <div className="col-span-3 grid grid-cols-3 grid-rows-3 gap-3">
+        <div className="bg-gray-300 col-span-2 row-span-2">
+          {posts.length > 0
+            ? posts.slice(0, 1).map((post: any) => (
+                <CardHighlight
+                  key={post._id}
+                  item={{
+                    title: post.title,
+                    flywheel: post.flywheel,
+                    image: post.images[0],
+                    category: post.category,
+                    slug: post.slug,
+                    liveSports: post.liveSports,
+                  }}
+                  className="xl:h-full"
+                />
+              ))
+            : null}
+        </div>
+
+        <div className="col-span-1 row-span-2 grid grid-rows-2 gap-3">
+          {posts.length > 0
+            ? posts.slice(1, 3).map((post: any) => (
+                <Card
+                  key={post._id}
+                  item={{
+                    title: post.title,
+                    flywheel: post.flywheel,
+                    image: post.images[0],
+                    category: post.category,
+                    slug: post.slug,
+                    liveSports: post.liveSports,
+                  }}
+                />
+              ))
+            : null}
+        </div>
+
+        <div className="grid grid-cols-3 gap-3 col-span-3 row-span-1">
+          <div className="flex items-center justify-center">
+            <Banner
+              banner={bannerNetblock.docs[0]}
+              className="h-[350px] w-auto"
+            />
+          </div>
+
+          <div className="col-span-2 grid grid-cols-2 gap-3">
+            {posts.length > 0
+              ? posts.slice(3, 5).map((post: any) => (
+                  <Card
+                    key={post._id}
+                    item={{
+                      title: post.title,
+                      flywheel: post.flywheel,
+                      image: post.images[0],
+                      category: post.category,
+                      slug: post.slug,
+                      liveSports: post.liveSports,
+                    }}
+                  />
+                ))
+              : null}
+          </div>
+        </div>
+      </div>
+
+      {/* <div className="flex flex-col xl:grid grid-cols-2 gap-3 xl:col-span-3 xl:grid-rows-3 xl:grid-cols-3">
         {posts.length > 0
           ? posts.slice(0, 1).map((post: any) => (
               <CardHighlight
@@ -119,7 +186,7 @@ export const PostsFeatured: React.FC<PostsFeaturedProps> = async ({
               />
             ))
           : null}
-      </div>
+      </div> */}
 
       <span className="block xl:hidden">
         <CardGridWithSwiper
@@ -134,7 +201,7 @@ export const PostsFeatured: React.FC<PostsFeaturedProps> = async ({
           banner={bannerSticky.docs[0]}
           sticky
           border
-          className="h-[50%] px-3"
+          className="lg:w-[70%] px-3"
         />
       </aside>
     </div>
