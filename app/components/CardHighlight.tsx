@@ -84,7 +84,7 @@ export const CardHighlight: React.FC<CardHighlightProps> = ({
                 alt={title}
                 className="group-hover:brightness-75 transition-all"
               />
-              <span className="absolute w-full">
+              <span className="absolute right-0 left-0 px-3 lg:right-auto lg:left-auto lg:px-0 w-full">
                 {liveSports && (
                   <div className="hidden lg:block w-[60%] mx-auto pr-3 z-10">
                     <iframe
