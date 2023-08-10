@@ -2,6 +2,7 @@
 
 import React, { Suspense } from "react";
 import Link from "next/link";
+import Image from "next/image";
 
 interface CardHighlightProps {
   item: {
@@ -40,18 +41,17 @@ export const CardHighlight: React.FC<CardHighlightProps> = ({
           fullWidth ? "h-[500px] md:h-[600px] lg:[700px]" : "h-[450px]"
         }  ${className}`}
       >
-        <article
-          className="h-full"
-          style={{
-            background: `url("${image.url}")`,
-            backgroundSize: "cover",
-            backgroundRepeat: "no-repeat",
-            backgroundPosition: "top",
-          }}
-        >
+        <article className="h-full">
           {fullWidth ? (
             <div className="h-full group-hover:bg-black group-hover:bg-opacity-30 transition-colors relative">
               <span className="absolute w-full min-h-[100px] bg-gradient-to-b from-white via-transparent opacity-95"></span>
+
+              <Image
+                src={image.url}
+                layout="fill"
+                objectFit="cover"
+                alt={title}
+              />
 
               <div className="absolute bottom-5 w-1/2 translate-x-1/2 text-center">
                 {liveSports && (
@@ -75,23 +75,31 @@ export const CardHighlight: React.FC<CardHighlightProps> = ({
             </div>
           ) : (
             <div className="relative flex flex-col justify-end h-full pl-3 pb-3 group-hover:bg-black group-hover:bg-opacity-30 transition-colors">
-              {liveSports && (
-                <div className="w-[50%] mx-auto pr-3">
-                  <iframe
-                    src={liveSports}
-                    className="w-full opacity-80 group-hover:opacity-100"
-                  ></iframe>
-                  <div className="absolute top-0 right-0 bottom-0 left-0 opacity-0 cursor-pointer"></div>
-                </div>
-              )}
-              <h5
-                className={`truncate text-lg font-bold pb-1.5 pr-16 text-blue-500`}
-              >
-                {flywheel}
-              </h5>
-              <p className="text-lg font-bold pt-1.5 w-[90%]">
-                <span className="bg-white p-1">{title}</span>
-              </p>
+              <Image
+                src={image.url}
+                layout="fill"
+                objectFit="cover"
+                alt={title}
+              />
+              <span className="absolute w-full">
+                {liveSports && (
+                  <div className="w-[60%] mx-auto pr-3 z-10">
+                    <iframe
+                      src={liveSports}
+                      className="w-full opacity-80 group-hover:opacity-100"
+                    ></iframe>
+                    <div className="absolute top-0 right-0 bottom-0 left-0 opacity-0 cursor-pointer"></div>
+                  </div>
+                )}
+                <h5
+                  className={`truncate text-lg font-bold pb-1.5 pr-16 text-blue-500`}
+                >
+                  {flywheel}
+                </h5>
+                <p className="text-lg font-bold pt-1.5 w-[70%]">
+                  <span className="bg-white p-1">{title}</span>
+                </p>
+              </span>
             </div>
           )}
         </article>
