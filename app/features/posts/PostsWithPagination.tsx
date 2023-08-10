@@ -13,14 +13,15 @@ import { CardHighlight } from "@/app/components/CardHighlight";
 import { fetchPostsWithPagination } from "./service/posts.service";
 
 interface PostsWithPaginationProps {
-  posts: any[];
   option: "category" | "tag";
   value: string;
+  aside?: React.ReactNode;
 }
 
 export const PostsWithPagination: React.FC<PostsWithPaginationProps> = ({
   option,
   value,
+  aside,
 }) => {
   const queryClient = useQueryClient();
   const [page, setPage] = React.useState(0);
@@ -40,8 +41,8 @@ export const PostsWithPagination: React.FC<PostsWithPaginationProps> = ({
   const posts = data?.docs;
 
   return (
-    <>
-      <div className="grid grid-cols-2 gap-3">
+    <div className="grid grid-cols-4 gap-5 w-full">
+      <div className="col-span-4 grid grid-cols-2 gap-3">
         {posts
           ? posts.slice(0, 2).map((post: any) => (
               <CardHighlight
@@ -60,8 +61,8 @@ export const PostsWithPagination: React.FC<PostsWithPaginationProps> = ({
           : null}
       </div>
 
-      <div className="grid grid-cols-4 gap-3">
-        <div className="grid grid-cols-3 col-span-3 gap-3">
+      <div className="col-span-3 grid grid-cols-3 gap-3">
+        <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 col-span-3 gap-3">
           {posts ? (
             posts.slice(2).map((post: any) => (
               <Card
@@ -74,7 +75,6 @@ export const PostsWithPagination: React.FC<PostsWithPaginationProps> = ({
                   slug: post.slug,
                   liveSports: post.liveSports,
                 }}
-                imageClassName="h-[200px] 2xl:h-[300px] object-cover"
               />
             ))
           ) : (
@@ -101,6 +101,8 @@ export const PostsWithPagination: React.FC<PostsWithPaginationProps> = ({
           )}
         </div>
       </div>
-    </>
+
+      <aside className="col-span-1 flex justify-center">{aside}</aside>
+    </div>
   );
 };

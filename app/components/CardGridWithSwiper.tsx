@@ -64,7 +64,7 @@ export const CardGridWithSwiper: React.FC<CardGridWithSwiperProps> = ({
             slidesPerView: 4,
           },
         }}
-        className="h-[370px]"
+        className="h-[470px]"
       >
         {!!data &&
           data.length > 0 &&

@@ -41,11 +41,11 @@ export const Card: React.FC<CardProps> = ({
         }
       >
         <article
-          className={`h-full w-full grid grid-cols-1 grid-rows-2 group ${
+          className={`h-full w-full grid grid-cols-1 grid-rows-5 group ${
             className ? className : ""
           }`}
         >
-          <figure className="relative group-hover:brightness-75 transition-all">
+          <figure className="row-span-3 relative group-hover:brightness-75 transition-all overflow-y-hidden xl:min-h-[290px]">
             <Image
               src={image.url}
               alt={title}
@@ -54,7 +54,7 @@ export const Card: React.FC<CardProps> = ({
             />
 
             {liveSports && (
-              <div className="absolute bottom-0 w-full">
+              <div className="absolute -bottom-14 w-full hidden xl:block">
                 <iframe
                   src={liveSports}
                   className="w-full opacity-80 group-hover:opacity-100"
@@ -63,7 +63,8 @@ export const Card: React.FC<CardProps> = ({
             )}
             <div className="absolute top-0 right-0 bottom-0 left-0 opacity-0 cursor-pointer"></div>
           </figure>
-          <span className="border p-5">
+
+          <span className="row-span-2 border pt-5 px-5">
             <h5 className="text-blue-500 truncate text-lg font-bold pr-16">
               {flywheel}
             </h5>
