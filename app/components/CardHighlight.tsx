@@ -43,7 +43,7 @@ export const CardHighlight: React.FC<CardHighlightProps> = ({
       >
         <article className="h-full">
           {fullWidth ? (
-            <div className="h-full group-hover:bg-black group-hover:bg-opacity-30 transition-colors relative">
+            <div className="h-full relative">
               <span className="absolute w-full min-h-[100px] bg-gradient-to-b from-white via-transparent opacity-95"></span>
 
               <Image
@@ -51,6 +51,7 @@ export const CardHighlight: React.FC<CardHighlightProps> = ({
                 layout="fill"
                 objectFit="cover"
                 alt={title}
+                className="group-hover:brightness-75 transition-all"
               />
 
               <div className="absolute bottom-5 w-1/2 translate-x-1/2 text-center">
@@ -74,12 +75,13 @@ export const CardHighlight: React.FC<CardHighlightProps> = ({
               </div>
             </div>
           ) : (
-            <div className="relative flex flex-col justify-end h-full pl-3 pb-3 group-hover:bg-black group-hover:bg-opacity-30 transition-colors">
+            <div className="relative flex flex-col justify-end h-full pl-3 pb-3">
               <Image
                 src={image.url}
                 layout="fill"
                 objectFit="cover"
                 alt={title}
+                className="group-hover:brightness-75 transition-all"
               />
               <span className="absolute w-full">
                 {liveSports && (

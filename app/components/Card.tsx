@@ -64,7 +64,7 @@ export const Card: React.FC<CardProps> = ({
             <div className="absolute top-0 right-0 bottom-0 left-0 opacity-0 cursor-pointer"></div>
           </figure>
 
-          <span className="row-span-2 border pt-5 px-5">
+          <span className="row-span-2 border pt-5 px-5 group-hover:bg-gray-100">
             <h5 className="text-blue-500 truncate text-lg font-bold pr-16">
               {flywheel}
             </h5>
