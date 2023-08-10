@@ -34,7 +34,7 @@ export const Header: React.FC<HeaderProps> = ({
   return (
     <>
       {banner && pathname === "/" && (
-        <div className="container mx-auto mt-3">
+        <div className="container mx-auto mt-3 px-3 lg:px-0">
           <Banner banner={banner} />
         </div>
       )}
@@ -73,13 +73,15 @@ export const Header: React.FC<HeaderProps> = ({
           className="hidden sm:flex pt-3"
         />
 
-        <div className="flex flex-nowrap overflow-y-auto scrollbar-hide sm:hidden">
-          <Navigation
-            links={filteredCategories}
-            activeClass
-            prefixLink="noticias"
-            className="pt-3 [&>a]:line-clamp-1 [&>a]:w-full"
-          />
+        <div className="px-3">
+          <div className="flex flex-nowrap overflow-y-auto scrollbar-hide sm:hidden">
+            <Navigation
+              links={filteredCategories}
+              activeClass
+              prefixLink="noticias"
+              className="py-3 [&>a]:line-clamp-1 [&>a]:w-full"
+            />
+          </div>
         </div>
       </header>
       {banner && pathname !== "/" && (
