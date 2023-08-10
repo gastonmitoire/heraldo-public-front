@@ -4,10 +4,11 @@
 import React from "react";
 import Link from "next/link";
 import { Swiper, SwiperSlide } from "swiper/react";
-import { Navigation, Pagination, Scrollbar, A11y } from "swiper/modules";
+import { Grid, Navigation, Pagination, Scrollbar, A11y } from "swiper/modules";
 
 // Import Swiper styles
 import "swiper/css";
+import "swiper/css/grid";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
 import "swiper/css/scrollbar";
@@ -63,6 +64,7 @@ export const CardGridWithSwiper: React.FC<CardGridWithSwiperProps> = ({
             slidesPerView: 4,
           },
         }}
+        className="h-[370px]"
       >
         {!!data &&
           data.length > 0 &&
@@ -83,8 +85,6 @@ export const CardGridWithSwiper: React.FC<CardGridWithSwiperProps> = ({
                       slug: item.slug,
                       liveSports: item.liveSports,
                     }}
-                    className={`h-[430px] ${cardClassName}`}
-                    imageClassName="h-[250px] object-cover select-none"
                   />
                 )}
               </>
