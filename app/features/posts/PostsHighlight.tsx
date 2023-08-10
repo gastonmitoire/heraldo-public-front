@@ -59,7 +59,68 @@ export const PostsHighlight: React.FC<PostsHighlightProps> = async ({
         </div>
       ) : null}
 
-      <section className="grid grid-cols-2 gap-3 xl:col-span-3 xl:grid-rows-3 xl:grid-cols-3">
+      <div className="col-span-3 grid grid-cols-3 grid-rows-3 gap-3 min-h-[1200px]">
+        <div className="col-span-2 row-span-2">
+          {highlightPosts?.length > 0 ? (
+            highlightPosts.slice(0, 1).map((post: any) => (
+              <CardHighlight
+                key={post._id}
+                item={{
+                  title: post.title,
+                  flywheel: post.flywheel,
+                  image: post.images[0],
+                  category: post.category,
+                  slug: post.slug,
+                  liveSports: post.liveSports,
+                }}
+                className="col-span-2 xl:col-span-2 xl:row-span-2 xl:h-full"
+              />
+            ))
+          ) : (
+            <Skeleton className="col-span-2 xl:col-span-2 xl:row-span-2 xl:h-full" />
+          )}
+        </div>
+
+        <div className="col-span-1 row-span-2 grid grid-rows-2 gap-3">
+          {highlightPosts?.length > 0
+            ? highlightPosts.slice(1, 3).map((post: any) => (
+                <Card
+                  key={post._id}
+                  item={{
+                    title: post.title,
+                    flywheel: post.flywheel,
+                    image: post.images[0],
+                    category: post.category,
+                    slug: post.slug,
+                    liveSports: post.liveSports,
+                  }}
+                  className="hidden xl:grid"
+                />
+              ))
+            : [1, 2].map((_, index) => <Skeleton key={index} />)}
+        </div>
+
+        <div className="col-span-3 row-span-1 grid grid-cols-3 gap-3">
+          {highlightPosts?.length > 0
+            ? highlightPosts.slice(3, 6).map((post: any) => (
+                <Card
+                  key={post._id}
+                  item={{
+                    title: post.title,
+                    flywheel: post.flywheel,
+                    image: post.images[0],
+                    category: post.category,
+                    slug: post.slug,
+                    liveSports: post.liveSports,
+                  }}
+                  className="hidden xl:grid"
+                />
+              ))
+            : [1, 2, 3].map((_, index) => <Skeleton key={index} />)}
+        </div>
+      </div>
+
+      {/* <section className="grid grid-cols-2 gap-3 xl:col-span-3 xl:grid-rows-3 xl:grid-cols-3">
         {highlightPosts?.length > 0 ? (
           highlightPosts.slice(0, 1).map((post: any) => (
             <CardHighlight
@@ -96,7 +157,7 @@ export const PostsHighlight: React.FC<PostsHighlightProps> = async ({
               />
             ))
           : [1, 2, 3, 4, 5].map((_, index) => <Skeleton key={index} />)}
-      </section>
+      </section> */}
 
       <span className="block xl:hidden">
         <CardGridWithSwiper
@@ -107,16 +168,14 @@ export const PostsHighlight: React.FC<PostsHighlightProps> = async ({
       </span>
 
       <section className="hidden xl:flex flex-col h-full gap-5 xl:col-span-1 md:col-span-2">
-        {/* EDICION IMPRESA */}
         <span>
           <PrintedEdition printedEdition={printedEdition[0]} />
         </span>
 
-        {/* ULTIMAS NOTICIAS */}
         <List
           heading="Últimas Noticias"
           items={lastPosts}
-          listClassName="max-h-[500px]"
+          listClassName="max-h-[300px]"
         />
 
         <Banner banner={banners.docs[0]} className="h-full" />
