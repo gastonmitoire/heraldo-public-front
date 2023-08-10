@@ -40,7 +40,11 @@ export const Card: React.FC<CardProps> = ({
             : `/noticias/${category.slug}/${slug}`
         }
       >
-        <article className="h-full w-full grid grid-cols-1 grid-rows-2 group">
+        <article
+          className={`h-full w-full grid grid-cols-1 grid-rows-2 group ${
+            className ? className : ""
+          }`}
+        >
           <figure className="relative group-hover:brightness-75 transition-all">
             <Image
               src={image.url}
