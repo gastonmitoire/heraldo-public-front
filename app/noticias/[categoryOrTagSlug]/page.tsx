@@ -30,8 +30,6 @@ export default async function Page({
     value: params.categoryOrTagSlug,
   });
 
-  console.log("initialData", params.categoryOrTagSlug);
-
   // AdServer Calls (sticky2)
   const { docs: sticky2 } = await fetchAdServer({
     position: AdServerPositions.sticky2,

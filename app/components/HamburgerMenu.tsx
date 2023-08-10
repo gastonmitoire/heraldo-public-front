@@ -105,7 +105,11 @@ export const HamburgerMenu: React.FC<HamburgerMenuProps> = ({ categories }) => {
             </div>
             <div className="col-span-2 grid grid-cols-2 items-start [&>*]:px-1">
               <div className="h-[90%]">
-                <Navigation links={fixedLinks} className="grid gap-3 pb-5" />
+                <Navigation
+                  links={fixedLinks}
+                  className="grid gap-3 pb-5"
+                  onClick={closeMenu}
+                />
                 <div className="bg-gray-300 w-full h-full">
                   <SocialMediaLinks className="w-full justify-center gap-7 py-10" />
                 </div>

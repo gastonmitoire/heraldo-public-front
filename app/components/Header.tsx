@@ -85,7 +85,7 @@ export const Header: React.FC<HeaderProps> = ({
         </div>
       </header>
       {banner && pathname !== "/" && (
-        <div className="container mx-auto mt-5">
+        <div className="container mx-auto mt-5 px-3 lg:px-0">
           <Banner banner={banner} />
         </div>
       )}

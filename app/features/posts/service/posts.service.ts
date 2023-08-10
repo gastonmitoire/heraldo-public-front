@@ -76,11 +76,6 @@ export const fetchPostsWithPagination = async ({
     method: "GET",
   });
 
-  if (value === "interes_general" || value === "deportes") {
-    console.log("response", response);
-    console.log("finalUrl", finalUrl);
-    console.log("option", option);
-  }
   return response;
 };
 

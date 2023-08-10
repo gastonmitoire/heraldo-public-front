@@ -38,8 +38,6 @@ export const PostsWithPagination: React.FC<PostsWithPaginationProps> = ({
         }),
     });
 
-  console.log(value);
-
   const posts = data?.docs;
 
   return (
@@ -63,7 +61,7 @@ export const PostsWithPagination: React.FC<PostsWithPaginationProps> = ({
           : [1, 2].map((n) => <Skeleton key={n} className="min-h-[500px]" />)}
       </div>
 
-      <div className="col-span-1 lg:col-span-3 grid grid-cols-1 lg:grid-cols-3 gap-3">
+      <div className="col-span-1 lg:col-span-3 grid grid-cols-1 lg:grid-cols-3 gap-3 px-3 lg:px-0">
         <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 col-span-3 gap-3">
           {isSuccess
             ? posts!.slice(2).map((post: any) => (

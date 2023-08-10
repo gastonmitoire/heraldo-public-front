@@ -32,10 +32,6 @@ export const PostsGrid: React.FC<PostsGridProps> = async ({
     postsLimit,
   });
 
-  // if (fetchPostsProps.option === "tag") {
-  //   console.log("posts", posts);
-  // }
-
   const banner = bannerConfig ? await fetchAdServer(bannerConfig) : null;
 
   const dataWithBanner =
