@@ -9,6 +9,7 @@ import { DocsWithPaginationProps } from "@/types";
 
 import { Card } from "@/app/components/Card";
 import { CardHighlight } from "@/app/components/CardHighlight";
+import { Skeleton } from "@/app/components/Skeleton";
 
 import { fetchPostsWithPagination } from "./service/posts.service";
 
@@ -26,15 +27,16 @@ export const PostsWithPagination: React.FC<PostsWithPaginationProps> = ({
   const queryClient = useQueryClient();
   const [page, setPage] = React.useState(0);
 
-  const { status, data, error, isFetching, isPreviousData } = useQuery({
-    queryKey: ["posts", { page, option, value }],
-    queryFn: () =>
-      fetchPostsWithPagination({
-        page,
-        option,
-        value,
-      }),
-  });
+  const { status, data, error, isFetching, isPreviousData, isSuccess } =
+    useQuery({
+      queryKey: ["posts", { page, option, value }],
+      queryFn: () =>
+        fetchPostsWithPagination({
+          page,
+          option,
+          value,
+        }),
+    });
 
   console.log(value);
 
@@ -43,8 +45,8 @@ export const PostsWithPagination: React.FC<PostsWithPaginationProps> = ({
   return (
     <div className="grid grid-cols-4 gap-5 w-full">
       <div className="col-span-4 grid grid-cols-2 gap-3">
-        {posts
-          ? posts.slice(0, 2).map((post: any) => (
+        {isSuccess
+          ? posts!.slice(0, 2).map((post: any) => (
               <CardHighlight
                 key={`highlight-post-${post._id}`}
                 item={{
@@ -58,47 +60,28 @@ export const PostsWithPagination: React.FC<PostsWithPaginationProps> = ({
                 className="min-h-[500px]"
               />
             ))
-          : null}
+          : [1, 2].map((n) => <Skeleton key={n} className="min-h-[500px]" />)}
       </div>
 
       <div className="col-span-3 grid grid-cols-3 gap-3">
         <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 col-span-3 gap-3">
-          {posts ? (
-            posts.slice(2).map((post: any) => (
-              <Card
-                key={post._id}
-                item={{
-                  title: post.title,
-                  flywheel: post.flywheel,
-                  image: post.images[0],
-                  category: post.category,
-                  slug: post.slug,
-                  liveSports: post.liveSports,
-                }}
-              />
-            ))
-          ) : (
-            <div className="col-span-3 flex flex-col justify-center items-center">
-              <svg
-                aria-hidden="true"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth={1.5}
-                viewBox="0 0 24 24"
-                xmlns="http://www.w3.org/2000/svg"
-                className="w-10 h-10 text-gray-500 mx-auto mb-3"
-              >
-                <path
-                  d="M3 3l1.664 1.664M21 21l-1.5-1.5m-5.485-1.242L12 17.25 4.5 21V8.742m.164-4.078a2.15 2.15 0 011.743-1.342 48.507 48.507 0 0111.186 0c1.1.128 1.907 1.077 1.907 2.185V19.5M4.664 4.664L19.5 19.5"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
+          {isSuccess
+            ? posts!.slice(2).map((post: any) => (
+                <Card
+                  key={post._id}
+                  item={{
+                    title: post.title,
+                    flywheel: post.flywheel,
+                    image: post.images[0],
+                    category: post.category,
+                    slug: post.slug,
+                    liveSports: post.liveSports,
+                  }}
                 />
-              </svg>
-              <p className="text-gray-500 text-lg font-semibold">
-                No se encontraron noticias para esta categoría.
-              </p>
-            </div>
-          )}
+              ))
+            : [1, 2, 3, 4, 5, 6].map((n) => (
+                <Skeleton key={n} className="h-[300px]" />
+              ))}
         </div>
       </div>
 
