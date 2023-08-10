@@ -45,15 +45,15 @@ export const PostsHighlight: React.FC<PostsHighlightProps> = async ({
   const banners = await fetchAdServer(bannerConfig);
 
   return (
-    <div className="flex flex-col gap-3 xl:grid xl:grid-cols-4">
+    <div className="grid grid-cols-1 xl:grid-cols-4 gap-3">
       {title ? (
         <div className="w-full xl:col-span-4">
           <Heading title={title} />
         </div>
       ) : null}
 
-      <div className="col-span-3 grid grid-cols-3 grid-rows-3 gap-3 min-h-[1200px]">
-        <div className="col-span-2 row-span-2">
+      <div className="col-span-3 grid grid-cols-3 xl:grid-rows-3 gap-3">
+        <div className="col-span-3 lg:col-span-2 h-[300px] xl:row-span-2 xl:h-auto">
           {highlightPosts?.length > 0 ? (
             highlightPosts.slice(0, 1).map((post: any) => (
               <CardHighlight
@@ -74,7 +74,7 @@ export const PostsHighlight: React.FC<PostsHighlightProps> = async ({
           )}
         </div>
 
-        <div className="col-span-1 row-span-2 grid grid-rows-2 gap-3">
+        <div className="col-span-1 row-span-2 hidden xl:grid grid-rows-2 gap-3">
           {highlightPosts?.length > 0
             ? highlightPosts.slice(1, 3).map((post: any) => (
                 <Card
@@ -93,7 +93,7 @@ export const PostsHighlight: React.FC<PostsHighlightProps> = async ({
             : [1, 2].map((_, index) => <Skeleton key={index} />)}
         </div>
 
-        <div className="col-span-3 row-span-1 grid grid-cols-3 gap-3">
+        <div className="col-span-3 row-span-1 hidden xl:grid grid-cols-3 gap-3">
           {highlightPosts?.length > 0
             ? highlightPosts.slice(3, 6).map((post: any) => (
                 <Card
@@ -113,7 +113,7 @@ export const PostsHighlight: React.FC<PostsHighlightProps> = async ({
         </div>
       </div>
 
-      <span className="block xl:hidden">
+      <span className="block xl:hidden col-span-3">
         <CardGridWithSwiper
           data={highlightPosts?.slice(1, 6)}
           className="col-span-2"
