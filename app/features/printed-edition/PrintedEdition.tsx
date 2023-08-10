@@ -2,6 +2,7 @@
 "use client";
 
 import React, { useState } from "react";
+import Image from "next/image";
 
 import { Button } from "../../components/Button";
 import { PrintedEditionModal } from "./PrintedEditionModal";
@@ -31,9 +32,11 @@ export const PrintedEdition: React.FC<PrintedEditionComponentProps> = ({
         className="p-3 border h-min cursor-pointer group hover:bg-gray-100"
         onClick={openModal}
       >
-        <img
+        <Image
           src={printedEdition.frontPage.url}
           alt={printedEdition.frontPage.filename}
+          width={500}
+          height={400}
         />
 
         <Button

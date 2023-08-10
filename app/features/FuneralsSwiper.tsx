@@ -2,6 +2,7 @@
 "use client";
 
 import React from "react";
+import Image from "next/image";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation, Pagination, Scrollbar, A11y } from "swiper/modules";
 
@@ -21,7 +22,7 @@ export const FuneralsSwiper: React.FC<Props> = ({ funerals }) => {
       modules={[Pagination, Scrollbar, A11y]}
       spaceBetween={0}
       slidesPerView={5}
-      className={`flex flex-col gap-3`}
+      className={`flex flex-col gap-3 h-[100px]`}
       breakpoints={{
         // when window width is >= 640px
         320: {
@@ -50,10 +51,12 @@ export const FuneralsSwiper: React.FC<Props> = ({ funerals }) => {
     >
       {funerals.map((item) => (
         <SwiperSlide key={item._id}>
-          <div className="flex items-center justify-center gap-3 px-3 py-5 bg-black text-white cursor-pointer hover:bg-opacity-90 transition-all">
-            <img
-              src="https://www.elheraldo.com.ar/_next/static/media/imgCrossCardFunebre.b81ca149.svg"
-              alt=""
+          <div className="h-full flex items-center justify-center gap-3 px-3 py-5 bg-black text-white cursor-pointer hover:bg-opacity-90 transition-all">
+            <Image
+              src="/images/imgCrossCardFunebre.b81ca149.svg"
+              alt={item.title}
+              width={30}
+              height={50}
             />
             <p className="text-sm">{item.title}</p>
           </div>

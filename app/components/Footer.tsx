@@ -1,6 +1,7 @@
 // footer component
 
 import React from "react";
+import Image from "next/image";
 
 import { Navigation } from "./Navigation";
 import { SocialMediaLinks } from "./SocialMediaLinks";
@@ -16,10 +17,12 @@ export const Footer: React.FC<FooterProps> = ({ categories }) => {
         <div className="flex items-center justify-center xl:justify-between py-5">
           <SocialMediaLinks className="hidden xl:flex" />
 
-          <img
-            src="https://www.elheraldo.com.ar/_next/static/media/logoBottom.86227929.svg"
+          <Image
+            src="/images/logoBottom.86227929.svg"
             alt=""
             className="h-10"
+            width={300}
+            height={50}
           />
 
           <button type="button" className="hidden xl:flex">
@@ -47,10 +50,12 @@ export const Footer: React.FC<FooterProps> = ({ categories }) => {
             Director Periodístico: <span>Roberto W. Caminos</span>
           </p>
 
-          <img
-            src="https://www.elheraldo.com.ar/_next/static/media/imgQRFooter.42875908.svg"
+          <Image
+            src="/images/imgQRFooter.42875908.svg"
             alt=""
             className="mx-auto mt-5 h-20"
+            width={100}
+            height={100}
           />
         </div>
       </div>

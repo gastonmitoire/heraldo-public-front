@@ -1,4 +1,5 @@
 import React from "react";
+import Image from "next/image";
 
 import { Modal } from "@/app/components/Modal";
 
@@ -41,10 +42,11 @@ export const PrintedEditionModal: React.FC<PrintedEditionModalProps> = ({
     <Modal isOpen={isOpen} onClose={onClose} maxWidth="max-w-5xl">
       <div className="flex flex-col gap-5 pb-5 max-h-[90vh]">
         <figure className="h-[90%] overflow-auto">
-          <img
+          <Image
             src={url}
-            alt=""
-            className="h-full w-full mx-auto group-hover:opacity-0 transition-opacity duration-300"
+            alt={"El Heraldo | Edición impresa"}
+            width={1000}
+            height={1000}
           />
         </figure>
         {/* social links (copy link, facebook, twitter, whatsApp) */}

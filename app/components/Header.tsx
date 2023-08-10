@@ -1,6 +1,7 @@
 "use client";
 
 import React from "react";
+import Image from "next/image";
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
@@ -46,10 +47,12 @@ export const Header: React.FC<HeaderProps> = ({
 
           <div className="flex-auto flex justify-center">
             <Link href="/">
-              <img
-                src="https://www.elheraldo.com.ar/_next/static/media/logoMobile.da7a8911.svg"
+              <Image
+                src="/images/logoMobile.da7a8911.svg"
                 alt=""
                 className="h-6 sm:h-8 md:h-10 xl:h-12"
+                width={700}
+                height={50}
               />
             </Link>
           </div>
