@@ -54,9 +54,9 @@ export const CardHighlight: React.FC<CardHighlightProps> = ({
                 className="group-hover:brightness-75 transition-all"
               />
 
-              <div className="absolute bottom-5 w-1/2 translate-x-1/2 text-center">
+              <div className="text-center absolute bottom-5 w-full m-auto lg:w-1/2 lg:translate-x-1/2">
                 {liveSports && (
-                  <div className="w-[50%] mx-auto pr-3">
+                  <div className="hidden lg:block w-[50%] mx-auto pr-3">
                     <iframe
                       src={liveSports}
                       className="w-full opacity-80 group-hover:opacity-100"
@@ -64,12 +64,13 @@ export const CardHighlight: React.FC<CardHighlightProps> = ({
                     <div className="absolute top-0 right-0 bottom-0 left-0 opacity-0 cursor-pointer"></div>
                   </div>
                 )}
+
                 <h5
-                  className={`truncate text-lg font-bold pb-1.5 pr-16 text-white`}
+                  className={`truncate text-lg font-bold pb-1.5 lg:pr-16 text-white`}
                 >
                   {flywheel}
                 </h5>
-                <p className="text-lg font-bold pt-1.5 w-[90%]">
+                <p className="text-lg font-bold pt-1.5 lg:w-[90%]">
                   <span className="bg-white p-1">{title}</span>
                 </p>
               </div>
