@@ -5,6 +5,7 @@ import { Card } from "@/app/components/Card";
 import { CardHighlight } from "@/app/components/CardHighlight";
 
 import { PostsHighlight } from "@/app/features/posts/PostsHighlight";
+import { PostsWithPagination } from "@/app/features/posts/PostsWithPagination";
 
 import { AdServerPositions, fetchAdServer } from "@/app/service/app.service";
 
@@ -14,23 +15,22 @@ import {
   PostsPositions,
 } from "@/app/features/posts/service/posts.service";
 
-export const metadata: Metadata = {
-  title: "Noticias",
-  description: "Noticias de El Heraldo",
-};
-
 export default async function Page({
   params,
 }: {
   params: { categoryOrTagSlug: string };
 }) {
-  const { docs: posts } = await fetchPostsWithPagination({
+  const ifCategory = Object.keys(PostsCategories).includes(
+    params.categoryOrTagSlug
+  );
+
+  const { docs: initialData } = await fetchPostsWithPagination({
     page: 1,
-    option: Object.keys(PostsCategories).includes(params.categoryOrTagSlug)
-      ? "category"
-      : "tag",
-    value: params.categoryOrTagSlug.replaceAll("_", " "),
+    option: ifCategory ? "category" : "tag",
+    value: params.categoryOrTagSlug,
   });
+
+  console.log("initialData", params.categoryOrTagSlug);
 
   // AdServer Calls (sticky2)
   const { docs: sticky2 } = await fetchAdServer({
@@ -41,11 +41,21 @@ export default async function Page({
     <div className="container flex flex-col pt-5 gap-5 mx-auto">
       {/* PAGE TITLE */}
       <h1 className="text-4xl font-bold text-gray-800 capitalize">
-        {params.categoryOrTagSlug.replaceAll("_", " ")}
+        {params.categoryOrTagSlug.replaceAll(/%20|_/g, " ")}
       </h1>
 
+      <PostsWithPagination
+        posts={initialData}
+        option={
+          Object.keys(PostsCategories).includes(params.categoryOrTagSlug)
+            ? "category"
+            : "tag"
+        }
+        value={params.categoryOrTagSlug}
+      />
+
       {/* CATEGORY POSTS HIGHLIGHT */}
-      <div className="grid grid-cols-2 gap-3">
+      {/* <div className="grid grid-cols-2 gap-3">
         {posts[0]
           ? posts.slice(0, 2).map((post: any) => (
               <CardHighlight
@@ -62,11 +72,11 @@ export default async function Page({
               />
             ))
           : null}
-      </div>
+      </div> */}
 
       {/* CATEGORY POSTS */}
       <div className="grid grid-cols-4 gap-3">
-        <div className="grid grid-cols-3 col-span-3 gap-3">
+        {/* <div className="grid grid-cols-3 col-span-3 gap-3">
           {posts[0] ? (
             posts.slice(2).map((post: any) => (
               <Card
@@ -104,12 +114,12 @@ export default async function Page({
               </p>
             </div>
           )}
-        </div>
+        </div> */}
 
         {/* CATEGORY POSTS SIDEBAR */}
         <aside className="grid grid-cols-1 col-span-1 gap-3">
           {/* BANNER */}
-          <Banner
+          {/* <Banner
             banner={{
               title: sticky2[0]?.title,
               site: sticky2[0]?.site,
@@ -120,7 +130,7 @@ export default async function Page({
             className="max-h-[600px] object-contain px-5"
             sticky
             border
-          />
+          /> */}
         </aside>
       </div>
 

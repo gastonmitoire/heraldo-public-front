@@ -4,12 +4,12 @@ import { DocsWithPaginationProps, PostProps } from "@/types";
 
 export enum PostsPositions {
   urgent = "urgent",
-  superHighlight = "super_highlight",
+  super_highlight = "super_highlight",
   highlight = "highlight",
   top = "top",
   front = "front",
   video = "video",
-  photoGalery = "photo_galery",
+  photo_galery = "photo_galery",
   section = "section",
 }
 
@@ -35,11 +35,11 @@ export enum PostsCategories {
   educacion = "educacion",
   espectaculos = "espectaculos",
   politica = "politica",
-  interesGeneral = "interes_general",
+  interes_general = "interes_general",
   sociales = "sociales",
   ciencia = "ciencia",
-  informativoDocente = "informativo_docente",
-  correoDeLectores = "correo_de_lectores",
+  informativo_docente = "informativo_docente",
+  correo_de_lectores = "correo_de_lectores",
 }
 
 export interface FetchPostsWithPaginationProps {
@@ -56,11 +56,31 @@ export interface FetchPostsWithOptionsProps {
 
 export const fetchPostsWithPagination = async ({
   page,
+  option,
+  value,
 }: FetchPostsWithPaginationProps): Promise<DocsWithPaginationProps> => {
-  const response = await fetchClient(`/posts?page=${page}`, {
+  let url = "";
+
+  if (option === "position") {
+    url = `/position/${value}`;
+  } else if (option === "category") {
+    url = `/category/${value}`;
+  } else if (option === "tag") {
+    url = `/tags/${value}`;
+  }
+
+  const finalUrl = `/posts${url}?page=${page}`;
+
+  // conditional response based on option
+  const response: DocsWithPaginationProps = await fetchClient(finalUrl, {
     method: "GET",
   });
 
+  if (value === "interes_general" || value === "deportes") {
+    console.log("response", response);
+    console.log("finalUrl", finalUrl);
+    console.log("option", option);
+  }
   return response;
 };
 

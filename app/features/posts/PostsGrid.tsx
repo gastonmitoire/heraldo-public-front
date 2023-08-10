@@ -58,7 +58,7 @@ export const PostsGrid: React.FC<PostsGridProps> = async ({
       case "position":
         return posts[0].category?.slug;
       case "tag":
-        return fetchPostsProps.value.replaceAll(" ", "_");
+        return fetchPostsProps.value;
       default:
         return "";
     }
