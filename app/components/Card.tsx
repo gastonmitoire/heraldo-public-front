@@ -39,21 +39,15 @@ export const Card: React.FC<CardProps> = ({
             ? `${prefixLink}/${category.slug}/${slug}`
             : `/noticias/${category.slug}/${slug}`
         }
+        className="w-full min-h-[370px] h-full"
       >
-        <article
-          className={`${className} flex flex-col group hover:cursor-pointer transition-all`}
-        >
-          <figure className="flex-1 relative group-hover:brightness-75 transition-all">
-            <span className="absolute top-3 left-3 uppercase bg-black bg-opacity-80 text-white font-light text-sm py-1 px-3">
-              {category?.name}
-            </span>
-
+        <article className="h-full w-full grid grid-rows-2 group">
+          <figure className="relative group-hover:brightness-75 transition-all">
             <Image
               src={image.url}
               alt={title}
-              className={`max-h-[300px] w-full ${imageClassName}`}
-              height={300}
-              width={300}
+              layout="fill"
+              objectFit="cover"
             />
 
             {liveSports && (
@@ -66,12 +60,12 @@ export const Card: React.FC<CardProps> = ({
             )}
             <div className="absolute top-0 right-0 bottom-0 left-0 opacity-0 cursor-pointer"></div>
           </figure>
-          <div className="flex-1 pt-3 border p-5">
+          <span className="border p-5">
             <h5 className="text-blue-500 truncate text-lg font-bold pr-16">
               {flywheel}
             </h5>
             <p className="text-lg font-bold">{title}</p>
-          </div>
+          </span>
         </article>
       </Link>
     </Suspense>
