@@ -132,7 +132,9 @@ export const PostsFeatured: React.FC<PostsFeaturedProps> = async ({
       </span>
 
       <aside className="xl:col-span-1 flex flex-col items-center">
-        <AdServerComponent position={bannerStickyConfig.position} />
+        <span className="sticky top-0 w-[70%]">
+          <AdServerComponent position={bannerStickyConfig.position} />
+        </span>
       </aside>
     </div>
   );
