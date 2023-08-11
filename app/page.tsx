@@ -14,6 +14,9 @@ import { PostsUrgentMarquee } from "./features/posts/PostsUrgentMarquee";
 // Posts
 import { PostsFeatured } from "./features/posts/PostsFeatured";
 
+//Types
+import { FuneralNoticeProps } from "@/types";
+
 import {
   fetchAdServer,
   AdServerPositions,
@@ -34,6 +37,16 @@ export default async function Home() {
 
   // Funerals Calls
   const { docs: funerals } = await fetchFuneralNotices();
+
+  const funeralNotices = funerals.reduce((result: FuneralNoticeProps[], current: FuneralNoticeProps) => {
+    const exist = result.some((item) => item.title === current.title);
+    
+    if (!exist) {
+      result.push(current);
+    }
+    
+    return result;
+  }, []);
 
   return (
     <div className="flex flex-col gap-5">
@@ -111,7 +124,7 @@ export default async function Home() {
 
       {/* FUNERALS PREVIEW SECTION & BANNER (horizontal8, horizontal9) & POSTS-FEATURED (category: deportes) */}
       <section className="container mx-auto flex flex-col gap-5">
-        <FuneralsPreview funerals={funerals.slice(0, 5)} />
+        <FuneralsPreview funerals={funeralNotices.slice(0, 5)} />
 
         <AdServerComponent position={AdServerPositions.horizontal8} />
 

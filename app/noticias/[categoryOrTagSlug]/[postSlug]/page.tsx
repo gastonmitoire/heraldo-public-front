@@ -68,12 +68,12 @@ export default async function Page({
   params,
 }: {
   params: {
-    categorySlug: string;
+    categoryOrTagSlug: string;
     postSlug: string;
   };
 }) {
   //fetch posts by category
-  const { categorySlug, postSlug } = params;
+  const { categoryOrTagSlug, postSlug } = params;
   const URL = process.env.NEXT_PUBLIC_API_URL;
   const postQuery = fetch(`${URL}/posts/slug/${postSlug}`).then((res) =>
     res.json()
@@ -86,7 +86,9 @@ export default async function Page({
       (value) => value === str
     ) as PostsCategories;
   }
-  const category = getEnumValueCategories(categorySlug);
+  const category = getEnumValueCategories(categoryOrTagSlug);
+  console.log(category, categoryOrTagSlug);
+  
   const postsCategoryQuery = fetchPosts({
     category: category,
     postsLimit: 4,
@@ -141,9 +143,6 @@ export default async function Page({
     fetchBannerNetblock3,
     fetchBannerNetblock4,
   ]);
-  console.log(post);
-  //console.log('sticky', sticky2);
-  console.log("right", right);
 
   //right.docs.map((banner: any) => console.log(banner.desktopImage));
 
