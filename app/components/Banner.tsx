@@ -1,6 +1,6 @@
 // banner component
 
-import React from "react";
+import React, { Suspense } from "react";
 import Image from "next/image";
 import Link from "next/link";
 
@@ -30,22 +30,24 @@ export const Banner: React.FC<BannerProps> = ({
         sticky ? "sticky top-0" : ""
       } ${border ? "xl:border" : ""} ${className || ""}`}
     >
-      <Link href={url || "/"} target="_blank" className="flex relative">
-        <Image
-          src={desktopImage?.url}
-          alt={`${title} - ${site} - desktop`}
-          width={960}
-          height={100}
-          className="hidden xl:block"
-        />
-        <Image
-          src={mobileImage?.url}
-          alt={`${title} - ${site} - mobile`}
-          width={450}
-          height={250}
-          className="block xl:hidden"
-        />
-      </Link>
+      <Suspense fallback={<div>Cargando publicidad...</div>}>
+        <Link href={url || "/"} target="_blank" className="flex relative">
+          <Image
+            src={desktopImage?.url}
+            alt={`${title} - ${site} - desktop`}
+            width={960}
+            height={100}
+            className="hidden xl:block"
+          />
+          <Image
+            src={mobileImage?.url}
+            alt={`${title} - ${site} - mobile`}
+            width={450}
+            height={250}
+            className="block xl:hidden"
+          />
+        </Link>
+      </Suspense>
     </div>
   );
 };
