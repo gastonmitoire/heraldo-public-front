@@ -5,9 +5,6 @@ export interface UserProps {
   _id: number | string;
   email: string;
   username: string;
-  role: string;
-  createdAt: string;
-  updatedAt: string;
 }
 
 // image type definition
@@ -28,7 +25,11 @@ export interface SectionProps {
 export interface CategoryProps {
   _id: number | string;
   name: string;
+  description: string;
   slug: string;
+  atMenu: boolean;
+  posts: Pick<PostProps, "_id">[];
+  createdBy: User;
 }
 
 // post type definition

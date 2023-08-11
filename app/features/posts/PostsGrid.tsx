@@ -6,11 +6,16 @@ import { Banner } from "@/app/components/Banner";
 import { CardGridWithSwiper } from "@/app/components/CardGridWithSwiper";
 import { Heading } from "@/app/components/Heading";
 
+import { AdServerComponent } from "../ad-servers/AdServerComponent";
+
+import {
+  fetchAdServer,
+  AdServerPositions,
+} from "../ad-servers/service/ad-servers.service";
 import {
   fetchPostsWithOptions,
   FetchPostsWithOptionsProps,
 } from "./service/posts.service";
-import { AdServerPositions, fetchAdServer } from "@/app/service/app.service";
 
 interface PostsGridProps {
   fetchPostsProps: FetchPostsWithOptionsProps;

@@ -1,14 +1,10 @@
 import type { Metadata } from "next";
 
-import { Banner } from "@/app/components/Banner";
-import { Card } from "@/app/components/Card";
-import { CardHighlight } from "@/app/components/CardHighlight";
-
+import { AdServerComponent } from "@/app/features/ad-servers/AdServerComponent";
 import { PostsHighlight } from "@/app/features/posts/PostsHighlight";
 import { PostsWithPagination } from "@/app/features/posts/PostsWithPagination";
 
-import { AdServerPositions, fetchAdServer } from "@/app/service/app.service";
-
+import { AdServerPositions } from "@/app/features/ad-servers/service/ad-servers.service";
 import {
   fetchPostsWithPagination,
   PostsCategories,
@@ -30,11 +26,6 @@ export default async function Page({
     value: params.categoryOrTagSlug,
   });
 
-  // AdServer Calls (sticky2)
-  const { docs: sticky2 } = await fetchAdServer({
-    position: AdServerPositions.sticky2,
-  });
-
   return (
     <div className="container flex flex-col pt-5 gap-5 mx-auto">
       {/* PAGE TITLE */}
@@ -50,18 +41,7 @@ export default async function Page({
         }
         value={params.categoryOrTagSlug}
         aside={
-          <Banner
-            banner={{
-              title: sticky2[0]?.title,
-              site: sticky2[0]?.site,
-              url: sticky2[0]?.url,
-              desktopImage: sticky2[0]?.desktopImage,
-              mobileImage: sticky2[0]?.mobileImage,
-            }}
-            className="w-[75%] h-min object-contain px-5"
-            sticky
-            border
-          />
+          <AdServerComponent sticky position={AdServerPositions.sticky2} />
         }
       />
 

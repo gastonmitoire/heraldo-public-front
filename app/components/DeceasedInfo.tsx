@@ -12,7 +12,6 @@ const Output = dynamic(
 const DeceasedInfo = ({ deceased }: { deceased: FuneralNoticeProps }) => {
   const [dataInputs, setDataInputs] = useState<FuneralNoticeProps[]>([]);
 
-  console.log(process.env.NEXT_PUBLIC_API_URL);
   useEffect(() => {
     const fetchData = async () => {
       const data = await fetchFuneralNotices({ deceased: deceased.title });

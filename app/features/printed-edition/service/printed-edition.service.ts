@@ -1,10 +1,12 @@
+import { fetchClient } from "@/app/utils";
+
 // PRINTED EDITION ENDPOINTS
 export const fetchPrintedEdition = async () => {
-  const url = process.env.NEXT_PUBLIC_API_URL + "/print-editions";
+  const url = "/print-editions";
 
-  const response = await fetch(url, {
+  const response = await fetchClient(url, {
     method: "GET",
   });
 
-  return response.json();
+  return response;
 };

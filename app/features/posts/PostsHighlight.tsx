@@ -9,15 +9,17 @@ import { Heading } from "../../components/Heading";
 import { List } from "@/app/components/List";
 import { Skeleton } from "../../components/Skeleton";
 
+import { AdServerComponent } from "../ad-servers/AdServerComponent";
+
 import { PrintedEdition } from "../printed-edition/PrintedEdition";
 
-import { fetchPrintedEdition } from "../printed-edition/service/printed-edition.service";
+import { AdServerPositions } from "../ad-servers/service/ad-servers.service";
 import {
   fetchPostsWithPagination,
   fetchPostsWithOptions,
   FetchPostsWithOptionsProps,
 } from "./service/posts.service";
-import { fetchAdServer, AdServerPositions } from "../../service/app.service";
+import { fetchPrintedEdition } from "../printed-edition/service/printed-edition.service";
 
 interface PostsHighlightProps {
   fetchPostsProps: FetchPostsWithOptionsProps;
@@ -41,8 +43,6 @@ export const PostsHighlight: React.FC<PostsHighlightProps> = async ({
   });
 
   const { docs: printedEdition } = await fetchPrintedEdition();
-
-  const banners = await fetchAdServer(bannerConfig);
 
   return (
     <div className="grid grid-cols-1 xl:grid-cols-4 gap-3">
@@ -132,7 +132,7 @@ export const PostsHighlight: React.FC<PostsHighlightProps> = async ({
           listClassName="max-h-[300px]"
         />
 
-        <Banner banner={banners.docs[0]} className="relative" />
+        <AdServerComponent position={bannerConfig.position} />
       </section>
     </div>
   );
