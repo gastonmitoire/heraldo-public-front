@@ -62,7 +62,7 @@ export default async function Home() {
 
   // Funerals Calls
   const { docs: funerals } = await fetch(
-    `${process.env.API_URL}/funeral-notices`
+    `${process.env.NEXT_PUBLIC_API_URL}/funeral-notices`
   ).then((res) => res.json());
 
   return (
