@@ -6,8 +6,10 @@ import BannerAdSense from "@/app/components/BannerAdSense";
 import { CardGridWithSwiper } from "@/app/components/CardGridWithSwiper";
 
 import {
-  AdServerPositions,
   fetchAdServer,
+  AdServerPositions,
+} from "@/app/features/ad-servers/service/ad-servers.service";
+import {
   fetchPosts,
   PostsPositions,
   PostsCategories,

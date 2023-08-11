@@ -1,7 +1,6 @@
 import React from "react";
 
-import { Banner } from "./components/Banner";
-
+import { AdServerComponent } from "./features/ad-servers/AdServerComponent";
 import { CurrencyAndRiver } from "./features/CurrencyAndRiver";
 import { FuneralsPreview } from "./features/FuneralsPreview";
 import { PostsHighlight } from "./features/posts/PostsHighlight";
@@ -13,7 +12,10 @@ import { PostsUrgentMarquee } from "./features/posts/PostsUrgentMarquee";
 // Posts
 import { PostsFeatured } from "./features/posts/PostsFeatured";
 
-import { AdServerPositions, fetchAdServer } from "@/app/service/app.service";
+import {
+  fetchAdServer,
+  AdServerPositions,
+} from "./features/ad-servers/service/ad-servers.service";
 import {
   fetchPostsWithOptions,
   PostsPositions,
@@ -26,38 +28,6 @@ export default async function Home() {
   const postsEspectaculosCategory = await fetchPostsWithOptions({
     option: "category",
     value: PostsCategories.espectaculos,
-  });
-
-  // AdServer Calls
-  // (horizontal2, horizontal3, horizontal4, horizontal5,
-  //  horizontal6, horizontal8, horizontal9, horizontal10,
-  //  horizontal11)
-  const { docs: bannerHorizontal2 } = await fetchAdServer({
-    position: AdServerPositions.horizontal2,
-  });
-  const { docs: bannerHorizontal3 } = await fetchAdServer({
-    position: AdServerPositions.horizontal3,
-  });
-  const { docs: bannerHorizontal4 } = await fetchAdServer({
-    position: AdServerPositions.horizontal4,
-  });
-  const { docs: bannerHorizontal5 } = await fetchAdServer({
-    position: AdServerPositions.horizontal5,
-  });
-  const { docs: bannerHorizontal6 } = await fetchAdServer({
-    position: AdServerPositions.horizontal6,
-  });
-  const { docs: bannerHorizontal8 } = await fetchAdServer({
-    position: AdServerPositions.horizontal8,
-  });
-  const { docs: bannerHorizontal9 } = await fetchAdServer({
-    position: AdServerPositions.horizontal9,
-  });
-  const { docs: bannerHorizontal10 } = await fetchAdServer({
-    position: AdServerPositions.horizontal10,
-  });
-  const { docs: bannerHorizontal11 } = await fetchAdServer({
-    position: AdServerPositions.horizontal11,
   });
 
   // Funerals Calls
@@ -76,22 +46,7 @@ export default async function Home() {
       <section className="flex flex-col gap-5">
         <PostsUrgentMarquee />
 
-        {bannerHorizontal2.map(
-          (banner: any) =>
-            banner.status === "published" && (
-              <Banner
-                banner={{
-                  title: bannerHorizontal2[0]?.title,
-                  site: bannerHorizontal2[0]?.site,
-                  url: bannerHorizontal2[0]?.url,
-                  desktopImage: bannerHorizontal2[0]?.desktopImage,
-                  mobileImage: bannerHorizontal2[0]?.mobileImage,
-                }}
-                className="container mx-auto px-3 xl:px-0"
-                key={banner._id}
-              />
-            )
-        )}
+        <AdServerComponent position={AdServerPositions.horizontal2} />
       </section>
 
       {/* HIGHLIGHT SECTION */}
@@ -109,29 +64,11 @@ export default async function Home() {
 
       {/* BANNERS & CURRENCY SECTION */}
       <section className="container flex flex-col gap-5 mx-auto">
-        <Banner
-          banner={{
-            title: bannerHorizontal3[0]?.title,
-            site: bannerHorizontal3[0]?.site,
-            url: bannerHorizontal3[0]?.url,
-            desktopImage: bannerHorizontal3[0]?.desktopImage,
-            mobileImage: bannerHorizontal3[0]?.mobileImage,
-          }}
-          className="px-3 xl:px-0"
-        />
+        <AdServerComponent position={AdServerPositions.horizontal3} />
 
         <CurrencyAndRiver />
 
-        <Banner
-          banner={{
-            title: bannerHorizontal4[0]?.title,
-            site: bannerHorizontal4[0]?.site,
-            url: bannerHorizontal4[0]?.url,
-            desktopImage: bannerHorizontal4[0]?.desktopImage,
-            mobileImage: bannerHorizontal4[0]?.mobileImage,
-          }}
-          className="px-3 xl:px-0"
-        />
+        <AdServerComponent position={AdServerPositions.horizontal4} />
       </section>
 
       {/* CARD GRID WITH SWIPER SECTION (TOP NEWS) */}
@@ -146,16 +83,7 @@ export default async function Home() {
 
       {/* POSTGRID SECTION & BANNERS (FUTBOL TAG, bannerHorizontal5, bannerHorizontal6 ) */}
       <section className="container mx-auto flex flex-col gap-5">
-        <Banner
-          banner={{
-            title: bannerHorizontal5[0]?.title,
-            site: bannerHorizontal5[0]?.site,
-            url: bannerHorizontal5[0]?.url,
-            desktopImage: bannerHorizontal5[0]?.desktopImage,
-            mobileImage: bannerHorizontal5[0]?.mobileImage,
-          }}
-          className="px-3 xl:px-0"
-        />
+        <AdServerComponent position={AdServerPositions.horizontal5} />
 
         <PostsGrid
           title="Elecciones 2023"
@@ -165,16 +93,7 @@ export default async function Home() {
           }}
         />
 
-        <Banner
-          banner={{
-            title: bannerHorizontal6[0]?.title,
-            site: bannerHorizontal6[0]?.site,
-            url: bannerHorizontal6[0]?.url,
-            desktopImage: bannerHorizontal6[0]?.desktopImage,
-            mobileImage: bannerHorizontal6[0]?.mobileImage,
-          }}
-          className="px-3 xl:px-0"
-        />
+        <AdServerComponent position={AdServerPositions.horizontal6} />
 
         <PostsGrid
           title="Agenda Deportiva"
@@ -187,32 +106,14 @@ export default async function Home() {
           }}
         />
 
-        <Banner
-          banner={{
-            title: bannerHorizontal6[0]?.title,
-            site: bannerHorizontal6[0]?.site,
-            url: bannerHorizontal6[0]?.url,
-            desktopImage: bannerHorizontal6[0]?.desktopImage,
-            mobileImage: bannerHorizontal6[0]?.mobileImage,
-          }}
-          className="px-3 xl:px-0"
-        />
+        <AdServerComponent position={AdServerPositions.horizontal7} />
       </section>
 
       {/* FUNERALS PREVIEW SECTION & BANNER (horizontal8, horizontal9) & POSTS-FEATURED (category: deportes) */}
       <section className="container mx-auto flex flex-col gap-5">
         <FuneralsPreview funerals={funerals.slice(0, 5)} />
 
-        <Banner
-          banner={{
-            title: bannerHorizontal8[0]?.title,
-            site: bannerHorizontal8[0]?.site,
-            url: bannerHorizontal8[0]?.url,
-            desktopImage: bannerHorizontal8[0]?.desktopImage,
-            mobileImage: bannerHorizontal8[0]?.mobileImage,
-          }}
-          className="px-3 xl:px-0"
-        />
+        <AdServerComponent position={AdServerPositions.horizontal8} />
 
         <PostsFeatured
           fetchPostsProps={{
@@ -227,16 +128,7 @@ export default async function Home() {
           }}
         />
 
-        <Banner
-          banner={{
-            title: bannerHorizontal9[0]?.title,
-            site: bannerHorizontal9[0]?.site,
-            url: bannerHorizontal9[0]?.url,
-            desktopImage: bannerHorizontal9[0]?.desktopImage,
-            mobileImage: bannerHorizontal9[0]?.mobileImage,
-          }}
-          className="px-3 xl:px-0"
-        />
+        <AdServerComponent position={AdServerPositions.horizontal9} />
       </section>
 
       {/* GALLERY IMAGE FULLSCREEN (swiper) SECTION */}
@@ -249,16 +141,7 @@ export default async function Home() {
 
       {/* BANNERS (horizontal10, horizontal11) & POSTGRID (cultura, magazine) */}
       <section className="container mx-auto flex flex-col gap-5">
-        <Banner
-          banner={{
-            title: bannerHorizontal10[0]?.title,
-            site: bannerHorizontal10[0]?.site,
-            url: bannerHorizontal10[0]?.url,
-            desktopImage: bannerHorizontal10[0]?.desktopImage,
-            mobileImage: bannerHorizontal10[0]?.mobileImage,
-          }}
-          className="px-3 xl:px-0"
-        />
+        <AdServerComponent position={AdServerPositions.horizontal10} />
 
         <PostsGrid
           title="Cultura"
@@ -269,16 +152,7 @@ export default async function Home() {
           }}
         />
 
-        <Banner
-          banner={{
-            title: bannerHorizontal11[0]?.title,
-            site: bannerHorizontal11[0]?.site,
-            url: bannerHorizontal11[0]?.url,
-            desktopImage: bannerHorizontal11[0]?.desktopImage,
-            mobileImage: bannerHorizontal11[0]?.mobileImage,
-          }}
-          className="px-3 xl:px-0"
-        />
+        <AdServerComponent position={AdServerPositions.horizontal11} />
 
         <PostsGrid
           title="Magazine"

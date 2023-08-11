@@ -6,14 +6,19 @@ import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 
-import { Banner } from "./Banner";
 import { HamburgerMenu } from "./HamburgerMenu";
 import { Navigation } from "./Navigation";
 import { SocialMediaLinks } from "./SocialMediaLinks";
 
+import { AdServerComponent } from "@/app/features/ad-servers/AdServerComponent";
+
+import { AdServerPositions } from "../features/ad-servers/service/ad-servers.service";
+
 interface HeaderProps {
   categories: any;
-  banner?: any;
+  banner: {
+    position: AdServerPositions;
+  };
 }
 
 export const Header: React.FC<HeaderProps> = ({
@@ -36,7 +41,7 @@ export const Header: React.FC<HeaderProps> = ({
     <>
       {banner && pathname === "/" && (
         <div className="container mx-auto mt-3 px-3 xl:px-0">
-          <Banner banner={banner} />
+          <AdServerComponent position={banner.position} />
         </div>
       )}
       <header>
@@ -89,7 +94,7 @@ export const Header: React.FC<HeaderProps> = ({
       </header>
       {banner && pathname !== "/" && (
         <div className="container mx-auto mt-5 px-3 xl:px-0">
-          <Banner banner={banner} />
+          <AdServerComponent position={banner.position} />
         </div>
       )}
     </>
