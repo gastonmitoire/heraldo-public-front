@@ -10,15 +10,11 @@ import { HamburgerMenu } from "./HamburgerMenu";
 import { Navigation } from "./Navigation";
 import { SocialMediaLinks } from "./SocialMediaLinks";
 
-import { AdServerComponent } from "@/app/features/ad-servers/AdServerComponent";
-
 import { AdServerPositions } from "../features/ad-servers/service/ad-servers.service";
 
 interface HeaderProps {
   categories: any;
-  banner: {
-    position: AdServerPositions;
-  };
+  banner: React.ReactNode;
 }
 
 export const Header: React.FC<HeaderProps> = ({
@@ -40,9 +36,7 @@ export const Header: React.FC<HeaderProps> = ({
   return (
     <>
       {banner && pathname === "/" && (
-        <div className="container mx-auto mt-3 px-3 xl:px-0">
-          <AdServerComponent position={banner.position} />
-        </div>
+        <div className="container mx-auto mt-3 px-3 xl:px-0">{banner}</div>
       )}
       <header>
         <div className="container mx-auto flex items-center gap-3 px-1 xl:gap-0 xl:py-5">
@@ -93,9 +87,7 @@ export const Header: React.FC<HeaderProps> = ({
         </div>
       </header>
       {banner && pathname !== "/" && (
-        <div className="container mx-auto mt-5 px-3 xl:px-0">
-          <AdServerComponent position={banner.position} />
-        </div>
+        <div className="container mx-auto mt-5 px-3 xl:px-0">{banner}</div>
       )}
     </>
   );

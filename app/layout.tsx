@@ -6,6 +6,8 @@ const montserrat = Montserrat({ subsets: ["latin"] });
 import { Footer } from "./components/Footer";
 import { Header } from "./components/Header";
 
+import { AdServerComponent } from "@/app/features/ad-servers/AdServerComponent";
+
 import { AdServerPositions } from "./features/ad-servers/service/ad-servers.service";
 
 import { fetchCategories } from "./service/app.service";
@@ -34,9 +36,9 @@ export default async function RootLayout({
       <body className={montserrat.className}>
         <Header
           categories={categories}
-          banner={{
-            position: AdServerPositions.horizontal1,
-          }}
+          banner={
+            <AdServerComponent position={AdServerPositions.horizontal1} />
+          }
         />
         <main>
           <Providers>{children}</Providers>
