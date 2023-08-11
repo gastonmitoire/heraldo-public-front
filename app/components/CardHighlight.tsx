@@ -44,8 +44,6 @@ export const CardHighlight: React.FC<CardHighlightProps> = ({
         <article className="h-full">
           {fullWidth ? (
             <div className="h-full relative">
-              <span className="absolute w-full min-h-[100px] bg-gradient-to-b from-white via-transparent opacity-95"></span>
-
               <Image
                 src={image.url}
                 layout="fill"
@@ -53,6 +51,8 @@ export const CardHighlight: React.FC<CardHighlightProps> = ({
                 alt={title}
                 className="group-hover:brightness-75 transition-all"
               />
+
+              <span className="absolute w-full min-h-[100px] bg-gradient-to-b from-white via-transparent opacity-95"></span>
 
               <div className="text-center absolute bottom-5 w-full m-auto xl:w-1/2 xl:translate-x-1/2">
                 {liveSports && (
