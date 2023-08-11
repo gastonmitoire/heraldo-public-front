@@ -12,7 +12,55 @@ import {
   PostsPositions,
   PostsCategories,
 } from "@/app/service/app.service";
-import { PostsHighlight } from "@/app/features/PostsHighlight";
+import { PostsHighlight } from "@/app/features/posts/PostsHighlight";
+import { PostsGrid } from "@/app/features/posts/PostsGrid";
+
+//generateMetadata
+export const generateMetadata = async ({
+  params,
+}: {
+  params: {
+    categorySlug: string;
+    postSlug: string;
+  };
+}) => {
+  const { categorySlug, postSlug } = params;
+
+  const URL = process.env.API_URL;
+  const postQuery = fetch(`${URL}/posts/slug/${postSlug}`).then((res) =>
+    res.json()
+  );
+
+  const post = await postQuery;
+
+  return {
+    title: post.title,
+    description: post.excerpt,
+    alternates: {
+      canonical: `/noticias/${categorySlug}/${postSlug}`,
+    },
+    openGraph: {
+      title: post.title,
+      description: post.excerpt,
+      images: [post.images[0].url],
+      type: "article",
+      article: {
+        publishedTime: post.createdAt,
+        modifiedTime: post.updatedAt,
+        authors: ["https://zaro.com.ar/"],
+        section: post.category.name,
+        tags: post.tags,
+      },
+    },
+    twitter: {
+      title: post.title,
+      description: post.excerpt,
+      image: post.images[0].url,
+      creator: "@zaroweb",
+      cardType: "summary_large_image",
+    },
+  };
+};
 
 export default async function Page({
   params,
@@ -40,11 +88,6 @@ export default async function Page({
   const postsCategoryQuery = fetchPosts({
     category: category,
     postsLimit: 4,
-  });
-
-  const postsHighlightQuery = fetchPosts({
-    position: PostsPositions.highlight,
-    postsLimit: 6,
   });
 
   // AdServer Calls (right,horizontal2, horizontal3, sticky2, netblock1, netblock2, netblock3, netblock4)
@@ -80,7 +123,6 @@ export default async function Page({
   const [
     post,
     postsCategory,
-    postsHighlight,
     { docs: right },
     { docs: horizontal2 },
     { docs: horizontal3 },
@@ -88,7 +130,6 @@ export default async function Page({
   ] = await Promise.all([
     postQuery,
     postsCategoryQuery,
-    postsHighlightQuery,
     fetchBannerRight,
     fetchBannerHorizontal2,
     fetchBannerHorizontal3,
@@ -106,9 +147,9 @@ export default async function Page({
 
   return (
     <div className="flex flex-col gap-5 pt-5 pb-5 mx-auto md:container">
-      <div className="flex flex-col gap-5 lg:grid lg:grid-cols-4 lg:gap-3">
+      <div className="flex flex-col gap-5 xl:grid xl:grid-cols-4 xl:gap-3">
         <SinglePost post={post} />
-        <aside className="flex-col hidden lg:flex">
+        <aside className="flex-col hidden xl:flex">
           {/* BANNER */}
           <div className="min-h-[900px] max-h-[1100px]">
             <Banner
@@ -145,7 +186,6 @@ export default async function Page({
                   className={`flex justify-center object-contain px-5 ${
                     banner.status === "published" ? "" : "hidden"
                   }`}
-                  imageWidth="100%"
                 />
               ) : (
                 <BannerAdSense
@@ -179,7 +219,12 @@ export default async function Page({
 
       {/* POST OF INTEREST */}
       <section className="container px-5 mx-auto">
-        <CardGridWithSwiper data={postsHighlight} className={"px-3"} />
+        <PostsGrid
+          fetchPostsProps={{
+            option: "position",
+            value: PostsPositions.top,
+          }}
+        />
       </section>
 
       {/* BANNER HORIZONTAL 3 */}
@@ -203,7 +248,16 @@ export default async function Page({
       </section>
 
       {/* POSTS HIGHLIGTH */}
-      <PostsHighlight posts={postsHighlight} />
+      <PostsHighlight
+        fetchPostsProps={{
+          option: "position",
+          value: PostsPositions.highlight + "/",
+          postsLimit: 6,
+        }}
+        bannerConfig={{
+          position: AdServerPositions.netblock1,
+        }}
+      />
     </div>
   );
 }

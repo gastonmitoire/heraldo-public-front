@@ -1,46 +1,31 @@
 import React from "react";
 
 import { Banner } from "./components/Banner";
-import { CardGridWithSwiper } from "./components/CardGridWithSwiper";
-import { Marquee } from "./components/Marquee";
 
 import { CurrencyAndRiver } from "./features/CurrencyAndRiver";
 import { FuneralsPreview } from "./features/FuneralsPreview";
-import { PostsHighlight } from "./features/PostsHighlight";
-import { PostsGrid } from "./features/PostsGrid";
-import { PostsSuperHighlight } from "./features/PostsSuperHighlight";
+import { PostsHighlight } from "./features/posts/PostsHighlight";
+import { PostsGrid } from "./features/posts/PostsGrid";
+import { PostsSuperHighlight } from "./features/posts/PostsSuperHighlight";
+import { PostsUrgentMarquee } from "./features/posts/PostsUrgentMarquee";
 
+// FEATURES
+// Posts
+import { PostsFeatured } from "./features/posts/PostsFeatured";
+
+import { AdServerPositions, fetchAdServer } from "@/app/service/app.service";
 import {
-  PostsCategories,
+  fetchPostsWithOptions,
   PostsPositions,
-  fetchPosts,
-  AdServerPositions,
-  fetchAdServer,
-} from "@/app/service/app.service";
-import { PostsFeatured } from "./features/PostsFeatured";
+  PostsCategories,
+} from "./features/posts/service/posts.service";
 import { SwiperFullscreen } from "./components/SwiperFullscreen";
 
 export default async function Home() {
   // Posts Calls (Highlight, SuperHighlight, TopPosition, FutbolCategory, EspectaculosCategory, CulturaCategory)
-  const postsHighlight = await fetchPosts({
-    position: PostsPositions.highlight,
-    postsLimit: 6,
-  });
-  const postsTopPosition = await fetchPosts({
-    position: PostsPositions.top,
-    postsLimit: 4,
-  });
-  const postsDeportesCategory = await fetchPosts({
-    category: PostsCategories.deportes,
-    postsLimit: 5,
-  });
-  const postsEspectaculosCategory = await fetchPosts({
-    category: PostsCategories.espectaculos,
-    postsLimit: 5,
-  });
-  const postsCulturaCategory = await fetchPosts({
-    category: PostsCategories.cultura,
-    postsLimit: 4,
+  const postsEspectaculosCategory = await fetchPostsWithOptions({
+    option: "category",
+    value: PostsCategories.espectaculos,
   });
 
   // AdServer Calls
@@ -89,7 +74,7 @@ export default async function Home() {
 
       {/* MARQUEE & BANNER SECTION */}
       <section className="flex flex-col gap-5">
-        <Marquee titles={[].map((post: any) => post.title)} />
+        <PostsUrgentMarquee />
 
         {bannerHorizontal2.map(
           (banner: any) =>
@@ -102,7 +87,7 @@ export default async function Home() {
                   desktopImage: bannerHorizontal2[0]?.desktopImage,
                   mobileImage: bannerHorizontal2[0]?.mobileImage,
                 }}
-                className="container mx-auto"
+                className="container mx-auto px-3 xl:px-0"
                 key={banner._id}
               />
             )
@@ -111,7 +96,15 @@ export default async function Home() {
 
       {/* HIGHLIGHT SECTION */}
       <section className="container mx-auto">
-        <PostsHighlight posts={postsHighlight} />
+        <PostsHighlight
+          fetchPostsProps={{
+            option: "position",
+            value: PostsPositions.highlight + "/",
+          }}
+          bannerConfig={{
+            position: AdServerPositions.netblock1,
+          }}
+        />
       </section>
 
       {/* BANNERS & CURRENCY SECTION */}
@@ -124,6 +117,7 @@ export default async function Home() {
             desktopImage: bannerHorizontal3[0]?.desktopImage,
             mobileImage: bannerHorizontal3[0]?.mobileImage,
           }}
+          className="px-3 xl:px-0"
         />
 
         <CurrencyAndRiver />
@@ -136,12 +130,18 @@ export default async function Home() {
             desktopImage: bannerHorizontal4[0]?.desktopImage,
             mobileImage: bannerHorizontal4[0]?.mobileImage,
           }}
+          className="px-3 xl:px-0"
         />
       </section>
 
       {/* CARD GRID WITH SWIPER SECTION (TOP NEWS) */}
       <section className="container mx-auto">
-        <CardGridWithSwiper data={postsTopPosition} cardClassName="h-[390px]" />
+        <PostsGrid
+          fetchPostsProps={{
+            option: "position",
+            value: PostsPositions.top,
+          }}
+        />
       </section>
 
       {/* POSTGRID SECTION & BANNERS (FUTBOL TAG, bannerHorizontal5, bannerHorizontal6 ) */}
@@ -154,14 +154,16 @@ export default async function Home() {
             desktopImage: bannerHorizontal5[0]?.desktopImage,
             mobileImage: bannerHorizontal5[0]?.mobileImage,
           }}
+          className="px-3 xl:px-0"
         />
 
-        {postsDeportesCategory.length > 0 && (
-          <PostsGrid
-            posts={postsDeportesCategory.slice(0, 4)}
-            title="Liga Profesional"
-          />
-        )}
+        <PostsGrid
+          title="Elecciones 2023"
+          fetchPostsProps={{
+            option: "tag",
+            value: "elecciones2023",
+          }}
+        />
 
         <Banner
           banner={{
@@ -171,6 +173,29 @@ export default async function Home() {
             desktopImage: bannerHorizontal6[0]?.desktopImage,
             mobileImage: bannerHorizontal6[0]?.mobileImage,
           }}
+          className="px-3 xl:px-0"
+        />
+
+        <PostsGrid
+          title="Agenda Deportiva"
+          fetchPostsProps={{
+            option: "tag",
+            value: "vivo deportes",
+          }}
+          bannerConfig={{
+            position: AdServerPositions.netblock1,
+          }}
+        />
+
+        <Banner
+          banner={{
+            title: bannerHorizontal6[0]?.title,
+            site: bannerHorizontal6[0]?.site,
+            url: bannerHorizontal6[0]?.url,
+            desktopImage: bannerHorizontal6[0]?.desktopImage,
+            mobileImage: bannerHorizontal6[0]?.mobileImage,
+          }}
+          className="px-3 xl:px-0"
         />
       </section>
 
@@ -186,9 +211,21 @@ export default async function Home() {
             desktopImage: bannerHorizontal8[0]?.desktopImage,
             mobileImage: bannerHorizontal8[0]?.mobileImage,
           }}
+          className="px-3 xl:px-0"
         />
 
-        <PostsFeatured posts={postsDeportesCategory} />
+        <PostsFeatured
+          fetchPostsProps={{
+            option: "category",
+            value: PostsCategories.deportes,
+          }}
+          bannerNetblockConfig={{
+            position: AdServerPositions.netblock10,
+          }}
+          bannerStickyConfig={{
+            position: AdServerPositions.sticky3,
+          }}
+        />
 
         <Banner
           banner={{
@@ -198,6 +235,7 @@ export default async function Home() {
             desktopImage: bannerHorizontal9[0]?.desktopImage,
             mobileImage: bannerHorizontal9[0]?.mobileImage,
           }}
+          className="px-3 xl:px-0"
         />
       </section>
 
@@ -219,9 +257,17 @@ export default async function Home() {
             desktopImage: bannerHorizontal10[0]?.desktopImage,
             mobileImage: bannerHorizontal10[0]?.mobileImage,
           }}
+          className="px-3 xl:px-0"
         />
 
-        <PostsGrid posts={postsCulturaCategory} title="Cultura" />
+        <PostsGrid
+          title="Cultura"
+          fetchPostsProps={{
+            option: "category",
+            value: PostsCategories.cultura,
+            postsLimit: 4,
+          }}
+        />
 
         <Banner
           banner={{
@@ -231,11 +277,16 @@ export default async function Home() {
             desktopImage: bannerHorizontal11[0]?.desktopImage,
             mobileImage: bannerHorizontal11[0]?.mobileImage,
           }}
+          className="px-3 xl:px-0"
         />
 
         <PostsGrid
-          posts={postsEspectaculosCategory.slice(0, 4)}
           title="Magazine"
+          fetchPostsProps={{
+            option: "category",
+            value: PostsCategories.espectaculos,
+            postsLimit: 4,
+          }}
         />
       </section>
     </div>

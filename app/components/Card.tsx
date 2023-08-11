@@ -9,8 +9,9 @@ import { Skeleton } from "./Skeleton";
 interface CardProps {
   item: {
     title: string;
-    excerpt: string;
+    flywheel: string;
     slug: string;
+    liveSports?: string;
     image: {
       url: string;
     };
@@ -25,7 +26,7 @@ interface CardProps {
 }
 
 export const Card: React.FC<CardProps> = ({
-  item: { title, excerpt, image, category, slug },
+  item: { title, flywheel, slug, liveSports, image, category },
   prefixLink,
   className,
   imageClassName,
@@ -40,26 +41,35 @@ export const Card: React.FC<CardProps> = ({
         }
       >
         <article
-          className={`${className} flex flex-col group hover:cursor-pointer transition-all`}
+          className={`h-full w-full grid grid-cols-1 grid-rows-5 group ${
+            className ? className : ""
+          }`}
         >
-          <div className="flex-1 relative group-hover:brightness-75 transition-all">
-            <span className="absolute top-3 left-3 uppercase bg-black bg-opacity-80 text-white font-light text-sm py-1 px-3">
-              {category?.name}
-            </span>
+          <figure className="row-span-3 relative group-hover:brightness-75 transition-all overflow-y-hidden lg:min-h-[290px]">
             <Image
               src={image.url}
               alt={title}
-              className={`max-h-[300px] w-full ${imageClassName}`}
-              height={300}
-              width={300}
+              layout="fill"
+              objectFit="cover"
             />
-          </div>
-          <div className="flex-1 pt-3 border p-5">
+
+            {liveSports && (
+              <div className="absolute -bottom-14 w-full hidden xl:block">
+                <iframe
+                  src={liveSports}
+                  className="w-full opacity-80 group-hover:opacity-100"
+                ></iframe>
+              </div>
+            )}
+            <div className="absolute top-0 right-0 bottom-0 left-0 opacity-0 cursor-pointer"></div>
+          </figure>
+
+          <span className="row-span-2 border pt-5 px-5 group-hover:bg-gray-100">
             <h5 className="text-blue-500 truncate text-lg font-bold pr-16">
-              {excerpt}
+              {flywheel}
             </h5>
             <p className="text-lg font-bold">{title}</p>
-          </div>
+          </span>
         </article>
       </Link>
     </Suspense>

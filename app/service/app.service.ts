@@ -1,7 +1,8 @@
 import { fetchClient } from "@/app/utils";
 
-import { AdServer, DocsWithPagination, Post } from "@/types";
-
+import { AdServerProps, DocsWithPaginationProps, PostProps, FuneralNoticeProps } from "@/types";
+import { parseISO, format } from "date-fns";
+import { es } from "date-fns/locale";
 // POSTS ENDPOINTS
 
 export enum PostsPositions {
@@ -44,17 +45,18 @@ export enum PostsCategories {
   correoDeLectores = "correo_de_lectores",
 }
 
-interface FetchPostsProps {
+interface FetchPostsWithOptionsProps {
   position?: PostsPositions;
   category?: PostsCategories;
   postsLimit?: number;
+  postSlug?: string;
 }
 
 export const fetchPosts = async ({
   position,
   category,
   postsLimit,
-}: FetchPostsProps) => {
+}: FetchPostsWithOptionsProps) => {
   let url = "";
 
   if (position) {
@@ -67,7 +69,28 @@ export const fetchPosts = async ({
 
   const finalUrl = `/posts${url}${limit}`;
 
-  const response: Post[] = await fetchClient(finalUrl, {
+  const response: PostProps[] = await fetchClient(finalUrl, {
+    method: "GET",
+  });
+
+  return response;
+};
+
+interface fetchPostBySlugProps {
+  position?: PostsPositions;
+  category?: PostsCategories;
+  postsLimit?: number;
+  postSlug?: string;
+}
+
+export const fetchPostBySlug = async ({
+  postSlug
+}: fetchPostBySlugProps) => {
+  let url = `/slug/${postSlug}`;
+
+  const finalUrl = `/posts${url}`;
+
+  const response: PostProps = await fetchClient(finalUrl, {
     method: "GET",
   });
 
@@ -125,9 +148,42 @@ export const fetchAdServer = async ({ position }: FetchAdServerProps) => {
 
   const finalUrl = `/ad-servers${url}`;
 
-  const response: DocsWithPagination = await fetchClient(finalUrl, {
+  const response: DocsWithPaginationProps = await fetchClient(finalUrl, {
     method: "GET",
   });
 
   return response;
 };
+
+interface FormatDateProps {
+  dateString: string;
+  dateFormat: string;
+}
+
+export const formatDate = async ({ dateString, dateFormat }: FormatDateProps) => {
+  const parsedDate = parseISO(dateString);
+  return format(parsedDate, dateFormat, { locale: es });
+};
+
+// FUNEBRES ENDPOINTS
+
+interface FetchFunebresProps {
+  deceased?: string;
+}
+
+export const fetchFuneralNotices = async ({deceased}: FetchFunebresProps) => {
+  let url = "";
+
+  if (deceased) {
+    url = `/search?title=${deceased}`;
+  }
+
+  const finalUrl = `/funeral-notices${url}`;
+  
+  const funeralNoticesQuery = await fetchClient(finalUrl, {
+    method: "GET",
+  });
+  const response: FuneralNoticeProps[] = funeralNoticesQuery.docs;
+
+  return response;
+}  

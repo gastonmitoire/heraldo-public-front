@@ -12,12 +12,12 @@ import "swiper/css/navigation";
 import "swiper/css/pagination";
 import "swiper/css/scrollbar";
 
-import { Post } from "@/types";
+import { PostProps } from "@/types";
 
 import { CardHighlight } from "./CardHighlight";
 
 interface SwiperFullscreenProps {
-  posts: Post[];
+  posts: PostProps[];
   className?: string;
 }
 
@@ -39,10 +39,11 @@ export const SwiperFullscreen: React.FC<SwiperFullscreenProps> = ({
           <CardHighlight
             item={{
               title: post.title,
-              excerpt: post.excerpt,
+              flywheel: post.flywheel,
               image: post.images[0],
               category: post.category,
               slug: post.slug,
+              liveSports: post.liveSports,
             }}
             className="col-span-2 h-full"
             fullWidth

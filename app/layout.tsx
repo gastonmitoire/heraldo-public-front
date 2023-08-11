@@ -9,10 +9,20 @@ const montserrat = Montserrat({ subsets: ["latin"] });
 
 import { fetchAdServer, AdServerPositions } from "@/app/service/app.service";
 
-export const metadata: Metadata = {
-  title: "El Heraldo | de Concordia",
-  description: "Noticias de Concordia, Entre Ríos, Argentina y el mundo.",
-};
+import Providers from "./providers";
+
+export const generateMetadata = async () => {
+
+  return {
+    metadataBase: new URL("https://www.elheraldo.com.ar/"),
+    title: {
+      default: "El Heraldo | de Concordia",
+      template: "%s | El Heraldo",
+    },
+    description: "Noticias de Concordia, Entre Ríos, Argentina y el mundo.",
+
+  };
+}
 
 export default async function RootLayout({
   children,
@@ -29,7 +39,9 @@ export default async function RootLayout({
     <html lang="en">
       <body className={montserrat.className}>
         <Header categories={categories} banner={horizontal1[0]} />
-        <main>{children}</main>
+        <main>
+          <Providers>{children}</Providers>
+        </main>
         <Footer categories={categories} />
       </body>
     </html>

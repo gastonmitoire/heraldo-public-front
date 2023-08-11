@@ -11,7 +11,7 @@ interface HeadingProps {
 
 export const Heading: React.FC<HeadingProps> = ({ title, link, className }) => {
   return (
-    <nav className="flex justify-between gap-5 pb-3">
+    <nav className="flex justify-between gap-5 pb-3 w-full px-3 xl:px-0">
       <h2 className="flex-0 text-2xl font-bold">{title}</h2>
       <div className="flex-auto flex items-center">
         <div className="w-full border-b border-gray-200"></div>

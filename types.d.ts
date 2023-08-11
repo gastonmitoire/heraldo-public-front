@@ -1,7 +1,7 @@
 // Definition: Type definitions for the project
 
 // user type definition
-export interface User {
+export interface UserProps {
   _id: number | string;
   email: string;
   username: string;
@@ -11,28 +11,28 @@ export interface User {
 }
 
 // image type definition
-export interface Image {
+export interface ImageProps {
   _id?: string;
   filename?: string;
   url: string;
 }
 
 // section type definition
-export interface Section {
+export interface SectionProps {
   _id: number | string;
   name: string;
   slug: string;
 }
 
 // category type definition
-export interface Category {
+export interface CategoryProps {
   _id: number | string;
   name: string;
   slug: string;
 }
 
 // post type definition
-export interface Post {
+export interface PostProps {
   _id: number | string;
   title: string;
   content: string;
@@ -49,11 +49,14 @@ export interface Post {
   publicationDate: string;
   createdAt: string;
   slug: string;
+  flywheel: string;
   excerpt: string;
+  flywheel: string;
+  liveSports: string;
 }
 
 // banner type definition
-export interface AdServer {
+export interface AdServerProps {
   _id: number | string;
   position: number;
   site: string;
@@ -73,10 +76,10 @@ export interface AdServer {
 }
 
 // funeral notice type definition
-export interface FuneralNotice {
+export interface FuneralNoticeProps {
   _id: number | string;
   title: string;
-  deseased: string;
+  deceased: string;
   client: string;
   religion: string;
   status: string;
@@ -87,7 +90,7 @@ export interface FuneralNotice {
 }
 
 // printed edition type definition
-export interface PrintedEditionType {
+export interface PrintedEditionProps {
   _id: number | string;
   body: string;
   tags: string[];
@@ -99,7 +102,7 @@ export interface PrintedEditionType {
 }
 
 // docs with pagination
-export interface DocsWithPagination {
+export interface DocsWithPaginationProps {
   docs: any[];
   totalDocs: number;
   limit: number;

@@ -4,30 +4,34 @@
 import React from "react";
 import Link from "next/link";
 import { Swiper, SwiperSlide } from "swiper/react";
-import { Navigation, Pagination, Scrollbar, A11y } from "swiper/modules";
+import { Grid, Navigation, Pagination, Scrollbar, A11y } from "swiper/modules";
 
 // Import Swiper styles
 import "swiper/css";
+import "swiper/css/grid";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
 import "swiper/css/scrollbar";
 
 import { Card } from "./Card";
 import { Skeleton } from "./Skeleton";
+import { AdServerProps } from "@/types";
+import { Banner } from "./Banner";
 
 interface CardGridWithSwiperProps {
   data: any[];
   className?: string;
   cardClassName?: string;
-  prefixLink?: string;
+  banner?: AdServerProps;
 }
 
 export const CardGridWithSwiper: React.FC<CardGridWithSwiperProps> = ({
   data,
   className,
   cardClassName,
-  prefixLink,
 }) => {
+  if (!data) return null;
+
   return (
     <>
       <Swiper
@@ -35,7 +39,6 @@ export const CardGridWithSwiper: React.FC<CardGridWithSwiperProps> = ({
         spaceBetween={12}
         slidesPerView={4}
         navigation
-        className={`flex flex-col gap-3 ${className}`}
         breakpoints={{
           // when window width is >= 640px
           320: {
@@ -61,28 +64,32 @@ export const CardGridWithSwiper: React.FC<CardGridWithSwiperProps> = ({
             slidesPerView: 4,
           },
         }}
+        className="h-[470px]"
       >
-        {!!data && data.length > 0 ? (
+        {!!data &&
+          data.length > 0 &&
           data.map((item: any) => (
             <SwiperSlide key={item._id}>
-              <Card
-                item={{
-                  title: item.title,
-                  excerpt: item.excerpt,
-                  image: item.images[0],
-                  category: item.category,
-                  slug: item.slug,
-                }}
-                className={`h-[430px] ${cardClassName}`}
-                imageClassName="h-[250px] object-cover select-none"
-              />
+              <>
+                {item.type === "banner" ? (
+                  <div className="w-full h-full">
+                    <Banner banner={item} className="h-[250px]" />
+                  </div>
+                ) : (
+                  <Card
+                    item={{
+                      title: item.title,
+                      flywheel: item.flywheel,
+                      image: item.images[0],
+                      category: item.category,
+                      slug: item.slug,
+                      liveSports: item.liveSports,
+                    }}
+                  />
+                )}
+              </>
             </SwiperSlide>
-          ))
-        ) : (
-          <SwiperSlide>
-            <Skeleton />
-          </SwiperSlide>
-        )}
+          ))}
       </Swiper>
     </>
   );
