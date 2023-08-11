@@ -8,6 +8,8 @@ import { Header } from "./components/Header";
 
 import { AdServerPositions } from "./features/ad-servers/service/ad-servers.service";
 
+import { fetchCategories } from "./service/app.service";
+
 import Providers from "./providers";
 
 export const generateMetadata = async () => {
@@ -26,8 +28,7 @@ export default async function RootLayout({
 }: {
   children: React.ReactNode;
 }) {
-  const URL = process.env.NEXT_PUBLIC_API_URL;
-  const categories = await fetch(`${URL}/categories`).then((res) => res.json());
+  const categories = await fetchCategories();
   return (
     <html lang="en">
       <body className={montserrat.className}>

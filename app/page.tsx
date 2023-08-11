@@ -1,5 +1,7 @@
 import React from "react";
 
+import { SwiperFullscreen } from "./components/SwiperFullscreen";
+
 import { AdServerComponent } from "./features/ad-servers/AdServerComponent";
 import { CurrencyAndRiver } from "./features/CurrencyAndRiver";
 import { FuneralsPreview } from "./features/FuneralsPreview";
@@ -16,12 +18,12 @@ import {
   fetchAdServer,
   AdServerPositions,
 } from "./features/ad-servers/service/ad-servers.service";
+import { fetchFuneralNotices } from "./features/funeral-notices/service/funeral-notices.service";
 import {
   fetchPostsWithOptions,
   PostsPositions,
   PostsCategories,
 } from "./features/posts/service/posts.service";
-import { SwiperFullscreen } from "./components/SwiperFullscreen";
 
 export default async function Home() {
   // Posts Calls (Highlight, SuperHighlight, TopPosition, FutbolCategory, EspectaculosCategory, CulturaCategory)
@@ -31,9 +33,7 @@ export default async function Home() {
   });
 
   // Funerals Calls
-  const { docs: funerals } = await fetch(
-    `${process.env.NEXT_PUBLIC_API_URL}/funeral-notices`
-  ).then((res) => res.json());
+  const { docs: funerals } = await fetchFuneralNotices();
 
   return (
     <div className="flex flex-col gap-5">

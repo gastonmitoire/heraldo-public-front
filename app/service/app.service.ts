@@ -2,6 +2,7 @@ import { fetchClient } from "@/app/utils";
 
 import {
   AdServerProps,
+  CategoryProps,
   DocsWithPaginationProps,
   PostProps,
   FuneralNoticeProps,
@@ -132,6 +133,15 @@ export const fetchFuneralNotices = async ({ deceased }: FetchFunebresProps) => {
     method: "GET",
   });
   const response: FuneralNoticeProps[] = funeralNoticesQuery.docs;
+
+  return response;
+};
+
+// CATEGORIES ENDPOINTS
+export const fetchCategories = async () => {
+  const response: CategoryProps[] = await fetchClient("/categories", {
+    method: "GET",
+  });
 
   return response;
 };
