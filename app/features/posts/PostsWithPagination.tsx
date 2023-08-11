@@ -9,6 +9,7 @@ import { DocsWithPaginationProps } from "@/types";
 
 import { Card } from "@/app/components/Card";
 import { CardHighlight } from "@/app/components/CardHighlight";
+import { PaginationBar } from "@/app/components/PaginationBar";
 import { Skeleton } from "@/app/components/Skeleton";
 
 import { fetchPostsWithPagination } from "./service/posts.service";
@@ -25,7 +26,7 @@ export const PostsWithPagination: React.FC<PostsWithPaginationProps> = ({
   aside,
 }) => {
   const queryClient = useQueryClient();
-  const [page, setPage] = React.useState(0);
+  const [page, setPage] = React.useState(1);
 
   const { status, data, error, isFetching, isPreviousData, isSuccess } =
     useQuery({
@@ -36,9 +37,14 @@ export const PostsWithPagination: React.FC<PostsWithPaginationProps> = ({
           option,
           value,
         }),
+      keepPreviousData: true,
     });
 
   const posts = data?.docs;
+
+  const handlePageChange = (page: number) => {
+    setPage(page);
+  };
 
   return (
     <div className="grid grid-cols-1 xl:grid-cols-4 gap-5 w-full">
@@ -84,6 +90,15 @@ export const PostsWithPagination: React.FC<PostsWithPaginationProps> = ({
       </div>
 
       <aside className="col-span-1 flex justify-center">{aside}</aside>
+
+      <div className="col-span-4">
+        <PaginationBar
+          paginationProps={
+            { ...(data as DocsWithPaginationProps) } as DocsWithPaginationProps
+          }
+          onPageChange={handlePageChange}
+        />
+      </div>
     </div>
   );
 };
