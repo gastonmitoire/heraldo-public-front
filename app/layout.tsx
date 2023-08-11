@@ -12,7 +12,6 @@ import { fetchAdServer, AdServerPositions } from "@/app/service/app.service";
 import Providers from "./providers";
 
 export const generateMetadata = async () => {
-
   return {
     metadataBase: new URL("https://www.elheraldo.com.ar/"),
     title: {
@@ -20,16 +19,15 @@ export const generateMetadata = async () => {
       template: "%s | El Heraldo",
     },
     description: "Noticias de Concordia, Entre Ríos, Argentina y el mundo.",
-
   };
-}
+};
 
 export default async function RootLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
-  const URL = process.env.API_URL;
+  const URL = process.env.NEXT_PUBLIC_API_URL;
   const categories = await fetch(`${URL}/categories`).then((res) => res.json());
   const { docs: horizontal1 } = await fetchAdServer({
     position: AdServerPositions.horizontal1,

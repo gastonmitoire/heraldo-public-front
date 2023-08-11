@@ -26,7 +26,7 @@ export const generateMetadata = async ({
 }) => {
   const { categorySlug, postSlug } = params;
 
-  const URL = process.env.API_URL;
+  const URL = process.env.NEXT_PUBLIC_API_URL;
   const postQuery = fetch(`${URL}/posts/slug/${postSlug}`).then((res) =>
     res.json()
   );
@@ -72,7 +72,7 @@ export default async function Page({
 }) {
   //fetch posts by category
   const { categorySlug, postSlug } = params;
-  const URL = process.env.API_URL;
+  const URL = process.env.NEXT_PUBLIC_API_URL;
   const postQuery = fetch(`${URL}/posts/slug/${postSlug}`).then((res) =>
     res.json()
   );
