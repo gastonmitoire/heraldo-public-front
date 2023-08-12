@@ -21,6 +21,8 @@ interface CardHighlightProps {
   prefixLink?: string;
   fullWidth?: boolean;
   className?: string;
+  flywheelClassName?: string;
+  titleClassName?: string;
 }
 
 export const CardHighlight: React.FC<CardHighlightProps> = ({
@@ -28,6 +30,8 @@ export const CardHighlight: React.FC<CardHighlightProps> = ({
   prefixLink,
   fullWidth,
   className,
+  flywheelClassName,
+  titleClassName,
 }) => {
   return (
     <Suspense>
@@ -65,14 +69,16 @@ export const CardHighlight: React.FC<CardHighlightProps> = ({
                   </div>
                 )}
 
-                <h5
-                  className={`truncate text-lg font-bold pb-1.5 xl:pr-16 text-white`}
-                >
-                  <span>{flywheel}</span>
-                </h5>
-                <p className="mx-auto text-lg font-bold pt-1.5 xl:w-[90%]">
-                  <span className="bg-white p-1">{title}</span>
-                </p>
+                <span className="flex flex-col items-center text-[1.5rem]">
+                  <h5
+                    className={`truncate font-bold text-white text-center drop-shadow-md}`}
+                  >
+                    {flywheel}
+                  </h5>
+                  <p className={`font-bold pt-1.5 xl:w-[90%]`}>
+                    <span className="bg-white p-1">{title}</span>
+                  </p>
+                </span>
               </div>
             </div>
           ) : (
@@ -95,11 +101,15 @@ export const CardHighlight: React.FC<CardHighlightProps> = ({
                   </div>
                 )}
                 <h5
-                  className={`truncate text-lg font-bold pb-1.5 pr-16 text-blue-500`}
+                  className={`truncate font-bold pb-1.5 pr-16 text-blue-500 ${
+                    flywheelClassName || ""
+                  }`}
                 >
                   {flywheel}
                 </h5>
-                <p className="text-lg font-bold pt-1.5 w-[70%]">
+                <p
+                  className={`font-bold pt-1.5 w-[70%] ${titleClassName || ""}`}
+                >
                   <span className="bg-white p-1">{title}</span>
                 </p>
               </span>
