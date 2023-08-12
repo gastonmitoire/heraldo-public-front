@@ -37,8 +37,10 @@ export const CurrencyAndRiver: React.FC = async () => {
   // Currency & River Calls
   const dataCurrency = await fetchDataCurrency();
   return (
-    <div className="flex flex-col">
-      <CurrencyAndRiverSwiper dataCurrency={dataCurrency} dataRiver={[]} />
+    <div className="grid grid-cols-5">
+      <span className="col-start-2 col-end-5">
+        <CurrencyAndRiverSwiper dataCurrency={dataCurrency} dataRiver={[]} />
+      </span>
     </div>
   );
 };
