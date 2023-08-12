@@ -66,7 +66,9 @@ export const HamburgerButton: React.FC<HamburgerButtonProps> = ({
           />
         </svg>
 
-        {withText && <span className="ml-2 text-sm font-medium">Menú</span>}
+        {withText && (
+          <span className="ml-2 text-sm font-medium hidden lg:block">Menú</span>
+        )}
       </button>
     </>
   );

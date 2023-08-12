@@ -112,7 +112,7 @@ export const Header: React.FC<HeaderProps> = ({
       )}
 
       <Drawer open={drawerOpen} onClose={() => setDrawerOpen(false)}>
-        <div className="flex flex-col w-[100vw] h-full xl:w-[450px] bg-white border rounded shadow-sm">
+        <div className="flex flex-col w-[100vw] h-full xl:w-[450px] bg-white border rounded shadow-sm pb-3">
           <div className="flex items-center justify-end mb-4">
             <button
               type="button"
@@ -139,7 +139,7 @@ export const Header: React.FC<HeaderProps> = ({
             </button>
           </div>
           <div className="col-span-2 grid grid-cols-2 gap-1 h-full">
-            <div className="flex flex-col">
+            <div className="flex flex-col px-1">
               <Navigation
                 links={fixedLinks}
                 className="grid gap-3 lg:gap-1 pb-5"
@@ -150,11 +150,11 @@ export const Header: React.FC<HeaderProps> = ({
                 <SocialMediaLinks className="w-full justify-center gap-7 py-10" />
               </div>
             </div>
-            <span className="flex h-[93%] overflow-auto">
+            <span className="flex h-[93%] overflow-auto px-1">
               <Navigation
                 links={categories}
                 prefixLink="noticias"
-                className="flex flex-col w-full h-full lg:gap-1"
+                className="grid gap-3 lg:gap-1 w-full h-full"
                 linkClassName="xl:p-[10px] hover:bg-[#eee]"
                 onClick={() => setDrawerOpen(false)}
               />
