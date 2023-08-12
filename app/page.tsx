@@ -106,7 +106,7 @@ export default async function Home() {
           title="Elecciones 2023"
           fetchPostsProps={{
             option: "tag",
-            value: "elecciones2023",
+            value: "Elecciones 2023",
           }}
         />
 
