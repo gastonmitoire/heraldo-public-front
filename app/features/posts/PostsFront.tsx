@@ -99,9 +99,9 @@ export const PostsFront: React.FC = async () => {
         <AdServerComponent position={AdServerPositions.netblock5} />
       </div>
       <aside className="col-span-1 flex flex-col items-center">
-        {/* <span className="sticky top-0 w-[70%]">
+        <span className="sticky top-0 w-[70%]">
           <AdServerComponent position={AdServerPositions.sticky2} />
-        </span> */}
+        </span>
       </aside>
 
       <div className="col-span-4 grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-3 items-center">
