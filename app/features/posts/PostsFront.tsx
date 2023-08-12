@@ -97,17 +97,19 @@ export const PostsFront: React.FC = async () => {
           />
         ))}
         <AdServerComponent position={AdServerPositions.netblock5} />
-
-        <AdServerComponent position={AdServerPositions.netblock6} />
-        <AdServerComponent position={AdServerPositions.netblock7} />
-        <AdServerComponent position={AdServerPositions.netblock8} />
-        <AdServerComponent position={AdServerPositions.netblock9} />
       </div>
       <aside className="col-span-1 flex flex-col items-center">
         {/* <span className="sticky top-0 w-[70%]">
           <AdServerComponent position={AdServerPositions.sticky2} />
         </span> */}
       </aside>
+
+      <div className="col-span-4 grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-3 items-center">
+        <AdServerComponent position={AdServerPositions.netblock6} />
+        <AdServerComponent position={AdServerPositions.netblock7} />
+        <AdServerComponent position={AdServerPositions.netblock8} />
+        <AdServerComponent position={AdServerPositions.netblock9} />
+      </div>
     </div>
   );
 };
