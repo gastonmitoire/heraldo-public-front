@@ -108,7 +108,7 @@ export const CardHighlight: React.FC<CardHighlightProps> = ({
                   {flywheel}
                 </h5>
                 <p
-                  className={`font-bold pt-1.5 w-[70%] ${titleClassName || ""}`}
+                  className={`font-bold pt-1.5 w-[95%] ${titleClassName || ""}`}
                 >
                   <span className="bg-white p-1">{title}</span>
                 </p>
