@@ -68,7 +68,7 @@ export const PostsHighlight: React.FC<PostsHighlightProps> = async ({
                 }}
                 className="xl:h-full"
                 flywheelClassName="text-lg"
-                titleClassName="text-lg"
+                titleClassName="text-lg font-semibold"
               />
             ))
           ) : (
