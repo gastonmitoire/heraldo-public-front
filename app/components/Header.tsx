@@ -3,6 +3,8 @@
 import React from "react";
 import Image from "next/image";
 
+import { SVGLogo } from "./Logo";
+
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 
@@ -38,8 +40,44 @@ export const Header: React.FC<HeaderProps> = ({
       {banner && pathname === "/" && (
         <div className="container mx-auto mt-3 px-3 xl:px-0">{banner}</div>
       )}
-      <header>
-        <div className="container mx-auto flex items-center gap-3 px-1 xl:gap-0 xl:py-5">
+      <header className="container mx-auto flex flex-col items-center gap-1">
+        <div className="grid grid-cols-3 w-full items-center py-3">
+          <div>
+            <HamburgerMenu categories={categories} />
+          </div>
+          <Link href="/" className="justify-self-center">
+            <SVGLogo className="h-[1.5rem] lg:h-[2.5rem]" />
+          </Link>
+          <SocialMediaLinks className="justify-self-end hidden sm:flex" />
+        </div>
+        <div className="grid grid-cols-1 lg:grid-cols-5 lg:items-center w-full">
+          <Navigation
+            links={filteredCategories}
+            prefixLink="noticias"
+            className="lg:col-start-2 lg:col-end-5 hidden md:flex justify-center gap-1.5 w-full items-center"
+            linkClassName="p-[7px] xl:p-[10px] hover:bg-[#eee]"
+          />
+
+          <Navigation
+            links={filteredCategories}
+            prefixLink="noticias"
+            className="flex md:hidden gap-1 py-3 whitespace-nowrap overflow-x-auto scrollbar-hide items-center"
+            linkClassName="inline-block text-center px-3"
+          />
+
+          <span className="order-first lg:order-last flex justify-center lg:justify-end md:pt-0">
+            <time className="p-1 uppercase bg-black font-semibold text-xs text-center lg:text-right text-white">
+              {new Date().toLocaleDateString("es-AR", {
+                weekday: "long",
+                year: "numeric",
+                month: "long",
+                day: "numeric",
+              })}
+            </time>
+          </span>
+        </div>
+
+        {/* <div className="container mx-auto flex items-center gap-3 px-1 xl:gap-0 xl:py-5">
           <div className="w-[5%] xl:w-[15%]">
             <HamburgerMenu categories={categories} />
           </div>
@@ -84,7 +122,7 @@ export const Header: React.FC<HeaderProps> = ({
               className="py-3 [&>a]:line-clamp-1 [&>a]:w-full"
             />
           </div>
-        </div>
+        </div> */}
       </header>
       {banner && pathname !== "/" && (
         <div className="container mx-auto mt-5 px-3 xl:px-0">{banner}</div>
