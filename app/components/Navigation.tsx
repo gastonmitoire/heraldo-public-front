@@ -35,7 +35,9 @@ export const Navigation: React.FC<LinkProps> = ({
             <Link
               key={link.slug}
               href={link.slug}
-              className={`font-bold text-black px-4`}
+              className={`font-bold text-black ${
+                linkClassName ? linkClassName : ""
+              }`}
               onClick={onClick}
               target="_blank"
             >

@@ -1,6 +1,6 @@
 "use client";
 
-import React from "react";
+import React, { useState } from "react";
 import Image from "next/image";
 
 import { SVGLogo } from "./Logo";
@@ -8,7 +8,8 @@ import { SVGLogo } from "./Logo";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 
-import { HamburgerMenu } from "./HamburgerMenu";
+import { Drawer } from "./Drawer";
+import { HamburgerButton } from "./HamburgerButton";
 import { Navigation } from "./Navigation";
 import { SocialMediaLinks } from "./SocialMediaLinks";
 
@@ -24,6 +25,7 @@ export const Header: React.FC<HeaderProps> = ({
   banner,
 }: HeaderProps) => {
   const pathname = usePathname();
+  const [drawerOpen, setDrawerOpen] = useState(false);
 
   const filteredCategories = categories?.filter(
     (category: any) =>
@@ -35,18 +37,46 @@ export const Header: React.FC<HeaderProps> = ({
       category.slug === "sociales"
   );
 
+  const fixedLinks = [
+    {
+      name: "Inicio",
+      slug: "/",
+    },
+    {
+      name: "Tapa del día",
+      slug: "tapa-del-dia",
+    },
+    {
+      name: "Avisos fúnebres",
+      slug: "funebres",
+    },
+    {
+      external: true,
+      name: "Clasificados",
+      slug: "https://clasificadoselheraldo.com.ar/",
+    },
+    {
+      name: "Estadisticas",
+      slug: "estadisticas",
+    },
+    {
+      name: "Correo de lectores",
+      slug: "noticias/correo-de-lectores",
+    },
+  ];
+
   return (
     <>
       {banner && pathname === "/" && (
         <div className="container mx-auto mt-3 px-3 xl:px-0">{banner}</div>
       )}
       <header className="container mx-auto flex flex-col items-center gap-1">
-        <div className="grid grid-cols-3 w-full items-center py-3">
+        <div className="grid grid-cols-3 w-full items-center py-3 px-1 sm:px-0">
           <div>
-            <HamburgerMenu categories={categories} />
+            <HamburgerButton onClick={() => setDrawerOpen(true)} />
           </div>
           <Link href="/" className="justify-self-center">
-            <SVGLogo className="h-[1.5rem] lg:h-[2.5rem]" />
+            <SVGLogo className="h-[1.1rem] lg:h-[2.5rem]" />
           </Link>
           <SocialMediaLinks className="justify-self-end hidden sm:flex" />
         </div>
@@ -80,6 +110,58 @@ export const Header: React.FC<HeaderProps> = ({
       {banner && pathname !== "/" && (
         <div className="container mx-auto mt-5 px-3 xl:px-0">{banner}</div>
       )}
+
+      <Drawer open={drawerOpen} onClose={() => setDrawerOpen(false)}>
+        <div className="flex flex-col w-[100vw] h-full xl:w-[450px] bg-white border rounded shadow-sm">
+          <div className="flex items-center justify-end mb-4">
+            <button
+              type="button"
+              className="inline-flex items-center justify-center p-2 rounded-md text-gray-400"
+              aria-label="Close menu"
+              aria-expanded="true"
+              onClick={() => setDrawerOpen(false)}
+            >
+              <svg
+                aria-hidden="true"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth={1.5}
+                viewBox="0 0 24 24"
+                xmlns="http://www.w3.org/2000/svg"
+                className="w-6 h-6 text-gray-500"
+              >
+                <path
+                  d="M18 6L6 18M6 6l12 12"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                />
+              </svg>
+            </button>
+          </div>
+          <div className="col-span-2 grid grid-cols-2 items-start [&>*]:px-1">
+            <div className="h-[90%]">
+              <Navigation
+                links={fixedLinks}
+                className="grid gap-3 lg:gap-1 pb-5"
+                linkClassName="xl:p-[10px] hover:bg-[#eee]"
+                onClick={() => setDrawerOpen(false)}
+              />
+              <div className="bg-gray-300 w-full h-full">
+                <SocialMediaLinks className="w-full justify-center gap-7 py-10" />
+              </div>
+            </div>
+            <div className="h-[90%] overflow-auto">
+              <Navigation
+                links={categories}
+                className="grid gap-3 lg:gap-1"
+                prefixLink="noticias"
+                linkClassName="xl:p-[10px] hover:bg-[#eee]"
+                onClick={() => setDrawerOpen(false)}
+              />
+            </div>
+          </div>
+        </div>
+      </Drawer>
     </>
   );
 };
