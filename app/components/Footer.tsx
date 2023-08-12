@@ -33,8 +33,8 @@ export const Footer: React.FC<FooterProps> = ({ categories }) => {
         <div className="py-5">
           <Navigation
             links={categories}
-            className="grid gap-1 grid-cols-2 md:grid-cols-3 xl:grid-cols-7"
             prefixLink="noticias"
+            className="grid gap-1 grid-cols-2 md:grid-cols-3 xl:grid-cols-7 px-3 sm:px-0"
           />
         </div>
 
