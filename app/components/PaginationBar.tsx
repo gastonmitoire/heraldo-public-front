@@ -43,7 +43,7 @@ export const PaginationBar: React.FC<PaginationBarProps> = ({
             href="#"
             className={`flex items-center justify-center h-7 w-7 p-3 rounded-full ${
               i === page
-                ? "bg-blue-500 text-white"
+                ? "bg-primary text-white"
                 : "bg-gray-100 hover:bg-gray-300 text-gray-500 group-hover:text-gray-800"
             }`}
             onClick={() => handlePageChange(i)}

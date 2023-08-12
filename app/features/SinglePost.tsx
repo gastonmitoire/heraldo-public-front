@@ -35,7 +35,7 @@ const SinglePost = async ({
         <time dateTime={post?.publicationDate}>{date}</time>
       </div>
       <div className="flex-1 px-3 py-5 md:px-0">
-        <h5 className="pr-16 text-lg font-bold text-blue-500 truncate ">
+        <h5 className="pr-16 text-lg font-bold text-primary truncate ">
           {post?.flywheel}
         </h5>
         <p className="text-lg font-bold pt-0.5">{post?.title}</p>

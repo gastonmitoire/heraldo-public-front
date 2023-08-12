@@ -41,7 +41,7 @@ export const PrintedEdition: React.FC<PrintedEditionComponentProps> = ({
 
         <Button
           variant="link"
-          className="mx-auto group-hover:text-blue-500"
+          className="mx-auto group-hover:text-primary"
           iconLeft={
             <svg
               aria-hidden="true"
