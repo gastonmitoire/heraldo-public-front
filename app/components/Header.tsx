@@ -138,7 +138,29 @@ export const Header: React.FC<HeaderProps> = ({
               </svg>
             </button>
           </div>
-          <div className="col-span-2 grid grid-cols-2 items-start [&>*]:px-1">
+          <div className="col-span-2 grid grid-cols-2 gap-1 h-full">
+            <div className="flex flex-col">
+              <Navigation
+                links={fixedLinks}
+                className="grid gap-3 lg:gap-1 pb-5"
+                linkClassName="xl:p-[10px] hover:bg-[#eee]"
+                onClick={() => setDrawerOpen(false)}
+              />
+              <div className="bg-gray-300 w-full h-full">
+                <SocialMediaLinks className="w-full justify-center gap-7 py-10" />
+              </div>
+            </div>
+            <span className="flex h-[93%] overflow-auto">
+              <Navigation
+                links={categories}
+                prefixLink="noticias"
+                className="flex flex-col w-full h-full lg:gap-1"
+                linkClassName="xl:p-[10px] hover:bg-[#eee]"
+                onClick={() => setDrawerOpen(false)}
+              />
+            </span>
+          </div>
+          {/* <div className="col-span-2 grid grid-cols-2 items-start [&>*]:px-1">
             <div className="h-[90%]">
               <Navigation
                 links={fixedLinks}
@@ -150,16 +172,17 @@ export const Header: React.FC<HeaderProps> = ({
                 <SocialMediaLinks className="w-full justify-center gap-7 py-10" />
               </div>
             </div>
+
             <div className="h-[90%] overflow-auto">
               <Navigation
                 links={categories}
-                className="grid gap-3 lg:gap-1"
                 prefixLink="noticias"
+                className="flex flex-col lg:gap-1"
                 linkClassName="xl:p-[10px] hover:bg-[#eee]"
                 onClick={() => setDrawerOpen(false)}
               />
             </div>
-          </div>
+          </div> */}
         </div>
       </Drawer>
     </>
