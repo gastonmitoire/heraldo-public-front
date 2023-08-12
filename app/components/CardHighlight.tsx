@@ -101,7 +101,7 @@ export const CardHighlight: React.FC<CardHighlightProps> = ({
                   </div>
                 )}
                 <h5
-                  className={`truncate font-bold pb-1.5 pr-16 text-blue-500 ${
+                  className={`truncate font-bold pb-1.5 pr-16 text-white drop-shadow-md ${
                     flywheelClassName || ""
                   }`}
                 >

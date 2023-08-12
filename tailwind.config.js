@@ -7,6 +7,9 @@ module.exports = {
   ],
   theme: {
     extend: {
+      colors: {
+        primary: "#00558C",
+      },
       animation: {
         marquee: "marquee 25s linear infinite",
         fadeIn: "fadeIn 0.5s ease-in",
