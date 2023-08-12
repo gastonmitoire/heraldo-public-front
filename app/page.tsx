@@ -13,6 +13,7 @@ import { PostsUrgentMarquee } from "./features/posts/PostsUrgentMarquee";
 // FEATURES
 // Posts
 import { PostsFeatured } from "./features/posts/PostsFeatured";
+import { PostsFront } from "./features/posts/PostsFront";
 
 //Types
 import { FuneralNoticeProps } from "@/types";
@@ -38,15 +39,18 @@ export default async function Home() {
   // Funerals Calls
   const { docs: funerals } = await fetchFuneralNotices();
 
-  const funeralNotices = funerals.reduce((result: FuneralNoticeProps[], current: FuneralNoticeProps) => {
-    const exist = result.some((item) => item.title === current.title);
-    
-    if (!exist) {
-      result.push(current);
-    }
-    
-    return result;
-  }, []);
+  const funeralNotices = funerals.reduce(
+    (result: FuneralNoticeProps[], current: FuneralNoticeProps) => {
+      const exist = result.some((item) => item.title === current.title);
+
+      if (!exist) {
+        result.push(current);
+      }
+
+      return result;
+    },
+    []
+  );
 
   return (
     <div className="flex flex-col gap-5">
@@ -118,6 +122,8 @@ export default async function Home() {
             position: AdServerPositions.netblock1,
           }}
         />
+
+        <PostsFront />
 
         <AdServerComponent position={AdServerPositions.horizontal7} />
       </section>
