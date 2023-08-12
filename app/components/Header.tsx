@@ -73,7 +73,7 @@ export const Header: React.FC<HeaderProps> = ({
       <header className="container mx-auto flex flex-col items-center gap-1">
         <div className="grid grid-cols-3 w-full items-center py-3 px-1 sm:px-0">
           <div>
-            <HamburgerButton onClick={() => setDrawerOpen(true)} />
+            <HamburgerButton onClick={() => setDrawerOpen(true)} withText />
           </div>
           <Link href="/" className="justify-self-center">
             <SVGLogo className="h-[1.1rem] lg:h-[2.5rem]" />

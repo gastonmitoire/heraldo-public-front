@@ -3,11 +3,13 @@ import React, { useState } from "react";
 interface HamburgerButtonProps {
   onClick?: () => void;
   className?: string;
+  withText?: boolean;
 }
 
 export const HamburgerButton: React.FC<HamburgerButtonProps> = ({
   onClick,
   className,
+  withText,
 }) => {
   const fixedLinks = [
     {
@@ -41,7 +43,9 @@ export const HamburgerButton: React.FC<HamburgerButtonProps> = ({
     <>
       <button
         type="button"
-        className={`flex items-center justify-center ${className || ""}}`}
+        className={`flex items-center justify-center text-black ${
+          className || ""
+        }}`}
         aria-label="Main menu"
         aria-expanded="false"
         onClick={onClick}
@@ -53,7 +57,7 @@ export const HamburgerButton: React.FC<HamburgerButtonProps> = ({
           strokeWidth={1.5}
           viewBox="0 0 24 24"
           xmlns="http://www.w3.org/2000/svg"
-          className="w-6 h-6 text-gray-500"
+          className="w-6 h-6"
         >
           <path
             d="M3.75 9h16.5m-16.5 6.75h16.5"
@@ -61,6 +65,8 @@ export const HamburgerButton: React.FC<HamburgerButtonProps> = ({
             strokeLinejoin="round"
           />
         </svg>
+
+        {withText && <span className="ml-2 text-sm font-medium">Menú</span>}
       </button>
     </>
   );
