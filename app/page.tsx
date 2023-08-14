@@ -83,7 +83,7 @@ export default async function Home() {
       <section className="container flex flex-col gap-5 mx-auto">
         <AdServerComponent position={AdServerPositions.horizontal3} />
 
-        <CurrencyAndRiver />
+        {/* <CurrencyAndRiver /> */}
 
         <AdServerComponent position={AdServerPositions.horizontal4} />
       </section>
