@@ -25,7 +25,7 @@ export const List: React.FC<ListProps> = ({
   listClassName,
 }) => {
   return (
-    <div className={`${className} flex flex-col`}>
+    <div className={`flex flex-col divide-y border ${className || ""}`}>
       <h3 className="p-3 text-2xl font-bold">{heading}</h3>
 
       <ul
