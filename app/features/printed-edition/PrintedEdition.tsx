@@ -26,6 +26,9 @@ export const PrintedEdition: React.FC<PrintedEditionComponentProps> = ({
     setModal(false);
   };
 
+  // Prevent scrolling when modal is open
+  window.document.body.style.overflow = modal ? "hidden" : "auto";
+
   return (
     <>
       <article
