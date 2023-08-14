@@ -1,7 +1,7 @@
 // card grid with swiper component
 "use client";
 
-import React from "react";
+import React, { useState } from "react";
 import Link from "next/link";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Grid, Navigation, Pagination, Scrollbar, A11y } from "swiper/modules";
@@ -30,8 +30,13 @@ export const CardGridWithSwiper: React.FC<CardGridWithSwiperProps> = ({
   className,
   cardClassName,
 }) => {
-  if (!data) return null;
+  const [mounted, setMounted] = useState(false);
 
+  React.useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  if (!mounted) return null;
   return (
     <>
       <Swiper

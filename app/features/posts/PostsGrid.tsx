@@ -50,18 +50,12 @@ export const PostsGrid: React.FC<PostsGridProps> = async ({
         ]
       : posts;
 
-  const dataWithoutBanner = posts;
-
   const redirectUrl = (value: string) => {
     switch (value) {
-      case "category":
-        return posts[0].category?.slug;
-      case "position":
-        return posts[0].category?.slug;
       case "tag":
         return fetchPostsProps.value;
       default:
-        return "";
+        return posts[0].category?.slug;
     }
   };
 
@@ -79,13 +73,13 @@ export const PostsGrid: React.FC<PostsGridProps> = async ({
           <span className="hidden xl:block">
             <CardGridWithSwiper data={dataWithBanner} />
           </span>
-          <span className="xl:hidden block">
-            <CardGridWithSwiper data={dataWithoutBanner} />
+          <span className="xl:hidden">
+            <CardGridWithSwiper data={posts} />
             <Banner banner={banner.docs[0]} className="h-full px-3 xl:px-0" />
           </span>
         </>
       ) : posts?.length > 0 ? (
-        <CardGridWithSwiper data={dataWithoutBanner} />
+        <CardGridWithSwiper data={posts} />
       ) : null}
     </div>
   );
