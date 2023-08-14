@@ -29,7 +29,7 @@ export const PrintedEdition: React.FC<PrintedEditionComponentProps> = ({
   return (
     <>
       <article
-        className="p-3 border h-min cursor-pointer group hover:bg-gray-100"
+        className="flex flex-col gap-1 border h-min cursor-pointer group hover:bg-gray-200"
         onClick={openModal}
       >
         <Image
