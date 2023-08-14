@@ -43,8 +43,6 @@ export const PostsSuperHighlight: React.FC = async () => {
                 slug: posts[0].slug,
                 liveSports: posts[0].liveSports,
               }}
-              flywheelClassName="text-[1.5rem] text-white drop-shadow-md"
-              titleClassName="text-[1.5rem]"
             />
             <CardHighlight
               item={{
@@ -55,8 +53,6 @@ export const PostsSuperHighlight: React.FC = async () => {
                 slug: posts[1].slug,
                 liveSports: posts[0].liveSports,
               }}
-              flywheelClassName="text-[1.5rem] text-white drop-shadow-md"
-              titleClassName="text-[1.5rem]"
             />
           </div>
         );
@@ -86,8 +82,6 @@ export const PostsSuperHighlight: React.FC = async () => {
                   slug: posts[1].slug,
                   liveSports: posts[0].liveSports,
                 }}
-                flywheelClassName="text-[1.5rem] text-white drop-shadow-md"
-                titleClassName="text-[1.5rem]"
               />
               <CardHighlight
                 item={{
@@ -98,8 +92,6 @@ export const PostsSuperHighlight: React.FC = async () => {
                   slug: posts[2].slug,
                   liveSports: posts[0].liveSports,
                 }}
-                flywheelClassName="text-[1.5rem] text-white drop-shadow-md"
-                titleClassName="text-[1.5rem]"
               />
             </div>
           </>

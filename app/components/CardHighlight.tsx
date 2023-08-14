@@ -21,8 +21,6 @@ interface CardHighlightProps {
   prefixLink?: string;
   fullWidth?: boolean;
   className?: string;
-  flywheelClassName?: string;
-  titleClassName?: string;
 }
 
 export const CardHighlight: React.FC<CardHighlightProps> = ({
@@ -30,8 +28,6 @@ export const CardHighlight: React.FC<CardHighlightProps> = ({
   prefixLink,
   fullWidth,
   className,
-  flywheelClassName,
-  titleClassName,
 }) => {
   return (
     <Suspense>
@@ -71,7 +67,10 @@ export const CardHighlight: React.FC<CardHighlightProps> = ({
 
                 <span className="flex flex-col items-center text-[1.5rem]">
                   <h5
-                    className={`truncate font-bold text-white text-center drop-shadow-md}`}
+                    className={`truncate font-bold text-white text-center`}
+                    style={{
+                      textShadow: "1px 1px 5px rgba(0, 0, 0, 0.5)",
+                    }}
                   >
                     {flywheel}
                   </h5>
@@ -101,15 +100,14 @@ export const CardHighlight: React.FC<CardHighlightProps> = ({
                   </div>
                 )}
                 <h5
-                  className={`truncate font-bold pb-1.5 pr-16 text-white drop-shadow-md ${
-                    flywheelClassName || ""
-                  }`}
+                  className={`truncate font-bold pb-1.5 pr-16 text-[1.5rem] text-white`}
+                  style={{
+                    textShadow: "1px 1px 5px rgba(0, 0, 0, 0.5)",
+                  }}
                 >
                   {flywheel}
                 </h5>
-                <p
-                  className={`font-bold pt-1.5 w-[95%] ${titleClassName || ""}`}
-                >
+                <p className={`text-[1.5rem] font-bold pt-1.5 w-[95%]`}>
                   <span className="bg-white p-1">{title}</span>
                 </p>
               </span>
