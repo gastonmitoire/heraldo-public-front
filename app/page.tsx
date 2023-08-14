@@ -102,13 +102,13 @@ export default async function Home() {
       <section className="container mx-auto flex flex-col gap-5">
         <AdServerComponent position={AdServerPositions.horizontal5} />
 
-        {/* <PostsGrid
+        <PostsGrid
           title="Elecciones 2023"
           fetchPostsProps={{
             option: "tag",
             value: "Elecciones 2023",
           }}
-        /> */}
+        />
 
         <AdServerComponent position={AdServerPositions.horizontal6} />
 
