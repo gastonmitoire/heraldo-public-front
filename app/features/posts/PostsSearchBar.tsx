@@ -46,6 +46,22 @@ export const SearchBar: React.FC<SearchBarProps> = ({
     }
   }, [searchTerm]);
 
+  // ESC key to close list
+  useEffect(() => {
+    const handleEsc = (e: KeyboardEvent) => {
+      if (e.key === "Escape") {
+        setListOpen(false);
+        setSearchTerm("");
+      }
+    };
+
+    window.addEventListener("keydown", handleEsc);
+
+    return () => {
+      window.removeEventListener("keydown", handleEsc);
+    };
+  }, []);
+
   return (
     <>
       <div className="relative flex items-center w-full gap-1">
