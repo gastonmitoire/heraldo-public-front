@@ -5,27 +5,24 @@ import React from "react";
 import { CurrencyAndRiverSwiper } from "./CurrencyAndRiverSwiper";
 
 async function fetchDataCurrency() {
-  const res = await fetch(`https://www.dolarsi.com/api/api.php?type=dolar`);
-  const res2 = await fetch(
-    `https://www.dolarsi.com/api/api.php?type=cotizador`
-  );
+  const res = await fetch(`https://www.dolarsi.com/api/api.php?type=dolar`)
+    .then((res) => res.json())
+    .catch((err) => console.log(err));
+  const res2 = await fetch(`https://www.dolarsi.com/api/api.php?type=cotizador`)
+    .then((res) => res.json())
+    .catch((err) => console.log(err));
 
-  if (!res.ok || !res2.ok) {
-    console.log("error");
-    return;
+  if (res.status === "error" || res2.status === "error") {
+    return [];
   }
 
-  const data = await res.json();
-
-  const data2 = await res2.json();
-
   return [
-    ...data.filter(
+    ...res.filter(
       (curr: any) =>
         curr.casa?.nombre.includes("Oficial") ||
         curr.casa?.nombre?.includes("Blue")
     ),
-    ...data2.filter(
+    ...res2.filter(
       (curr: any) =>
         curr.casa?.nombre.includes("Peso Uruguayo") ||
         curr.casa?.nombre?.includes("Real")
@@ -36,6 +33,11 @@ async function fetchDataCurrency() {
 export const CurrencyAndRiver: React.FC = async () => {
   // Currency & River Calls
   const dataCurrency = await fetchDataCurrency();
+
+  if (dataCurrency.length === 0) {
+    return null;
+  }
+
   return (
     <div className="grid grid-cols-5">
       <span className="col-start-2 col-end-5">

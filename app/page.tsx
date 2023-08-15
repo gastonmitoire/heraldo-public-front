@@ -3,7 +3,7 @@ import React from "react";
 import { SwiperFullscreen } from "./components/SwiperFullscreen";
 
 import { AdServerComponent } from "./features/ad-servers/AdServerComponent";
-import { CurrencyAndRiver } from "./features/CurrencyAndRiver";
+import { CurrencyAndRiver } from "./features/currency-and-river/CurrencyAndRiver";
 import { FuneralsPreview } from "./features/FuneralsPreview";
 import { PostsHighlight } from "./features/posts/PostsHighlight";
 import { PostsGrid } from "./features/posts/PostsGrid";
@@ -83,7 +83,7 @@ export default async function Home() {
       <section className="container flex flex-col gap-5 mx-auto">
         <AdServerComponent position={AdServerPositions.horizontal3} />
 
-        {/* <CurrencyAndRiver /> */}
+        <CurrencyAndRiver />
 
         <AdServerComponent position={AdServerPositions.horizontal4} />
       </section>
