@@ -31,7 +31,33 @@ export const PrintedEditionModal: React.FC<PrintedEditionModalProps> = ({
       keepPreviousData: true,
     });
 
-  const url = data?.docs[0]?.frontPage.url;
+  const url = data?.docs[0]?.frontPage.url || currentPrintedEdition;
+
+  // transform date to human readable format (Argentina)
+  const dateFormatted = new Date(date).toLocaleDateString("es-AR", {
+    weekday: "long",
+    year: "numeric",
+    month: "long",
+    day: "numeric",
+  });
+
+  // Prevent scrolling when modal is open and enable it when modal is closed.
+  // Also, set the min and max date for the date picker.
+  if (mounted) {
+    modal
+      ? (document.body.style.overflow = "hidden")
+      : (document.body.style.overflow = "unset");
+
+    const datePicker = document.getElementById(
+      "print-edition-date"
+    ) as HTMLInputElement;
+
+    if (datePicker) {
+      datePicker.lang = "es";
+      datePicker.min = "2023-06-05";
+      datePicker.max = new Date().toISOString().slice(0, 10);
+    }
+  }
 
   const openModal = () => {
     setModal(true);
@@ -39,18 +65,12 @@ export const PrintedEditionModal: React.FC<PrintedEditionModalProps> = ({
 
   const closeModal = () => {
     setModal(false);
+    setDate(new Date().toISOString().slice(0, 10));
   };
 
   const handleDateChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setDate(e.target.value);
   };
-
-  // Prevent scrolling when modal is open
-  if (mounted) {
-    modal
-      ? (document.body.style.overflow = "hidden")
-      : (document.body.style.overflow = "unset");
-  }
 
   const shareOnFacebook = (url: string) => {
     window.open(
@@ -122,23 +142,37 @@ export const PrintedEditionModal: React.FC<PrintedEditionModalProps> = ({
         isOpen={modal}
         onClose={closeModal}
         maxWidth="max-w-5xl"
-        title={`El Heraldo | Edición impresa | ${date}`}
+        title={"El Heraldo | Edición impresa"}
         topAction={
-          <input
-            type="date"
-            className="border border-gray-300 rounded-md"
-            onChange={handleDateChange}
-          />
+          <span className="flex items-center gap-1">
+            Filtrar por fecha:
+            <input
+              id="print-edition-date"
+              type="date"
+              className="border border-gray-300 rounded-md"
+              onChange={handleDateChange}
+            />
+          </span>
         }
       >
         <div className="flex flex-col gap-5 pb-5 max-h-[90vh]">
           <figure className="h-[90%] overflow-auto">
-            <Image
-              src={url || currentPrintedEdition}
-              alt={"El Heraldo | Edición impresa"}
-              width={1000}
-              height={1000}
-            />
+            {isFetching ? (
+              <div className="flex items-center justify-center h-[80vh]">
+                Cargando edición impresa...
+              </div>
+            ) : isSuccess ? (
+              <Image
+                src={url}
+                alt={"El Heraldo | Edición impresa"}
+                width={1000}
+                height={1000}
+              />
+            ) : (
+              <div className="flex items-center justify-center h-[80vh]">
+                No se encontró la edición impresa para la fecha seleccionada.
+              </div>
+            )}
           </figure>
           {/* social links (copy link, facebook, twitter, whatsApp) */}
           <nav className={`flex justify-center gap-5`}>

@@ -27,37 +27,36 @@ export const Modal: React.FC<ModalProps> = ({
         } ${maxWidth ? maxWidth : "max-w-2xl"}`}
       >
         <nav className="relative flex items-center justify-between px-3 w-full h-10">
+          <h2 className="text-xl font-bold text-center text-#1C2033">
+            {title}
+          </h2>
+
           <span className="flex items-center gap-3">
-            <h2 className="text-xl font-bold text-center text-#1C2033">
-              {title}
-            </h2>
-
             {topAction}
-          </span>
-
-          <button
-            type="button"
-            className="rounded-md"
-            aria-label="Close menu"
-            aria-expanded="true"
-            onClick={onClose}
-          >
-            <svg
-              aria-hidden="true"
-              fill="none"
-              stroke="currentColor"
-              strokeWidth={1.5}
-              viewBox="0 0 24 24"
-              xmlns="http://www.w3.org/2000/svg"
-              className="w-6 h-6 text-gray-500"
+            <button
+              type="button"
+              className="rounded-md"
+              aria-label="Close menu"
+              aria-expanded="true"
+              onClick={onClose}
             >
-              <path
-                d="M18 6L6 18M6 6l12 12"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-              />
-            </svg>
-          </button>
+              <svg
+                aria-hidden="true"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth={1.5}
+                viewBox="0 0 24 24"
+                xmlns="http://www.w3.org/2000/svg"
+                className="w-6 h-6 text-gray-500"
+              >
+                <path
+                  d="M18 6L6 18M6 6l12 12"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                />
+              </svg>
+            </button>
+          </span>
         </nav>
         {children}
       </div>
