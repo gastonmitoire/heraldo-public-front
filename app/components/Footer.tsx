@@ -11,6 +11,17 @@ interface FooterProps {
 }
 
 export const Footer: React.FC<FooterProps> = ({ categories }) => {
+  const footerCategories = categories
+    ?.filter(
+      (category: any) =>
+        category.slug !== "locales" &&
+        category.slug !== "provinciales" &&
+        category.slug !== "nacionales" &&
+        category.slug !== "internacionales" &&
+        category.slug !== "correo_de_lectores"
+    )
+    .sort((a: any, b: any) => a.name.localeCompare(b.name));
+
   return (
     <footer className="py-3 mt-10 bg-gray-200">
       <div className="container mx-auto divide-y divide-gray-400">
@@ -32,9 +43,9 @@ export const Footer: React.FC<FooterProps> = ({ categories }) => {
 
         <div className="py-5">
           <Navigation
-            links={categories}
+            links={footerCategories}
             prefixLink="noticias"
-            className="grid gap-1 grid-cols-2 md:grid-cols-3 xl:grid-cols-7 px-3 sm:px-0"
+            className="grid gap-1 grid-cols-2 md:grid-cols-3 xl:grid-cols-5 px-3 sm:px-0"
           />
         </div>
 
