@@ -37,6 +37,17 @@ export const Header: React.FC<HeaderProps> = ({
       category.slug === "sociales"
   );
 
+  const drawerCategories = categories
+    ?.filter(
+      (category: any) =>
+        category.slug !== "locales" &&
+        category.slug !== "provinciales" &&
+        category.slug !== "nacionales" &&
+        category.slug !== "internacionales" &&
+        category.slug !== "correo_de_lectores"
+    )
+    .sort((a: any, b: any) => a.name.localeCompare(b.name));
+
   const fixedLinks = [
     {
       name: "Inicio",
@@ -56,14 +67,18 @@ export const Header: React.FC<HeaderProps> = ({
       slug: "https://clasificadoselheraldo.com.ar/",
     },
     {
-      name: "Estadisticas",
-      slug: "estadisticas",
-    },
-    {
       name: "Correo de lectores",
       slug: "noticias/correo-de-lectores",
     },
   ];
+
+  const openDrawer = () => {
+    setDrawerOpen(true);
+  };
+
+  const closeDrawer = () => {
+    setDrawerOpen(false);
+  };
 
   return (
     <>
@@ -73,7 +88,7 @@ export const Header: React.FC<HeaderProps> = ({
       <header className="container mx-auto flex flex-col items-center gap-1">
         <div className="grid grid-cols-3 w-full items-center py-3 px-1 sm:px-0">
           <div>
-            <HamburgerButton onClick={() => setDrawerOpen(true)} withText />
+            <HamburgerButton onClick={openDrawer} withText />
           </div>
           <Link href="/" className="justify-self-center">
             <SVGLogo className="h-[1.1rem] lg:h-[2.5rem]" />
@@ -111,7 +126,7 @@ export const Header: React.FC<HeaderProps> = ({
         <div className="container mx-auto mt-5 px-3 xl:px-0">{banner}</div>
       )}
 
-      <Drawer open={drawerOpen} onClose={() => setDrawerOpen(false)}>
+      <Drawer open={drawerOpen} onClose={closeDrawer}>
         <div className="flex flex-col w-[100vw] h-full xl:w-[450px] bg-white border rounded shadow-sm pb-3">
           <div className="flex items-center justify-end mb-4">
             <button
@@ -119,7 +134,7 @@ export const Header: React.FC<HeaderProps> = ({
               className="inline-flex items-center justify-center p-2 rounded-md text-gray-400"
               aria-label="Close menu"
               aria-expanded="true"
-              onClick={() => setDrawerOpen(false)}
+              onClick={closeDrawer}
             >
               <svg
                 aria-hidden="true"
@@ -144,7 +159,7 @@ export const Header: React.FC<HeaderProps> = ({
                 links={fixedLinks}
                 className="grid gap-3 lg:gap-1 pb-5"
                 linkClassName="xl:p-[10px] hover:bg-[#eee]"
-                onClick={() => setDrawerOpen(false)}
+                onClick={closeDrawer}
               />
               <div className="bg-gray-300 w-full h-full">
                 <SocialMediaLinks className="w-full justify-center gap-7 py-10" />
@@ -152,37 +167,14 @@ export const Header: React.FC<HeaderProps> = ({
             </div>
             <span className="flex h-[93%] overflow-auto px-1">
               <Navigation
-                links={categories}
+                links={drawerCategories}
                 prefixLink="noticias"
                 className="grid gap-3 lg:gap-1 w-full h-full"
                 linkClassName="xl:p-[10px] hover:bg-[#eee]"
-                onClick={() => setDrawerOpen(false)}
+                onClick={closeDrawer}
               />
             </span>
           </div>
-          {/* <div className="col-span-2 grid grid-cols-2 items-start [&>*]:px-1">
-            <div className="h-[90%]">
-              <Navigation
-                links={fixedLinks}
-                className="grid gap-3 lg:gap-1 pb-5"
-                linkClassName="xl:p-[10px] hover:bg-[#eee]"
-                onClick={() => setDrawerOpen(false)}
-              />
-              <div className="bg-gray-300 w-full h-full">
-                <SocialMediaLinks className="w-full justify-center gap-7 py-10" />
-              </div>
-            </div>
-
-            <div className="h-[90%] overflow-auto">
-              <Navigation
-                links={categories}
-                prefixLink="noticias"
-                className="flex flex-col lg:gap-1"
-                linkClassName="xl:p-[10px] hover:bg-[#eee]"
-                onClick={() => setDrawerOpen(false)}
-              />
-            </div>
-          </div> */}
         </div>
       </Drawer>
     </>
