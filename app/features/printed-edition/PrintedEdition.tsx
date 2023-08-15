@@ -1,7 +1,7 @@
 // printed-edition component
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Image from "next/image";
 
 import { Button } from "../../components/Button";
@@ -16,6 +16,7 @@ interface PrintedEditionComponentProps {
 export const PrintedEdition: React.FC<PrintedEditionComponentProps> = ({
   printedEdition,
 }) => {
+  const [mounted, setMounted] = useState(false);
   const [modal, setModal] = useState(false);
 
   const openModal = () => {
@@ -27,7 +28,15 @@ export const PrintedEdition: React.FC<PrintedEditionComponentProps> = ({
   };
 
   // Prevent scrolling when modal is open
-  window.document.body.style.overflow = modal ? "hidden" : "auto";
+  if (mounted) {
+    modal
+      ? (document.body.style.overflow = "hidden")
+      : (document.body.style.overflow = "unset");
+  }
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
 
   return (
     <>
