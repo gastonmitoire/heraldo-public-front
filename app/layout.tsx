@@ -33,18 +33,18 @@ export default async function RootLayout({
   const categories = await fetchCategories();
   return (
     <html lang="en">
-      <body className={montserrat.className}>
-        <Header
-          categories={categories}
-          banner={
-            <AdServerComponent position={AdServerPositions.horizontal1} />
-          }
-        />
-        <main>
-          <Providers>{children}</Providers>
-        </main>
-        <Footer categories={categories} />
-      </body>
+      <Providers>
+        <body className={montserrat.className}>
+          <Header
+            categories={categories}
+            banner={
+              <AdServerComponent position={AdServerPositions.horizontal1} />
+            }
+          />
+          <main>{children}</main>
+          <Footer categories={categories} />
+        </body>
+      </Providers>
     </html>
   );
 }

@@ -54,6 +54,22 @@ export interface FetchPostsWithOptionsProps {
   postsLimit?: number;
 }
 
+export interface FetchPostsWithSearchProps {
+  search: string;
+}
+
+export const fetchPostsWithSearch = async ({
+  search,
+}: FetchPostsWithSearchProps): Promise<DocsWithPaginationProps> => {
+  const finalUrl = `/posts/search?title=${search}`;
+
+  const response: DocsWithPaginationProps = await fetchClient(finalUrl, {
+    method: "GET",
+  });
+
+  return response;
+};
+
 export const fetchPostsWithPagination = async ({
   page,
   option,

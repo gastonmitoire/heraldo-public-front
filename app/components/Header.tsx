@@ -11,6 +11,7 @@ import { usePathname } from "next/navigation";
 import { Drawer } from "./Drawer";
 import { HamburgerButton } from "./HamburgerButton";
 import { Navigation } from "./Navigation";
+import { SearchBar } from "../features/posts/PostsSearchBar";
 import { SocialMediaLinks } from "./SocialMediaLinks";
 
 import { AdServerPositions } from "../features/ad-servers/service/ad-servers.service";
@@ -25,6 +26,7 @@ export const Header: React.FC<HeaderProps> = ({
   banner,
 }: HeaderProps) => {
   const pathname = usePathname();
+  const [searching, setSearching] = useState(false);
   const [drawerOpen, setDrawerOpen] = useState(false);
 
   const filteredCategories = categories?.filter(
@@ -86,15 +88,71 @@ export const Header: React.FC<HeaderProps> = ({
         <div className="container mx-auto mt-3 px-3 xl:px-0">{banner}</div>
       )}
       <header className="container mx-auto flex flex-col items-center gap-1">
-        <div className="grid grid-cols-3 w-full items-center py-3 px-1 sm:px-0">
-          <div>
-            <HamburgerButton onClick={openDrawer} withText />
-          </div>
-          <Link href="/" className="justify-self-center">
-            <SVGLogo className="h-[1.1rem] lg:h-[2.5rem]" />
-          </Link>
-          <SocialMediaLinks className="justify-self-end hidden sm:flex" />
+        <div className="grid grid-cols-3 w-full min-h-[65px] items-center py-3 px-1 sm:px-0">
+          {searching ? (
+            <span className="col-span-3 flex items-center px-1">
+              <button
+                type="button"
+                className="inline-flex items-center justify-center p-2 rounded-md hover:bg-[#eee]"
+                aria-label="Search"
+                aria-expanded="true"
+                onClick={() => setSearching(false)}
+              >
+                <svg
+                  aria-hidden="true"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth={1.5}
+                  viewBox="0 0 24 24"
+                  xmlns="http://www.w3.org/2000/svg"
+                  className="w-5 h-5 text-gray-500 hover:text-gray-700"
+                >
+                  <path
+                    d="M10.5 19.5L3 12m0 0l7.5-7.5M3 12h18"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  />
+                </svg>
+              </button>
+
+              <SearchBar onClickSelected={() => setSearching(false)} />
+            </span>
+          ) : (
+            <>
+              <div className="flex items-center gap-3">
+                <HamburgerButton onClick={openDrawer} withText />
+                <button
+                  type="button"
+                  className="inline-flex items-center justify-center p-2 rounded-md hover:bg-[#eee]"
+                  aria-label="Search"
+                  aria-expanded="true"
+                  onClick={() => setSearching(true)}
+                >
+                  <svg
+                    aria-hidden="true"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth={1.5}
+                    viewBox="0 0 24 24"
+                    xmlns="http://www.w3.org/2000/svg"
+                    className="w-5 h-5"
+                  >
+                    <path
+                      d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                    />
+                  </svg>
+                </button>
+              </div>
+              <Link href="/" className="justify-self-center">
+                <SVGLogo className="h-[1.1rem] lg:h-[2.5rem]" />
+              </Link>
+              <SocialMediaLinks className="justify-self-end hidden sm:flex" />
+            </>
+          )}
         </div>
+
         <div className="grid grid-cols-1 lg:grid-cols-5 lg:items-center w-full">
           <Navigation
             links={filteredCategories}
