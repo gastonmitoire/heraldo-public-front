@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Image from "next/image";
 
 import { SVGLogo } from "./Logo";
@@ -26,6 +26,7 @@ export const Header: React.FC<HeaderProps> = ({
   banner,
 }: HeaderProps) => {
   const pathname = usePathname();
+  const [mounted, setMounted] = useState(false);
   const [searching, setSearching] = useState(false);
   const [drawerOpen, setDrawerOpen] = useState(false);
 
@@ -81,6 +82,18 @@ export const Header: React.FC<HeaderProps> = ({
   const closeDrawer = () => {
     setDrawerOpen(false);
   };
+
+  if (mounted) {
+    drawerOpen
+      ? (document.body.style.overflow = "hidden")
+      : (document.body.style.overflow = "unset");
+  }
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  if (!mounted) return null;
 
   return (
     <>
