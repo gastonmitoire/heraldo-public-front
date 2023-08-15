@@ -226,12 +226,45 @@ export const Header: React.FC<HeaderProps> = ({
           </div>
           <div className="col-span-2 grid grid-cols-2 gap-1 h-full">
             <div className="flex flex-col px-1">
-              <Navigation
-                links={fixedLinks}
-                className="grid gap-3 lg:gap-1 pb-5"
-                linkClassName="xl:p-[10px] hover:bg-[#eee]"
-                onClick={closeDrawer}
-              />
+              <nav className="flex flex-col gap-3 lg:gap-1">
+                <Link
+                  href={`/`}
+                  className={`font-bold text-black xl:p-[10px] hover:bg-[#eee]`}
+                  onClick={closeDrawer}
+                >
+                  Inicio
+                </Link>
+                <Link
+                  href={`/`}
+                  className={`font-bold text-black xl:p-[10px] hover:bg-[#eee]`}
+                  onClick={closeDrawer}
+                >
+                  Tapa del día
+                </Link>
+                <Link
+                  href={`funebres`}
+                  className={`font-bold text-black xl:p-[10px] hover:bg-[#eee]`}
+                  onClick={closeDrawer}
+                >
+                  Avisos fúnebres
+                </Link>
+                <Link
+                  href={`https://clasificadoselheraldo.com.ar/`}
+                  className={`font-bold text-black xl:p-[10px] hover:bg-[#eee]`}
+                  onClick={closeDrawer}
+                  target="_blank"
+                >
+                  Clasificados
+                </Link>
+                <Link
+                  href={`noticias/correo-de-lectores`}
+                  className={`font-bold text-black xl:p-[10px] hover:bg-[#eee]`}
+                  onClick={closeDrawer}
+                >
+                  Correo de lectores
+                </Link>
+              </nav>
+
               <div className="bg-gray-300 w-full h-full">
                 <SocialMediaLinks className="w-full justify-center gap-7 py-10" />
               </div>
