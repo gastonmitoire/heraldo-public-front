@@ -123,7 +123,7 @@ export const PostsHighlight: React.FC<PostsHighlightProps> = async ({
 
       <section className="hidden xl:flex flex-col h-full gap-5 xl:col-span-1 md:col-span-2">
         <span>
-          <PrintedEdition printedEdition={printedEdition[0]} />
+          <PrintedEdition />
         </span>
 
         <List
