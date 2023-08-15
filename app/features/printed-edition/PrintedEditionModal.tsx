@@ -19,21 +19,19 @@ export const PrintedEditionModal: React.FC<PrintedEditionModalProps> = ({
 }) => {
   const [mounted, setMounted] = useState(false);
   const [modal, setModal] = useState(false);
-  const [date, setDate] = useState("");
+  const [date, setDate] = useState(new Date().toISOString().slice(0, 10));
 
   const { status, data, error, isFetching, isPreviousData, isSuccess } =
     useQuery({
       queryKey: ["printed-edition", date],
       queryFn: () =>
         fetchPrintedEditionByDate({
-          date: "2023-06-13",
+          date,
         }),
       keepPreviousData: true,
     });
 
-  const url = "";
-
-  console.log("data", data);
+  const url = data?.docs[0]?.frontPage.url;
 
   const openModal = () => {
     setModal(true);
@@ -136,7 +134,7 @@ export const PrintedEditionModal: React.FC<PrintedEditionModalProps> = ({
         <div className="flex flex-col gap-5 pb-5 max-h-[90vh]">
           <figure className="h-[90%] overflow-auto">
             <Image
-              src={url}
+              src={url || currentPrintedEdition}
               alt={"El Heraldo | Edición impresa"}
               width={1000}
               height={1000}
