@@ -27,13 +27,13 @@ export const SwiperFullscreen: React.FC<SwiperFullscreenProps> = ({
 }) => {
   const [mounted, setMounted] = useState(false);
 
-  if (posts.length === 0) {
-    return null;
-  }
-
   useEffect(() => {
     setMounted(true);
   }, []);
+
+  if (posts.length === 0) {
+    return null;
+  }
 
   return mounted && posts.length > 0 ? (
     <Swiper
