@@ -42,6 +42,10 @@ export const Card: React.FC<CardProps> = ({
       >
         <article className="group grid grid-cols-1 grid-rows-2 h-full">
           <figure className="h-full relative group-hover:brightness-75 transition-all overflow-y-hidden">
+            <span className="absolute top-1.5 left-1.5 z-10 px-3 py-1.5 uppercase font-light text-sm text-white bg-black bg-opacity-75">
+              {category.name}
+            </span>
+
             <Image src={image.url} alt={title} fill objectFit="cover" />
 
             {liveSports && (
