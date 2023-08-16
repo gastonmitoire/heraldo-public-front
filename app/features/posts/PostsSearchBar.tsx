@@ -10,13 +10,13 @@ import { useQueryClient, useQuery } from "@tanstack/react-query";
 
 import { fetchPostsWithSearch } from "./service/posts.service";
 
-interface SearchBarProps {
+interface PostsSearchBarProps {
   className?: string;
   dropdownClassName?: string;
   onClickSelected?: () => void;
 }
 
-export const SearchBar: React.FC<SearchBarProps> = ({
+export const PostsSearchBar: React.FC<PostsSearchBarProps> = ({
   className,
   dropdownClassName,
   onClickSelected,

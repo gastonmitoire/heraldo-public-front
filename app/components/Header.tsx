@@ -10,7 +10,7 @@ import { usePathname } from "next/navigation";
 import { Drawer } from "./Drawer";
 import { HamburgerButton } from "./HamburgerButton";
 import { Navigation } from "./Navigation";
-import { SearchBar } from "../features/posts/PostsSearchBar";
+import { PostsSearchBar } from "../features/posts/PostsSearchBar";
 import { SocialMediaLinks } from "./SocialMediaLinks";
 
 import { PrintedEditionModal } from "../features/printed-edition/PrintedEditionModal";
@@ -108,7 +108,7 @@ export const Header: React.FC<HeaderProps> = ({
                 </svg>
               </button>
 
-              <SearchBar onClickSelected={() => setSearching(false)} />
+              <PostsSearchBar onClickSelected={() => setSearching(false)} />
             </span>
           ) : (
             <>
@@ -205,7 +205,7 @@ export const Header: React.FC<HeaderProps> = ({
             </button>
           </div>
           <div className="px-3">
-            <SearchBar
+            <PostsSearchBar
               onClickSelected={() => setSearching(false)}
               dropdownClassName="max-h-[80vh]"
             />
