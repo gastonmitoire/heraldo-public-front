@@ -39,8 +39,8 @@ export const CurrencyAndRiver: React.FC = async () => {
   }
 
   return (
-    <div className="grid grid-cols-5">
-      <span className="col-start-2 col-end-5">
+    <div className="grid grid-cols-1 lg:grid-cols-5">
+      <span className="col-span-1 lg:col-start-2 lg:col-end-5">
         <CurrencyAndRiverSwiper dataCurrency={dataCurrency} dataRiver={[]} />
       </span>
     </div>
