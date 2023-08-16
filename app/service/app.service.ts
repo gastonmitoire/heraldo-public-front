@@ -138,6 +138,18 @@ export const fetchFuneralNotices = async ({ deceased }: FetchFunebresProps) => {
 };
 
 // CATEGORIES ENDPOINTS
+export const fetchCategory = async (categorySlug: string) => {
+  console.log("categorySlug", categorySlug);
+  const response: CategoryProps = await fetchClient(
+    `/categories/${categorySlug}`,
+    {
+      method: "GET",
+    }
+  );
+
+  return response;
+};
+
 export const fetchCategories = async () => {
   const response: CategoryProps[] = await fetchClient("/categories", {
     method: "GET",

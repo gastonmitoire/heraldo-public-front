@@ -5,8 +5,8 @@ import { PostsHighlight } from "@/app/features/posts/PostsHighlight";
 import { PostsWithPagination } from "@/app/features/posts/PostsWithPagination";
 
 import { AdServerPositions } from "@/app/features/ad-servers/service/ad-servers.service";
+import { fetchCategory } from "@/app/service/app.service";
 import {
-  fetchPostsWithPagination,
   PostsCategories,
   PostsPositions,
 } from "@/app/features/posts/service/posts.service";
@@ -49,18 +49,19 @@ export default async function Page({
     params.categoryOrTagSlug
   );
 
-  const { docs: initialData } = await fetchPostsWithPagination({
-    page: 1,
-    option: ifCategory ? "category" : "tag",
-    value: params.categoryOrTagSlug,
-  });
+  let title;
+
+  if (ifCategory) {
+    const category = await fetchCategory(params.categoryOrTagSlug);
+    title = category.name;
+  } else {
+    title = params.categoryOrTagSlug.replaceAll(/%20|_/g, " ");
+  }
 
   return (
     <div className="container flex flex-col pt-5 gap-5 mx-auto">
       {/* PAGE TITLE */}
-      <h1 className="text-4xl font-bold text-gray-800 capitalize">
-        {params.categoryOrTagSlug.replaceAll(/%20|_/g, " ")}
-      </h1>
+      <h1 className="text-4xl font-bold text-gray-800 capitalize">{title}</h1>
 
       <PostsWithPagination
         option={
