@@ -124,8 +124,6 @@ export default async function Home() {
         />
 
         <PostsFront />
-
-        <AdServerComponent position={AdServerPositions.horizontal7} />
       </section>
 
       {/* FUNERALS PREVIEW SECTION & BANNER (horizontal8, horizontal9) & POSTS-FEATURED (category: deportes) */}

@@ -13,8 +13,16 @@ export const PostsFront: React.FC = async () => {
   const posts = await fetchPostsWithOptions({
     option: "position",
     value: PostsPositions.front,
-    postsLimit: 11,
+    postsLimit: 15,
   });
+
+  const filteredPosts = posts.filter(
+    (post) =>
+      !post.tags.includes("magazine") ||
+      !post.tags.includes("Elecciones 2023") ||
+      post.category.slug !== "deportes" ||
+      post.category.slug !== "cultura"
+  );
 
   return (
     <div className="grid grid-cols-1 xl:grid-cols-4 gap-3">
@@ -52,7 +60,7 @@ export const PostsFront: React.FC = async () => {
         <AdServerComponent position={AdServerPositions.netblock3} />
 
         <span className="col-span-1 xl:col-span-3">
-          <AdServerComponent position={AdServerPositions.horizontal7} />
+          <AdServerComponent position={AdServerPositions.horizontal8} />
         </span>
 
         {posts.slice(4, 7).map((post) => (
@@ -83,6 +91,11 @@ export const PostsFront: React.FC = async () => {
             }}
           />
         ))}
+
+        <span className="col-span-1 xl:col-span-3">
+          <AdServerComponent position={AdServerPositions.horizontal9} />
+        </span>
+
         {posts.slice(9, 11).map((post) => (
           <Card
             key={post._id}
@@ -97,6 +110,36 @@ export const PostsFront: React.FC = async () => {
           />
         ))}
         <AdServerComponent position={AdServerPositions.netblock5} />
+
+        <AdServerComponent position={AdServerPositions.netblock6} />
+        {posts.slice(11, 13).map((post) => (
+          <Card
+            key={post._id}
+            item={{
+              title: post.title,
+              slug: post.slug,
+              image: post.images[0],
+              category: post.category,
+              flywheel: post.flywheel,
+              liveSports: post.liveSports,
+            }}
+          />
+        ))}
+
+        {posts.slice(13, 15).map((post) => (
+          <Card
+            key={post._id}
+            item={{
+              title: post.title,
+              slug: post.slug,
+              image: post.images[0],
+              category: post.category,
+              flywheel: post.flywheel,
+              liveSports: post.liveSports,
+            }}
+          />
+        ))}
+        <AdServerComponent position={AdServerPositions.netblock7} />
       </div>
       <aside className="col-span-1 hidden xl:flex flex-col items-center">
         <span className="sticky top-0 w-[70%]">
@@ -105,10 +148,10 @@ export const PostsFront: React.FC = async () => {
       </aside>
 
       <div className="col-span-4 grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-3 items-center">
-        <AdServerComponent position={AdServerPositions.netblock6} />
-        <AdServerComponent position={AdServerPositions.netblock7} />
         <AdServerComponent position={AdServerPositions.netblock8} />
         <AdServerComponent position={AdServerPositions.netblock9} />
+        <AdServerComponent position={AdServerPositions.netblock10} />
+        <AdServerComponent position={AdServerPositions.netblock11} />
       </div>
     </div>
   );
