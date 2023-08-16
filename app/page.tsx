@@ -119,7 +119,7 @@ export default async function Home() {
             value: "vivo deportes",
           }}
           bannerConfig={{
-            position: AdServerPositions.netblock1,
+            position: AdServerPositions.netblock2,
           }}
         />
 

@@ -30,7 +30,7 @@ export const PostsFront: React.FC = async () => {
         <Heading title="Más noticias" />
       </div>
       <div className="col-span-1 xl:col-span-3 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 w-full">
-        <AdServerComponent position={AdServerPositions.netblock2} />
+        <AdServerComponent position={AdServerPositions.netblock3} />
         {filteredPosts.slice(0, 2).map((post) => (
           <Card
             key={post._id}
@@ -57,7 +57,7 @@ export const PostsFront: React.FC = async () => {
             }}
           />
         ))}
-        <AdServerComponent position={AdServerPositions.netblock3} />
+        <AdServerComponent position={AdServerPositions.netblock4} />
 
         <span className="col-span-1 xl:col-span-3">
           <AdServerComponent position={AdServerPositions.horizontal8} />
@@ -77,7 +77,7 @@ export const PostsFront: React.FC = async () => {
           />
         ))}
 
-        <AdServerComponent position={AdServerPositions.netblock4} />
+        <AdServerComponent position={AdServerPositions.netblock5} />
         {filteredPosts.slice(7, 9).map((post) => (
           <Card
             key={post._id}
@@ -109,9 +109,9 @@ export const PostsFront: React.FC = async () => {
             }}
           />
         ))}
-        <AdServerComponent position={AdServerPositions.netblock5} />
-
         <AdServerComponent position={AdServerPositions.netblock6} />
+
+        <AdServerComponent position={AdServerPositions.netblock7} />
         {filteredPosts.slice(11, 13).map((post) => (
           <Card
             key={post._id}
@@ -139,7 +139,7 @@ export const PostsFront: React.FC = async () => {
             }}
           />
         ))}
-        <AdServerComponent position={AdServerPositions.netblock7} />
+        <AdServerComponent position={AdServerPositions.netblock8} />
       </div>
       <aside className="col-span-1 hidden xl:flex flex-col items-center">
         <span className="sticky top-0 w-[70%]">
@@ -148,10 +148,10 @@ export const PostsFront: React.FC = async () => {
       </aside>
 
       <div className="col-span-4 grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-3 items-center">
-        <AdServerComponent position={AdServerPositions.netblock8} />
         <AdServerComponent position={AdServerPositions.netblock9} />
         <AdServerComponent position={AdServerPositions.netblock10} />
         <AdServerComponent position={AdServerPositions.netblock11} />
+        <AdServerComponent position={AdServerPositions.netblock12} />
       </div>
     </div>
   );
