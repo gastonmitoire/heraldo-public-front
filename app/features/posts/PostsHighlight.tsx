@@ -44,6 +44,8 @@ export const PostsHighlight: React.FC<PostsHighlightProps> = async ({
 
   const { docs: printedEdition } = await fetchPrintedEdition();
 
+  console.log("printedEdition", printedEdition);
+
   return (
     <div className="grid grid-cols-1 xl:grid-cols-4 gap-3">
       {title ? (
@@ -123,7 +125,7 @@ export const PostsHighlight: React.FC<PostsHighlightProps> = async ({
 
       <section className="hidden xl:flex flex-col h-full gap-5 xl:col-span-1 md:col-span-2">
         <span>
-          <PrintedEdition />
+          <PrintedEdition currentPrintedEdition={printedEdition[0]} />
         </span>
 
         <List

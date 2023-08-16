@@ -3,22 +3,25 @@
 import React, { useState, useEffect } from "react";
 import Image from "next/image";
 
-import { useQueryClient, useQuery } from "@tanstack/react-query";
+import { useQuery } from "@tanstack/react-query";
 
-import { Button } from "@/app/components/Button";
 import { Modal } from "@/app/components/Modal";
 
+import { PrintedEditionProps } from "@/types";
 import { fetchPrintedEditionByDate } from "./service/printed-edition.service";
 
 interface PrintedEditionModalProps {
-  currentPrintedEdition: string;
+  currentPrintedEdition: PrintedEditionProps;
+  open: boolean;
+  onClose: () => void;
 }
 
 export const PrintedEditionModal: React.FC<PrintedEditionModalProps> = ({
   currentPrintedEdition,
+  open,
+  onClose,
 }) => {
   const [mounted, setMounted] = useState(false);
-  const [modal, setModal] = useState(false);
   const [date, setDate] = useState(new Date().toISOString().slice(0, 10));
 
   const { status, data, error, isFetching, isPreviousData, isSuccess } =
@@ -33,18 +36,10 @@ export const PrintedEditionModal: React.FC<PrintedEditionModalProps> = ({
 
   const url = data?.docs[0]?.frontPage.url || currentPrintedEdition;
 
-  // transform date to human readable format (Argentina)
-  const dateFormatted = new Date(date).toLocaleDateString("es-AR", {
-    weekday: "long",
-    year: "numeric",
-    month: "long",
-    day: "numeric",
-  });
-
   // Prevent scrolling when modal is open and enable it when modal is closed.
   // Also, set the min and max date for the date picker.
   if (mounted) {
-    modal
+    open
       ? (document.body.style.overflow = "hidden")
       : (document.body.style.overflow = "unset");
 
@@ -59,17 +54,13 @@ export const PrintedEditionModal: React.FC<PrintedEditionModalProps> = ({
     }
   }
 
-  const openModal = () => {
-    setModal(true);
-  };
-
-  const closeModal = () => {
-    setModal(false);
-    setDate(new Date().toISOString().slice(0, 10));
-  };
-
   const handleDateChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setDate(e.target.value);
+  };
+
+  const handleClose = () => {
+    setDate(new Date().toISOString().slice(0, 10));
+    onClose();
   };
 
   const shareOnFacebook = (url: string) => {
@@ -102,50 +93,14 @@ export const PrintedEditionModal: React.FC<PrintedEditionModalProps> = ({
 
   return (
     <>
-      <article
-        className="flex flex-col gap-1 border h-min cursor-pointer group hover:bg-gray-200"
-        onClick={openModal}
-      >
-        <Image
-          src={currentPrintedEdition}
-          alt={"El Heraldo | Edición impresa"}
-          width={500}
-          height={400}
-        />
-
-        <Button
-          variant="link"
-          className="mx-auto group-hover:text-primary"
-          iconLeft={
-            <svg
-              aria-hidden="true"
-              fill="none"
-              stroke="currentColor"
-              strokeWidth="1.5"
-              viewBox="0 0 24 24"
-              xmlns="http://www.w3.org/2000/svg"
-              className="w-5 h-5 mr-2"
-            >
-              <path
-                d="M3.75 3.75v4.5m0-4.5h4.5m-4.5 0L9 9M3.75 20.25v-4.5m0 4.5h4.5m-4.5 0L9 15M20.25 3.75h-4.5m4.5 0v4.5m0-4.5L15 9m5.25 11.25h-4.5m4.5 0v-4.5m0 4.5L15 15"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-              ></path>
-            </svg>
-          }
-        >
-          Ampliar
-        </Button>
-      </article>
-
       <Modal
-        isOpen={modal}
-        onClose={closeModal}
+        isOpen={open}
+        onClose={handleClose}
         maxWidth="max-w-5xl"
         title={"El Heraldo | Edición impresa"}
         topAction={
           <span className="flex items-center gap-1">
-            Filtrar por fecha:
+            <p className="text-gray-700">Filtrar por fecha:</p>
             <input
               id="print-edition-date"
               type="date"
