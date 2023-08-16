@@ -11,6 +11,7 @@ import { AdServerComponent } from "@/app/features/ad-servers/AdServerComponent";
 import { AdServerPositions } from "./features/ad-servers/service/ad-servers.service";
 
 import { fetchCategories } from "./service/app.service";
+import { fetchPrintedEdition } from "./features/printed-edition/service/printed-edition.service";
 
 import Providers from "./providers";
 
@@ -31,6 +32,7 @@ export default async function RootLayout({
   children: React.ReactNode;
 }) {
   const categories = await fetchCategories();
+  const { docs: printedEditions } = await fetchPrintedEdition();
   return (
     <html lang="en">
       <Providers>
@@ -40,6 +42,7 @@ export default async function RootLayout({
             banner={
               <AdServerComponent position={AdServerPositions.horizontal1} />
             }
+            printedEdition={printedEditions[0]}
           />
           <main>{children}</main>
           <Footer categories={categories} />

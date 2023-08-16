@@ -1,7 +1,6 @@
 "use client";
 
 import React, { useEffect, useState } from "react";
-import Image from "next/image";
 
 import { SVGLogo } from "./Logo";
 
@@ -14,21 +13,26 @@ import { Navigation } from "./Navigation";
 import { SearchBar } from "../features/posts/PostsSearchBar";
 import { SocialMediaLinks } from "./SocialMediaLinks";
 
-import { AdServerPositions } from "../features/ad-servers/service/ad-servers.service";
+import { PrintedEditionModal } from "../features/printed-edition/PrintedEditionModal";
+
+import { PrintedEditionProps } from "@/types";
 
 interface HeaderProps {
   categories: any;
   banner: React.ReactNode;
+  printedEdition: PrintedEditionProps;
 }
 
 export const Header: React.FC<HeaderProps> = ({
   categories,
   banner,
+  printedEdition,
 }: HeaderProps) => {
   const pathname = usePathname();
   const [mounted, setMounted] = useState(false);
   const [searching, setSearching] = useState(false);
   const [drawerOpen, setDrawerOpen] = useState(false);
+  const [modalPrintedEditionOpen, setModalPrintedEditionOpen] = useState(false);
 
   const filteredCategories = categories?.filter(
     (category: any) =>
@@ -50,30 +54,6 @@ export const Header: React.FC<HeaderProps> = ({
         category.slug !== "correo_de_lectores"
     )
     .sort((a: any, b: any) => a.name.localeCompare(b.name));
-
-  const fixedLinks = [
-    {
-      name: "Inicio",
-      slug: "/",
-    },
-    {
-      name: "Tapa del día",
-      slug: "tapa-del-dia",
-    },
-    {
-      name: "Avisos fúnebres",
-      slug: "funebres",
-    },
-    {
-      external: true,
-      name: "Clasificados",
-      slug: "https://clasificadoselheraldo.com.ar/",
-    },
-    {
-      name: "Correo de lectores",
-      slug: "noticias/correo-de-lectores",
-    },
-  ];
 
   const openDrawer = () => {
     setDrawerOpen(true);
@@ -237,7 +217,10 @@ export const Header: React.FC<HeaderProps> = ({
                 <Link
                   href={`/`}
                   className={`font-bold text-black xl:p-[10px] hover:bg-[#eee]`}
-                  onClick={closeDrawer}
+                  onClick={() => {
+                    setModalPrintedEditionOpen(true);
+                    closeDrawer();
+                  }}
                 >
                   Tapa del día
                 </Link>
@@ -281,6 +264,12 @@ export const Header: React.FC<HeaderProps> = ({
           </div>
         </div>
       </Drawer>
+
+      <PrintedEditionModal
+        open={modalPrintedEditionOpen}
+        onClose={() => setModalPrintedEditionOpen(false)}
+        currentPrintedEdition={printedEdition}
+      />
     </>
   );
 };
