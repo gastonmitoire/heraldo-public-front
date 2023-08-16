@@ -28,6 +28,7 @@ import {
   PostsPositions,
   PostsCategories,
 } from "./features/posts/service/posts.service";
+import { ReadersMailPreview } from "./features/ReadersMailPreview";
 
 export default async function Home() {
   // Posts Calls (Highlight, SuperHighlight, TopPosition, FutbolCategory, EspectaculosCategory, CulturaCategory)
@@ -148,6 +149,8 @@ export default async function Home() {
         />
 
         <AdServerComponent position={AdServerPositions.horizontal12} />
+
+        <ReadersMailPreview />
       </section>
 
       {/* GALLERY IMAGE FULLSCREEN (swiper) SECTION */}
