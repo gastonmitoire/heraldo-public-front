@@ -28,7 +28,7 @@ export const SocialMediaShareLinks: React.FC<SocialMediaShareLinksProps> = ({
 
   const shareOnTwitter = () => {
     window.open(
-      `https://twitter.com/intent/tweet?text=${title}&url=${url}`,
+      `https://twitter.com/intent/tweet?url=${url}`,
       "twitter-share-dialog",
       "width=800,height=600"
     );
@@ -36,7 +36,7 @@ export const SocialMediaShareLinks: React.FC<SocialMediaShareLinksProps> = ({
 
   const shareOnWhatsApp = () => {
     window.open(
-      `https://api.whatsapp.com/send?text=${title} ${url}`,
+      `https://api.whatsapp.com/send?text=${url}`,
       "whatsapp-share-dialog",
       "width=800,height=600"
     );

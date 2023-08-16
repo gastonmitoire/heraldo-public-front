@@ -53,7 +53,7 @@ const SinglePost = async ({
         <div className="flex flex-row items-start justify-center col-span-1 ">
           <SocialMediaShareLinks
             title={post?.title}
-            url={`http://localhost:3000/noticias/${post?.category.slug}/${post?.slug}`}
+            url={`${process.env.NEXT_PUBLIC_URL}/noticias/${post?.category.slug}/${post?.slug}`}
             isVertical={true}
             hasShareText={false}
             className="md:flex-row md:justify-start md:gap-3"
