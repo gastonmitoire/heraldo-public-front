@@ -19,7 +19,7 @@ const CardFuneralNotice = ({ deceased }: { deceased: FuneralNoticeProps }) => {
   return (
     <section>
       <button
-        className="min-w-[215px] h-[120px] w-[350px] bg-black flex items-center justify-start gap-1 border-r-2 border-black border-opacity-50 relative cursor-pointer transition-all duration-300"
+        className="min-w-[215px] h-[120px] w-full bg-black flex items-center justify-start gap-1 border-r-2 border-black border-opacity-50 relative cursor-pointer transition-all duration-300"
         onClick={handleOpenModal}
       >
         <div className="w-[50px] h-full   flex items-center justify-center px-3 mx-2">

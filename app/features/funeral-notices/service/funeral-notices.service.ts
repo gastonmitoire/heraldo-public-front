@@ -12,3 +12,18 @@ export const fetchFuneralNotices = async () => {
 
   return response;
 };
+
+interface FetchFuneralNoticeByDateProps {
+  date: string;
+}
+
+export const fetchFuneralNoticesByDate = async ({date}: FetchFuneralNoticeByDateProps ) => {
+  const response: DocsWithPaginationProps = await fetchClient(
+    `/funeral-notices/date/${date}`,
+    {
+      method: "GET",
+    }
+  );
+
+  return response;
+};
