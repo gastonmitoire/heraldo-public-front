@@ -59,7 +59,7 @@ export default async function Page({
   }
 
   return (
-    <div className="container flex flex-col pt-5 gap-5 mx-auto">
+    <div className="container mx-auto flex flex-col pt-5 gap-5">
       {/* PAGE TITLE */}
       <h1 className="text-4xl font-bold text-gray-800 capitalize">{title}</h1>
 
@@ -76,7 +76,7 @@ export default async function Page({
       />
 
       <div className="col-span-4 flex flex-col gap-0.5">
-        <h5 className="text-xl font-semibold text-gray-800 capitalize">
+        <h5 className="text-xl font-semibold text-gray-800 capitalize px-1 sm:px-0">
           Noticias de portada
         </h5>
         <PostsHighlight

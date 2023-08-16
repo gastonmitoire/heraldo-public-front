@@ -47,8 +47,8 @@ export const PostsWithPagination: React.FC<PostsWithPaginationProps> = ({
   };
 
   return (
-    <div className="grid grid-cols-1 xl:grid-cols-4 gap-5 w-full">
-      <div className="col-span-1 xl:col-span-4 grid grid-cols-1 sm:grid-cols-2 gap-3 px-3 xl:px-0">
+    <div className="grid grid-cols-1 sm:grid-cols-4 gap-5 w-full">
+      <div className="col-span-4 grid grid-cols-1 sm:grid-cols-2 gap-3 px-3 sm:px-0">
         {isSuccess
           ? posts!.slice(0, 2).map((post: any) => (
               <CardHighlight
@@ -67,31 +67,31 @@ export const PostsWithPagination: React.FC<PostsWithPaginationProps> = ({
           : [1, 2].map((n) => <Skeleton key={n} className="min-h-[500px]" />)}
       </div>
 
-      <div className="col-span-1 xl:col-span-3 grid grid-cols-1 xl:grid-cols-3 gap-3 px-3 xl:px-0">
-        <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 col-span-3 gap-3">
-          {isSuccess
-            ? posts!.slice(2).map((post: any) => (
-                <Card
-                  key={post._id}
-                  item={{
-                    title: post.title,
-                    flywheel: post.flywheel,
-                    image: post.images[0],
-                    category: post.category,
-                    slug: post.slug,
-                    liveSports: post.liveSports,
-                  }}
-                />
-              ))
-            : [1, 2, 3, 4, 5, 6].map((n) => (
-                <Skeleton key={n} className="h-[300px]" />
-              ))}
-        </div>
+      <div className="col-span-4 xl:col-span-3 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 px-3 sm:px-0">
+        {isSuccess
+          ? posts!.slice(2).map((post: any) => (
+              <Card
+                key={post._id}
+                item={{
+                  title: post.title,
+                  flywheel: post.flywheel,
+                  image: post.images[0],
+                  category: post.category,
+                  slug: post.slug,
+                  liveSports: post.liveSports,
+                }}
+              />
+            ))
+          : [1, 2, 3, 4, 5, 6].map((n) => (
+              <Skeleton key={n} className="h-[300px]" />
+            ))}
       </div>
 
-      <aside className="col-span-1 flex justify-center">{aside}</aside>
+      <aside className="col-span-1 hidden xl:flex justify-center">
+        {aside}
+      </aside>
 
-      <div className="col-span-4">
+      <div className="col-span-4 px-3 sm:px-0">
         <PaginationBar
           paginationProps={
             { ...(data as DocsWithPaginationProps) } as DocsWithPaginationProps
