@@ -3,7 +3,7 @@ import { fetchClient } from "@/app/utils";
 import { DocsWithPaginationProps, AdServerProps } from "@/types";
 
 export enum AdServerPositions {
-  fullScreen = "full_screen",
+  full_screen = "full_screen",
   footer = "footer",
   right = "right",
   sticky1 = "sticky_1",

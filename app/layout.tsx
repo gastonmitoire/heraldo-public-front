@@ -7,9 +7,12 @@ import { Footer } from "./components/Footer";
 import { Header } from "./components/Header";
 
 import { AdServerComponent } from "@/app/features/ad-servers/AdServerComponent";
+import { AdServerFullscreen } from "./features/ad-servers/AdServerFullscreen";
 
-import { AdServerPositions } from "./features/ad-servers/service/ad-servers.service";
-
+import {
+  fetchAdServer,
+  AdServerPositions,
+} from "./features/ad-servers/service/ad-servers.service";
 import { fetchCategories } from "./service/app.service";
 import { fetchPrintedEdition } from "./features/printed-edition/service/printed-edition.service";
 
@@ -33,6 +36,9 @@ export default async function RootLayout({
 }) {
   const categories = await fetchCategories();
   const { docs: printedEditions } = await fetchPrintedEdition();
+  const { docs: fullScreenAdServer } = await fetchAdServer({
+    position: AdServerPositions.full_screen,
+  });
   return (
     <html lang="en">
       <Providers>
@@ -46,6 +52,12 @@ export default async function RootLayout({
           />
           <main>{children}</main>
           <Footer categories={categories} printedEdition={printedEditions[0]} />
+
+          {fullScreenAdServer.length > 0 && (
+            <AdServerFullscreen>
+              <AdServerComponent position={AdServerPositions.full_screen} />
+            </AdServerFullscreen>
+          )}
         </body>
       </Providers>
     </html>
