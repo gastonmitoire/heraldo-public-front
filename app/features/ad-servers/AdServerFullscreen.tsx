@@ -2,10 +2,6 @@
 
 import React, { useState, useEffect } from "react";
 
-import { AdServerComponent } from "./AdServerComponent";
-
-import { AdServerPositions } from "./service/ad-servers.service";
-
 interface AdServerFullscreenProps {
   children: React.ReactNode;
 }
@@ -13,11 +9,9 @@ interface AdServerFullscreenProps {
 export const AdServerFullscreen: React.FC<AdServerFullscreenProps> = ({
   children,
 }) => {
-  const [mounted, setMounted] = useState(false);
   const [showAdServer, setShowAdServer] = useState(true);
 
   useEffect(() => {
-    setMounted(true);
     setTimeout(() => {
       setShowAdServer(false);
     }, 8000);
