@@ -36,6 +36,12 @@ export enum AdServerPositions {
   horizontal9 = "horizontal_9",
   horizontal10 = "horizontal_10",
   horizontal11 = "horizontal_11",
+  horizontal12 = "horizontal_12",
+  horizontal13 = "horizontal_13",
+  horizontal14 = "horizontal_14",
+  horizontal15 = "horizontal_15",
+  horizontal16 = "horizontal_16",
+  horizontal17 = "horizontal_17",
 }
 
 interface FetchAdServerProps {

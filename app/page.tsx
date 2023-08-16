@@ -123,6 +123,8 @@ export default async function Home() {
           }}
         />
 
+        <AdServerComponent position={AdServerPositions.horizontal7} />
+
         <PostsFront />
       </section>
 
@@ -130,7 +132,7 @@ export default async function Home() {
       <section className="container mx-auto flex flex-col gap-5">
         <FuneralsPreview funerals={funeralNotices.slice(0, 5)} />
 
-        <AdServerComponent position={AdServerPositions.horizontal8} />
+        <AdServerComponent position={AdServerPositions.horizontal11} />
 
         <PostsFeatured
           fetchPostsProps={{
@@ -138,14 +140,14 @@ export default async function Home() {
             value: PostsCategories.deportes,
           }}
           bannerNetblockConfig={{
-            position: AdServerPositions.netblock10,
+            position: AdServerPositions.netblock12,
           }}
           bannerStickyConfig={{
             position: AdServerPositions.sticky3,
           }}
         />
 
-        <AdServerComponent position={AdServerPositions.horizontal9} />
+        <AdServerComponent position={AdServerPositions.horizontal12} />
       </section>
 
       {/* GALLERY IMAGE FULLSCREEN (swiper) SECTION */}
@@ -158,7 +160,7 @@ export default async function Home() {
 
       {/* BANNERS (horizontal10, horizontal11) & POSTGRID (cultura, magazine) */}
       <section className="container mx-auto flex flex-col gap-5">
-        <AdServerComponent position={AdServerPositions.horizontal10} />
+        <AdServerComponent position={AdServerPositions.horizontal13} />
 
         <PostsGrid
           title="Cultura"
@@ -169,7 +171,7 @@ export default async function Home() {
           }}
         />
 
-        <AdServerComponent position={AdServerPositions.horizontal11} />
+        <AdServerComponent position={AdServerPositions.horizontal14} />
 
         <PostsGrid
           title="Magazine"
@@ -179,6 +181,8 @@ export default async function Home() {
             postsLimit: 4,
           }}
         />
+
+        <AdServerComponent position={AdServerPositions.horizontal15} />
       </section>
     </div>
   );
