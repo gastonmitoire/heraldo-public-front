@@ -225,7 +225,7 @@ export const Header: React.FC<HeaderProps> = ({
                   Tapa del día
                 </Link>
                 <Link
-                  href={`funebres`}
+                  href={`/funebres`}
                   className={`font-bold text-black xl:p-[10px] hover:bg-[#eee]`}
                   onClick={closeDrawer}
                 >
