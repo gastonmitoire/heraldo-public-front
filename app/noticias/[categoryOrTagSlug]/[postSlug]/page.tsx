@@ -87,8 +87,7 @@ export default async function Page({
     ) as PostsCategories;
   }
   const category = getEnumValueCategories(categoryOrTagSlug);
-  console.log(category, categoryOrTagSlug);
-  
+
   const postsCategoryQuery = fetchPosts({
     category: category,
     postsLimit: 4,
@@ -143,8 +142,6 @@ export default async function Page({
     fetchBannerNetblock3,
     fetchBannerNetblock4,
   ]);
-
-  //right.docs.map((banner: any) => console.log(banner.desktopImage));
 
   return (
     <div className="flex flex-col gap-5 pt-5 pb-5 mx-auto md:container">

@@ -9,8 +9,6 @@ export const fetchPrintedEditionByDate = async ({
 }: FetchPrintedEditionByDate) => {
   const url = `/print-editions/date/${date}`;
 
-  console.log("url", url);
-
   const response = await fetchClient(url, {
     method: "GET",
   });
