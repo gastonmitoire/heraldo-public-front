@@ -65,14 +65,19 @@ export const CardHighlight: React.FC<CardHighlightProps> = ({
                   </div>
                 )}
 
-                <h5
-                  className={`truncate text-lg font-bold pb-1.5 xl:pr-16 text-white`}
-                >
-                  {flywheel}
-                </h5>
-                <p className="text-lg font-bold pt-1.5 xl:w-[90%]">
-                  <span className="bg-white p-1">{title}</span>
-                </p>
+                <span className="flex flex-col items-center text-[1.5rem]">
+                  <h5
+                    className={`truncate font-bold text-white text-center`}
+                    style={{
+                      textShadow: "1px 1px 5px rgba(0, 0, 0, 0.5)",
+                    }}
+                  >
+                    {flywheel}
+                  </h5>
+                  <p className={`font-bold pt-1.5 xl:w-[90%]`}>
+                    <span className="bg-white p-1">{title}</span>
+                  </p>
+                </span>
               </div>
             </div>
           ) : (
@@ -84,7 +89,7 @@ export const CardHighlight: React.FC<CardHighlightProps> = ({
                 alt={title}
                 className="group-hover:brightness-75 transition-all"
               />
-              <span className="absolute right-0 left-0 px-3 xl:right-auto xl:left-auto xl:px-0 w-full">
+              <span className="absolute right-0 left-0 px-3 w-full">
                 {liveSports && (
                   <div className="hidden xl:block w-[60%] mx-auto pr-3 z-10">
                     <iframe
@@ -95,11 +100,14 @@ export const CardHighlight: React.FC<CardHighlightProps> = ({
                   </div>
                 )}
                 <h5
-                  className={`truncate text-lg font-bold pb-1.5 pr-16 text-blue-500`}
+                  className={`truncate font-bold pb-1.5 pr-16 text-[1.5rem] text-white`}
+                  style={{
+                    textShadow: "1px 1px 5px rgba(0, 0, 0, 0.5)",
+                  }}
                 >
                   {flywheel}
                 </h5>
-                <p className="text-lg font-bold pt-1.5 w-[70%]">
+                <p className={`text-[1.5rem] font-bold pt-1.5 w-[95%]`}>
                   <span className="bg-white p-1">{title}</span>
                 </p>
               </span>

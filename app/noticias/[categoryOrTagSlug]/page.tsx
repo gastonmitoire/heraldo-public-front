@@ -11,6 +11,35 @@ import {
   PostsPositions,
 } from "@/app/features/posts/service/posts.service";
 
+export const generateMetadata = async ({
+  params,
+}: {
+  params: {
+    categoryOrTagSlug: string;
+  };
+}) => {
+  const { categoryOrTagSlug } = params;
+
+  return {
+    title: categoryOrTagSlug.replaceAll(/%20|_/g, " "),
+    description: "Noticias de " + categoryOrTagSlug.replaceAll(/%20|_/g, " "),
+    alternates: {
+      canonical: `/noticias/${categoryOrTagSlug}`,
+    },
+    openGraph: {
+      title: categoryOrTagSlug.replaceAll(/%20|_/g, " "),
+      description: "Noticias de " + categoryOrTagSlug.replaceAll(/%20|_/g, " "),
+      type: "article",
+    },
+    twitter: {
+      title: categoryOrTagSlug.replaceAll(/%20|_/g, " "),
+      description: "Noticias de " + categoryOrTagSlug.replaceAll(/%20|_/g, " "),
+      creator: "@zaroweb",
+      cardType: "summary_large_image",
+    },
+  };
+};
+
 export default async function Page({
   params,
 }: {

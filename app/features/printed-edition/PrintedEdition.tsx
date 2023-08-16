@@ -4,17 +4,19 @@
 import React, { useState } from "react";
 import Image from "next/image";
 
-import { Button } from "../../components/Button";
+import { Button } from "@/app/components/Button";
+
 import { PrintedEditionModal } from "./PrintedEditionModal";
 
 import { PrintedEditionProps } from "@/types";
+import { fetchPrintedEdition } from "./service/printed-edition.service";
 
 interface PrintedEditionComponentProps {
-  printedEdition: PrintedEditionProps;
+  currentPrintedEdition: PrintedEditionProps;
 }
 
 export const PrintedEdition: React.FC<PrintedEditionComponentProps> = ({
-  printedEdition,
+  currentPrintedEdition,
 }) => {
   const [modal, setModal] = useState(false);
 
@@ -25,23 +27,23 @@ export const PrintedEdition: React.FC<PrintedEditionComponentProps> = ({
   const closeModal = () => {
     setModal(false);
   };
-
   return (
     <>
       <article
-        className="p-3 border h-min cursor-pointer group hover:bg-gray-100"
+        className="flex flex-col border divide-y h-min cursor-pointer group hover:bg-gray-200"
         onClick={openModal}
       >
+        <h3 className="p-3 text-2xl font-bold bg-white">Tapa del día</h3>
         <Image
-          src={printedEdition.frontPage.url}
-          alt={printedEdition.frontPage.filename}
+          src={currentPrintedEdition.frontPage.url}
+          alt={"El Heraldo | Edición impresa"}
           width={500}
           height={400}
         />
 
         <Button
           variant="link"
-          className="mx-auto group-hover:text-blue-500"
+          className="mx-auto group-hover:text-primary"
           iconLeft={
             <svg
               aria-hidden="true"
@@ -64,9 +66,9 @@ export const PrintedEdition: React.FC<PrintedEditionComponentProps> = ({
         </Button>
       </article>
       <PrintedEditionModal
-        isOpen={modal}
+        open={modal}
         onClose={closeModal}
-        url={printedEdition.frontPage.url}
+        currentPrintedEdition={currentPrintedEdition}
       />
     </>
   );

@@ -13,29 +13,31 @@ interface LinkProps {
     external?: boolean;
   }[];
   prefixLink?: string;
-  activeClass?: boolean;
   className?: string;
+  linkClassName?: string;
   onClick?: () => void;
 }
 
 export const Navigation: React.FC<LinkProps> = ({
   links,
   prefixLink,
-  activeClass,
   className,
+  linkClassName,
   onClick,
 }: LinkProps) => {
   const pathname = usePathname();
 
   return (
-    <nav className={`flex justify-center ${className}`}>
+    <nav className={className}>
       {!!links ? (
         links.map((link) =>
           link.external ? (
             <Link
               key={link.slug}
               href={link.slug}
-              className={`font-bold text-gray-400 hover:text-gray-800 px-4`}
+              className={`font-bold text-black ${
+                linkClassName ? linkClassName : ""
+              }`}
               onClick={onClick}
               target="_blank"
             >
@@ -45,10 +47,8 @@ export const Navigation: React.FC<LinkProps> = ({
             <Link
               key={link.slug}
               href={`/${prefixLink ? prefixLink + "/" : ""}${link.slug}`}
-              className={`font-bold text-gray-400 hover:text-gray-800 px-4 ${
-                activeClass && pathname === "/" + prefixLink + "/" + link.slug
-                  ? "text-gray-800"
-                  : ""
+              className={`font-bold text-black ${
+                linkClassName ? linkClassName : ""
               }`}
               onClick={onClick}
             >

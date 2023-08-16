@@ -31,18 +31,14 @@ export const Banner: React.FC<BannerProps> = ({
       } ${border ? "xl:border" : ""} ${className || ""}`}
     >
       <Link href={url || "/"} target="_blank" className="flex relative">
-        <Image
+        <img
           src={desktopImage?.url}
           alt={`${title} - ${site} - desktop`}
-          width={960}
-          height={100}
           className="hidden xl:block"
         />
-        <Image
+        <img
           src={mobileImage?.url}
           alt={`${title} - ${site} - mobile`}
-          width={450}
-          height={250}
           className="block xl:hidden"
         />
       </Link>

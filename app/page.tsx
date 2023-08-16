@@ -3,7 +3,7 @@ import React from "react";
 import { SwiperFullscreen } from "./components/SwiperFullscreen";
 
 import { AdServerComponent } from "./features/ad-servers/AdServerComponent";
-import { CurrencyAndRiver } from "./features/CurrencyAndRiver";
+import { CurrencyAndRiver } from "./features/currency-and-river/CurrencyAndRiver";
 import { FuneralsPreview } from "./features/FuneralsPreview";
 import { PostsHighlight } from "./features/posts/PostsHighlight";
 import { PostsGrid } from "./features/posts/PostsGrid";
@@ -13,6 +13,10 @@ import { PostsUrgentMarquee } from "./features/posts/PostsUrgentMarquee";
 // FEATURES
 // Posts
 import { PostsFeatured } from "./features/posts/PostsFeatured";
+import { PostsFront } from "./features/posts/PostsFront";
+
+//Types
+import { FuneralNoticeProps } from "@/types";
 
 import {
   fetchAdServer,
@@ -34,6 +38,19 @@ export default async function Home() {
 
   // Funerals Calls
   const { docs: funerals } = await fetchFuneralNotices();
+
+  const funeralNotices = funerals.reduce(
+    (result: FuneralNoticeProps[], current: FuneralNoticeProps) => {
+      const exist = result.some((item) => item.title === current.title);
+
+      if (!exist) {
+        result.push(current);
+      }
+
+      return result;
+    },
+    []
+  );
 
   return (
     <div className="flex flex-col gap-5">
@@ -89,7 +106,7 @@ export default async function Home() {
           title="Elecciones 2023"
           fetchPostsProps={{
             option: "tag",
-            value: "elecciones2023",
+            value: "Elecciones 2023",
           }}
         />
 
@@ -107,13 +124,15 @@ export default async function Home() {
         />
 
         <AdServerComponent position={AdServerPositions.horizontal7} />
+
+        <PostsFront />
       </section>
 
       {/* FUNERALS PREVIEW SECTION & BANNER (horizontal8, horizontal9) & POSTS-FEATURED (category: deportes) */}
       <section className="container mx-auto flex flex-col gap-5">
-        <FuneralsPreview funerals={funerals.slice(0, 5)} />
+        <FuneralsPreview funerals={funeralNotices.slice(0, 5)} />
 
-        <AdServerComponent position={AdServerPositions.horizontal8} />
+        <AdServerComponent position={AdServerPositions.horizontal11} />
 
         <PostsFeatured
           fetchPostsProps={{
@@ -121,14 +140,14 @@ export default async function Home() {
             value: PostsCategories.deportes,
           }}
           bannerNetblockConfig={{
-            position: AdServerPositions.netblock10,
+            position: AdServerPositions.netblock12,
           }}
           bannerStickyConfig={{
             position: AdServerPositions.sticky3,
           }}
         />
 
-        <AdServerComponent position={AdServerPositions.horizontal9} />
+        <AdServerComponent position={AdServerPositions.horizontal12} />
       </section>
 
       {/* GALLERY IMAGE FULLSCREEN (swiper) SECTION */}
@@ -141,7 +160,7 @@ export default async function Home() {
 
       {/* BANNERS (horizontal10, horizontal11) & POSTGRID (cultura, magazine) */}
       <section className="container mx-auto flex flex-col gap-5">
-        <AdServerComponent position={AdServerPositions.horizontal10} />
+        <AdServerComponent position={AdServerPositions.horizontal13} />
 
         <PostsGrid
           title="Cultura"
@@ -152,7 +171,7 @@ export default async function Home() {
           }}
         />
 
-        <AdServerComponent position={AdServerPositions.horizontal11} />
+        <AdServerComponent position={AdServerPositions.horizontal14} />
 
         <PostsGrid
           title="Magazine"
@@ -162,6 +181,8 @@ export default async function Home() {
             postsLimit: 4,
           }}
         />
+
+        <AdServerComponent position={AdServerPositions.horizontal15} />
       </section>
     </div>
   );

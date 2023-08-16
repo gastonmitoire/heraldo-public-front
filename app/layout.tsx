@@ -6,9 +6,16 @@ const montserrat = Montserrat({ subsets: ["latin"] });
 import { Footer } from "./components/Footer";
 import { Header } from "./components/Header";
 
-import { AdServerPositions } from "./features/ad-servers/service/ad-servers.service";
+import { AdServerComponent } from "@/app/features/ad-servers/AdServerComponent";
+import { AdServerFooter } from "./features/ad-servers/AdServerFooter";
+import { AdServerFullscreen } from "./features/ad-servers/AdServerFullscreen";
 
+import {
+  fetchAdServer,
+  AdServerPositions,
+} from "./features/ad-servers/service/ad-servers.service";
 import { fetchCategories } from "./service/app.service";
+import { fetchPrintedEdition } from "./features/printed-edition/service/printed-edition.service";
 
 import Providers from "./providers";
 
@@ -29,20 +36,40 @@ export default async function RootLayout({
   children: React.ReactNode;
 }) {
   const categories = await fetchCategories();
+  const { docs: printedEditions } = await fetchPrintedEdition();
+  const { docs: fullScreenAdServer } = await fetchAdServer({
+    position: AdServerPositions.full_screen,
+  });
+  const { docs: footerAdServer } = await fetchAdServer({
+    position: AdServerPositions.footer,
+  });
   return (
     <html lang="en">
-      <body className={montserrat.className}>
-        <Header
-          categories={categories}
-          banner={{
-            position: AdServerPositions.horizontal1,
-          }}
-        />
-        <main>
-          <Providers>{children}</Providers>
-        </main>
-        <Footer categories={categories} />
-      </body>
+      <Providers>
+        <body className={montserrat.className}>
+          <Header
+            categories={categories}
+            banner={
+              <AdServerComponent position={AdServerPositions.horizontal1} />
+            }
+            printedEdition={printedEditions[0]}
+          />
+          <main>{children}</main>
+          <Footer categories={categories} printedEdition={printedEditions[0]} />
+
+          {footerAdServer.length > 0 && (
+            <AdServerFooter>
+              <AdServerComponent position={AdServerPositions.footer} />
+            </AdServerFooter>
+          )}
+
+          {fullScreenAdServer.length > 0 && (
+            <AdServerFullscreen>
+              <AdServerComponent position={AdServerPositions.full_screen} />
+            </AdServerFullscreen>
+          )}
+        </body>
+      </Providers>
     </html>
   );
 }

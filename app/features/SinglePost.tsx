@@ -3,7 +3,6 @@ import { formatDate } from "../service/app.service";
 import { SocialMediaShareLinks } from "../components/SocialMediaShareLinks";
 import PostContent from "./PostContent";
 
-
 const SinglePost = async ({
   post,
 }: {
@@ -21,7 +20,7 @@ const SinglePost = async ({
   };
 }) => {
   const postContent = await JSON.parse(post?.content);
-  
+
   const date = formatDate({
     dateString: post?.publicationDate,
     dateFormat: "cccc',' dd 'de' MMMM 'de' yyyy",
@@ -35,19 +34,19 @@ const SinglePost = async ({
         </p>
         <time dateTime={post?.publicationDate}>{date}</time>
       </div>
-
       <div className="flex-1 px-3 py-5 md:px-0">
-        <h5 className="pr-16 text-lg font-bold text-blue-500 truncate ">
+        <h5 className="pr-16 text-lg font-bold text-primary truncate ">
           {post?.flywheel}
         </h5>
         <p className="text-lg font-bold pt-0.5">{post?.title}</p>
+        <p className="text-lg italic">{post?.excerpt}</p>
       </div>
-      <div className="relative h-[500px] xl:h-[720px] transition-colors group-hover:bg-black group-hover:bg-opacity-30">
+      <div className="relative h-[500px] md:h-[600px] xl:h-[700px] transition-colors group-hover:bg-black group-hover:bg-opacity-30">
         <Image
           src={post?.images[0].url}
           alt={post?.title}
           fill
-          className="object-contain"
+          className="object-cover object-center"
         />
       </div>
       <div className="flex flex-col grid-cols-12 gap-3 px-10 pt-10 md:px-0 lg:grid">
@@ -61,12 +60,11 @@ const SinglePost = async ({
           />
         </div>
         <div className="col-span-10 text-left">
-          <p className="text-lg italic">{post?.excerpt}</p>
           {post?.category.slug === "deportes" && (
             <iframe src={post?.liveSports} width="100%" height="500px"></iframe>
           )}
           <section>
-            <PostContent postContent={postContent} />
+            <PostContent data={postContent} />
           </section>
         </div>
         <div className="col-span-1"></div>
