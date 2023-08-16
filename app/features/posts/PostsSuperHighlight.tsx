@@ -9,8 +9,8 @@ import { fetchPostsWithOptions, PostsPositions } from "./service/posts.service";
 
 export const PostsSuperHighlight: React.FC = async () => {
   const posts = await fetchPostsWithOptions({
-    option: "tag",
-    value: "vivo deportes",
+    option: "position",
+    value: PostsPositions.super_highlight,
     postsLimit: 0,
   });
 
