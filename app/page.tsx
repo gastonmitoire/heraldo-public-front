@@ -33,7 +33,7 @@ export default async function Home() {
   // Posts Calls (Highlight, SuperHighlight, TopPosition, FutbolCategory, EspectaculosCategory, CulturaCategory)
   const postsEspectaculosCategory = await fetchPostsWithOptions({
     option: "category",
-    value: PostsCategories.espectaculos,
+    value: PostsCategories.photo_gallery,
   });
 
   // Funerals Calls

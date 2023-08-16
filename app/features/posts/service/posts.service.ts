@@ -40,6 +40,7 @@ export enum PostsCategories {
   ciencia = "ciencia",
   informativo_docente = "informativo_docente",
   correo_de_lectores = "correo_de_lectores",
+  photo_gallery = "photo_gallery",
 }
 
 export interface FetchPostsWithPaginationProps {

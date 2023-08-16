@@ -1,7 +1,7 @@
 // swiper fullscreen component
 "use client";
 
-import React from "react";
+import React, { useState, useEffect } from "react";
 import Link from "next/link";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation, Pagination, Scrollbar, A11y } from "swiper/modules";
@@ -25,7 +25,17 @@ export const SwiperFullscreen: React.FC<SwiperFullscreenProps> = ({
   posts,
   className,
 }) => {
-  return (
+  const [mounted, setMounted] = useState(false);
+
+  if (posts.length === 0) {
+    return null;
+  }
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  return mounted && posts.length > 0 ? (
     <Swiper
       modules={[Navigation, Pagination, Scrollbar, A11y]}
       spaceBetween={12}
@@ -51,5 +61,5 @@ export const SwiperFullscreen: React.FC<SwiperFullscreenProps> = ({
         </SwiperSlide>
       ))}
     </Swiper>
-  );
+  ) : null;
 };
