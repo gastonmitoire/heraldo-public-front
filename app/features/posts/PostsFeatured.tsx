@@ -49,9 +49,9 @@ export const PostsFeatured: React.FC<PostsFeaturedProps> = async ({
   const redirectUrl = (value: string) => {
     switch (value) {
       case "category":
-        return posts[0].category?.slug;
+        return filteredPosts[0].category?.slug;
       case "position":
-        return posts[0].category?.slug;
+        return filteredPosts[0].category?.slug;
       case "tag":
         return fetchPostsProps.value;
       default:
