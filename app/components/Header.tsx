@@ -10,7 +10,7 @@ import { usePathname } from "next/navigation";
 import { Drawer } from "./Drawer";
 import { HamburgerButton } from "./HamburgerButton";
 import { Navigation } from "./Navigation";
-import { SearchBar } from "../features/posts/PostsSearchBar";
+import { PostsSearchBar } from "../features/posts/PostsSearchBar";
 import { SocialMediaLinks } from "./SocialMediaLinks";
 
 import { PrintedEditionModal } from "../features/printed-edition/PrintedEditionModal";
@@ -108,7 +108,7 @@ export const Header: React.FC<HeaderProps> = ({
                 </svg>
               </button>
 
-              <SearchBar onClickSelected={() => setSearching(false)} />
+              <PostsSearchBar onClickSelected={() => setSearching(false)} />
             </span>
           ) : (
             <>
@@ -204,6 +204,12 @@ export const Header: React.FC<HeaderProps> = ({
               </svg>
             </button>
           </div>
+          <div className="px-3">
+            <PostsSearchBar
+              onClickSelected={() => setSearching(false)}
+              dropdownClassName="max-h-[80vh]"
+            />
+          </div>
           <div className="col-span-2 grid grid-cols-2 gap-1 h-full">
             <div className="flex flex-col px-1">
               <nav className="flex flex-col gap-3 lg:gap-1">
@@ -225,7 +231,7 @@ export const Header: React.FC<HeaderProps> = ({
                   Tapa del día
                 </Link>
                 <Link
-                  href={`funebres`}
+                  href={`/funebres`}
                   className={`font-bold text-black xl:p-[10px] hover:bg-[#eee]`}
                   onClick={closeDrawer}
                 >

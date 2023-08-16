@@ -10,8 +10,6 @@ interface DrawerProps {
 
 export const Drawer: React.FC<DrawerProps> = ({ open, onClose, children }) => {
   return open ? (
-    <div className="fixed top-0 w-full h-screen z-50" onClick={onClose}>
-      {children}
-    </div>
+    <div className="fixed top-0 w-full h-screen z-50">{children}</div>
   ) : null;
 };

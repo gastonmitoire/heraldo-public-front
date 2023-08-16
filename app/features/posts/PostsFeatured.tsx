@@ -15,6 +15,7 @@ import { AdServerPositions } from "../ad-servers/service/ad-servers.service";
 import {
   fetchPostsWithOptions,
   FetchPostsWithOptionsProps,
+  PostsPositions,
 } from "./service/posts.service";
 
 interface PostsFeaturedProps {
@@ -38,12 +39,19 @@ export const PostsFeatured: React.FC<PostsFeaturedProps> = async ({
     ...fetchPostsProps,
   });
 
+  const filteredPosts = posts.filter(
+    (post: PostProps) =>
+      post.position !== PostsPositions.super_highlight &&
+      post.position !== PostsPositions.highlight &&
+      post.position !== PostsPositions.top
+  );
+
   const redirectUrl = (value: string) => {
     switch (value) {
       case "category":
-        return posts[0].category?.slug;
+        return filteredPosts[0].category?.slug;
       case "position":
-        return posts[0].category?.slug;
+        return filteredPosts[0].category?.slug;
       case "tag":
         return fetchPostsProps.value;
       default:
@@ -55,15 +63,15 @@ export const PostsFeatured: React.FC<PostsFeaturedProps> = async ({
     <div className="grid grid-cols-4 gap-3">
       <div className="col-span-4">
         <Heading
-          title={posts[0].category?.name}
+          title={filteredPosts[0].category?.name}
           link={`/noticias/${redirectUrl(fetchPostsProps.option)}`}
         />
       </div>
 
       <div className="col-span-4 xl:col-span-3 grid grid-cols-3 xl:grid-rows-3 gap-3">
         <div className="col-span-3 xl:col-span-2 h-[300px] xl:row-span-2 xl:h-auto">
-          {posts.length > 0
-            ? posts.slice(0, 1).map((post: any) => (
+          {filteredPosts.length > 0
+            ? filteredPosts.slice(0, 1).map((post: any) => (
                 <CardHighlight
                   key={post._id}
                   item={{
@@ -81,8 +89,8 @@ export const PostsFeatured: React.FC<PostsFeaturedProps> = async ({
         </div>
 
         <div className="col-span-1 row-span-2 hidden xl:grid grid-rows-2 gap-3">
-          {posts.length > 0
-            ? posts.slice(1, 3).map((post: any) => (
+          {filteredPosts.length > 0
+            ? filteredPosts.slice(1, 3).map((post: any) => (
                 <Card
                   key={post._id}
                   item={{
@@ -104,8 +112,8 @@ export const PostsFeatured: React.FC<PostsFeaturedProps> = async ({
           </div>
 
           <div className="col-span-2 hidden xl:grid grid-cols-2 gap-3">
-            {posts.length > 0
-              ? posts.slice(3, 5).map((post: any) => (
+            {filteredPosts.length > 0
+              ? filteredPosts.slice(3, 5).map((post: any) => (
                   <Card
                     key={post._id}
                     item={{
@@ -125,7 +133,7 @@ export const PostsFeatured: React.FC<PostsFeaturedProps> = async ({
 
       <span className="block xl:hidden col-span-4">
         <CardGridWithSwiper
-          data={posts.slice(1, 6)}
+          data={filteredPosts.slice(1, 6)}
           className="col-span-2"
           cardClassName="xl:h-[460px]"
         />

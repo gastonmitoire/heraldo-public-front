@@ -27,11 +27,11 @@ export const Modal: React.FC<ModalProps> = ({
         } ${maxWidth ? maxWidth : "max-w-2xl"}`}
       >
         <nav className="relative flex items-center justify-between px-3 w-full h-10">
-          <h2 className="text-xl font-bold text-center text-#1C2033">
+          <h2 className="hidden md:block text-xl font-bold text-center text-#1C2033">
             {title}
           </h2>
 
-          <span className="flex items-center gap-3">
+          <span className="w-full flex items-center justify-between gap-3">
             {topAction}
             <button
               type="button"

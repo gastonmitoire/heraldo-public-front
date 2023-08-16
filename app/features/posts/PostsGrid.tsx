@@ -8,6 +8,7 @@ import { Heading } from "@/app/components/Heading";
 
 import { AdServerComponent } from "../ad-servers/AdServerComponent";
 
+import { PostProps } from "@/types";
 import {
   fetchAdServer,
   AdServerPositions,
@@ -15,6 +16,7 @@ import {
 import {
   fetchPostsWithOptions,
   FetchPostsWithOptionsProps,
+  PostsPositions,
 } from "./service/posts.service";
 
 interface PostsGridProps {
@@ -37,27 +39,34 @@ export const PostsGrid: React.FC<PostsGridProps> = async ({
     postsLimit,
   });
 
+  const filteredPosts = posts.filter(
+    (post: PostProps) =>
+      (post.position !== PostsPositions.super_highlight &&
+        post.position !== PostsPositions.highlight) ||
+      post.tags?.some((tag) => tag === "vivo deportes")
+  );
+
   const banner = bannerConfig ? await fetchAdServer(bannerConfig) : null;
 
   const dataWithBanner =
-    posts?.length > 0 && banner
+    filteredPosts?.length > 0 && banner
       ? [
-          ...posts.slice(0, 3),
+          ...filteredPosts.slice(0, 3),
           {
             type: "banner",
             ...banner.docs[0],
           },
         ]
-      : posts;
+      : filteredPosts;
 
-  const dataWithoutBanner = posts;
+  const dataWithoutBanner = filteredPosts;
 
   const redirectUrl = (value: string) => {
     switch (value) {
       case "category":
-        return posts[0].category?.slug;
+        return filteredPosts[0].category?.slug;
       case "position":
-        return posts[0].category?.slug;
+        return filteredPosts[0].category?.slug;
       case "tag":
         return fetchPostsProps.value;
       default:
@@ -67,7 +76,7 @@ export const PostsGrid: React.FC<PostsGridProps> = async ({
 
   return (
     <div>
-      {posts?.length > 0 && title ? (
+      {filteredPosts?.length > 0 && title ? (
         <Heading
           title={title}
           link={`/noticias/${redirectUrl(fetchPostsProps.option)}`}
@@ -84,7 +93,7 @@ export const PostsGrid: React.FC<PostsGridProps> = async ({
             <Banner banner={banner.docs[0]} className="h-full px-3 xl:px-0" />
           </span>
         </>
-      ) : posts?.length > 0 ? (
+      ) : filteredPosts?.length > 0 ? (
         <CardGridWithSwiper data={dataWithoutBanner} />
       ) : null}
     </div>
