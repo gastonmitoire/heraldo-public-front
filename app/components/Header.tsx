@@ -240,7 +240,7 @@ export const Header: React.FC<HeaderProps> = ({
                   Clasificados
                 </Link>
                 <Link
-                  href={`noticias/correo-de-lectores`}
+                  href={`/noticias/correo_de_lectores`}
                   className={`font-bold text-black xl:p-[10px] hover:bg-[#eee]`}
                   onClick={closeDrawer}
                 >
