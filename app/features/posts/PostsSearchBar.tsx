@@ -12,11 +12,13 @@ import { fetchPostsWithSearch } from "./service/posts.service";
 
 interface SearchBarProps {
   className?: string;
+  dropdownClassName?: string;
   onClickSelected?: () => void;
 }
 
 export const SearchBar: React.FC<SearchBarProps> = ({
   className,
+  dropdownClassName,
   onClickSelected,
 }) => {
   const [searchTerm, setSearchTerm] = useState("");
@@ -37,6 +39,12 @@ export const SearchBar: React.FC<SearchBarProps> = ({
   const handleOnChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setSearchTerm(e.target.value);
   };
+
+  if (listOpen) {
+    document.body.style.overflow = "hidden";
+  } else {
+    document.body.style.overflow = "unset";
+  }
 
   useEffect(() => {
     if (searchTerm.length > 0) {
@@ -64,7 +72,9 @@ export const SearchBar: React.FC<SearchBarProps> = ({
 
   return (
     <>
-      <div className="relative flex items-center w-full gap-1">
+      <div
+        className={`relative flex items-center w-full gap-1 ${className || ""}`}
+      >
         <span className="px-3">
           <svg
             aria-hidden="true"
@@ -133,7 +143,11 @@ export const SearchBar: React.FC<SearchBarProps> = ({
         )}
 
         {listOpen ? (
-          <div className="absolute top-12 z-10 w-full max-h-[250px] overflow-auto flex flex-col gap-1.5 p-1 border rounded-md bg-white">
+          <div
+            className={`absolute top-12 z-10 w-full max-h-[250px] overflow-auto flex flex-col gap-1.5 p-1 border rounded-md bg-white ${
+              dropdownClassName || ""
+            }`}
+          >
             {posts?.map((post: PostProps) => (
               <Link
                 href={`/noticias/${post.category.slug}/${post.slug}`}

@@ -204,6 +204,12 @@ export const Header: React.FC<HeaderProps> = ({
               </svg>
             </button>
           </div>
+          <div className="px-3">
+            <SearchBar
+              onClickSelected={() => setSearching(false)}
+              dropdownClassName="max-h-[80vh]"
+            />
+          </div>
           <div className="col-span-2 grid grid-cols-2 gap-1 h-full">
             <div className="flex flex-col px-1">
               <nav className="flex flex-col gap-3 lg:gap-1">
