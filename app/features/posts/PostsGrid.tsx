@@ -42,8 +42,7 @@ export const PostsGrid: React.FC<PostsGridProps> = async ({
   const filteredPosts = posts.filter(
     (post: PostProps) =>
       (post.position !== PostsPositions.super_highlight &&
-        post.position !== PostsPositions.highlight &&
-        post.position !== PostsPositions.top) ||
+        post.position !== PostsPositions.highlight) ||
       post.tags?.some((tag) => tag === "vivo deportes")
   );
 
