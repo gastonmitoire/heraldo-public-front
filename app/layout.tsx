@@ -45,7 +45,7 @@ export default async function RootLayout({
             printedEdition={printedEditions[0]}
           />
           <main>{children}</main>
-          <Footer categories={categories} />
+          <Footer categories={categories} printedEdition={printedEditions[0]} />
         </body>
       </Providers>
     </html>

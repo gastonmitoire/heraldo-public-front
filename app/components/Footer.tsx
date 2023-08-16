@@ -6,11 +6,18 @@ import Image from "next/image";
 import { Navigation } from "./Navigation";
 import { SocialMediaLinks } from "./SocialMediaLinks";
 
+import { PrintedEditionFooter } from "../features/printed-edition/PrintedEditionFooter";
+import { PrintedEditionProps } from "@/types";
+
 interface FooterProps {
   categories: any;
+  printedEdition: PrintedEditionProps;
 }
 
-export const Footer: React.FC<FooterProps> = ({ categories }) => {
+export const Footer: React.FC<FooterProps> = ({
+  categories,
+  printedEdition,
+}) => {
   const footerCategories = categories
     ?.filter(
       (category: any) =>
@@ -36,9 +43,7 @@ export const Footer: React.FC<FooterProps> = ({ categories }) => {
             height={50}
           />
 
-          <button type="button" className="hidden xl:flex">
-            Ver tapa del día
-          </button>
+          <PrintedEditionFooter printedEdition={printedEdition} />
         </div>
 
         <div className="py-5">
