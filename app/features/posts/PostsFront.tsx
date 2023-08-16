@@ -31,7 +31,7 @@ export const PostsFront: React.FC = async () => {
       </div>
       <div className="col-span-1 xl:col-span-3 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 w-full">
         <AdServerComponent position={AdServerPositions.netblock2} />
-        {posts.slice(0, 2).map((post) => (
+        {filteredPosts.slice(0, 2).map((post) => (
           <Card
             key={post._id}
             item={{
@@ -44,7 +44,7 @@ export const PostsFront: React.FC = async () => {
             }}
           />
         ))}
-        {posts.slice(2, 4).map((post) => (
+        {filteredPosts.slice(2, 4).map((post) => (
           <Card
             key={post._id}
             item={{
@@ -63,7 +63,7 @@ export const PostsFront: React.FC = async () => {
           <AdServerComponent position={AdServerPositions.horizontal8} />
         </span>
 
-        {posts.slice(4, 7).map((post) => (
+        {filteredPosts.slice(4, 7).map((post) => (
           <Card
             key={post._id}
             item={{
@@ -78,7 +78,7 @@ export const PostsFront: React.FC = async () => {
         ))}
 
         <AdServerComponent position={AdServerPositions.netblock4} />
-        {posts.slice(7, 9).map((post) => (
+        {filteredPosts.slice(7, 9).map((post) => (
           <Card
             key={post._id}
             item={{
@@ -96,7 +96,7 @@ export const PostsFront: React.FC = async () => {
           <AdServerComponent position={AdServerPositions.horizontal9} />
         </span>
 
-        {posts.slice(9, 11).map((post) => (
+        {filteredPosts.slice(9, 11).map((post) => (
           <Card
             key={post._id}
             item={{
@@ -112,7 +112,7 @@ export const PostsFront: React.FC = async () => {
         <AdServerComponent position={AdServerPositions.netblock5} />
 
         <AdServerComponent position={AdServerPositions.netblock6} />
-        {posts.slice(11, 13).map((post) => (
+        {filteredPosts.slice(11, 13).map((post) => (
           <Card
             key={post._id}
             item={{
@@ -126,7 +126,7 @@ export const PostsFront: React.FC = async () => {
           />
         ))}
 
-        {posts.slice(13, 15).map((post) => (
+        {filteredPosts.slice(13, 15).map((post) => (
           <Card
             key={post._id}
             item={{
