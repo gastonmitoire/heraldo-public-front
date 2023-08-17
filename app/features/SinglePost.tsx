@@ -23,23 +23,23 @@ const SinglePost = async ({
 
   const date = formatDate({
     dateString: post?.publicationDate,
-    dateFormat: "cccc',' dd 'de' MMMM 'de' yyyy",
+    dateFormat: "eeee dd 'de' MMMM 'de' yyyy",
   });
 
   return (
     <section className="grid-cols-1 gap-3 px-0 lg:px-10 lg:col-span-3 ">
       <div className="flex justify-between h-10 px-3 pb-3 border-b-2 md:px-0 ">
-        <p className="font-bold">
+        <p className="font-bold up">
           {post?.category.name} - {post?.section.name}
         </p>
-        <time dateTime={post?.publicationDate}>{date}</time>
+        <time dateTime={post?.publicationDate} className="first-letter:capitalize" >{date}</time>
       </div>
       <div className="flex-1 px-3 py-5 md:px-0">
         <h5 className="pr-16 text-lg font-bold text-primary truncate ">
           {post?.flywheel}
         </h5>
-        <p className="text-lg font-bold pt-0.5">{post?.title}</p>
-        <p className="text-lg italic">{post?.excerpt}</p>
+        <h3 className="text-2xl font-bold pt-0.5">{post?.title}</h3>
+        <p className="text-lg italic my-4">{post?.excerpt}</p>
       </div>
       <div className="relative h-[500px] md:h-[600px] xl:h-[700px] transition-colors group-hover:bg-black group-hover:bg-opacity-30">
         <Image
