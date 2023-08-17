@@ -50,41 +50,46 @@ const FuneralNoticesContent = ({
 
   return (
     <>
-      <header className="w-full flex flex-col items-start gap-4 md:flex-row md:justify-between">
-        <h1 className="font-bold text-2xl">Avisos Fúnebres de hoy</h1>
+      <header className="grid grid-cols-3 xl:grid-cols-4 items-start gap-4 md:flex-row md:justify-between">
+        <div className="col-span-3 grid grid-cols-3 gap-3">
+          <h1 className="font-bold text-2xl">Avisos Fúnebres de hoy</h1>
 
-        <article className="flex flex-col gap-8 sm:flex-row sm:gap-4 sm:items-center">
-          <div className="relative max-w-[314px]">
-            <label htmlFor="input_search" className="w-full py-3 bg-WhiteSmoke">
-              <input
-                type="text"
-                id="input_search"
-                name="input_search"
-                placeholder="Buscar"
-                value={inputSearch}
-                onChange={handleChangeSearch}
-                className="w-full h-full pl-2 bg-[transparent] outline-none placeholder-black"
-              />
-            </label>
-            <div className="absolute top-0 right-2 text-lg">
-              <i className="lni lni-search-alt"></i>
+          <div className="col-span-2">
+            <div className="relative max-w-[314px] min-w-[250px]">
+              <label
+                htmlFor="input_search"
+                className="w-full py-3 bg-WhiteSmoke"
+              >
+                <input
+                  type="text"
+                  id="input_search"
+                  name="input_search"
+                  placeholder="Buscar"
+                  value={inputSearch}
+                  onChange={handleChangeSearch}
+                  className="w-full h-full pl-2 bg-gray-100 outline-none placeholder-black"
+                />
+              </label>
+              <div className="absolute top-0 right-2 text-lg">
+                <i className="lni lni-search-alt"></i>
+              </div>
+            </div>
+
+            <div className=" max-w-[314px] ml-5">
+              <label htmlFor="input_date" className="w-full py-3 bg-WhiteSmoke">
+                <input
+                  type="date"
+                  id="input_date"
+                  name="input_date"
+                  placeholder="Filtrar por fecha"
+                  value={inputDate}
+                  onChange={handleChangeDate}
+                  className="w-full h-full px-2 bg-gray-100 outline-none"
+                />
+              </label>
             </div>
           </div>
-
-          <div className="relative max-w-[314px]">
-            <label htmlFor="input_date" className="w-full py-3 bg-WhiteSmoke">
-              <input
-                type="date"
-                id="input_date"
-                name="input_date"
-                placeholder="Filtrar por fecha"
-                value={inputDate}
-                onChange={handleChangeDate}
-                className="w-full h-full px-2 bg-[transparent] outline-none"
-              />
-            </label>
-          </div>
-        </article>
+        </div>
       </header>
       <article className="w-full flex items-start justify-start gap-4 px-2 xl:px-4">
         <div className="grid grid-cols-3 xl:grid-cols-4 gap-3">
