@@ -31,7 +31,7 @@ export const Modal: React.FC<ModalProps> = ({
             {title}
           </h2>
 
-          <span className="flex-1 md:flex-auto flex items-center justify-between md:justify-end gap-3 bg-orange-300">
+          <span className="flex-1 md:flex-auto flex items-center justify-between md:justify-end gap-3">
             {topAction}
             <button
               type="button"
